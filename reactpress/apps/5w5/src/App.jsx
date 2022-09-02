@@ -2,21 +2,15 @@ import logo from './logo.svg';
 import './App.css';
 import {React, useEffect, useState} from 'react';
 import useFetch from './useFetch';
+import ListeEnseignants from './ListeEnseignants';
+import Enseignant from './Enseignant';
 
-function App() {
-
-    const tests = useFetch('http://localhost:8888/5w5/wordpress/index.php/wp-json/wp/v2/enseignant');
-    console.log(tests);
+export default function App() {
 
     return (
         <div className="App">
-            {
-                tests && tests.map(
-                    (test, index) => <div key={index}>{test.acf.nom}</div>
-                )
-            }
+            <ListeEnseignants></ListeEnseignants>
+
         </div>
     );
 }
-
-export default App;
