@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useFetch(url){
+export default async function useFetch(url){
     const [donnees, setDonnees] = useState(null);
     useEffect(() => {
         async function chargerArticle() {
