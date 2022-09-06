@@ -1,6 +1,5 @@
 import './App.css';
 import {React, useEffect, useState} from 'react';
-import useFetch from './useFetch';
 import ListeEnseignants from './components/ListeEnseignants';
 import Accueil from './components/Accueil';
 import Navigation from './components/Navigation';
@@ -10,7 +9,7 @@ export default function App() {
 
     return (
         <div className="App">
-            {/* <Navigation */}
+            <Navigation />
             <Routes>
                 <Route path="/" element={<Accueil />}></Route>
                 <Route path="enseignant" element={<ListeEnseignants />}/>
