@@ -5,10 +5,9 @@ import {useState, useEffect} from 'react';
 
 export default function ListeEnseignants() {
     const [estCharge, setEstCharge] = useState(false);
-
+    
     const enseignants = useFetch('http://localhost:8888/5w5/wordpress/wp-json/wp/v2/enseignant').then(
-        setEstCharge(true),
-        console.log(estCharge)
+        reponse => reponse != null ? setEstCharge(true) : setEstCharge(false)
     )
 
     return(
