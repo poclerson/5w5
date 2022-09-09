@@ -1,29 +1,33 @@
 import { useState } from 'react';
-import chargerArticles from '../chargerArticles';
+import obtenirArticles from '../obtenirArticles';
 import Chargement from './Chargement';
 import NavItem from './NavItem';
 import {useEffect} from 'react';
 
 export default function Navigation() {
-    const [typeArticles, setTypeArticles] = useState(null);
+    // const [typeArticles, setTypeArticles] = useState(null);
 
     // useEffect(() => {
-    //     chargerArticles('http://localhost:8888/5w5/wordpress/wp-json/wp/v2').then(
-    //         reponse => setTypeArticles(reponse)
+    //     obtenirArticles('http://localhost:8888/5w5/wordpress/wp-json/wp/v2/').then(
+    //         reponse => setTypeArticles(Object.values(reponse.routes).filter(route =>
+    //             route._links))
     //     )
     // })
 
-    console.log(typeArticles);
+    const [typeArticles, setTypeArticles] = useState([
+        'enseignants',
+        'cours'
+    ]);
+    
 
     return(
-        // routes == null ?
-        // <ul className="Navigation">
-        //     {/* {articles.map(article => 
-        //         <NavItem article={article}/>
-        //     )} */}
-        // </ul>
-        // :
-        // console.log(routes)
-        <ul className="Navigation"></ul>
+        typeArticles != null ?
+        <ul className="Navigation">
+            {typeArticles.map(article => 
+                <NavItem article={article}/>
+            )}
+        </ul>
+        :
+        <Chargement />
     )
 }

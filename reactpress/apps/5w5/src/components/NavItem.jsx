@@ -2,7 +2,7 @@ export default function Navitem({article}) {
 
     return (
         <li className="NavItem">
-            <a href={"http://localhost:8888/5w5/wordpress/" + {article}}>{article}</a>
+            <a href={"http://localhost:3000/" + article}>{article}</a>
         </li>
     )
 }
