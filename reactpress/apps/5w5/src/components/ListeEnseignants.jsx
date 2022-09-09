@@ -3,22 +3,22 @@ import Chargement from './Chargement';
 import obtenirArticles from '../obtenirArticles'
 import {useState, useEffect} from 'react';
 
-export default function ListeEnseignants() {
-
-    const [enseignants, setEnseignants] = useState(null);
-
-    // Récuperer les données
-    useEffect(() => {
-        obtenirArticles('http://localhost:8888/5w5/wordpress/wp-json/wp/v2/enseignants').then(
-            reponse => setEnseignants(reponse)
-        )
-    }, []);
-
+export default function ListeEnseignants(enseignants, setEnseignants, media, setMedia, cours, setCours) {
     return(
-        enseignants != null ?
+        enseignants && media != null ?
         <ul className="ListeEnseignants">
             {enseignants.map(enseignant => 
-                <Enseignant key={enseignant.id} {...enseignant.acf}></Enseignant>
+                <Enseignant 
+                    key={enseignant.id} 
+                    nom={enseignant.acf.nom} 
+                    description={enseignant.acf.description}
+                    photo={media.filter(medium =>
+                        medium.id == enseignant.acf.photo
+                    )[0].guid.rendered}
+                    coursEnseignes={enseignant.acf.coursEnseignes.filter(coursEnseigne => 
+                        coursEnseigne == cours.map(cours => cours.id)    
+                    )}
+                />
             )}
         </ul>
         

@@ -23,9 +23,9 @@ export default function Navigation() {
     return(
         typeArticles != null ?
         <ul className="Navigation">
-            {typeArticles.map(article => 
-                <NavItem article={article}/>
-            )}
+            {/* {typeArticles.map(article => 
+                <NavItem key={article.id} article={article}/>
+            )} */}
         </ul>
         :
         <Chargement />
