@@ -1,5 +1,5 @@
 import Session from './Session';
-import obtenirArticle from '../obtenirArticles';
+import obtenir from '../wp-rest-api';
 
 import {useState, useEffect} from 'react';
 
