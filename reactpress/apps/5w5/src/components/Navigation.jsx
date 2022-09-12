@@ -1,20 +1,11 @@
-import { useState } from 'react';
-import obtenir from '../wp-rest-api';
-import Chargement from './Chargement';
-import NavItem from './NavItem';
-import {useEffect} from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Navigation(pages) {
-
-
+export default function Navigation({routes}) {
     return(
-        // typeArticles != null ?
         <ul className="Navigation">
-            {/* {typeArticles.map(article => 
-                <NavItem key={article.id} article={article}/>
-            )} */}
+            {routes.map(route => 
+                <Link key={route.nom} to={route.chemin} >{route.nom}</Link>    
+            )}
         </ul>
-        // :
-        // <Chargement />
     )
 }
