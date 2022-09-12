@@ -46,8 +46,12 @@ export default function App() {
             nom: 'Cours',
             chemin: 'cours',
             composant: () => <ListeCours 
-                cours={cours} 
-                setCours={setCours} 
+                enseignants={enseignants} 
+                setEnseignants={setEnseignants} 
+                cours={cours}
+                setCours={setCours}
+                media={media} 
+                setMedia={setMedia}
             />
         },
         {
@@ -69,12 +73,12 @@ export default function App() {
         
     return (
         <div className="App">
-            <Navigation routes={routes}/>
-                <Routes>
-                    {routes.map(route => {
-                        return <Route key={route.nom} path={route.chemin} element={ <route.composant />} />
-                    })}
-                </Routes>
+            <Navigation routes={routes} />
+            <Routes>
+                {routes.map(route => {
+                    return <Route key={route.nom} path={route.chemin} element={ <route.composant />} />
+                })}
+            </Routes>
         </div>
     );
 }

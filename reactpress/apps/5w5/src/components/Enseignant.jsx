@@ -1,4 +1,5 @@
 import CoursEnseigne from './CoursEnseigne';
+import {Link} from 'react-router-dom';
 
 export default function Enseignant({nom, description, photo, coursEnseignes}) {
     return(
@@ -8,7 +9,7 @@ export default function Enseignant({nom, description, photo, coursEnseignes}) {
             <p className="Enseignant__desc">{description}</p>
             <ul className="Enseignant__cours-enseignes">
                 {coursEnseignes.map(coursEnseigne => 
-                    <CoursEnseigne key={coursEnseigne.id} {...coursEnseigne} />
+                    <Link to='/' key={coursEnseigne.id}>{coursEnseigne.acf.titre}</Link>
                 )}
             </ul>
         </li>

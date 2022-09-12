@@ -4,7 +4,7 @@ import Chargement from './Chargement';
 import obtenir from '../wp-rest-api'
 import * as utilitaires from '../utilitaires';
 
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 
 export default function ListeEnseignants({enseignants, setEnseignants, media, setMedia, cours, setCours}) {
 
