@@ -2,3 +2,5 @@
 /plugins
 /upgrade
 /uploads
+
+/reactpress/apps/5w5/node_modules/.cache
