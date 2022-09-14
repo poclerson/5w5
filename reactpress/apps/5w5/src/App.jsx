@@ -1,16 +1,16 @@
-import './App.css';
+import './App.scss';
 
 // Meta
-import EnTete from './components/EnTete';
-import PiedPage from './components/PiedPage';
+import EnTete from './composants/EnTete';
+import PiedPage from './composants/PiedPage';
 
 // Contenu
-import Accueil from './components/Accueil';
-import APropos from './components/APropos';
-import ListeEnseignants from './components/ListeEnseignants';
-import ListeCours from './components/ListeCours';
-import Contact from './components/Contact';
-import Etudiants from './components/Etudiants';
+import Accueil from './composants/Accueil';
+import APropos from './composants/APropos';
+import ListeEnseignants from './composants/ListeEnseignants';
+import ListeCours from './composants/ListeCours';
+import Contact from './composants/Contact';
+import Etudiants from './composants/Etudiants';
 
 import {useEffect, useState} from 'react';
 import {Route, Routes} from 'react-router-dom';
