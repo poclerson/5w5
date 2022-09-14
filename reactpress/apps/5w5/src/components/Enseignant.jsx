@@ -1,4 +1,3 @@
-import CoursEnseigne from './CoursEnseigne';
 import {Link} from 'react-router-dom';
 
 export default function Enseignant({nom, description, photo, coursEnseignes}) {

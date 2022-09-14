@@ -1,7 +1,10 @@
 import './App.css';
 
-import Navigation from './components/Navigation';
+// Meta
+import EnTete from './components/EnTete';
+import PiedPage from './components/PiedPage';
 
+// Contenu
 import Accueil from './components/Accueil';
 import APropos from './components/APropos';
 import ListeEnseignants from './components/ListeEnseignants';
@@ -73,12 +76,13 @@ export default function App() {
         
     return (
         <div className="App">
-            <Navigation routes={routes} />
+            <EnTete routes={routes} />
             <Routes>
                 {routes.map(route => {
                     return <Route key={route.nom} path={route.chemin} element={ <route.composant />} />
                 })}
             </Routes>
+            <PiedPage />
         </div>
     );
 }

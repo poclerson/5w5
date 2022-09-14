@@ -1,4 +1,5 @@
 import obtenir from '../wp-rest-api';
+import * as utilitaires from '../utilitaires';
 
 import {useEffect} from 'react';
 
@@ -27,16 +28,19 @@ export default function ListeCours({enseignants, setEnseignants, cours, setCours
 
     return(
         enseignants && cours && media != null ?
-        <ul className="ListeCours">
-            <h1 className="ListeCours__titre">Cours</h1>
-            {cours.map(cours => 
-                <Cours
-                    key={cours.id} 
-                    titre={cours.acf.titre} 
-                    description={cours.acf.description}
-                />
-            )}
-        </ul>
+        <div className="ListeCours">
+            <h1 className="ListeCours__titre">{utilitaires.capitaliserPremiereLettre(cours[0].type)}</h1>
+
+            <ul className="ListeCours__liste">
+                {cours.map(cours => 
+                    <Cours
+                        key={cours.id} 
+                        titre={cours.acf.titre} 
+                        description={cours.acf.description}
+                    />
+                )}
+            </ul>
+        </div>
         :
         <Chargement />
     )
