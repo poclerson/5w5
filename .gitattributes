@@ -1,0 +1,2 @@
+*.pack filter=lfs diff=lfs merge=lfs -text
+reactpress/apps/5w5/node_modules/.cache/defaullt-developement/4.pack filter=lfs diff=lfs merge=lfs -text

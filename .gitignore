@@ -1,0 +1,14 @@
+/languages
+/plugins
+/upgrade
+/uploads
+/node_modules
+
+reactpress/apps/5w5/node_modules/
+node_modules/
+/node_modules/
+**/node_modules
+*.DS_Store
+/reactpress/apps/5w5/node_modules
+*.pack
+reactpress/apps/5w5/node_modules/.cache/default-development/
