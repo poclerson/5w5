@@ -1,4 +1,4 @@
-import * as wp from '../wp-rest-api';
+import * as wp from '../../wp-rest-api';
 import {useEffect, useState} from 'react';
 import TextField from '@mui/material/TextField';
 

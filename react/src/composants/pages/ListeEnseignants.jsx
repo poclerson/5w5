@@ -1,8 +1,8 @@
-import * as wp from '../wp-rest-api'
-import * as u from '../utilitaires';
+import * as wp from '../../wp-rest-api'
+import * as u from '../../utilitaires';
 
 import Enseignant from './Enseignant';
-import Chargement from './Chargement';
+import Chargement from '../modules/Chargement';
 
 export default function ListeEnseignants() {
     const enseignants = wp.useObtenir('/enseignants');

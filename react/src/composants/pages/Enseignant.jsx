@@ -1,4 +1,4 @@
-import Icone from './Icone';
+import Icone from '../modules/Icone';
 
 export default function Enseignant({nom, description, photo, domaines}) {
     return(

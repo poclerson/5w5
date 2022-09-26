@@ -1,7 +1,7 @@
-import * as wp from '../wp-rest-api';
-import * as u from '../utilitaires';
+import * as wp from '../../wp-rest-api';
+import * as u from '../../utilitaires';
 
-import Chargement from './Chargement';
+import Chargement from '../modules/Chargement';
 import Cours from './Cours';
 
 export default function ListeCours() {

@@ -1,5 +1,5 @@
 import Navigation from './Navigation';
-import Recherche from './Recherche';
+import Recherche from '../modules/Recherche';
 
 export default function EnTete({routes}) {
     return (

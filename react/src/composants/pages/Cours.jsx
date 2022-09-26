@@ -1,6 +1,6 @@
-import Icone from './Icone';
+import Icone from '../modules/Icone';
 import {Link} from 'react-router-dom';
-import * as wp from '../wp-rest-api';
+import * as wp from '../../wp-rest-api';
 
 export default function Cours({titre, description, enseignants, enseignantsAttitres, domaines, session}) {
     return(
