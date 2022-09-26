@@ -1,3 +1,5 @@
+import './ListeCours.scss';
+
 import * as wp from '../../wp-rest-api';
 import * as u from '../../utilitaires';
 

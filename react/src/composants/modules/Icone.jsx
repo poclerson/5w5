@@ -1,3 +1,5 @@
+import './Icone.scss';
+
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import LanguageIcon from '@mui/icons-material/Language';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';

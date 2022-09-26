@@ -4,6 +4,8 @@ import * as u from '../../utilitaires';
 import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
 
+import './ListeEnseignants.scss';
+
 export default function ListeEnseignants() {
     const enseignants = wp.useObtenir('/enseignants');
     const cours = wp.useObtenir('/cours');

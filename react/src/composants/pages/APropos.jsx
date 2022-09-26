@@ -1,3 +1,5 @@
+import './APropos.scss';
+
 export default function APropos() {
     return (
         <div className="APropos">

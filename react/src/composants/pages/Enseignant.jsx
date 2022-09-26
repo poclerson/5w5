@@ -1,3 +1,5 @@
+import './Enseignant.scss';
+
 import Icone from '../modules/Icone';
 
 export default function Enseignant({nom, description, photo, domaines}) {

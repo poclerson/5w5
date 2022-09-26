@@ -1,3 +1,5 @@
+import './Etudiants.scss';
+
 export default function Etudiants() {
     return(
         <div className="Etudiants">

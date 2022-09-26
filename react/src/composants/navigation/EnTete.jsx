@@ -1,3 +1,5 @@
+import './EnTete.scss';
+
 import Navigation from './Navigation';
 import Recherche from '../modules/Recherche';
 
