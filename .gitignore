@@ -1,16 +1,14 @@
-/wordpress/wp-content/languages
-/wordpress/wp-content/plugins
-/wordpress/wp-content/upgrade
-/wordpress/wp-content/uploads
-/wordpress/wp-content/node_modules
-/wordpress/wp-admin
-/wordpress/wp-includes
+# wordpress
+languages
+plugins
+upgrade
+uploads
+wp-admin
+wp-includes
 
-reactpress/apps/5w5/node_modules/
+# react
 node_modules/
-/node_modules/
-**/node_modules
+
+# extensions
 *.DS_Store
-/reactpress/apps/5w5/node_modules
 *.pack
-reactpress/apps/5w5/node_modules/.cache/default-development/
