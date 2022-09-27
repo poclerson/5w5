@@ -5,12 +5,12 @@ import Icone from '../modules/Icone';
 export default function Enseignant({nom, description, photo, domaines}) {
     return(
         <li className="Enseignant">
-            <h2 className="Enseignant__titre">{nom}</h2>
-            <img className="Enseignant__photo" src={photo} alt=""/>
-            <p className="Enseignant__desc">{description}</p>
-            <ul className="Enseignant__domaines">
+            <h2 className="titre">{nom}</h2>
+            <img className="photo" src={photo} alt=""/>
+            <p className="desc">{description}</p>
+            <ul className="domaines">
                 {domaines.map(domaine => 
-                    <li className="Enseignant__domaines__domaine" key={domaine}>
+                    <li className="domaine" key={domaine}>
                         <Icone type={domaine} />
                     </li>
                 )}

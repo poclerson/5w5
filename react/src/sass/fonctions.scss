@@ -1,0 +1,12 @@
+// Obtient l'élément d'une map situé dans une autre map
+@function map-deep-get($map, $cles...) {
+    @each $cle in $cles {
+        $map: map-get($map, $cle);
+    }
+
+    @return $map;
+}
+
+@function is-map($var){
+    @return type-of($var) == 'map';
+}

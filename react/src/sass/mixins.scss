@@ -1,0 +1,55 @@
+@import './fonctions.scss';
+
+// Transforme une map de polices et génère des media queries
+@mixin texte-responsif($element) {
+    @each $taille-ecran, $taille-police in $element {
+        @if $taille-ecran == null {
+            font-size: $taille-police;
+        }
+
+        @else {
+            @media screen and (min-width: $taille-ecran) {
+                font-size: $taille-police;
+            }
+        }
+    }
+}
+
+// Stylise plusieurs classe/balises prédéterminés d'après une map de thème
+@mixin themer($theme) {
+    .titre {
+        color: map-deep-get($theme, "titre", "couleur");
+        font-weight: map-deep-get($theme, "titre", "poids");
+        font-style: map-deep-get($theme, "titre", "style");
+    }
+
+    .sous-titre {
+        color: map-deep-get($theme, "sous-titre", "couleur");
+        font-weight: map-deep-get($theme, "sous-titre", "poids");
+        font-style: map-deep-get($theme, "sous-titre", "style");
+    }
+
+    .Icone {
+        color: map-deep-get($theme, "icone", "couleur");
+    }
+
+    p {
+        color: map-deep-get($theme, "texte", "couleur");
+        font-weight: map-deep-get($theme, "texte", "poids");
+        font-style: map-deep-get($theme, "texte", "style");
+    }
+
+    a {
+        color: map-deep-get($theme, "lien", "couleur");
+        font-weight: map-deep-get($theme, "lien", "poids");
+        font-style: map-deep-get($theme, "lien", "style");
+
+        &:hover {
+            color: map-deep-get($theme, "lien-hover", "couleur");
+            font-weight: map-deep-get($theme, "lien-hover", "poids");
+            font-style: map-deep-get($theme, "lien-hover", "style");
+        }
+    }
+
+    background-color: map-get($theme, couleur-fond);
+}

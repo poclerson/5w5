@@ -14,13 +14,13 @@ export default function ListeEnseignants() {
     return(
         enseignants != null ?
         <div className="ListeEnseignants">    
-            <h1 className="ListeEnseignants__titre">
+            <h1 className="titre">
                 {u.capitaliserPremiereLettre(enseignants[0].type)}
             </h1>
 
             {
                 cours && media != null ?
-                <ul className="ListeEnseignants__liste">
+                <ul className="liste">
                     {enseignants.map(enseignant => 
                         <Enseignant 
                             key={enseignant.acf.nom} 

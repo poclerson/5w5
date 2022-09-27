@@ -19,6 +19,8 @@ export default function Icone({type}) {
     }
     
     return(
-        types[type]
+        <div className="Icone">
+            {types[type]}
+        </div>
     )
 }

@@ -13,13 +13,13 @@ export default function ListeCours() {
     return(
         cours != null ?
         <div className="ListeCours">
-            <h1 className="ListeCours__titre">
+            <h1 className="titre">
                 {u.capitaliserPremiereLettre(cours[0].type)}
             </h1>
 
             {
                 enseignants && media != null ? 
-                <ul className="ListeCours__liste">
+                <ul className="liste">
                     {cours.map(_cours => 
                         <Cours
                             key={_cours.id} 

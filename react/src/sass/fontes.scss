@@ -1,0 +1,14 @@
+@import './mixins.scss';
+@import './variables.scss';
+
+html {
+    font-family: Helvetica;
+}
+
+h1 { 
+    @include texte-responsif($h1); 
+}
+
+h2 { @include texte-responsif($h2); }
+
+h3 { @include texte-responsif($h3); }

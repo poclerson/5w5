@@ -1,1 +1,66 @@
+/*
+    Tailles de police
+    taille d'écran (en min-width) : taille de texte
+*/
+$h1: (
+    0px: 32px,
+    360px: 48px,
+    640px: 56px,
+    1024px: 72px,
+    1440px: 96px
+);
 
+$h2: (
+    0px: 32px,
+    360px: 48px,
+    640px: 56px,
+    1024px: 72px,
+    1440px: 96px
+);
+
+$h3: (
+    0px: 32px,
+    360px: 48px,
+    640px: 56px,
+    1024px: 72px,
+    1440px: 96px
+);
+
+// Thème de base. Si rien n'est appliqué, le thème de base sera présent
+$theme-base: (
+    titre: (
+        couleur: rgb(226, 0, 0),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (
+        couleur: rgb(255, 208, 0),
+        poids: 700,
+        style: normal
+    ),
+
+    texte: (
+        couleur: #fff,
+        poids: 300,
+        style: normal
+    ),
+
+    icone: (
+        couleur: rgb(125, 0, 197),
+    ),
+
+    lien: (
+        couleur: rgb(125, 0, 197),
+        poids: 300,
+        style: normal
+    ),
+
+    lien-hover: (
+        couleur: rgb(162, 0, 255),
+        poids: 300,
+        style: normal
+    ),
+    
+    couleur-fond: rgb(29, 29, 29)
+);
