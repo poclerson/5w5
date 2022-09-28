@@ -1,0 +1,57 @@
+@import './fonctions.scss';
+
+// Transforme une map de polices et génère des media queries
+@mixin texte-responsif($element) {
+    @each $taille-ecran, $taille-police in $element {
+        @if $taille-ecran == null {
+            font-size: $taille-police;
+        }
+
+        @else {
+            @media screen and (min-width: $taille-ecran) {
+                font-size: $taille-police;
+            }
+        }
+    }
+}
+
+// Stylise plusieurs classe/balises prédéterminés d'après une map de thème
+@mixin themer($theme) {
+    // Styles de texte
+    .titre {
+        @include texte-general($theme, "titre");
+    }
+
+    .sous-titre {
+        @include texte-general($theme, "sous-titre");
+    }
+
+    .Icone {
+        color: map-deep-get($theme, "icone", "couleur");
+    }
+
+    p {
+        @include texte-general($theme, "texte");
+    }
+
+    a {
+        @include texte-general($theme, "lien");
+
+        &:hover {
+            @include texte-general($theme, "lien-hover");
+        }
+    }
+
+    // Boites
+    background-color: map-get($theme, couleur-fond);
+}
+
+@mixin texte-general($theme, $element) {
+    color: map-deep-get($theme, $element, "couleur");
+    font-weight: map-deep-get($theme, $element, "poids");
+    font-style: map-deep-get($theme, $element, "style");
+}
+
+@mixin cartes-horizontales() {
+
+}
