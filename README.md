@@ -22,7 +22,7 @@ Ce projet est organisé en suivant la méthodologie Agile Scrum
 - [Revue du sprint 1](https://docs.google.com/document/d/1U1Y33lPVrLmU_EBuATr6gfPWhQV_rYNera7v0aCgtmw/edit)
 
 ## Membres de l'équipe
-- Pierre-Olivier Clerson (programmation front end, programmation back end)
-- Sara Hébert (intégration et création de médias, programmation front end)
-- Ngoc Quynh Pham (scrum master, création de médias, programmation front end)
-- Yeeun Kim (design, création de médias)
+- [Pierre-Olivier Clerson](https://github.com/poclerson) (programmation front end, programmation back end)
+- [Sara Hébert](https://github.com/baaguette) (intégration et création de médias, programmation front end)
+- [Ngoc Quynh Pham](https://github.com/nquynhp) (scrum master, création de médias, programmation front end)
+- [Yeeun Kim](https://github.com/yexxun) (design, création de médias)
