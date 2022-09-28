@@ -17,16 +17,13 @@
 
 // Stylise plusieurs classe/balises prédéterminés d'après une map de thème
 @mixin themer($theme) {
+    // Styles de texte
     .titre {
-        color: map-deep-get($theme, "titre", "couleur");
-        font-weight: map-deep-get($theme, "titre", "poids");
-        font-style: map-deep-get($theme, "titre", "style");
+        @include texte-general($theme, "titre");
     }
 
     .sous-titre {
-        color: map-deep-get($theme, "sous-titre", "couleur");
-        font-weight: map-deep-get($theme, "sous-titre", "poids");
-        font-style: map-deep-get($theme, "sous-titre", "style");
+        @include texte-general($theme, "sous-titre");
     }
 
     .Icone {
@@ -34,22 +31,27 @@
     }
 
     p {
-        color: map-deep-get($theme, "texte", "couleur");
-        font-weight: map-deep-get($theme, "texte", "poids");
-        font-style: map-deep-get($theme, "texte", "style");
+        @include texte-general($theme, "texte");
     }
 
     a {
-        color: map-deep-get($theme, "lien", "couleur");
-        font-weight: map-deep-get($theme, "lien", "poids");
-        font-style: map-deep-get($theme, "lien", "style");
+        @include texte-general($theme, "lien");
 
         &:hover {
-            color: map-deep-get($theme, "lien-hover", "couleur");
-            font-weight: map-deep-get($theme, "lien-hover", "poids");
-            font-style: map-deep-get($theme, "lien-hover", "style");
+            @include texte-general($theme, "lien-hover");
         }
     }
 
+    // Boites
     background-color: map-get($theme, couleur-fond);
+}
+
+@mixin texte-general($theme, $element) {
+    color: map-deep-get($theme, $element, "couleur");
+    font-weight: map-deep-get($theme, $element, "poids");
+    font-style: map-deep-get($theme, $element, "style");
+}
+
+@mixin cartes-horizontales() {
+
 }
