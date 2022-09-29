@@ -1,7 +1,7 @@
 # 5W5 - Projet web en équipe
 
 ## À propos de ce projet
-5W5 est le sigle du cours dans lequel nous réalisons un projet de site web en équipe. Ce site web a pour but de réinventer le [site du département de technique d'intégration multimédia du collège de Maisonneuve](https://tim.cmaisonneuve.qc.ca "Site du TIM de Maisonneuve")
+5W5 est le sigle du cours dans lequel nous réalisons un projet de site web en équipe. Ce site web a pour but de réinventer le [site du département de technique d'intégration multimédia du collège de Maisonneuve](https://tim.cmaisonneuve.qc.ca "Site du TIM de Maisonneuve"). Le projet sera hébergé sur [SiteGround](https://timm175.sg-host.com)
 
 Ce futur site intégrera une série de fonctionnalités que vous pouvez trouver [ici](https://docs.google.com/document/d/1D4bE8vse2LIgAGoIxamZ4GdOM0OoINQqfrwDZHfakTQ/edit "Liste des fonctionnalités à intégrer dans le site").
 
