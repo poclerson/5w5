@@ -1,6 +1,6 @@
 import './EnTete.scss';
 
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 
 import Navigation from './Navigation';
 import Recherche from '../modules/Recherche';
@@ -9,9 +9,11 @@ import BoutonTIM from '../modules/BoutonTIM';
 export default function EnTete({routes}) {
     const [ouverture, setOuverture] = useState("ferme");
 
+    const gererOuverture = () => setOuverture(ouverture == "ferme" ? "ouvert" : "ferme");
+
     return (
         <header className="EnTete">
-            <BoutonTIM onClick={() => setOuverture(ouverture == "ferme" ? "ouvert" : "ferme")} />
+            <BoutonTIM gererClic={gererOuverture} />
 
             <div className={"contenu " + ouverture}>
                 <a href="https://www.cmaisonneuve.qc.ca">Inscription</a>
