@@ -20,17 +20,21 @@ export default function ListeCours() {
             {
                 enseignants && media != null ? 
                 <ul className="liste">
-                    {cours.map(_cours => 
-                        <Cours
-                            key={_cours.id} 
-                            titre={_cours.acf.titre} 
-                            description={_cours.acf.description}
-                            enseignantsAttitres={_cours.acf.enseignants}
-                            enseignants={enseignants}
-                            domaines={_cours.acf.domaines}
-                            session={_cours.acf.session}
-                        />
-                    )}
+                    {
+                        cours.sort((sessionPrecedente, sessionSuivante) => 
+                            (sessionPrecedente.acf.session > sessionSuivante.acf.session) ? 1 : -1
+                        ).map(cours => 
+                            <Cours
+                                key={cours.id} 
+                                titre={cours.acf.titre} 
+                                description={cours.acf.description}
+                                enseignantsAttitres={cours.acf.enseignants}
+                                enseignants={enseignants}
+                                domaines={cours.acf.domaines}
+                                session={cours.acf.session}
+                            />
+                        )
+                    }
                 </ul>
                 : <Chargement />
             }
