@@ -12,7 +12,7 @@ export default function ListeCours() {
     const media = wp.useObtenir('/media');
     return(
         cours != null ?
-        <div className="ListeCours">
+        <section className="ListeCours">
             <h1 className="titre">
                 {u.capitaliserPremiereLettre(cours[0].type)}
             </h1>
@@ -34,7 +34,7 @@ export default function ListeCours() {
                 </ul>
                 : <Chargement />
             }
-        </div>
+        </section>
         : <Chargement />
     )
 }

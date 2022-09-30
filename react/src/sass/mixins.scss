@@ -1,5 +1,6 @@
 @import './fonctions.scss';
-
+ 
+// ===== MIXINS GÉNÉRALES =====
 // Transforme une map de polices et génère des media queries
 @mixin texte-responsif($element) {
     @each $taille-ecran, $taille-police in $element {
@@ -50,6 +51,39 @@
     color: map-deep-get($theme, $element, "couleur");
     font-weight: map-deep-get($theme, $element, "poids");
     font-style: map-deep-get($theme, $element, "style");
+}
+
+@mixin gerer-ouverture($valeur-quand-ouvert) {
+    .ouvert {
+        display: $valeur-quand-ouvert;
+    }
+
+    .ferme {
+        display: none;
+    }
+}
+
+// ===== MIXINS DE SECTIONS =====
+@mixin bulle() {
+    aspect-ratio: 1;
+    border-radius: 50% 50% 10px 50%;
+    overflow: hidden;
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+
+    *:not(img) {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+
+        text-align: right;
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
 }
 
 @mixin cartes-horizontales() {

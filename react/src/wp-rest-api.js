@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 
-export const url = 'https://timm175.sg-host.com/wordpress/wp-json/wp/v2';
+export const url = 'http://localhost:8888/5w5/wordpress/wp-json/wp/v2';
 
 /**     
  * Filtre toutes les images de WP pour trouver celle ayant l'ID demandé

@@ -13,7 +13,7 @@ export default function ListeEnseignants() {
 
     return(
         enseignants != null ?
-        <div className="ListeEnseignants">    
+        <section className="ListeEnseignants">    
             <h1 className="titre">
                 {u.capitaliserPremiereLettre(enseignants[0].type)}
             </h1>
@@ -34,7 +34,7 @@ export default function ListeEnseignants() {
                 </ul>
                 : <Chargement />
             }
-        </div>   
+        </section>   
         : <Chargement />
     );
 }

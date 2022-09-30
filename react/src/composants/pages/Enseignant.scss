@@ -1,3 +1,10 @@
+@import '../../sass/mixins.scss';
+
 .Enseignant {
-    
+    .miniature {
+        @include bulle;
+        background-color: white;
+    }
+
+    @include gerer-ouverture(flex);
 }
