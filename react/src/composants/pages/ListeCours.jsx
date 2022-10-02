@@ -4,12 +4,17 @@ import * as wp from '../../wp-rest-api';
 import * as u from '../../utilitaires';
 
 import Chargement from '../modules/Chargement';
+import Session from './Session';
 import Cours from './Cours';
 
 export default function ListeCours() {
     const enseignants = wp.useObtenir('/enseignants');
     const cours = wp.useObtenir('/cours');
     const media = wp.useObtenir('/media');
+
+    // TODO : Créer un component session d'après chaque session
+    // Chaque session pourra individuellement gérer les cours auxquels elle rapporte,
+    // À la place de tout gérer dans ListeCours
     return(
         cours != null ?
         <section className="ListeCours">
@@ -19,19 +24,16 @@ export default function ListeCours() {
 
             {
                 enseignants && media != null ? 
-                <ul className="liste">
+                <ul className="sessions">
                     {
-                        cours.sort((sessionPrecedente, sessionSuivante) => 
-                            (sessionPrecedente.acf.session > sessionSuivante.acf.session) ? 1 : -1
-                        ).map(cours => 
-                            <Cours
-                                key={cours.id} 
-                                titre={cours.acf.titre} 
-                                description={cours.acf.description}
-                                enseignantsAttitres={cours.acf.enseignants}
+                        [... new Set(cours.map(_cours => _cours.acf.session))].map(session => 
+                            <Session 
+                                key={session} 
+                                cours={cours.filter(_cours =>
+                                    _cours.acf.session == session
+                                )} 
                                 enseignants={enseignants}
-                                domaines={cours.acf.domaines}
-                                session={cours.acf.session}
+                                session={session}
                             />
                         )
                     }

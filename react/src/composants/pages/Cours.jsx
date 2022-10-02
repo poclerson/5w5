@@ -3,10 +3,10 @@ import './Cours.scss';
 import Icone from '../modules/Icone';
 import {Link} from 'react-router-dom';
 
-export default function Cours({titre, description, enseignants, enseignantsAttitres, domaines, session}) {
+export default function Cours({titre, description, enseignants, enseignantsAttitres, domaines}) {
     return(
         <li className="Cours">
-            <h2 className="titre">{titre}</h2>
+            <h4 className="titre">{titre}</h4>
             <p className="description">{description}</p>
             <ul className="domaines">
                 {domaines.map(domaine => 
@@ -16,7 +16,7 @@ export default function Cours({titre, description, enseignants, enseignantsAttit
                 )}
             </ul>
             <div className="enseignants">
-                <h3 className="titre">Enseignants</h3>
+                <h5 className="titre">Enseignants</h5>
                 <ul className="liste">
                     {enseignantsAttitres.map(enseignantAttitre => 
                         <li className="item" key={enseignantAttitre} >
