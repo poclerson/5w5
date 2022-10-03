@@ -54,11 +54,11 @@
 }
 
 @mixin gerer-ouverture($valeur-quand-ouvert) {
-    .ouvert {
+    &.ouvert {
         display: $valeur-quand-ouvert;
     }
 
-    .ferme {
+    &.ferme {
         display: none;
     }
 }

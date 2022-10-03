@@ -17,12 +17,10 @@ export default function ListeCours() {
 
     const [sessions, setSessions] = useState(null);
 
-    // TODO : Trouver un moyen d'ouvrir chaque session grâce à un bouton qui serait extérieur au composant de cette session
-    
-
     useEffect(() => {
-        if (cours != null)
-            setSessions([... new Set(cours.map(_cours => _cours.acf.session))]);
+        if (cours != null) {
+            setSessions([... new Set(cours.map(_cours => _cours.acf.session))].reverse());
+        }
     }, [cours])
 
     return(
@@ -34,12 +32,6 @@ export default function ListeCours() {
 
             {
                 enseignants && media && sessions != null ? 
-                // <ul className="sessions">
-                //     {
-                        
-                //     }
-
-                // </ul>
                 <ListeSessions sessions={sessions} cours={cours} enseignants={enseignants} />
                 : <Chargement />
             }

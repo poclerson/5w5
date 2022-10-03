@@ -10,7 +10,6 @@
     .contenu {
         display: flex;
         flex-direction: column;
+        @include gerer-ouverture(flex);
     }
-
-    @include gerer-ouverture(flex);
 }
