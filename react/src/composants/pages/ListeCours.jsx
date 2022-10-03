@@ -1,10 +1,13 @@
 import './ListeCours.scss';
 
+import {createRef, useRef, useEffect, useLayoutEffect, useState} from 'react';
+
 import * as wp from '../../wp-rest-api';
 import * as u from '../../utilitaires';
 
 import Chargement from '../modules/Chargement';
 import Session from './Session';
+import ListeSessions from './ListeSessions';
 import Cours from './Cours';
 
 export default function ListeCours() {
@@ -12,9 +15,16 @@ export default function ListeCours() {
     const cours = wp.useObtenir('/cours');
     const media = wp.useObtenir('/media');
 
-    // TODO : Créer un component session d'après chaque session
-    // Chaque session pourra individuellement gérer les cours auxquels elle rapporte,
-    // À la place de tout gérer dans ListeCours
+    const [sessions, setSessions] = useState(null);
+
+    // TODO : Trouver un moyen d'ouvrir chaque session grâce à un bouton qui serait extérieur au composant de cette session
+    
+
+    useEffect(() => {
+        if (cours != null)
+            setSessions([... new Set(cours.map(_cours => _cours.acf.session))]);
+    }, [cours])
+
     return(
         cours != null ?
         <section className="ListeCours">
@@ -23,21 +33,14 @@ export default function ListeCours() {
             </h1>
 
             {
-                enseignants && media != null ? 
-                <ul className="sessions">
-                    {
-                        [... new Set(cours.map(_cours => _cours.acf.session))].map(session => 
-                            <Session 
-                                key={session} 
-                                cours={cours.filter(_cours =>
-                                    _cours.acf.session == session
-                                )} 
-                                enseignants={enseignants}
-                                session={session}
-                            />
-                        )
-                    }
-                </ul>
+                enseignants && media && sessions != null ? 
+                // <ul className="sessions">
+                //     {
+                        
+                //     }
+
+                // </ul>
+                <ListeSessions sessions={sessions} cours={cours} enseignants={enseignants} />
                 : <Chargement />
             }
         </section>

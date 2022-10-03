@@ -1,0 +1,14 @@
+@import '../../sass//mixins.scss';
+
+.Session {
+    width: 100vw;
+    height: 100vh;
+
+    // .titre {
+    //     position: fixed;
+    //     bottom: 0;
+    //     left: 0;
+    // }
+
+    @include gerer-ouverture(flex);
+}
