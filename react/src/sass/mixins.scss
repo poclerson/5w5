@@ -11,6 +11,8 @@
         @else {
             @media screen and (min-width: $taille-ecran) {
                 font-size: $taille-police;
+                margin-block-start: calc($taille-police / 2);
+                margin-block-end: calc($taille-police / 2);
             }
         }
     }
@@ -44,7 +46,7 @@
     }
 
     // Boites
-    background-color: map-get($theme, couleur-fond);
+    background-color: map-deep-get($theme, "fond", "couleur-primaire");
 }
 
 @mixin texte-general($theme, $element) {

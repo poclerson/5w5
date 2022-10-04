@@ -22,33 +22,45 @@ export default function App() {
         {
             nom: 'Accueil',
             chemin: '/',
-            composant: () => <Accueil />
+            composant: () => <Accueil />,
+            estRoute: true
         },
         {
             nom: 'Enseignants',
             chemin: '/enseignants',
-            composant: () => <ListeEnseignants />
+            composant: () => <ListeEnseignants />,
+            estRoute: true
         },
         {
             nom: 'Cours',
             chemin: '/cours',
-            composant: () => <ListeCours />
+            composant: () => <ListeCours />,
+            estRoute: true
         },
         {
             nom: 'Étudiants',
             chemin: '/etudiants',
-            composant: () => <Etudiants />
+            composant: () => <Etudiants />,
+            estRoute: true
         },
         {
             nom: 'À propos',
             chemin: '/a-propos',
-            composant: () => <APropos />
+            composant: () => <APropos />,
+            estRoute: true
         },
         {
             nom: 'Contact',
             chemin: '/contact',
-            composant: () => <Contact />
+            composant: () => <Contact />,
+            estRoute: true
         },
+        {
+            nom: 'Inscription',
+            chemin: '',
+            composant: <a className="lien-page" href="https://www.cmaisonneuve.qc.ca">Inscription</a>,
+            estRoute: false
+        }
     ]        
         
     return (
@@ -56,7 +68,8 @@ export default function App() {
             <EnTete routes={routes} />
             <Routes>
                 {routes.map(route => {
-                    return <Route key={route.nom} path={route.chemin} element={ <route.composant />} />
+                    if (route.estRoute)
+                        return <Route key={route.nom} path={route.chemin} element={ <route.composant />} />
                 })}
             </Routes>
             <PiedPage />

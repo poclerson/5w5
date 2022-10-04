@@ -1,6 +1,6 @@
 import './EnTete.scss';
 
-import {useState, useRef} from 'react';
+import {useState} from 'react';
 
 import Navigation from './Navigation';
 import Recherche from '../modules/Recherche';
@@ -16,7 +16,6 @@ export default function EnTete({routes}) {
             <BoutonTIM gererClic={gererOuverture} />
 
             <div className={"contenu " + ouverture}>
-                <a href="https://www.cmaisonneuve.qc.ca">Inscription</a>
                 <Navigation routes={routes} />
                 <Recherche routes={routes} />
             </div>

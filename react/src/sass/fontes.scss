@@ -12,3 +12,12 @@ h1 {
 h2 { @include texte-responsif($h2); }
 
 h3 { @include texte-responsif($h3); }
+
+h6 { 
+    @include texte-responsif($h6); 
+    font-weight: bold;
+
+    a {
+        font-weight: bold;
+    }
+}

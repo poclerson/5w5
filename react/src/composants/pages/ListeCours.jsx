@@ -1,14 +1,13 @@
 import './ListeCours.scss';
 
-import {createRef, useRef, useEffect, useLayoutEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import * as wp from '../../wp-rest-api';
 import * as u from '../../utilitaires';
 
 import Chargement from '../modules/Chargement';
-import Session from './Session';
+
 import ListeSessions from './ListeSessions';
-import Cours from './Cours';
 
 export default function ListeCours() {
     const enseignants = wp.useObtenir('/enseignants');
@@ -19,6 +18,7 @@ export default function ListeCours() {
 
     useEffect(() => {
         if (cours != null) {
+            // Un Set ne prend qu'une seule occurence de chaque itération dans un tableau
             setSessions([... new Set(cours.map(_cours => _cours.acf.session))].reverse());
         }
     }, [cours])

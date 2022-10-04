@@ -26,6 +26,14 @@ $h3: (
     1440px: 96px
 );
 
+$h6: (
+    0px: 20px,
+    360px: 24px,
+    640px: 32px,
+    1024px: 42px,
+    1440px: 96px
+);
+
 // Thème de base. Si rien n'est appliqué, le thème de base sera présent
 $theme-base: (
     titre: (
@@ -61,6 +69,50 @@ $theme-base: (
         poids: 300,
         style: normal
     ),
+
+    fond: (
+        couleur-primaire:  rgb(29, 29, 29),
+        couleur-secondaire: red
+    )
+);
+
+$theme-menu: (
+    titre: (
+        couleur: #000,
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (
+        couleur: #000,
+        poids: 700,
+        style: normal
+    ),
+
+    texte: (
+        couleur: #000,
+        poids: 300,
+        style: normal
+    ),
+
+    icone: (
+        couleur: #fff,
+    ),
+
+    lien: (
+        couleur: rgb(0, 0, 0),
+        poids: 900,
+        style: normal
+    ),
+
+    lien-hover: (
+        couleur: rgb(0, 0, 0),
+        poids: 900,
+        style: normal
+    ),
     
-    couleur-fond: rgb(29, 29, 29)
+    fond: (
+        couleur-primaire:  rgba(255, 255, 255, 0.63),
+        couleur-secondaire: rgb(0, 0, 0)
+    )
 );
