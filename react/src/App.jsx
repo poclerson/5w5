@@ -61,7 +61,7 @@ export default function App() {
             composant: <a className="lien-page" href="https://www.cmaisonneuve.qc.ca">Inscription</a>,
             estRoute: false
         }
-    ]        
+    ];
         
     return (
         <div className="App">

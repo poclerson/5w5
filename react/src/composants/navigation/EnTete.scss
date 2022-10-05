@@ -13,6 +13,11 @@
 
         display: flex;
         flex-direction: column;
+
+        @media screen and (max-width: map-get($largeurs-ecran, tablette)) {
+            
+        }
+
         @include gerer-ouverture(flex);
 
         width: 90vw;

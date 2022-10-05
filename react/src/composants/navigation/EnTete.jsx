@@ -4,7 +4,7 @@ import {useState} from 'react';
 
 import Navigation from './Navigation';
 import Recherche from '../modules/Recherche';
-import BoutonTIM from '../modules/BoutonTIM';
+import BoutonTIM from '../modules/BoutonBurger';
 
 export default function EnTete({routes}) {
     const [ouverture, setOuverture] = useState("ferme");
