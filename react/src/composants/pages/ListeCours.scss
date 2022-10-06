@@ -1,4 +1,13 @@
+@import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
+
 .ListeCours {
+    @include themer($theme-cours);
+
+    @include pleine-taille();
+
+    background-color: gray;
+
     .sessions {
         display: flex;
         // Les cours sont imprimés à l'envers dans ListeCours.jsx

@@ -65,6 +65,11 @@
     }
 }
 
+@mixin pleine-taille() {
+    width: 100%;
+    height: 100%;
+}
+
 // ===== MIXINS DE SECTIONS =====
 @mixin bulle() {
     aspect-ratio: 1;

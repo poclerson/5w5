@@ -3,6 +3,7 @@ import './App.scss';
 // Meta
 import EnTete from './composants/navigation/EnTete';
 import PiedPage from './composants/navigation/PiedPage';
+import Chargement from './composants/modules/Chargement';
 
 // Contenu
 import Accueil from './composants/pages/Accueil';
@@ -14,10 +15,35 @@ import Etudiants from './composants/pages/Etudiants';
 
 import {Route, Routes} from 'react-router-dom';
 
+import * as wp from './wp-rest-api';
+
 export default function App() {
     /**
      * Array contenant tout ce qui est nécessaire pour render les routes et créer le menu de navigation
      */
+    const pages = wp.useObtenir('/pages');
+
+    const identifierComposant = (page) => {
+        const composants = {
+            'accueil': Accueil,
+            'enseignants': ListeEnseignants,
+            'cours': ListeCours,
+            'etudiants': Etudiants,
+            'contact': Contact
+        };
+
+        return composants[page.slug];
+    }
+
+    function adapterChemin(permalink) {
+        let chemin = permalink.replace(wp.url, "");
+
+        if (chemin == '/')
+            return '/';
+
+        return chemin.slice(0, -1);
+    }
+
     const routes = [
         {
             nom: 'Accueil',
@@ -65,13 +91,22 @@ export default function App() {
         
     return (
         <div className="App">
-            <EnTete routes={routes} />
-            <Routes>
-                {routes.map(route => {
-                    if (route.estRoute)
-                        return <Route key={route.nom} path={route.chemin} element={ <route.composant />} />
+            {pages != null ?
+                <Routes>
+                {pages.map(page => {
+                    let Composant = identifierComposant(page);
+
+                    return <Route 
+                        key={page.id}
+                        path={adapterChemin(page.permalink)}
+                        element={<Composant />}
+                    />
                 })}
-            </Routes>
+            </Routes> :
+            <Chargement />
+            }
+            <EnTete routes={routes} />
+            
             <PiedPage />
         </div>
     );

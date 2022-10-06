@@ -9,26 +9,21 @@ import './ListeEnseignants.scss';
 export default function ListeEnseignants() {
     const enseignants = wp.useObtenir('/enseignants');
     const cours = wp.useObtenir('/cours');
-    const media = wp.useObtenir('/media');
 
     return(
         enseignants != null ?
         <section className="ListeEnseignants">    
             <h1 className="titre">
-                {u.capitaliserPremiereLettre(enseignants[0].type)}
+                {/* {u.capitaliserPremiereLettre(enseignants[0].type)} */}
             </h1>
 
             {
-                cours && media != null ?
+                cours != null ?
                 <ul className="liste">
                     {enseignants.map(enseignant => 
                         <Enseignant 
-                            key={enseignant.acf.nom} 
-                            nom={enseignant.acf.nom} 
-                            description={enseignant.acf.description}
-                            photo={wp.trouverImage(enseignant.acf.photo, media)}
-                            domaines={enseignant.acf.domaines}
-                            media={media}
+                            {... enseignant.acf}
+                            key={enseignant.id} 
                         />
                     )}
                 </ul>

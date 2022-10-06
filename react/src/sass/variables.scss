@@ -124,3 +124,44 @@ $theme-menu: (
         couleur-secondaire: rgb(0, 0, 0)
     )
 );
+
+$theme-cours: (
+    titre: (
+        couleur: #000,
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (
+        couleur: #fff,
+        poids: 700,
+        style: normal
+    ),
+
+    texte: (
+        couleur: #fff,
+        poids: 300,
+        style: normal
+    ),
+
+    icone: (
+        couleur: #fff,
+    ),
+
+    lien: (
+        couleur: #fff,
+        poids: 900,
+        style: normal
+    ),
+
+    lien-hover: (
+        couleur: #fff,
+        poids: 900,
+        style: normal
+    ),
+    
+    fond: (
+        couleur-primaire:  rgba(0, 0, 0, 0.459),
+        couleur-secondaire: rgb(0, 0, 0)
+    )
+);

@@ -1,18 +1,11 @@
 import {useEffect, useState} from 'react';
+import Accueil from './composants/pages/Accueil';
+import Etudiants from './composants/pages/Etudiants';
+import ListeCours from './composants/pages/ListeCours';
+import ListeEnseignants from './composants/pages/ListeEnseignants';
 
-export const url = 'http://localhost:8888/5w5/wordpress/wp-json/wp/v2';
-
-/**     
- * Filtre toutes les images de WP pour trouver celle ayant l'ID demandé
- * @param {string} id ID de l'image dans WP
- * @param {array} media Liste des médias dans WP
- * @returns Lien de l'image dans WP
- */
-export function trouverImage(id, media) {
-    return media.filter(medium =>
-        medium.id == id)[0].guid.rendered
-}
-
+export const url = 'http://localhost:8888/5w5/wordpress';
+export const parametresRequete = '?acf=true&media=true'
 /**
  * Hook permettant de récupérer les données de WP
  * @param {string} url URL des données à obtenir
@@ -22,7 +15,7 @@ export function useObtenir(chemin) {
     const [donnees, setDonnees] = useState(null);
     useEffect(() => {
         async function obtenirArticles() {
-            const reponse = await fetch(url + '' + chemin);
+            const reponse = await fetch(`${url}/wp-json/better-rest-endpoints/v1${chemin}${parametresRequete}`);
 
             if(!reponse.ok)
                 return;
@@ -40,7 +33,7 @@ export function useObtenir(chemin) {
 
 /**
  * Hook permettant de récupérer plusieurs articles WP
- * @param {array} urls Liste des URLs dont on veut obtenir les données WP
+ * @param {array} chemins Liste des URLs dont on veut obtenir les données WP
  * @returns {array} Liste d'objets d'articles WP
  */
 export function useObtenirMultipleTypes(chemins) {
@@ -48,7 +41,7 @@ export function useObtenirMultipleTypes(chemins) {
     useEffect(() => {
         async function obtenirArticles() {
             chemins.map(async (chemin) => {
-                const reponse = await fetch(url + '' + chemin);
+                const reponse = await fetch(`${url}/wp-json/better-rest-endpoints/v1${chemin}${parametresRequete}`);
 
                 if(!reponse.ok)
                     return;

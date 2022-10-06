@@ -12,7 +12,6 @@ import ListeSessions from './ListeSessions';
 export default function ListeCours() {
     const enseignants = wp.useObtenir('/enseignants');
     const cours = wp.useObtenir('/cours');
-    const media = wp.useObtenir('/media');
 
     const [sessions, setSessions] = useState(null);
 
@@ -27,11 +26,11 @@ export default function ListeCours() {
         cours != null ?
         <section className="ListeCours">
             <h1 className="titre">
-                {u.capitaliserPremiereLettre(cours[0].type)}
+                {/* {u.capitaliserPremiereLettre(cours[0].type)} */}
             </h1>
 
             {
-                enseignants && media && sessions != null ? 
+                enseignants && sessions != null ? 
                 <ListeSessions sessions={sessions} cours={cours} enseignants={enseignants} />
                 : <Chargement />
             }
