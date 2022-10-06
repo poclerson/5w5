@@ -2,13 +2,26 @@ import './ListeSessions.scss';
 
 import Session from './Session';
 
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export default function ListeSessions({sessions, cours, enseignants}) {
 
-    const [ouvertures, setOuvertures] = useState({...[... sessions.map(() => "ferme")]});
+    const [ouvertures, setOuvertures] = useState([... sessions.map(() => "ferme")]);
+
+    function ouvrirSession(index) {
+        let copie = sessions.map(() => "ferme");
+
+        copie.splice(index, 1, "ouvert")
+
+        setOuvertures([... copie]);
+    }
+
+    useEffect(() => {
+        ouvrirSession(0);
+    }, [])
+
 
     function controllerOuvertures(indexSessionAppuyee) {
         const nombreSessionsOuvertes = Object.values(ouvertures).filter(ouverture => ouverture == "ouvert").length;
@@ -21,34 +34,27 @@ export default function ListeSessions({sessions, cours, enseignants}) {
         if (indexSessionAppuyee == indexSessionOuverte)
             return;
 
-        // Fermer toutes les sesions s'il y en a une d'ouverte
-        if (nombreSessionsOuvertes != 0) {
-            ouverturesCopie = [... ouverturesCopie.map(() => "ferme")];
-        }
-
         // Insérer la valeur ouverte dans les états d'ouverture d'après l'index du titre de la session appuyé
-        ouverturesCopie.splice(indexSessionAppuyee, 1, ouvertures[indexSessionAppuyee] == "ferme" ? "ouvert" : "ferme")
-
-        setOuvertures({... ouverturesCopie});
+        ouvrirSession(indexSessionAppuyee)
     }
 
-    function activerProchaineSession(indexSessionActivee) {
-        let ouverturesCopie = Object.values(ouvertures);
-
-        ouverturesCopie = [... ouverturesCopie.map(() => "ferme")];
-        ouverturesCopie.splice(indexSessionActivee + 1, 1, "ouvert")
-
-        setOuvertures({... ouverturesCopie});
+    function ouvrirProchaineSession(index) {
+        if (index + 1 == ouvertures.length) {
+            ouvrirSession(0);
+            return;
+        }
+        
+        ouvrirSession(index + 1);
     }
 
     return (
         <div className="ListeSessions">
             <ol className="sessions-titres">
                 {sessions.map((session, index) => 
-                    <li className="session-titre" key={session}>
-                        <h3 className="titre" >{session.charAt(7)}</h3>
+                    <li className={`session-titre ${ouvertures[index]}`} key={session}>
+                        <h3 className="titre">{session.charAt(7)}</h3>
                         {/* <ArrowForwardIcon className="Icone" onClick={() => controllerOuvertures(index)} /> */}
-                        <ArrowForwardIcon className="Icone" onClick={() => activerProchaineSession(index)} />
+                        <ArrowForwardIcon className="Icone" onClick={() => ouvrirProchaineSession(index)} />
                     </li>
                 )}
             </ol>

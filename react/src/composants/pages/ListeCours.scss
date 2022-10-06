@@ -7,10 +7,4 @@
     @include pleine-taille();
 
     background-color: gray;
-
-    .sessions {
-        display: flex;
-        // Les cours sont imprimés à l'envers dans ListeCours.jsx
-        flex-direction: column-reverse;
-    }
 }
