@@ -7,11 +7,19 @@
     backdrop-filter: blur(4px);
 
     @include themer($theme-cours);
-    @include gerer-ouverture(flex);
+    // @include gerer-ouverture(flex);
     flex-direction: column;
 
     width: 80vw;
     height: 40vh;
     margin-top: 30%;
     box-sizing: border-box;
+}
+
+.ouvert {
+    
+}
+
+.ferme {
+
 }
