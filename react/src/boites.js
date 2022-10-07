@@ -14,8 +14,6 @@ export function ouvrir(index, ouvertures) {
         index = 0;
     }
 
-    console.log(index)
-
     // Attribuer l'ouverture au bon index
     copie.splice(index, 1, "ouvert")
 

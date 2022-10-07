@@ -4,8 +4,6 @@
 .ListeCours {
     @include themer($theme-liste-session);
 
-    @include pleine-taille();
-
     background-color: gray;
 
     display: flex;

@@ -1,12 +1,14 @@
+@import 'sass/mixins.scss';
+
 .App {
     overflow-x: hidden;
 
     // Toutes les pages
     & > *:not(.EnTete, .PiedPage) {
+        @include pleine-taille;
         width: 100vw;
         height: 100vh;
-        padding: 5%;
-        box-sizing: border-box;
+        box-sizing: content-box;
 
         // Le titre principal des pages
         & > .titre {

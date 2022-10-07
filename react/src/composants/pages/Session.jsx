@@ -2,7 +2,7 @@ import './Session.scss';
 
 import {useState, useEffect} from 'react';
 
-import * as gestionOuverture from '../../gestionOuverture';
+import * as boites from '../../boites';
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -12,7 +12,7 @@ export default function Session({cours, enseignants, ouverture}) {
     const [ouvertures, setOuvertures] = useState([... cours.map(() => "ferme")]);
 
     useEffect(() => {
-        setOuvertures(gestionOuverture.ouvrir(0, cours.map(() => "ferme")))
+        setOuvertures(boites.ouvrir(0, cours.map(() => "ferme")))
     }, [])
 
     return (
@@ -23,14 +23,14 @@ export default function Session({cours, enseignants, ouverture}) {
                         key={cours.acf.titre}
                         {... cours.acf}
                         tousEnseignants={enseignants}
-                        ouverture={ouvertures[index]}
+                        id={"cours" + index}
                     />
                 )}
             </ul>
-            {console.log(cours.length)}
-            <button className="prochain-cours" onClick={() => setOuvertures(gestionOuverture.ouvrir(ouvertures.indexOf("ouvert") + 1, cours.map(() => "ferme")))}>
+
+            <a href={"#cours" + (ouvertures.indexOf("ouvert"))} className="prochain-cours" onClick={() => setOuvertures(boites.ouvrir(ouvertures.indexOf("ouvert") + 1, cours.map(() => "ferme")))}>
                 <ArrowForwardIosIcon className="Icone"  />
-            </button>
+            </a>
         </li>
     )
 }

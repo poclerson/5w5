@@ -4,7 +4,7 @@ import Session from './Session';
 
 import {useState, useEffect} from 'react';
 
-import * as gestionOuverture from '../../gestionOuverture';
+import * as gestionOuverture from '../../boites';
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 

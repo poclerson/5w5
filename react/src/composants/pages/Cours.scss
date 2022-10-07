@@ -11,15 +11,18 @@
     flex-direction: column;
 
     width: 80vw;
+    min-width: 80vw;
     height: 40vh;
     margin-top: 30%;
     box-sizing: border-box;
-}
+    scroll-snap-align: start;
+    scroll-margin: 10vw;
 
-.ouvert {
-    
-}
+    &:first-child {
+        margin-left: 10vw;
+    }
 
-.ferme {
-
+    &:last-child {
+        margin-right: 10vw;
+    }
 }
