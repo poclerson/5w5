@@ -4,6 +4,8 @@ import Session from './Session';
 
 import {useState, useEffect} from 'react';
 
+import * as gestionOuverture from '../../gestionOuverture';
+
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export default function ListeSessions({sessions, cours, enseignants}) {
@@ -28,7 +30,7 @@ export default function ListeSessions({sessions, cours, enseignants}) {
     }
 
     useEffect(() => {
-        ouvrirSession(0);
+        setOuvertures(gestionOuverture.ouvrir(0, sessions.map(() => "ferme")))
     }, [])
 
     return (
@@ -53,7 +55,7 @@ export default function ListeSessions({sessions, cours, enseignants}) {
                     <li className={`session-titre ${ouvertures[index]}`} key={session}>
                         <h3 className="titre">{session.charAt(7)}</h3>
                         {/* <ArrowForwardIcon className="Icone" onClick={() => controllerOuvertures(index)} /> */}
-                        <ArrowForwardIosIcon className="Icone" onClick={() => ouvrirSession(index + 1)} />
+                        <ArrowForwardIosIcon className="Icone" onClick={() => setOuvertures(gestionOuverture.ouvrir(index + 1, sessions.map(() => "ferme")))} />
                     </li>
                 )}
             </ol>
