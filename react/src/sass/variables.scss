@@ -42,126 +42,155 @@ $h6: (
     1440px: 96px
 );
 
+$couleurs: (
+    clair: #f3f3ea,
+    clair-transparent: #f3f3eaa2,
+    sombre: #0f0f0f,
+    sombre-transparent: #0f0f0f6c,
+
+    accent1: #da3e66,
+    accent2: #2c2c7f,
+    accent3: #4a52a3,
+    accent4: #fed900,
+    accent5: #da6f67,
+
+    gris1: #a7a6a6,
+    gris2: #747474,
+    gris3: #414141,
+);
+
 // Thème de base. Si rien n'est appliqué, le thème de base sera présent
 $theme-base: (
     titre: (
-        couleur: rgb(226, 0, 0),
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),
 
     sous-titre: (
-        couleur: rgb(255, 208, 0),
+        couleur: map-get($couleurs, clair),
         poids: 700,
         style: normal
     ),
 
     texte: (
-        couleur: #fff,
+        couleur: map-get($couleurs, clair),
         poids: 300,
         style: normal
     ),
 
     icone: (
-        couleur: rgb(125, 0, 197),
+        couleur: map-get($couleurs, clair),
     ),
 
     lien: (
-        couleur: rgb(125, 0, 197),
+        couleur: map-get($couleurs, clair),
         poids: 300,
         style: normal
     ),
 
     lien-hover: (
-        couleur: rgb(162, 0, 255),
+        couleur: map-get($couleurs, clair),
         poids: 300,
         style: normal
     ),
 
     fond: (
-        couleur-primaire:  rgb(29, 29, 29),
-        couleur-secondaire: red
+        couleur-primaire: map-get($couleurs, sombre),
+        couleur-secondaire: map-get($couleurs, sombre),
     )
 );
 
 $theme-menu: (
     titre: (
-        couleur: #000,
+        couleur: map-get($couleurs, sombre),
         poids: 900,
         style: normal
     ),
 
-    sous-titre: (
-        couleur: #000,
-        poids: 700,
-        style: normal
-    ),
+    sous-titre: (),
 
-    texte: (
-        couleur: #000,
-        poids: 300,
-        style: normal
-    ),
+    texte: (),
 
     icone: (
-        couleur: #fff,
+        couleur: map-get($couleurs, clair),
     ),
 
     lien: (
-        couleur: rgb(0, 0, 0),
+        couleur: map-get($couleurs, sombre),
         poids: 900,
         style: normal
     ),
 
     lien-hover: (
-        couleur: rgb(0, 0, 0),
+        couleur: map-get($couleurs, sombre),
         poids: 900,
         style: normal
     ),
     
     fond: (
-        couleur-primaire:  rgba(255, 255, 255, 0.63),
-        couleur-secondaire: rgb(0, 0, 0)
+        couleur-primaire: map-get($couleurs, clair-transparent)
     )
+);
+
+$theme-liste-session: (
+    titre: (
+        couleur: map-get($couleurs, sombre),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (),
+
+    texte: (),
+
+    icone: (
+        couleur: map-get($couleurs, clair),
+    ),
+
+    lien: (),
+
+    lien-hover: (),
+
+    fond: ()
 );
 
 $theme-cours: (
     titre: (
-        couleur: #000,
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),
 
     sous-titre: (
-        couleur: #fff,
+        couleur: map-get($couleurs, clair),
         poids: 700,
         style: normal
     ),
 
     texte: (
-        couleur: #fff,
+        couleur: map-get($couleurs, clair),
         poids: 300,
         style: normal
     ),
 
     icone: (
-        couleur: #fff,
+        couleur: map-get($couleurs, clair),
     ),
 
     lien: (
-        couleur: #fff,
-        poids: 900,
+        couleur: map-get($couleurs, clair),
+        poids: 300,
         style: normal
     ),
 
     lien-hover: (
-        couleur: #fff,
-        poids: 900,
+        couleur: map-get($couleurs, clair),
+        poids: 300,
         style: normal
     ),
-    
+
     fond: (
-        couleur-primaire:  rgba(0, 0, 0, 0.459),
-        couleur-secondaire: rgb(0, 0, 0)
+        couleur-primaire: map-get($couleurs, sombre-transparent)
     )
 );

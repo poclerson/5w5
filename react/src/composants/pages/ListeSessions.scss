@@ -1,9 +1,19 @@
 @import '../../sass/mixins.scss';
 
 .ListeSessions {
+    @include pleine-taille();
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+
+    .sessions {
+
+    }
+
     .sessions-titres {
-        display: flex;
-        flex-wrap: wrap;
 
         .session-titre {
             @include gerer-ouverture(flex);

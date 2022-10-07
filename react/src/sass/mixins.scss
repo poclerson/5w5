@@ -49,12 +49,16 @@
     background-color: map-deep-get($theme, "fond", "couleur-primaire");
 }
 
+// Remlpit automatiquement les informations génériques pour tout type de texte
+// Fonctionne avec themer()
 @mixin texte-general($theme, $element) {
     color: map-deep-get($theme, $element, "couleur");
     font-weight: map-deep-get($theme, $element, "poids");
     font-style: map-deep-get($theme, $element, "style");
 }
 
+// Gère l'ouverture de différentes boites d'après des classes
+// Insérer dans la boite à ouvrir/fermer
 @mixin gerer-ouverture($valeur-quand-ouvert) {
     &.ouvert {
         display: $valeur-quand-ouvert;
@@ -93,6 +97,13 @@
     }
 }
 
-@mixin cartes-horizontales() {
+@mixin carte() {
+    @media screen and (min-width: map-get($largeurs-ecran, mobile)) {
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+        padding-left: 5vw;
+        padding-right: 5vw;
 
+        border-radius: 20px;
+    }
 }

@@ -1,3 +1,16 @@
 .App {
-    
+    overflow-x: hidden;
+
+    // Toutes les pages
+    & > *:not(.EnTete, .PiedPage) {
+        width: 100vw;
+        height: 100vh;
+        padding: 5%;
+        box-sizing: border-box;
+
+        // Le titre principal des pages
+        & > .titre {
+            display: none;
+        }
+    }
 }

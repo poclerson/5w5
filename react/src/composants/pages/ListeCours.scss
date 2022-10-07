@@ -2,9 +2,13 @@
 @import '../../sass/variables.scss';
 
 .ListeCours {
-    @include themer($theme-cours);
+    @include themer($theme-liste-session);
 
     @include pleine-taille();
 
     background-color: gray;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

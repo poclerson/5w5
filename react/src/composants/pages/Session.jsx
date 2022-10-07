@@ -1,11 +1,13 @@
 import './Session.scss';
 
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
 import Cours from './Cours';
 
 export default function Session({cours, enseignants, ouverture}) {
     return (
         <li className={"Session " + ouverture}>
-            <ul className="liste">
+            <ul className="liste-cours">
                 {cours.map(cours => 
                     <Cours 
                         key={cours.acf.titre}
@@ -14,6 +16,9 @@ export default function Session({cours, enseignants, ouverture}) {
                     />
                 )}
             </ul>
+            <button className="prochain-cours">
+                <ArrowForwardIosIcon className="Icone" />
+            </button>
         </li>
     )
 }
