@@ -1,4 +1,3 @@
-
 /**
  * Réinitialise les états d'ouverture d'un tableau pour ouvrir le bon item selon l'index donné
  * @param {int} index Index de l'item à ouvrir
@@ -11,12 +10,14 @@ export function ouvrir(index, ouvertures) {
     let copie = ouvertures.map(() => "ferme");
 
     // Ramener au début
-    if (index + 1 > ouvertures) {
+    if (index + 1 > ouvertures.length) {
         index = 0;
     }
+
+    console.log(index)
 
     // Attribuer l'ouverture au bon index
     copie.splice(index, 1, "ouvert")
 
-    return [... copie];
+    return copie;
 }

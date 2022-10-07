@@ -105,7 +105,7 @@ export default function Rechercher({routes}) {
                 placeholder="Recherche..."
                 onChange={gestionnaireSaisie}
             />
-            {console.log(valeursFiltrees)}
+            {/* {console.log(valeursFiltrees)} */}
             <ul className="Recherche__articles">
                 
             </ul>

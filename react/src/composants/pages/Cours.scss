@@ -5,7 +5,10 @@
 .Cours {
     @include carte;
     backdrop-filter: blur(4px);
+
     @include themer($theme-cours);
+    @include gerer-ouverture(flex);
+    flex-direction: column;
 
     width: 80vw;
     height: 40vh;

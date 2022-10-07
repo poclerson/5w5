@@ -5,9 +5,7 @@ import {useState} from 'react';
 import Icone from '../modules/Icone';
 import {Link} from 'react-router-dom';
 
-export default function Cours({titre, description, enseignants: enseignantsAttitres, domaines, tousEnseignants: enseignants}) {
-    const [ouverture, setOuverture] = useState("ferme");
-    const gererOuverture = () => setOuverture(ouverture == "ferme" ? "ouvert" : "ferme");
+export default function Cours({titre, description, enseignants: enseignantsAttitres, domaines, tousEnseignants: enseignants, ouverture}) {
     return(
         <li className={"Cours " + ouverture}>
             <h2 className="titre">{titre}</h2>

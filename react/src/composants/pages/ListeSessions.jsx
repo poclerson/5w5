@@ -12,33 +12,16 @@ export default function ListeSessions({sessions, cours, enseignants}) {
 
     const [ouvertures, setOuvertures] = useState([... sessions.map(() => "ferme")]);
 
-    // Ouvre une session d'après un index dans le tableau des ouvertures
-    function ouvrirSession(index) {
-        // On doit créer une copie pour éviter des problèmes avec splice()
-        // Réintialiser les ouvertures à chaque ouverture
-        let copie = sessions.map(() => "ferme");
-
-        // Ramener au début
-        if (index + 1 > ouvertures.length) {
-            index = 0;
-        }
-
-        // Attribuer l'ouverture au bon index
-        copie.splice(index, 1, "ouvert")
-
-        setOuvertures([... copie]);
-    }
-
     useEffect(() => {
         setOuvertures(gestionOuverture.ouvrir(0, sessions.map(() => "ferme")))
     }, [])
 
     return (
         <div className="ListeSessions">
-            <ol className="sessions">
-                {
-                    sessions.map((session, index) => 
-                        <Session 
+            {
+                sessions.map((session, index) => {
+                    if (ouvertures[index] == "ouvert") {
+                        return <Session 
                             cours={cours.filter(_cours =>
                                 _cours.acf.session == session
                             )} 
@@ -47,9 +30,9 @@ export default function ListeSessions({sessions, cours, enseignants}) {
                             ouverture={ouvertures[index]}
                             key={session}
                         />
-                    )
-                }
-            </ol>
+                    }
+                })
+            }
             <ol className="sessions-titres">
                 {sessions.map((session, index) => 
                     <li className={`session-titre ${ouvertures[index]}`} key={session}>
