@@ -3,18 +3,10 @@
 
 html {
     font-family: Helvetica;
+    @include texte-dynamique($tailles-textes);
 }
-
-h1 { 
-    @include texte-responsif($h1); 
-}
-
-h2 { @include texte-responsif($h2); }
-
-h3 { @include texte-responsif($h3); }
 
 h6 { 
-    @include texte-responsif($h6); 
     font-weight: bold;
 
     a {

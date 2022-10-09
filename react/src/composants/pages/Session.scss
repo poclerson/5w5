@@ -5,16 +5,15 @@
 
     @include gerer-ouverture(flex);
 
-    // TODO : Figure out les scroll snap points
-    
-
     .liste-cours {
         width: 100vw;
         @include pleine-taille;
         display: flex;
         gap: 10vw;
         overflow-x: scroll;
-        scroll-snap-type: x proximity;
+        scroll-snap-type: x mandatory;
+
+        @include cacher-barre-defilement;
     }
 
     .prochain-cours {

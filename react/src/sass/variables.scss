@@ -10,36 +10,38 @@ $largeurs-ecran: (
     Tailles de police
     taille d'écran (en min-width) : taille de texte
 */
-$h1: (
-    0px: 32px,
-    360px: 48px,
-    640px: 56px,
-    1024px: 72px,
-    1440px: 96px
-);
+$tailles-textes: (
+    h1: (
+        0px: 32px,
+        360px: 48px,
+        640px: 56px,
+        1024px: 72px,
+        1440px: 96px
+    ),
 
-$h2: (
-    0px: 32px,
-    360px: 96px,
-    640px: 56px,
-    1024px: 72px,
-    1440px: 96px
-);
+    h2: (
+        0px: 32px,
+        360px: 96px,
+        640px: 56px,
+        1024px: 72px,
+        1440px: 96px
+    ),
 
-$h3: (
-    0px: 32px,
-    360px: 48px,
-    640px: 56px,
-    1024px: 72px,
-    1440px: 96px
-);
+    h3: (
+        0px: 32px,
+        360px: 48px,
+        640px: 56px,
+        1024px: 72px,
+        1440px: 96px
+    ),
 
-$h6: (
-    0px: 20px,
-    360px: 24px,
-    640px: 32px,
-    1024px: 42px,
-    1440px: 96px
+    h6: (
+        0px: 20px,
+        360px: 24px,
+        640px: 32px,
+        1024px: 42px,
+        1440px: 96px
+    ),
 );
 
 $couleurs: (
