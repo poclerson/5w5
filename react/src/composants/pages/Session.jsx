@@ -8,15 +8,15 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import Cours from './Cours';
 
-export default function Session({cours, enseignants, ouverture}) {
-    const [ouvertures, setOuvertures] = useState([... cours.map(() => "ferme")]);
+export default function Session({cours, enseignants}) {
+    // const [ouvertures, setOuvertures] = useState([... cours.map(() => "ferme")]);
 
-    useEffect(() => {
-        setOuvertures(boites.ouvrir(0, cours.map(() => "ferme")))
-    }, [])
+    // useEffect(() => {
+    //     setOuvertures(boites.ouvrir(0, cours.map(() => "ferme")))
+    // }, [])
 
     return (
-        <li className={"Session " + ouverture}>
+        <article className="Session">
             <ul className="liste-cours">
                 {cours.map((cours, index) => 
                     <Cours 
@@ -28,9 +28,9 @@ export default function Session({cours, enseignants, ouverture}) {
                 )}
             </ul>
 
-            <a href={"#cours" + (ouvertures.indexOf("ouvert"))} className="prochain-cours" onClick={() => setOuvertures(boites.ouvrir(ouvertures.indexOf("ouvert") + 1, cours.map(() => "ferme")))}>
+            {/* <a href={"#cours" + (ouvertures.indexOf("ouvert"))} className="prochain-cours" onClick={() => setOuvertures(boites.ouvrir(ouvertures.indexOf("ouvert") + 1, cours.map(() => "ferme")))}>
                 <ArrowForwardIosIcon className="Icone"  />
-            </a>
-        </li>
+            </a> */}
+        </article>
     )
 }

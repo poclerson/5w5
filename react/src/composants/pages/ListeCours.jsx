@@ -18,7 +18,7 @@ export default function ListeCours() {
     useEffect(() => {
         if (cours != null) {
             // Un Set ne prend qu'une seule occurence de chaque itération dans un tableau
-            setSessions([... new Set(cours.map(_cours => _cours.acf.session))].reverse());
+            setSessions([... new Set(cours.map(_cours => _cours.acf.session))].sort());
         }
     }, [cours])
 

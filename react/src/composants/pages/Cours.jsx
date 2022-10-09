@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom';
 export default function Cours({titre, description, enseignants: enseignantsAttitres, domaines, tousEnseignants: enseignants, id}) {
     return(
         <li className="Cours" id={id}>
-            <h2 className="titre">{titre}</h2>
+            <h3 className="titre">{titre}</h3>
             <p className="description">{description}</p>
             <ul className="domaines">
                 {domaines.map(domaine => 
