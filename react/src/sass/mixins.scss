@@ -1,6 +1,6 @@
 @import './fonctions.scss';
  
-// ===== MIXINS GÉNÉRALES =====
+// ===== Mixins de texte =====
 // Transforme une map de textes et génère des media queries
 @mixin texte-dynamique($selecteurs) {
     @each $selecteur, $tailles-dynamiques in $selecteurs {
@@ -21,6 +21,16 @@
         }
     }
 }
+
+// Remlpit automatiquement les informations génériques pour tout type de texte
+// Fonctionne avec themer()
+@mixin texte-general($theme, $element) {
+    color: map-deep-get($theme, $element, "couleur");
+    font-weight: map-deep-get($theme, $element, "poids");
+    font-style: map-deep-get($theme, $element, "style");
+}
+
+// ===== Mixins de couleurs =====
 
 // Stylise plusieurs classe/balises prédéterminés d'après une map de thème
 @mixin themer($theme) {
@@ -53,12 +63,31 @@
     background-color: map-deep-get($theme, "fond", "couleur-primaire");
 }
 
-// Remlpit automatiquement les informations génériques pour tout type de texte
-// Fonctionne avec themer()
-@mixin texte-general($theme, $element) {
-    color: map-deep-get($theme, $element, "couleur");
-    font-weight: map-deep-get($theme, $element, "poids");
-    font-style: map-deep-get($theme, $element, "style");
+/*
+    Permet de faire un fondu entre des degrades ou des images
+    Demande qu'un élément vide ayant la classe "destination" soit dans le conteneur de base
+    et que l'attribut transition change sur le conteneur original, le temps de l'animation
+*/
+@mixin fondu($debut, $fin, $duree) {
+    background: $debut;
+    position: relative;
+
+    .destination {
+        background: $fin;
+        content: "";
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+
+    &[transition="1"] {
+        .destination {
+            animation: fondu-sortant $duree forwards;
+        }
+    }
 }
 
 // Gère l'ouverture de différentes boites d'après des classes

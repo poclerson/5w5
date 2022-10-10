@@ -8,7 +8,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import Cours from './Cours';
 
-export default function Session({cours, enseignants}) {
+export default function Session({cours, enseignants, session}) {
     // const [ouvertures, setOuvertures] = useState([... cours.map(() => "ferme")]);
 
     // useEffect(() => {
@@ -16,7 +16,7 @@ export default function Session({cours, enseignants}) {
     // }, [])
 
     return (
-        <article className="Session">
+        <article className={"Session " + session}>
             <ul className="liste-cours">
                 {cours.map((cours, index) => 
                     <Cours 

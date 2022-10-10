@@ -2,6 +2,7 @@
 
 .App {
     overflow-x: hidden;
+    position: relative;
 
     // Toutes les pages
     & > *:not(.EnTete, .PiedPage) {

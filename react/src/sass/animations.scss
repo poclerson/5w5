@@ -1,4 +1,4 @@
-@keyframes fondu-entrant {
+@keyframes fondu-vers-prochain {
     0% {
         opacity: 1;
     }
@@ -8,6 +8,40 @@
     }
 
     100% { 
+        opacity: 1;
+    }
+}
+
+@keyframes fondu-vers-prochain-inverse {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% { 
+        opacity: 0;
+    }
+}
+
+@keyframes fondu-entrant {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fondu-sortant {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
         opacity: 1;
     }
 }

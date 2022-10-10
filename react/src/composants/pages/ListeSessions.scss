@@ -1,7 +1,51 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/animations.scss';
+@import '../../sass/fonctions.scss';
+
+// session0 ne sert qu'à initialiser le loop de transition et à faire le fondu de session6 à session1
+$degrades-sessions: (
+    session0:(
+        fond: linear-gradient(90deg, rgba(28,0,7,1) 0%, rgba(18,0,2,1) 100%),
+        rond: linear-gradient(211deg, rgba(54,2,22,1) 0%, rgba(103,0,31,1) 100%)
+    ),
+    session1: (
+        fond: linear-gradient(90deg, rgba(28,0,7,1) 0%, rgba(18,0,2,1) 100%),
+        rond: linear-gradient(211deg, rgba(54,2,22,1) 0%, rgba(103,0,31,1) 100%)
+    ), 
+    session2: (
+        fond: linear-gradient(167deg, rgb(100, 36, 255) 0%, rgb(25, 6, 23) 100%),
+        rond: linear-gradient(211deg, rgba(79,11,107,1) 0%, rgba(76,9,93,1) 100%)
+    ),
+    session3: (
+        fond: linear-gradient(90deg, rgb(53, 23, 56) 0%, rgba(7,1,67,1) 100%),
+        rond: linear-gradient(211deg, rgb(223, 196, 206) 0%, rgb(174, 69, 201) 50%, rgb(44, 33, 109) 100%)
+    ),
+    session4: (
+        fond: linear-gradient(90deg, rgb(47, 68, 229) 0%, rgba(1,11,13,1) 100%),
+        rond: linear-gradient(211deg, rgba(40,40,201,1) 0%, rgba(29,29,158,1) 100%)
+    ),
+    session5: (
+        fond: linear-gradient(90deg, rgb(70, 7, 38) 0%, rgba(53,2,7,1) 100%),
+        rond: linear-gradient(211deg, rgba(170,70,60,1) 0%, rgba(240,140,100,1) 100%)
+    ),
+    session6: (
+        fond: linear-gradient(90deg, rgb(191, 11, 154) 0%, rgba(36,1,1,1) 100%),
+        rond: linear-gradient(211deg, rgba(150,50,40,1) 0%, rgba(150,30,30,1) 100%)
+    )
+);
 
 .ListeSessions {
+    @each $session, $degrade in $degrades-sessions {
+
+        &.#{$session} {
+            @include fondu(map-get($degrade, fond), map-get-next($degrades-sessions, $session, fond), .5s);
+
+            .session-titre {
+                @include fondu(map-get($degrade, rond), map-get-next($degrades-sessions, $session, rond), .5s);
+            }
+        }
+    }
+    
     @include pleine-taille();
 
     display: flex;
@@ -11,8 +55,8 @@
     box-sizing: border-box;
 
     .sessions-titres {
-        position: relative;
         @include pleine-taille();
+        position: relative;
         overflow: hidden;
 
         .placement {
@@ -23,13 +67,17 @@
 
             .session-titre {
                 @include pleine-taille();
+                transition: transform .5s;
                 border-radius: 100%;
-                background-color: red;
         
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 position: absolute;
+
+                .destination {
+                    border-radius: 50%;
+                }
         
                 .titre {
                     position: absolute;
@@ -40,9 +88,8 @@
                     margin-block-start: 0;
                     margin-block-end: 0;
 
-
-                    &[opacite="1"] {
-                        animation: fondu-entrant .5s ease-in-out;
+                    &[transition="1"] {
+                        animation: fondu-vers-prochain .5s ease-in-out;
                     }
                 }
 

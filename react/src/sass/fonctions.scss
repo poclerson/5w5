@@ -12,3 +12,71 @@
 @function is-map($var){
     @return type-of($var) == 'map';
 }
+
+// Prend une map et une clé dans cette map. Retourne la valeur à l'index suivant à partir de la clé présente donnée
+@function map-get-next($map, $cle-presente, $valeur-valeur-presente) {
+    // Index d'itération de $map
+    $index: 0;
+
+    // Index de $cle-presente dans $map
+    $index-cle: null;
+
+    // Première valeur de $map
+    $premiere-valeur: null;
+
+    @if (is-map($map)) {
+        @if (map-has-key($map, $cle-presente)) {
+            @each $cle, $valeur in $map {
+    
+                // Conserver la valeur, au cas où $cle-presente représente la dernière valeur de $map
+                @if($premiere-valeur == null) {
+                    $premiere-valeur: $valeur;
+                }
+        
+                // Si on trouve la clé présente
+                @if ($cle == $cle-presente) {
+
+                    // On assigne l'index de celle-ci à une variable
+                    $index-cle: $index;
+        
+                    // Si l'index correspond à la dernière valeur de la map, on retourne la première valeur de la map
+                    @if (length($map) == $index-cle + 1) {
+    
+                        // Vérifier si on doit encore obtenir une valeur dans la valeur
+                        @if (is-map($valeur)) {
+                            // @warn map-get($premiere-valeur, $valeur-valeur-presente);
+                            @return map-get($premiere-valeur, $valeur-valeur-presente);
+                        }
+        
+                        @return map-get($map, $valeur);
+                    }
+                }
+        
+                // Retourner la valeur de l'index suivant
+                @if ($index == $index-cle + 1) {
+    
+                    // Vérifier si on doit encore obtenir une valeur dans la valeur
+                    @if (is-map($valeur)) {
+                        @return map-get($valeur, $valeur-valeur-presente);
+                    }
+        
+                    @return $valeur;
+                }
+
+                // Initialiser le compteur
+                $index: $index + 1;
+    
+            }
+        }
+
+        @else {
+            @warn "La clé #{$cle-presente} n'est pas présente dans #{$map}";
+        }
+    }
+
+    @else {
+        @warn "#{$map} n'est pas une map valide";
+    }
+
+    @return null;
+}
