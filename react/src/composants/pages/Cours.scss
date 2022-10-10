@@ -25,4 +25,19 @@
     &:last-child {
         margin-right: 10vw;
     }
+
+    @media screen and (min-width: map-get($largeurs-ecran, tablette)) {
+        width: 40vw;
+        min-width: 40vw;
+        height: 50vh;
+        margin-top: 20%;
+
+        &.ouvert {
+            transform: scale(1);
+        }
+
+        &.ferme {
+            transform: scale(.75);
+        }
+    }
 }

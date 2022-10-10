@@ -18,10 +18,13 @@ export default function ListeSessions({sessions, cours, enseignants}) {
         rayonCarousel: 600
     });
 
+    // État de rotation du carousel rond des titres de session
     const [rotation, setRotation] = useState(0);
 
+    // Active certains styles uniquement aux bons moments. Change d'état dans onAnimationEnd des titres de session
     const [transition, setTransition] = useState(1);
 
+    // Gestion des dégradés comme fond de ListeSessions (chacun est relié à un degradé en sass)
     const [degrade, setDegrade] = useState(null);
 
     useEffect(() => {
@@ -60,6 +63,7 @@ export default function ListeSessions({sessions, cours, enseignants}) {
                 })
             }
             <ol className="sessions-titres">
+                {/* Placement sert à correctement placer le carousel rond sans fucker le layout */}
                 <div className="placement" style={{
                     bottom: -carousel.rayonCarousel * 2 - carousel.rayonRond + 100,
                     left: -carousel.rayonCarousel - carousel.rayonRond + 100,
@@ -73,7 +77,13 @@ export default function ListeSessions({sessions, cours, enseignants}) {
                         
                             return <li className={`session-titre ${ouvertures[index]} ${session}`} key={session} style={placerEnCercle(index)}>
                                 <div className="destination"></div>
-                                <h2 className="titre" onAnimationEnd={() => setTransition(0)} transition={transition}>{session.charAt(7)}</h2>
+                                <h2 
+                                    className="titre" 
+                                    onAnimationEnd={() => setTransition(0)} 
+                                    transition={transition}
+                                >
+                                        {session.charAt(7)}
+                                </h2>
                                 {/* <ArrowForwardIcon className="Icone" onClick={() => controllerOuvertures(index)} /> */}
                                 <ArrowForwardIosIcon className="Icone" onClick={() => {
                                     setOuvertures(gestionOuverture.ouvrir(index + 1, sessions.map(() => "ferme")))

@@ -5,9 +5,9 @@ import {useState} from 'react';
 import Icone from '../modules/Icone';
 import {Link} from 'react-router-dom';
 
-export default function Cours({titre, description, enseignants: enseignantsAttitres, domaines, tousEnseignants: enseignants, id}) {
+export default function Cours({titre, description, enseignants: enseignantsAttitres, domaines, tousEnseignants: enseignants, id, ouverture}) {
     return(
-        <li className="Cours" id={id}>
+        <li className={"Cours " + ouverture} id={id}>
             <h3 className="titre">{titre}</h3>
             <p className="description">{description}</p>
             <ul className="domaines">
