@@ -9,3 +9,7 @@ export function exclureSiContient(itemsAFiltrer, exclusions) {
         )
     )
 }
+
+export function inserer(string, index, valeur) {
+    return string.substr(0, index) + valeur+ string.substr(index);
+}

@@ -1,22 +1,43 @@
 import './ListeSessions.scss';
 
 import Session from './Session';
-
-import {useState, useEffect, useLayoutEffect} from 'react';
-
-import * as gestionOuverture from '../../boites';
-
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
+import {useState, useEffect} from 'react';
+import * as gestionOuverture from '../../boites';
+import * as u from '../../utilitaires';
+
+import medias from '../../medias';
+import useMediaQuery from '../../useMediaQuery';
+
 export default function ListeSessions({sessions, cours, enseignants}) {
+
+    // TODO: Demander les images des degrades
+
+    const donneesCarousel = {
+        petit: {
+            rayonRond: 150,
+            rayonCarousel: 600,
+            decalageGauche: 75,
+            decalageHaut: 100,
+            decalageAngle: 0
+        },
+
+        grand: {
+            rayonRond: 200,
+            rayonCarousel: 500,
+            decalageGauche: -500,
+            decalageHaut: 1300,
+            decalageAngle: 90
+        }
+    }
 
     // Gestion de l'ouverture de chaque session
     const [ouvertures, setOuvertures] = useState([... sessions.map(() => "ferme")]);
 
-    const [carousel, setCarousel] = useState({
-        rayonRond: 180,
-        rayonCarousel: 600
-    });
+    const tailleOrdinateur = useMediaQuery(medias.ordinateur);
+
+    const [carousel, setCarousel] = useState(donneesCarousel.petit);
 
     // État de rotation du carousel rond des titres de session
     const [rotation, setRotation] = useState(0);
@@ -27,11 +48,34 @@ export default function ListeSessions({sessions, cours, enseignants}) {
     // Gestion des dégradés comme fond de ListeSessions (chacun est relié à un degradé en sass)
     const [degrade, setDegrade] = useState(null);
 
+    function gestionProchaineSession(index) {
+        if (index != ouvertures.indexOf("ouvert")) {
+            setOuvertures(gestionOuverture.ouvrir(index, sessions.map(() => "ferme")))
+
+            // Ouvrir selon l'index donné
+            if (tailleOrdinateur)
+                setRotation(-(360 * index / ouvertures.length))
+            
+            // Simplement ouvrir le prochain. Permet une rotation constante (ne brise pas à chaque cycle)
+            else
+                setRotation(rotation - (360 / ouvertures.length))
+
+            setTransition(1)
+
+            setDegrade("session" + (index + 1))
+        }
+    }
+
     useEffect(() => {
         // Ouvrir la première session directement
         setOuvertures(gestionOuverture.ouvrir(0, sessions.map(() => "ferme")));
         setDegrade("session" + (ouvertures.indexOf("ouvert") + 1));
     }, []);
+
+
+    useEffect(() => {
+        tailleOrdinateur ? setCarousel(donneesCarousel.grand) : setCarousel(donneesCarousel.petit)
+    }, [tailleOrdinateur])
 
     // Place en cercle dynamiquement les titres de sessions pour permettre une bonne transition
     function placerEnCercle(index) {
@@ -40,16 +84,24 @@ export default function ListeSessions({sessions, cours, enseignants}) {
             left: carousel.rayonCarousel + carousel.rayonCarousel * Math.sin((360 / ouvertures.length / 180) * (index) * Math.PI) + 'px',
             width: carousel.rayonRond * 2,
             height: carousel.rayonRond * 2,
-            transform: `rotate(${-rotation}deg)`
+            transform: `rotate(${-rotation - carousel.decalageAngle}deg)`
         }
     }
 
     return (
         <div className={"ListeSessions " + degrade} transition={transition}>
-            <div className="destination" onAnimationEnd={() => setDegrade("session" + (ouvertures.indexOf("ouvert") + 1))}></div>
+            <div className="destination" ></div>
+            <ol className="sessions-titres">
+                {sessions.map((session, index) => {
+                    if (ouvertures[index] == "ferme") {
+                        return <li className={"session-titre " + ouvertures[index]} onClick={() => gestionProchaineSession(index)}>
+                            <h3 className="sous-titre">{u.inserer(session, 7, " ")}</h3>
+                        </li>
+                    }
+                })}
+            </ol>
             {
                 sessions.map((session, index) => {
-                    // Mobile
                     if (ouvertures[index] == "ouvert") {
                         return <Session 
                             key={session}   
@@ -62,39 +114,33 @@ export default function ListeSessions({sessions, cours, enseignants}) {
                     }
                 })
             }
-            <ol className="sessions-titres">
+            <div className="sessions-ronds">
                 {/* Placement sert à correctement placer le carousel rond sans fucker le layout */}
-                <div className="placement" style={{
-                    bottom: -carousel.rayonCarousel * 2 - carousel.rayonRond + 100,
-                    left: -carousel.rayonCarousel - carousel.rayonRond + 100,
+                <ol className="placement" style={{
+                    bottom: -carousel.rayonCarousel * 2 - carousel.rayonRond + carousel.decalageHaut,
+                    left: -carousel.rayonCarousel - carousel.rayonRond + carousel.decalageGauche,
                     width: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
                     height: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
-                    transform: `rotate(${rotation}deg)`
+                    transform: `rotate(${rotation + carousel.decalageAngle}deg)`
                 }}>
-                    {
+                    
                         
-                        sessions.map((session, index) => {
-                        
-                            return <li className={`session-titre ${ouvertures[index]} ${session}`} key={session} style={placerEnCercle(index)}>
-                                <div className="destination"></div>
-                                <h2 
-                                    className="titre" 
-                                    onAnimationEnd={() => setTransition(0)} 
-                                    transition={transition}
-                                >
-                                        {session.charAt(7)}
-                                </h2>
-                                {/* <ArrowForwardIcon className="Icone" onClick={() => controllerOuvertures(index)} /> */}
-                                <ArrowForwardIosIcon className="Icone" onClick={() => {
-                                    setOuvertures(gestionOuverture.ouvrir(index + 1, sessions.map(() => "ferme")))
-                                    setRotation(rotation - (360 / ouvertures.length))
-                                    setTransition(1)
-                                }}/>
-                            </li>
-                        }
+                    {sessions.map((session, index) => 
+                        <li className={`session-rond ${ouvertures[index]} ${session}`} key={session} style={placerEnCercle(index)}>
+                            <div className="destination"></div>
+                            <h2 
+                                className="titre" 
+                                onAnimationEnd={() => setTransition(0)} 
+                                transition={transition}
+                            >
+                                    {session.charAt(7)}
+                            </h2>
+                            {/* <ArrowForwardIcon className="Icone" onClick={() => controllerOuvertures(index)} /> */}
+                            <ArrowForwardIosIcon className="Icone" onClick={() => gestionProchaineSession(index + 1)}/>
+                        </li>
                     )}
-                </div>
-            </ol>
+                </ol>
+            </div>
         </div>
     )
 }

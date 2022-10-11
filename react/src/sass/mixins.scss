@@ -1,4 +1,5 @@
 @import './fonctions.scss';
+@import './variables.scss';
  
 // ===== Mixins de texte =====
 // Transforme une map de textes et génère des media queries
@@ -28,6 +29,11 @@
     color: map-deep-get($theme, $element, "couleur");
     font-weight: map-deep-get($theme, $element, "poids");
     font-style: map-deep-get($theme, $element, "style");
+}
+
+@mixin desactiver-margin-block() {
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
 // ===== Mixins de couleurs =====
@@ -140,12 +146,43 @@
 }
 
 @mixin carte() {
-    @media screen and (min-width: map-get($largeurs-ecran, mobile)) {
-        padding-top: 5vh;
-        padding-bottom: 5vh;
-        padding-left: 5vw;
-        padding-right: 5vw;
+    border-radius: 20px;
 
-        border-radius: 20px;
+    $padding-v: 5vh;
+    $padding-h: 5vw;
+
+    @media screen and (min-width: map-get($largeurs-ecran, tablette)) {
+        $padding-h: 2.5vh;
+        $padding-v: 2.5vw;
+    }
+
+    padding-top: $padding-v;
+    padding-bottom: $padding-v;
+    padding-left: $padding-h;
+    padding-right: $padding-h;
+}
+
+// ===== Mixins de tailles d'écran
+@mixin mobile {
+    @media screen and (min-width: map-get($largeurs-ecran, mobile)) {
+        @content;
+    }
+}
+
+@mixin tablette {
+    @media screen and (min-width: map-get($largeurs-ecran, tablette)) {
+        @content;
+    }
+}
+
+@mixin ordinateur {
+    @media screen and (min-width: map-get($largeurs-ecran, ordinateur)) {
+        @content;
+    }
+}
+
+@mixin ordinateur-large {
+    @media screen and (min-width: map-get($largeurs-ecran, ordinateur-large)) {
+        @content;
     }
 }

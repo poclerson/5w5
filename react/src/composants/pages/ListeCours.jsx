@@ -12,6 +12,7 @@ import ListeSessions from './ListeSessions';
 export default function ListeCours() {
     const enseignants = wp.useObtenir('/enseignants');
     const cours = wp.useObtenir('/cours');
+    const sessionsDegrades = wp.useObtenir('/session');
 
     const [sessions, setSessions] = useState(null);
 
@@ -31,7 +32,7 @@ export default function ListeCours() {
 
             {
                 enseignants && sessions != null ? 
-                <ListeSessions sessions={sessions} cours={cours} enseignants={enseignants} />
+                <ListeSessions sessions={sessions} cours={cours} enseignants={enseignants} degrades={sessionsDegrades} />
                 : <Chargement />
             }
         </section>

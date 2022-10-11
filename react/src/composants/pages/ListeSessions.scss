@@ -1,6 +1,7 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/animations.scss';
 @import '../../sass/fonctions.scss';
+@import '../../sass/variables.scss';
 
 // session0 ne sert qu'à initialiser le loop de transition et à faire le fondu de session6 à session1
 $degrades-sessions: (
@@ -35,12 +36,14 @@ $degrades-sessions: (
 );
 
 .ListeSessions {
+    // Donner à chaque session un fond dégradé différent
     @each $session, $degrade in $degrades-sessions {
 
+        // Quand une session est activée, le nom de celle-ci est ajoutée aux classes de .ListeSessions
         &.#{$session} {
             @include fondu(map-get($degrade, fond), map-get-next($degrades-sessions, $session, fond), .5s);
 
-            .session-titre {
+            .session-rond {
                 @include fondu(map-get($degrade, rond), map-get-next($degrades-sessions, $session, rond), .5s);
             }
         }
@@ -54,10 +57,18 @@ $degrades-sessions: (
     align-items: center;
     box-sizing: border-box;
 
-    .sessions-titres {
+    @include ordinateur {
+        flex-direction: row;
+    }
+
+    .destination {
+        // z-index: -1;
+    }
+
+    .sessions-ronds{
         @include pleine-taille();
-        position: relative;
         overflow: hidden;
+        flex: 0;
 
         .placement {
             @include pleine-taille();
@@ -65,7 +76,7 @@ $degrades-sessions: (
             position: absolute; 
             transition: transform .5s;
 
-            .session-titre {
+            .session-rond {
                 @include pleine-taille();
                 transition: transform .5s;
                 border-radius: 100%;
@@ -81,12 +92,10 @@ $degrades-sessions: (
         
                 .titre {
                     position: absolute;
-                    right: 25%;
-                    top: 0;
-                    color: white;
+                    right: 15%;
+                    top: -15%;
                     font-size: 1500%;
-                    margin-block-start: 0;
-                    margin-block-end: 0;
+                    @include desactiver-margin-block;
 
                     &[transition="1"] {
                         animation: fondu-vers-prochain .5s ease-in-out;
@@ -95,10 +104,23 @@ $degrades-sessions: (
 
                 .Icone {
                     position: absolute;
-                    right: 25%;
+                    right: 15%;
                     top: 50%;
                 }
             }
+        }
+    }
+
+    .sessions-titres {
+        z-index: 1;
+        display: none;
+        flex: 2;
+        flex-direction: column;
+        padding: 5vw;
+        white-space: nowrap;
+
+        @include ordinateur {
+            display: flex;
         }
     }
 }

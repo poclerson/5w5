@@ -5,6 +5,14 @@
 
     @include gerer-ouverture(flex);
 
+    @include ordinateur {
+        flex: 8;
+
+        .liste-cours {
+            width: unset;
+        }
+    }
+
     .liste-cours {
         width: 100vw;
         @include pleine-taille;

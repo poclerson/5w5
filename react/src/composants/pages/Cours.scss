@@ -32,6 +32,8 @@
         height: 50vh;
         margin-top: 20%;
 
+        transition: transform .15s ease-in-out;
+
         &.ouvert {
             transform: scale(1);
         }
