@@ -3,16 +3,14 @@ import './ListeCours.scss';
 import {useEffect, useState} from 'react';
 
 import * as wp from '../../wp-rest-api';
-import * as u from '../../utilitaires';
 
 import Chargement from '../modules/Chargement';
-
 import ListeSessions from './ListeSessions';
 
 export default function ListeCours() {
     const enseignants = wp.useObtenir('/enseignants');
     const cours = wp.useObtenir('/cours');
-    const sessionsDegrades = wp.useObtenir('/session');
+    const degrades = wp.useObtenir('/degrades');
 
     const [sessions, setSessions] = useState(null);
 
@@ -31,8 +29,8 @@ export default function ListeCours() {
             </h1>
 
             {
-                enseignants && sessions != null ? 
-                <ListeSessions sessions={sessions} cours={cours} enseignants={enseignants} degrades={sessionsDegrades} />
+                enseignants && sessions && degrades != null ? 
+                <ListeSessions sessions={sessions} cours={cours} enseignants={enseignants} degrades={degrades} />
                 : <Chargement />
             }
         </section>

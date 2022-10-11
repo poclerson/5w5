@@ -4,16 +4,14 @@ import Session from './Session';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import {useState, useEffect} from 'react';
-import * as gestionOuverture from '../../boites';
+
+import * as boites from '../../boites';
 import * as u from '../../utilitaires';
 
 import medias from '../../medias';
 import useMediaQuery from '../../useMediaQuery';
 
-export default function ListeSessions({sessions, cours, enseignants}) {
-
-    // TODO: Demander les images des degrades
-
+export default function ListeSessions({sessions, cours, enseignants, degrades}) {
     const donneesCarousel = {
         petit: {
             rayonRond: 150,
@@ -33,7 +31,7 @@ export default function ListeSessions({sessions, cours, enseignants}) {
     }
 
     // Gestion de l'ouverture de chaque session
-    const [ouvertures, setOuvertures] = useState([... sessions.map(() => "ferme")]);
+    const [ouvertures, setOuvertures] = useState(boites.ouvrir(0, sessions.map(() => "ferme")));
 
     const tailleOrdinateur = useMediaQuery(medias.ordinateur);
 
@@ -45,12 +43,14 @@ export default function ListeSessions({sessions, cours, enseignants}) {
     // Active certains styles uniquement aux bons moments. Change d'état dans onAnimationEnd des titres de session
     const [transition, setTransition] = useState(1);
 
-    // Gestion des dégradés comme fond de ListeSessions (chacun est relié à un degradé en sass)
-    const [degrade, setDegrade] = useState(null);
+    // Conserve l'état du dégradé correspondant à la session sur laquelle on se trouve. 
+    // Permet de transitionner en changeant l'opacité vers la prochaine image de dégradé
+    const [degradePresent, setDegradePresent] = useState(null);
 
+    // Est activé quand on clique sur un bouton qui fait changer de session
     function gestionProchaineSession(index) {
-        if (index != ouvertures.indexOf("ouvert")) {
-            setOuvertures(gestionOuverture.ouvrir(index, sessions.map(() => "ferme")))
+        if (index != boites.obtenirOuverte(ouvertures)) {
+            setOuvertures(boites.ouvrir(index, sessions.map(() => "ferme")))
 
             // Ouvrir selon l'index donné
             if (tailleOrdinateur)
@@ -61,21 +61,8 @@ export default function ListeSessions({sessions, cours, enseignants}) {
                 setRotation(rotation - (360 / ouvertures.length))
 
             setTransition(1)
-
-            setDegrade("session" + (index + 1))
         }
     }
-
-    useEffect(() => {
-        // Ouvrir la première session directement
-        setOuvertures(gestionOuverture.ouvrir(0, sessions.map(() => "ferme")));
-        setDegrade("session" + (ouvertures.indexOf("ouvert") + 1));
-    }, []);
-
-
-    useEffect(() => {
-        tailleOrdinateur ? setCarousel(donneesCarousel.grand) : setCarousel(donneesCarousel.petit)
-    }, [tailleOrdinateur])
 
     // Place en cercle dynamiquement les titres de sessions pour permettre une bonne transition
     function placerEnCercle(index) {
@@ -88,9 +75,34 @@ export default function ListeSessions({sessions, cours, enseignants}) {
         }
     }
 
+    // Retourne l'url du dégradé d'après un index
+    function obtenirDegrade(index) {
+        return degrades.find(degrade => {
+            if (degrade.acf.session.charAt(7) == index + 1 + "") {
+                return degrade;
+            }
+        }).acf.degrade
+    }
+
+    const actualiserDegrade = () => {
+        setDegradePresent(obtenirDegrade(boites.obtenirOuverte(ouvertures)));
+    }
+
+    useEffect(() => {
+        setDegradePresent(obtenirDegrade(boites.obtenirOuverte(ouvertures)));
+    }, []);
+
+    useEffect(() => {
+        tailleOrdinateur ? setCarousel(donneesCarousel.grand) : setCarousel(donneesCarousel.petit)
+    }, [tailleOrdinateur])
+
     return (
-        <div className={"ListeSessions " + degrade} transition={transition}>
-            <div className="destination" ></div>
+        <div 
+            className="ListeSessions" 
+            transition={transition} 
+            style={{backgroundImage: `url(${obtenirDegrade(boites.obtenirOuverte(ouvertures))})`}}
+        >
+            <div className="destination" onAnimationEnd={actualiserDegrade} style={{backgroundImage: `url(${degradePresent})`}}></div>
             <ol className="sessions-titres">
                 {sessions.map((session, index) => {
                     if (ouvertures[index] == "ferme") {

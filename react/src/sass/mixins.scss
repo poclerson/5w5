@@ -74,12 +74,10 @@
     Demande qu'un élément vide ayant la classe "destination" soit dans le conteneur de base
     et que l'attribut transition change sur le conteneur original, le temps de l'animation
 */
-@mixin fondu($debut, $fin, $duree) {
-    background: $debut;
+@mixin fondu($duree) {
     position: relative;
 
     .destination {
-        background: $fin;
         content: "";
         position: absolute;
         top:0;

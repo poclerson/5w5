@@ -1,8 +1,4 @@
 import {useEffect, useState} from 'react';
-import Accueil from './composants/pages/Accueil';
-import Etudiants from './composants/pages/Etudiants';
-import ListeCours from './composants/pages/ListeCours';
-import ListeEnseignants from './composants/pages/ListeEnseignants';
 
 export const url = 'http://localhost:8888/5w5/wordpress';
 export const parametresRequete = '?acf=true&media=true'

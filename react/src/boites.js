@@ -19,3 +19,11 @@ export function ouvrir(index, ouvertures) {
 
     return copie;
 }
+
+/**
+ * Retourne l'index de la boite d'ouverture ouverte
+ * @param {array} ouvertures Liste des états d'ouverture
+ */
+export function obtenirOuverte(ouvertures) {
+    return ouvertures.indexOf("ouvert");
+}
