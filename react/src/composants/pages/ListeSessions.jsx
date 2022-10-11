@@ -12,6 +12,7 @@ import medias from '../../medias';
 import useMediaQuery from '../../useMediaQuery';
 
 export default function ListeSessions({sessions, cours, enseignants, degrades}) {
+    // Données permettant au carousel d'être dynamique
     const donneesCarousel = {
         petit: {
             rayonRond: 150,
@@ -35,6 +36,7 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
 
     const tailleOrdinateur = useMediaQuery(medias.ordinateur);
 
+    // Par défaut, utiliser la taille mobile
     const [carousel, setCarousel] = useState(donneesCarousel.petit);
 
     // État de rotation du carousel rond des titres de session
