@@ -4,7 +4,7 @@ import {useState} from 'react';
 
 import Navigation from './Navigation';
 import Recherche from '../modules/Recherche';
-import BoutonTIM from '../modules/BoutonBurger';
+import Boutonburger from '../modules/BoutonBurger';
 
 export default function EnTete({routes}) {
     const [ouverture, setOuverture] = useState("ferme");
@@ -13,7 +13,7 @@ export default function EnTete({routes}) {
 
     return (
         <header className="EnTete">
-            <BoutonTIM gererClic={gererOuverture} />
+            <Boutonburger gererClic={gererOuverture} />
 
             <div className={"contenu " + ouverture}>
                 <Navigation routes={routes} />
