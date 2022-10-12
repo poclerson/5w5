@@ -9,7 +9,7 @@ import * as boites from '../../boites';
 import * as u from '../../utilitaires';
 
 import medias from '../../medias';
-import useMediaQuery from '../../useMediaQuery';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 export default function ListeSessions({sessions, cours, enseignants, degrades}) {
     // Données permettant au carousel d'être dynamique

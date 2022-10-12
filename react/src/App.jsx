@@ -1,11 +1,9 @@
 import './App.scss';
 
-// Meta
 import EnTete from './composants/navigation/EnTete';
 import PiedPage from './composants/navigation/PiedPage';
 import Chargement from './composants/modules/Chargement';
 
-// Contenu
 import Accueil from './composants/pages/Accueil';
 import APropos from './composants/pages/APropos';
 import ListeEnseignants from './composants/pages/ListeEnseignants';
@@ -14,14 +12,14 @@ import Contact from './composants/pages/Contact';
 import Etudiants from './composants/pages/Etudiants';
 
 import {Route, Routes} from 'react-router-dom';
-
+import useObtenir from './hooks/useObtenir';
 import * as wp from './wp-rest-api';
 
 export default function App() {
     /**
      * Array contenant tout ce qui est nécessaire pour render les routes et créer le menu de navigation
      */
-    const pages = wp.useObtenir('/pages');
+    const pages = useObtenir('/pages');
 
     const identifierComposant = (page) => {
         const composants = {
