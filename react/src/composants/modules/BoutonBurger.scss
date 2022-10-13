@@ -1,7 +1,14 @@
-.BoutonBurger {
-    position: fixed;
+@import '../../sass/variables.scss';
+@import '../../sass/fonctions.scss';
 
-    svg {
-        color: white;
+.BoutonBurger {
+    padding-right: 2.5vw;
+    padding-bottom: 2.5vw;
+    position: fixed;
+    background-color: map-deep-get($theme-menu-mobile, fond, couleur-secondaire);
+    border-bottom-right-radius: 50%;
+
+    .Icone {
+        font-size: 10vw;
     }
 }

@@ -3,7 +3,7 @@ import './Navigation.scss';
 import { Link } from 'react-router-dom';
 // import {QueryMenu} from 'wordpress-query-menu';
 
-export default function Navigation({routes}) {
+export default function Navigation({routes, gererClic}) {
     return(
         <ul className="Navigation">
             {/* <QueryMenu location={'primary'}/> */}
@@ -11,7 +11,7 @@ export default function Navigation({routes}) {
                 return <li className="item-nav" key={route.nom}>
                     <h6 className="titre-page">
                         {route.estRoute ?
-                            <Link className="lien-page" key={route.nom} to={route.chemin} >{route.nom}</Link>  
+                            <Link className="lien-page" key={route.nom} to={route.chemin} onClick={gererClic} >{route.nom}</Link>  
                             :
                             route.composant
                         }  

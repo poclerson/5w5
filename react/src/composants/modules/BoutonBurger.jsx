@@ -8,7 +8,7 @@ export default function BoutonBurger({gererClic}) {
      */ 
     return (
         <button className="BoutonBurger" onClick={gererClic}>
-            <MenuIcon />
+            <MenuIcon className="Icone" />
         </button>
     )
 }
