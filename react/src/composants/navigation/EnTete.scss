@@ -2,19 +2,15 @@
 @import '../../sass/variables.scss';
 
 .EnTete {
+    @include fond-flou;
+
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 10;
 
     .contenu {
-        @include themer($theme-menu);
-
-        display: flex;
-        flex-direction: column;
-
-        @media screen and (max-width: map-get($largeurs-ecran, tablette)) {
-            
-        }
+        @include themer($theme-menu-mobile);
 
         @include gerer-ouverture(flex);
 
@@ -24,5 +20,22 @@
         padding: 10vw;
 
         border-radius: 0 70px 70px 0;
+    }
+
+    @include tablette {
+
+        .BoutonBurger {
+            display: none;
+        }
+
+        .contenu {
+            @include themer($theme-menu-tablette);
+            width: 100vw;
+            border-radius: 0;
+
+            &.ferme {
+                display: flex;
+            }
+        }
     }
 }

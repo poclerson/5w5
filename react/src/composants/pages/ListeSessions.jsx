@@ -9,9 +9,12 @@ import * as boites from '../../boites';
 import * as u from '../../utilitaires';
 
 import medias from '../../medias';
-import useMediaQuery from '../../useMediaQuery';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 export default function ListeSessions({sessions, cours, enseignants, degrades}) {
+    // Gestion de l'ouverture de chaque session
+    const [ouvertures, setOuvertures] = useState(boites.ouvrir(0, sessions.map(() => "ferme")));
+
     // Données permettant au carousel d'être dynamique
     const donneesCarousel = {
         petit: {
@@ -26,13 +29,10 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
             rayonRond: 200,
             rayonCarousel: 500,
             decalageGauche: -500,
-            decalageHaut: 1300,
+            decalageHaut: 900,
             decalageAngle: 90
         }
     }
-
-    // Gestion de l'ouverture de chaque session
-    const [ouvertures, setOuvertures] = useState(boites.ouvrir(0, sessions.map(() => "ferme")));
 
     const tailleOrdinateur = useMediaQuery(medias.ordinateur);
 
@@ -48,6 +48,11 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
     // Conserve l'état du dégradé correspondant à la session sur laquelle on se trouve. 
     // Permet de transitionner en changeant l'opacité vers la prochaine image de dégradé
     const [degradePresent, setDegradePresent] = useState(null);
+
+    const stylesDegrades = {
+        section: {backgroundImage: `url(${obtenirDegrade(boites.obtenirOuverte(ouvertures))})`},
+        prochaineSection: {backgroundImage: `url(${degradePresent})`}
+    }
 
     // Est activé quand on clique sur un bouton qui fait changer de session
     function gestionProchaineSession(index) {
@@ -73,7 +78,8 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
             left: carousel.rayonCarousel + carousel.rayonCarousel * Math.sin((360 / ouvertures.length / 180) * (index) * Math.PI) + 'px',
             width: carousel.rayonRond * 2,
             height: carousel.rayonRond * 2,
-            transform: `rotate(${-rotation - carousel.decalageAngle}deg)`
+            transform: `rotate(${-rotation - carousel.decalageAngle}deg)`,
+            backgroundImage: `url(${obtenirDegrade(boites.obtenirOuverte(ouvertures))})`
         }
     }
 
@@ -84,6 +90,27 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
                 return degrade;
             }
         }).acf.degrade
+    }
+
+    function gestionStylePlacement() {
+        // Si on est sur ordinateur, la position du carousel des titres doit être relative au haut de la page
+        if (tailleOrdinateur) {
+            return {
+                top: -carousel.rayonCarousel * 2 - carousel.rayonRond + carousel.decalageHaut,
+                left: -carousel.rayonCarousel - carousel.rayonRond + carousel.decalageGauche,
+                width: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
+                height: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
+                transform: `rotate(${rotation + carousel.decalageAngle}deg)`
+            }
+        }
+
+        return {
+            bottom: -carousel.rayonCarousel * 2 - carousel.rayonRond + carousel.decalageHaut,
+            left: -carousel.rayonCarousel - carousel.rayonRond + carousel.decalageGauche,
+            width: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
+            height: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
+            transform: `rotate(${rotation + carousel.decalageAngle}deg)`
+        }
     }
 
     const actualiserDegrade = () => {
@@ -102,13 +129,13 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
         <div 
             className="ListeSessions" 
             transition={transition} 
-            style={{backgroundImage: `url(${obtenirDegrade(boites.obtenirOuverte(ouvertures))})`}}
+            style={stylesDegrades.section}
         >
-            <div className="destination" onAnimationEnd={actualiserDegrade} style={{backgroundImage: `url(${degradePresent})`}}></div>
+            <div className="destination" onAnimationEnd={actualiserDegrade} style={stylesDegrades.prochaineSection}></div>
             <ol className="sessions-titres">
                 {sessions.map((session, index) => {
                     if (ouvertures[index] == "ferme") {
-                        return <li className={"session-titre " + ouvertures[index]} onClick={() => gestionProchaineSession(index)}>
+                        return <li className={"session-titre " + ouvertures[index]} key={"titre" + session} onClick={() => gestionProchaineSession(index)}>
                             <h3 className="sous-titre">{u.inserer(session, 7, " ")}</h3>
                         </li>
                     }
@@ -130,18 +157,12 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
             }
             <div className="sessions-ronds">
                 {/* Placement sert à correctement placer le carousel rond sans fucker le layout */}
-                <ol className="placement" style={{
-                    bottom: -carousel.rayonCarousel * 2 - carousel.rayonRond + carousel.decalageHaut,
-                    left: -carousel.rayonCarousel - carousel.rayonRond + carousel.decalageGauche,
-                    width: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
-                    height: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
-                    transform: `rotate(${rotation + carousel.decalageAngle}deg)`
-                }}>
+                <ol className="carousel" style={gestionStylePlacement()}>
                     
                         
                     {sessions.map((session, index) => 
-                        <li className={`session-rond ${ouvertures[index]} ${session}`} key={session} style={placerEnCercle(index)}>
-                            <div className="destination"></div>
+                        <li className={`session-rond ${ouvertures[index]} ${session}`} key={"rond" + session} style={placerEnCercle(index)}>
+                            <div className="destination" style={stylesDegrades.prochaineSection}></div>
                             <h2 
                                 className="titre" 
                                 onAnimationEnd={() => setTransition(0)} 

@@ -1,11 +1,12 @@
 import './Recherche.scss';
 
-import * as wp from '../../wp-rest-api';
 import {useEffect, useState} from 'react';
 import TextField from '@mui/material/TextField';
+import useObtenirMultiplesTypes from '../../hooks/useObtenirMultiplesTypes';
+import useObtenir from '../../hooks/useObtenir';
 
 export default function Rechercher({routes}) { 
-    const articles = wp.useObtenirMultipleTypes(
+    const articles = useObtenirMultiplesTypes(
         routes.map(route => route.chemin)
     )
 
@@ -13,7 +14,7 @@ export default function Rechercher({routes}) {
     const [saisie, setSaisie] = useState('');
 
     // Liste des filtres utilisés pour la recherche
-    const filtres = wp.useObtenir('/filtres');
+    const filtres = useObtenir('/filtres');
 
     const [articlesRecherches, setArticlesRecherches] = useState([]);
 

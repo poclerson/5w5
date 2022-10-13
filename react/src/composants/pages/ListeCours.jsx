@@ -2,15 +2,15 @@ import './ListeCours.scss';
 
 import {useEffect, useState} from 'react';
 
-import * as wp from '../../wp-rest-api';
+import useObtenir from '../../hooks/useObtenir';
 
 import Chargement from '../modules/Chargement';
 import ListeSessions from './ListeSessions';
 
 export default function ListeCours() {
-    const enseignants = wp.useObtenir('/enseignants');
-    const cours = wp.useObtenir('/cours');
-    const degrades = wp.useObtenir('/degrades');
+    const enseignants = useObtenir('/enseignants');
+    const cours = useObtenir('/cours');
+    const degrades = useObtenir('/degrades');
 
     const [sessions, setSessions] = useState(null);
 
