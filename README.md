@@ -24,6 +24,7 @@ Notre site utilisera le concept de "Headless CMS", qui utilise un CMS, comme Wor
 Ce projet est organisé en suivant la méthodologie Agile Scrum
 - [Carnet de produit](https://docs.google.com/spreadsheets/d/1k-Dq3zliGq4WWjGQ6MDp1Oyge2RrvncT0G1-n2u-RbQ/edit#gid=874600639)
 - [Revue du sprint 1](https://docs.google.com/document/d/1U1Y33lPVrLmU_EBuATr6gfPWhQV_rYNera7v0aCgtmw/edit)
+- [Revue du sprint 2](https://docs.google.com/spreadsheets/d/1k-Dq3zliGq4WWjGQ6MDp1Oyge2RrvncT0G1-n2u-RbQ/edit#gid=599930621)
 
 ## Membres de l'équipe
 - [Pierre-Olivier Clerson](https://github.com/poclerson) (programmation front end, programmation back end)
