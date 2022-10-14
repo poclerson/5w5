@@ -58,6 +58,10 @@
                     position: absolute;
                     right: 15%;
                     top: 50%;
+
+                    @include ordinateur {
+                        display: none;
+                    }
                 }
             }
         }

@@ -1,6 +1,6 @@
 import './EnTete.scss';
 
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 
 import Navigation from './Navigation';
 import BoutonBurger from '../modules/BoutonBurger';
