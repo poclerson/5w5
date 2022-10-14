@@ -21,10 +21,14 @@
     }
 
     @include tablette {
+        width: 100%;
         flex-direction: row;
+        justify-content: space-around;
 
         .titre-page {
             padding: 0;
+            padding-left: 2.5vw;
+            padding-right: 2.5vw;
         }
     }
 }

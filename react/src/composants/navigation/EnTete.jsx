@@ -1,12 +1,12 @@
 import './EnTete.scss';
 
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 import Navigation from './Navigation';
-import Recherche from '../modules/Recherche';
 import BoutonBurger from '../modules/BoutonBurger';
+import SiteLogo from '../modules/SiteLogo';
 
-export default function EnTete({routes}) {
+export default function EnTete({enteteWP}) {
     const [ouverture, setOuverture] = useState("ferme");
 
     const gererOuverture = () => setOuverture(ouverture == "ferme" ? "ouvert" : "ferme");
@@ -14,10 +14,10 @@ export default function EnTete({routes}) {
     return (
         <header className="EnTete">
             <BoutonBurger gererClic={gererOuverture} />
-
             <div className={"contenu " + ouverture}>
-                <Navigation routes={routes} gererClic={gererOuverture} />
-                <Recherche routes={routes} />
+                <SiteLogo url={enteteWP.siteLogoUrl} taille={"p"} />
+                <Navigation pages={enteteWP.headerMenuItems} gererClic={gererOuverture} />
+                {/* <Recherche routes={pages} /> */}
             </div>
         </header>
     )
