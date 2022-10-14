@@ -13,4 +13,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /5w5/wordpress/index.php [L]
 </IfModule>
 
+<IfModule mod_headers.c>
+   Header set Access-Control-Allow-Origin "*"
+ </IfModule>
+
 # END WordPress
