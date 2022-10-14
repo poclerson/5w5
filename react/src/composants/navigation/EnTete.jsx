@@ -10,7 +10,7 @@ export default function EnTete({enteteWP}) {
     const [ouverture, setOuverture] = useState("ferme");
 
     const gererOuverture = () => setOuverture(ouverture == "ferme" ? "ouvert" : "ferme");
-    console.log(enteteWP)
+
     return (
         <header className="EnTete">
             <BoutonBurger gererClic={gererOuverture} />

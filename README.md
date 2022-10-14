@@ -9,12 +9,16 @@ Ce futur site intégrera une série de fonctionnalités que vous pouvez trouver 
 Notre site utilisera le concept de "Headless CMS", qui utilise un CMS, comme Wordpress dans notre cas, en tant que back end et utilise un autre framework en tant que front end. Nous utiliserons aussi node-sass afin de styliser nos pages.
 
 ### Wordpress
-Dans Wordpress, nous utilisons présentement le plugin [Advanced Custom Fields](https://www.advancedcustomfields.com "ACF") pour une meilleure saisie de contenu, ainsi que [Custom Post Types UI](https://en-ca.wordpress.org/plugins/custom-post-type-ui/ "CPT UI").
+- [Advanced Custom Fields](https://www.advancedcustomfields.com) pour une meilleure saisie de contenu
+- [Custom Post Types UI](https://en-ca.wordpress.org/plugins/custom-post-type-ui/) création de types d'articles personnalisés
+- [Better REST Endpoints](https://wordpress.org/plugins/better-rest-endpoints/) meilleure gestion du WP REST API
+- [All-in-one WP Migration](https://wordpress.org/plugins/all-in-one-wp-migration/) transfert de données
+- [Headlesss CMS](https://wordpress.org/plugins/headless-cms/) création de menus Wordpress récupérables facilement dans le REST API
 
 ### React
-Au sein de React, nous utilisons présentement les packages suivants:
 - [react-router-dom](https://v5.reactrouter.com) pour créer un système de pages
 - [Material UI](https://mui.com) afin d'implémenter rapidement des icones
+- [node-sass](https://www.npmjs.com/package/node-sass) gestion des styles CSS
 
 ## Organisation du projet
 Ce projet est organisé en suivant la méthodologie Agile Scrum

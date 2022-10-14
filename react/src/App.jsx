@@ -12,7 +12,6 @@ import Etudiants from './composants/pages/Etudiants';
 
 import {Route, Routes} from 'react-router-dom';
 import useObtenir from './hooks/useObtenir';
-import * as wp from './wp-rest-api';
 
 export default function App() {
     /**
