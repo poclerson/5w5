@@ -106,6 +106,7 @@ export default function App() {
             <EnTete routes={routes} />
             
             <PiedPage />
+            <div id="lol"></div>
         </div>
     );
 }
