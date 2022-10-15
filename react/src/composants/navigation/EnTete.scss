@@ -26,6 +26,10 @@
         }
     }
 
+    .resultats-recherche {
+        @include themer($theme-menu-mobile);
+    }
+
     @include tablette {
         .BoutonBurger {
             display: none;

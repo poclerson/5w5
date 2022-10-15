@@ -8,6 +8,6 @@ export const cheminsFournisseurs = {
     wp: "/wp-json/wp/v2%%cheminFinal%%"
 };
 
-export const traiterRequete = (chemin, fournisseur) => {
-    return url + cheminsFournisseurs[fournisseur].replace("%%cheminFinal%%", chemin);
+export const traiterRequete = (chemin, fournisseur, parametres) => {
+    return url + cheminsFournisseurs[fournisseur].replace("%%cheminFinal%%", chemin) + parametres;
 }

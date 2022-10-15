@@ -7,11 +7,11 @@ import * as wp from '../wp-rest-api';
  * @param {string} fournisseur Option du différent type de donnée à traiter
  * @returns Articles demandées par l'URL
  */
-export default function useObtenir(chemin = '', fournisseur = 'bre' || 'wp' || 'hcms') {
+export default function useObtenir(chemin = '', fournisseur = 'bre' || 'wp' || 'hcms', parametres) {
     const [donnees, setDonnees] = useState(null);
     useEffect(() => {
         async function obtenirArticles() {
-            const reponse = await fetch(wp.traiterRequete(chemin, fournisseur));
+            const reponse = await fetch(wp.traiterRequete(chemin, fournisseur, parametres));
 
             if(!reponse.ok)
                 return;
