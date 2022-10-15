@@ -2,6 +2,7 @@
 
 .BarreDefilement {
     position: relative;
+    transform: translateX(-200px);
 
     .barre {
         background-color: map-get($couleurs, clair);

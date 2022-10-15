@@ -1,57 +1,49 @@
 import './BarreDefilement.scss';
 
-import {useState, useEffect} from 'react';
+import {useState, useRef} from 'react';
 
-export default function BarreDefilement({defilement, largeurTotale, ratio, gestionPositionIndicateur}) {
+export default function BarreDefilement({defilement, largeurTotale, ratio, gestionPositionIndicateur, elementScroll}) {
     const [positionDepart, setPositionDepart] = useState(null);
-    const [positionFin, setPositionFin] = useState(null);
-    const [distance, setDistance] = useState(null);
+    const [positionIndicateur, setPositionIndicateur] = useState(null);
 
-    const [defile, setDefile] = useState(false);
+    const indicateurRef = useRef(null);
+    const barreRef = useRef(null);
 
     const gestionClic = e => {
         e.preventDefault();
         e.stopPropagation();
-        setDefile(true);
 
-        setPositionDepart(e.clientX);   
+        setPositionDepart(e.clientX);  
+        window.addEventListener('mousemove', gestionTenirClic);
+        window.addEventListener('mouseup', gestionRelacherClic); 
     }
 
     const gestionTenirClic = e => {
         e.preventDefault();
         e.stopPropagation();
 
-
-        if (defile) {
-            setPositionFin(e.clientX);
-            setDistance(positionFin - positionDepart);
-        }
+        console.log(defilement, largeurTotale, ratio, (defilement + 1) * ratio * largeurTotale * ratio / largeurTotale)
+        setPositionIndicateur(indicateurRef.current.offsetWidth - e.clientX)
+        elementScroll.scrollLeft = 50
+        console.log(indicateurRef.current.getBoudingClientRect())
     }
 
     const gestionRelacherClic = e => {
         e.preventDefault();
         e.stopPropagation();
-
-        setDefile(false);  
-        gestionPositionIndicateur(distance);
+        gestionPositionIndicateur(e.clientX - positionDepart);
+        window.removeEventListener('mousemove', gestionTenirClic);
+        window.removeEventListener('mouseup', gestionRelacherClic);
     }
-
-    useEffect(() => {
-        document.addEventListener('mousemove', gestionTenirClic);
-        document.addEventListener('mouseup', gestionRelacherClic);
-        return () => {
-            document.removeEventListener('mousemove', gestionTenirClic);
-            document.removeEventListener('mouseup', gestionRelacherClic);
-        }
-    }, [gestionTenirClic, gestionRelacherClic])
 
     return (
         <div className="BarreDefilement">
-            <div className="barre" style={{width: largeurTotale * ratio}} ></div>
+            <div className="barre" style={{width: largeurTotale * ratio}} ref={barreRef}></div>
             <div 
                 className="indicateur" 
-                style={{left: defilement * ratio}} 
+                style={{left: positionIndicateur}} 
                 onMouseDown={gestionClic} 
+                ref={indicateurRef}
             ></div>
         </div>
     )

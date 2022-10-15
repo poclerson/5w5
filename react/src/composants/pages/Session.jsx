@@ -1,6 +1,6 @@
 import './Session.scss';
 
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 
 import * as boites from '../../boites';
 
@@ -42,9 +42,16 @@ export default function Session({cours, enseignants, session}) {
         setOuvertures(boites.ouvrir(0, cours.map(() => "ferme")))
     }, [])
 
+    const sessionRef = useRef(null);
+
+    // const gestionClic = () => {
+    //     console.log("scroll")
+    //     sessionRef.current.scrollLeft = 50;
+    // }
+
     return (
         <article className={"Session " + session} scrollLeft={gestionPositionIndicateur}>
-            <ul className="liste-cours" onScroll={gestionDefilement}>
+            <ul className="liste-cours" onScroll={gestionDefilement} ref={sessionRef}>
                 {cours.map((cours, index) => 
                     <Cours 
                         key={cours.acf.titre}
@@ -55,7 +62,7 @@ export default function Session({cours, enseignants, session}) {
                     />
                 )}
             </ul>
-            <BarreDefilement defilement={positionDefilement} largeurTotale={largeurDefilement} ratio={.2} gestionPositionIndicateur={gestionPositionIndicateur} />
+            {/* <BarreDefilement defilement={positionDefilement} largeurTotale={largeurDefilement} ratio={.2} gestionPositionIndicateur={gestionPositionIndicateur} elementScroll={sessionRef.current} /> */}
             {/* <a href={"#cours" + (ouvertures.indexOf("ouvert"))} className="prochain-cours" onClick={() => setOuvertures(boites.ouvrir(ouvertures.indexOf("ouvert") + 1, cours.map(() => "ferme")))}>
                 <ArrowForwardIosIcon className="Icone"  />
             </a> */}
