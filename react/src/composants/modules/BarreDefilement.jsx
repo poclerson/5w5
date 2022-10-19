@@ -7,6 +7,7 @@ export default function BarreDefilement({largeurTotale, elementScroll}) {
     const barreRef = useRef(null);
     const barreDefilementRef = useRef(null);
 
+    // Ratio entre la barre de défilement à faire défiler dans elementScroll et la barre de défilment de BarreDefilement
     const [ratio, setRatio] = useState(null);
 
     // Au moment où on clique sur l'indicateur
@@ -23,6 +24,7 @@ export default function BarreDefilement({largeurTotale, elementScroll}) {
         e.preventDefault();
         e.stopPropagation();
 
+        // Défiler elementScroll d'après les mouvements de la souris
         elementScroll.scrollLeft = (e.clientX - barreDefilementRef.current.getClientRects()[0].x) * ratio
 
         console.log(elementScroll)
@@ -56,6 +58,7 @@ export default function BarreDefilement({largeurTotale, elementScroll}) {
                 className="indicateur" 
                 onMouseDown={gestionClic} 
                 ref={indicateurRef}
+                // On règle l'attribut de style left pour suivre le défilement de elementScroll
                 style={{width: 50, left: elementScroll.scrollLeft / ratio}}
             ></div>
         </div>
