@@ -10,7 +10,7 @@ import ListeSessions from './ListeSessions';
 export default function ListeCours() {
     const enseignants = useObtenir('/enseignants');
     const cours = useObtenir('/cours');
-    const degrades = useObtenir('/degrades');
+    const degrades = useObtenir('/degrades', 'bre');
 
     const [sessions, setSessions] = useState(null);
 
@@ -27,7 +27,6 @@ export default function ListeCours() {
             <h1 className="titre">
                 {/* {u.capitaliserPremiereLettre(cours[0].type)} */}
             </h1>
-            {console.log(cours)}
 
             {
                 enseignants && sessions && degrades != null ? 

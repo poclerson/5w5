@@ -7,7 +7,7 @@
     // Toutes les pages
     & > *:not(.EnTete, .PiedPage) {
         @include pleine-taille;
-        width: 100vw;
+        min-width: 100vw;
         height: 100vh;
         box-sizing: content-box;
 

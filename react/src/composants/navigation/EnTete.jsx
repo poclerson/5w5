@@ -21,7 +21,6 @@ export default function EnTete({enteteWP}) {
 
     return (
         <header className="EnTete">
-            {console.log(resultatsRecherche)}
             <BoutonBurger gererClic={gererOuverture} />
             <div className={"contenu " + ouverture}>
                 <SiteLogo url={enteteWP.siteLogoUrl} taille={"p"} />

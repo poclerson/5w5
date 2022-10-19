@@ -7,21 +7,23 @@
 
     @include ordinateur {
         flex: 8;
-
-        .liste-cours {
-            width: unset;
-        }
     }
 
     .liste-cours {
         width: 100vw;
         @include pleine-taille;
         display: flex;
+        justify-content: space-between;
         gap: 10vw;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
 
         @include cacher-barre-defilement;
+
+        @include ordinateur {
+            scroll-snap-type: x proximity;
+            touch-action: none;
+        }
     }
 
     .prochain-cours {

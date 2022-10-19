@@ -81,27 +81,28 @@
 
 /*
     Permet de faire un fondu entre des degrades ou des images
-    Demande qu'un élément vide ayant la classe "destination" soit dans le conteneur de base
+    Demande qu'un élément vide ayant la classe "classe-destination" soit dans le conteneur de base
     et que l'attribut transition change sur le conteneur original, le temps de l'animation
 */
-@mixin fondu($duree) {
+@mixin fondu($duree, $classe-destination) {
     position: relative;
     background-size: 100% 100%;
     background-repeat: no-repeat;
 
-    .destination {
+    .#{$classe-destination} {
         content: "";
         position: absolute;
         top:0;
         left:0;
-        width: 100%;
-        height: 100%;
+        @include pleine-taille;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
         opacity: 0;
         @content;
     }
 
     &[transition="1"] {
-        .destination {
+        .#{$classe-destination} {
             animation: fondu-sortant $duree forwards;
         }
     }

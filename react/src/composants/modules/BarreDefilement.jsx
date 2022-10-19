@@ -1,49 +1,62 @@
 import './BarreDefilement.scss';
 
-import {useState, useRef} from 'react';
+import {useRef, useState, useEffect} from 'react';
 
-export default function BarreDefilement({defilement, largeurTotale, ratio, gestionPositionIndicateur, elementScroll}) {
-    const [positionDepart, setPositionDepart] = useState(null);
-    const [positionIndicateur, setPositionIndicateur] = useState(null);
-
+export default function BarreDefilement({largeurTotale, elementScroll}) {
     const indicateurRef = useRef(null);
     const barreRef = useRef(null);
+    const barreDefilementRef = useRef(null);
 
+    const [ratio, setRatio] = useState(null);
+
+    // Au moment où on clique sur l'indicateur
     const gestionClic = e => {
         e.preventDefault();
         e.stopPropagation();
 
-        setPositionDepart(e.clientX);  
         window.addEventListener('mousemove', gestionTenirClic);
         window.addEventListener('mouseup', gestionRelacherClic); 
     }
 
+    // Au moment où on fait glisser l'indicateur en tenant le clic enfoncé
     const gestionTenirClic = e => {
         e.preventDefault();
         e.stopPropagation();
 
-        console.log(defilement, largeurTotale, ratio, (defilement + 1) * ratio * largeurTotale * ratio / largeurTotale)
-        setPositionIndicateur(indicateurRef.current.offsetWidth - e.clientX)
-        elementScroll.scrollLeft = 50
-        console.log(indicateurRef.current.getBoudingClientRect())
+        elementScroll.scrollLeft = (e.clientX - barreDefilementRef.current.getClientRects()[0].x) * ratio
+
+        console.log(elementScroll)
     }
 
+    // Au moment où on relâche le clic
     const gestionRelacherClic = e => {
         e.preventDefault();
         e.stopPropagation();
-        gestionPositionIndicateur(e.clientX - positionDepart);
         window.removeEventListener('mousemove', gestionTenirClic);
         window.removeEventListener('mouseup', gestionRelacherClic);
     }
 
+    useEffect(() => {
+        setRatio(elementScroll.offsetWidth / barreRef.current.offsetWidth);
+    }, [elementScroll.scrollLeft])
+
+    useEffect(() => {
+        // elementScroll.scrollLeftMax = elementScroll.scrollWidth;
+    }, [])
+
+    // useEffect(() => {
+    //     if (elementScroll != null) 
+    //         elementScroll.scrollLeft = positionIndicateur * ratio;
+    // }, [positionIndicateur])
+
     return (
-        <div className="BarreDefilement">
-            <div className="barre" style={{width: largeurTotale * ratio}} ref={barreRef}></div>
+        <div className="BarreDefilement" ref={barreDefilementRef}>
+            <div className="barre" ref={barreRef}></div>
             <div 
                 className="indicateur" 
-                style={{left: positionIndicateur}} 
                 onMouseDown={gestionClic} 
                 ref={indicateurRef}
+                style={{width: 50, left: elementScroll.scrollLeft / ratio}}
             ></div>
         </div>
     )

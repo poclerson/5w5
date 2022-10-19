@@ -25,7 +25,8 @@
         margin-right: 10vw;
     }
 
-    @media screen and (min-width: map-get($largeurs-ecran, tablette)) {
+    @include tablette {
+        flex-grow: 1;
         width: 40vw;
         min-width: 40vw;
         height: 50vh;

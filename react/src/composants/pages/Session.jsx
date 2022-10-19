@@ -1,12 +1,12 @@
 import './Session.scss';
 
 import {useState, useEffect, useRef} from 'react';
-
 import * as boites from '../../boites';
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Cours from './Cours';
 import BarreDefilement from '../modules/BarreDefilement';
+import Chargement from '../modules/Chargement';
 
 export default function Session({cours, enseignants, session}) {
     const [ouvertures, setOuvertures] = useState([... cours.map(() => "ferme")]);
@@ -16,14 +16,7 @@ export default function Session({cours, enseignants, session}) {
 
     const distanceActivationDerniereFenetre = 50;
 
-    const gestionPositionIndicateur = position => {
-        // TODO Bouger les cours d'après position qui est récupéré de la barre de scroll
-        console.log("posution" + position)
-        return position;
-    }
-
     const gestionDefilement = (e) => {
-        setLargeurDefilement(e.target.offsetWidth);
         setPositionDefilement(e.target.scrollLeft);
 
         // Ouvrir la dernière fenêtre si on défile "trop loin"
@@ -31,27 +24,22 @@ export default function Session({cours, enseignants, session}) {
             setOuvertures(boites.ouvrir(ouvertures.length - 1, cours.map(() => "ferme")));
             return;
         }
-
         setOuvertures(boites.ouvrir(
-            Math.round(ouvertures.length * positionDefilement / largeurDefilement / 2),
+            Math.round(ouvertures.length * positionDefilement / largeurDefilement),
             cours.map(() => "ferme")
         ))
     }
 
     useEffect(() => {
+        setLargeurDefilement(sessionRef.current.scrollWidth)
         setOuvertures(boites.ouvrir(0, cours.map(() => "ferme")))
     }, [])
 
     const sessionRef = useRef(null);
 
-    // const gestionClic = () => {
-    //     console.log("scroll")
-    //     sessionRef.current.scrollLeft = 50;
-    // }
-
     return (
-        <article className={"Session " + session} scrollLeft={gestionPositionIndicateur}>
-            <ul className="liste-cours" onScroll={gestionDefilement} ref={sessionRef}>
+        <article className={"Session " + session}>
+            <ul className="liste-cours" onScroll={gestionDefilement} ref={sessionRef} >
                 {cours.map((cours, index) => 
                     <Cours 
                         key={cours.acf.titre}
@@ -62,7 +50,11 @@ export default function Session({cours, enseignants, session}) {
                     />
                 )}
             </ul>
-            {/* <BarreDefilement defilement={positionDefilement} largeurTotale={largeurDefilement} ratio={.2} gestionPositionIndicateur={gestionPositionIndicateur} elementScroll={sessionRef.current} /> */}
+            {/* {sessionRef.current != null ?
+                <BarreDefilement largeurTotale={largeurDefilement} elementScroll={sessionRef.current} />
+                :
+                <Chargement />
+            } */}
             {/* <a href={"#cours" + (ouvertures.indexOf("ouvert"))} className="prochain-cours" onClick={() => setOuvertures(boites.ouvrir(ouvertures.indexOf("ouvert") + 1, cours.map(() => "ferme")))}>
                 <ArrowForwardIosIcon className="Icone"  />
             </a> */}
