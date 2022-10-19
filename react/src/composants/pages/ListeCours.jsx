@@ -27,6 +27,7 @@ export default function ListeCours() {
             <h1 className="titre">
                 {/* {u.capitaliserPremiereLettre(cours[0].type)} */}
             </h1>
+            {console.log(cours)}
 
             {
                 enseignants && sessions && degrades != null ? 
