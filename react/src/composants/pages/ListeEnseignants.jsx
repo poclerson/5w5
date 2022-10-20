@@ -6,8 +6,8 @@ import Chargement from '../modules/Chargement';
 import './ListeEnseignants.scss';
 
 export default function ListeEnseignants() {
-    const enseignants = useObtenir('/enseignants', "bre");
-    const cours = useObtenir('/cours', "bre");
+    const enseignants = useObtenir('/enseignants');
+    const cours = useObtenir('/cours');
 
     return(
         enseignants != null ?

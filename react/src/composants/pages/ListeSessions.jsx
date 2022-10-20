@@ -1,7 +1,7 @@
 import './ListeSessions.scss';
 
 import Session from './Session';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import FlecheDefilement from '../modules/FlecheCarousel';
 
 import {useState, useEffect} from 'react';
 
@@ -171,7 +171,7 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
                                     {session.charAt(7)}
                             </h2>
                             {/* <ArrowForwardIcon className="Icone" onClick={() => controllerOuvertures(index)} /> */}
-                            <ArrowForwardIosIcon className="Icone" onClick={() => gestionProchaineSession(index + 1)}/>
+                            <FlecheDefilement gestionClic={() => gestionProchaineSession(index + 1)} />
                         </li>
                     )}
                 </ol>

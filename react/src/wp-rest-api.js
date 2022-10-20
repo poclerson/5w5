@@ -1,6 +1,4 @@
-// Pour siteground
-// export const url = 'https://timm175.sg-host.com';
-export const url = 'http://localhost:8888/5w5/wordpress';
+export const url = 'https://timm175.sg-host.com';
 
 export const cheminsFournisseurs = {
     bre: "/wp-json/better-rest-endpoints/v1%%cheminFinal%%?acf=true&media=true",
@@ -8,6 +6,10 @@ export const cheminsFournisseurs = {
     wp: "/wp-json/wp/v2%%cheminFinal%%"
 };
 
-export const traiterRequete = (chemin, fournisseur) => {
-    return url + cheminsFournisseurs[fournisseur].replace("%%cheminFinal%%", chemin);
+export const traiterRequete = (chemin, fournisseur, parametres) => {
+    if (parametres == undefined)
+        return url + cheminsFournisseurs[fournisseur].replace("%%cheminFinal%%", chemin);
+
+    else
+        return url + cheminsFournisseurs[fournisseur].replace("%%cheminFinal%%", chemin) + parametres;
 }

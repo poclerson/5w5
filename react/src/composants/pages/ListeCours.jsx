@@ -10,7 +10,7 @@ import ListeSessions from './ListeSessions';
 export default function ListeCours() {
     const enseignants = useObtenir('/enseignants');
     const cours = useObtenir('/cours');
-    const degrades = useObtenir('/degrades');
+    const degrades = useObtenir('/degrades', 'bre');
 
     const [sessions, setSessions] = useState(null);
 

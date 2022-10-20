@@ -5,6 +5,7 @@
 
     .barre {
         background-color: map-get($couleurs, clair);
+        width: 30vw;
         height: 2px;
         content: "";
     }
