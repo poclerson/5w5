@@ -12,10 +12,10 @@
     width: 80vw;
     min-width: 80vw;
     height: 40vh;
-    margin-top: 30%;
+    margin-top: 30vh;
     box-sizing: border-box;
     scroll-snap-align: start;
-    scroll-margin: 10vw;
+    scroll-margin-left: 10vw;
 
     &:first-child {
         margin-left: 10vw;
@@ -26,11 +26,10 @@
     }
 
     @include tablette {
-        flex-grow: 1;
         width: 40vw;
         min-width: 40vw;
         height: 50vh;
-        margin-top: 20%;
+        margin-top: 20vh;
 
         transition: transform .15s ease-in-out;
 
@@ -41,5 +40,10 @@
         &.ferme {
             transform: scale(.75);
         }
+    }
+
+    @include ordinateur {
+        width: 20vw;
+        min-width: 20vw;
     }
 }

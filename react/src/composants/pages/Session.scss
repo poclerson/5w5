@@ -4,25 +4,20 @@
     @include pleine-taille;
 
     @include gerer-ouverture(flex);
-
-    @include ordinateur {
-        flex: 8;
-    }
+    scroll-margin: -10vw;
 
     .liste-cours {
-        width: 100vw;
         @include pleine-taille;
         display: flex;
-        justify-content: space-between;
         gap: 10vw;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
 
         @include cacher-barre-defilement;
 
         @include ordinateur {
-            scroll-snap-type: x proximity;
-            touch-action: none;
+            gap: 5vw;
         }
     }
 

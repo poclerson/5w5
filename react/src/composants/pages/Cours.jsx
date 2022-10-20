@@ -3,6 +3,7 @@ import './Cours.scss';
 import {useState} from 'react';
 
 import Icone from '../modules/Icone';
+import FlecheCarousel from '../modules/FlecheCarousel';
 import {Link} from 'react-router-dom';
 
 export default function Cours({titre, description, enseignants: enseignantsAttitres, domaines, tousEnseignants: enseignants, id, ouverture}) {
@@ -17,6 +18,9 @@ export default function Cours({titre, description, enseignants: enseignantsAttit
                     </li>
                 )}
             </ul>
+            <a href={"#cours" + (Number(id.charAt(5)) + 1)}>
+                <FlecheCarousel />
+            </a>
             {/* <div className="enseignants">
                 <h3 className="titre">Enseignants</h3>
                 <ul className="liste">
