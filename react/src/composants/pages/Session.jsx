@@ -1,13 +1,10 @@
 import './Session.scss';
 
-import {useState, useEffect, useRef, useLayoutEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import useDefilmentInfini from '../../hooks/useDefilementInfini';
 import * as boites from '../../boites';
 
 import Cours from './Cours';
-import FlecheCarousel from '../modules/FlecheCarousel';
-import BarreDefilement from '../modules/BarreDefilement';
-import Chargement from '../modules/Chargement';
 
 export default function Session({cours, enseignants, session}) {
     const [ouvertures, setOuvertures] = useState(cours.map(() => 'ferme'));
@@ -20,7 +17,8 @@ export default function Session({cours, enseignants, session}) {
     const gestionDefilement = () => {
         Array.from(sessionRef.current.children).forEach((enfant, index) => {
             if (enfant.getBoundingClientRect().x > 0 && enfant.getBoundingClientRect().x < window.innerWidth / 2) {
-                setOuvertures(boites.ouvrir(index, coursInfinis.map(() => 'ferme')))
+                setOuvertures(boites.ouvrir(index, coursInfinis.map(() => 'ferme')));
+                return;
             }
         })
     }

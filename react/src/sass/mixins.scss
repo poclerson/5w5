@@ -146,6 +146,13 @@
     backdrop-filter: blur(4px);
 }
 
+@mixin rond($taille) {
+    content: "";
+    border-radius: 50%;
+    width: $taille;
+    height: $taille;
+}
+
 
 
 // ===== MIXINS DE SECTIONS =====
