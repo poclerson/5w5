@@ -3,20 +3,60 @@
 @import '../../sass/fonctions.scss';
 
 .Cours {
-    @include carte;
-    backdrop-filter: blur(4px);
-
-    @include themer($theme-cours);
-    // @include gerer-ouverture(flex);
-    flex-direction: column;
-
-    width: 80vw;
-    min-width: 80vw;
+    width: 70vw;
+    min-width: 70vw;
     height: 40vh;
-    margin-top: 30%;
+    margin-top: 20vh;
     box-sizing: border-box;
+
     scroll-snap-align: start;
-    scroll-margin: 10vw;
+
+    @include tablette {
+        width: 25vw;
+        min-width: 25vw;
+        height: 35vh;
+
+        transition: transform .15s ease-in-out;
+
+        &.ouvert {
+            transform: scale(1.25);
+        }
+
+        &.ferme {
+            transform: scale(1);
+        }
+
+    }
+
+    @include ordinateur {
+        min-width: 15vw;
+        width: 15vw;
+    }
+
+    .carte {
+        display: flex;
+        flex-direction: column;
+
+        @include pleine-taille;
+
+        @include carte;
+        @include fond-flou;
+        @include themer($theme-cours);
+    }
+
+    .rond {
+        $taille: 5vw;
+
+        position: absolute;
+        left: - $taille / 2;
+        bottom: 20%;
+
+        @include rond($taille);
+
+        background-color: red;
+        z-index: -1;
+    }
+
 
     &:first-child {
         margin-left: 10vw;
@@ -24,22 +64,5 @@
 
     &:last-child {
         margin-right: 10vw;
-    }
-
-    @media screen and (min-width: map-get($largeurs-ecran, tablette)) {
-        width: 40vw;
-        min-width: 40vw;
-        height: 50vh;
-        margin-top: 20%;
-
-        transition: transform .15s ease-in-out;
-
-        &.ouvert {
-            transform: scale(1);
-        }
-
-        &.ferme {
-            transform: scale(.75);
-        }
     }
 }

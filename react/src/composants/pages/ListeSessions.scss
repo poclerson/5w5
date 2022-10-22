@@ -4,9 +4,10 @@
 @import '../../sass/variables.scss';
 
 .ListeSessions {
-    @include fondu(.5s);
+    @include fondu(.5s, "destination");
     
-    @include pleine-taille();
+    @include pleine-taille;
+    width: unset;
 
     display: flex;
     flex-direction: column;
@@ -23,14 +24,17 @@
         overflow: hidden;
         flex: 0;
 
-        .placement {
+        .carousel {
             @include pleine-taille();
             transform-origin: center;
             position: absolute; 
             transition: transform .5s;
 
             .session-rond {
-                @include pleine-taille();
+                @include fondu(.5s, "destination") {
+                    border-radius: 50%;
+                }
+
                 transition: transform .5s;
                 border-radius: 100%;
         
@@ -38,10 +42,6 @@
                 justify-content: center;
                 align-items: center;
                 position: absolute;
-
-                .destination {
-                    border-radius: 50%;
-                }
         
                 .titre {
                     position: absolute;

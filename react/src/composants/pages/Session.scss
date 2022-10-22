@@ -5,28 +5,24 @@
 
     @include gerer-ouverture(flex);
 
-    @include ordinateur {
-        flex: 8;
-
-        .liste-cours {
-            width: unset;
-        }
-    }
-
     .liste-cours {
-        width: 100vw;
         @include pleine-taille;
+        @include cacher-barre-defilement;
+
         display: flex;
-        gap: 10vw;
+        gap: 40vw;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        scroll-padding: 10vw;
 
-        @include cacher-barre-defilement;
-    }
+        @include tablette {
+            gap: 20vw;
+        }
 
-    .prochain-cours {
-        position: fixed;
-        top: 50vh;
-        right: 5vw;
+        @include ordinateur {
+            gap: 10vw;
+            padding: unset;
+        }
     }
 }

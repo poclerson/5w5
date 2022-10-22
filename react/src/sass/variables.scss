@@ -31,22 +31,22 @@ $tailles-textes: (
         0px: 24px,
         360px: 30px,
         640px: 36px,
-        1024px: 48px,
-        1440px: 96px
+        1024px: 40px,
+        1440px: 48px
     ),
 
     h6: (
         0px: 20px,
         360px: 24px,
-        640px: 32px,
-        1024px: 42px,
-        1440px: 96px
+        640px: 20px,
+        1024px: 24px,
+        1440px: 32px
     )
 );
 
 $couleurs: (
     clair: #f3f3ea,
-    clair-transparent: #f3f3eaa2,
+    clair-transparent: #f3f3ea3a,
     sombre: #0f0f0f,
     sombre-transparent: #0f0f0f6c,
 
@@ -103,7 +103,8 @@ $theme-base: (
     )
 );
 
-$theme-menu: (
+// Entête et autres menus flottants
+$theme-menu-mobile: (
     titre: (
         couleur: map-get($couleurs, sombre),
         poids: 900,
@@ -131,10 +132,44 @@ $theme-menu: (
     ),
     
     fond: (
-        couleur-primaire: map-get($couleurs, clair-transparent)
+        couleur-primaire: map-get($couleurs, clair-transparent),
+        couleur-secondaire: map-get($couleurs, sombre)
     )
 );
 
+$theme-menu-tablette: (
+    titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (),
+
+    texte: (),
+
+    icone: (
+        couleur: map-get($couleurs, clair),
+    ),
+
+    lien: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    lien-hover: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+    
+    fond: (
+        couleur-primaire: map-get($couleurs, sombre)
+    )
+);
+
+// Liste des sessions
 $theme-liste-session: (
     titre: (
         couleur: map-get($couleurs, sombre),
@@ -161,6 +196,7 @@ $theme-liste-session: (
     fond: ()
 );
 
+// Chaque cours
 $theme-cours: (
     titre: (
         couleur: map-get($couleurs, clair),
@@ -197,6 +233,6 @@ $theme-cours: (
     ),
 
     fond: (
-        couleur-primaire: map-get($couleurs, sombre-transparent)
+        couleur-primaire: map-get($couleurs, clair-transparent)
     )
 );

@@ -1,5 +1,4 @@
-import * as wp from '../../wp-rest-api'
-import * as u from '../../utilitaires';
+import useObtenir from '../../hooks/useObtenir';
 
 import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
@@ -7,8 +6,8 @@ import Chargement from '../modules/Chargement';
 import './ListeEnseignants.scss';
 
 export default function ListeEnseignants() {
-    const enseignants = wp.useObtenir('/enseignants');
-    const cours = wp.useObtenir('/cours');
+    const enseignants = useObtenir('/enseignants');
+    const cours = useObtenir('/cours');
 
     return(
         enseignants != null ?

@@ -1,11 +1,17 @@
 @import './fonctions.scss';
 @import './variables.scss';
  
-// ===== Mixins de texte =====
+
+
+// ===== MIXINS DE TEXTE =====
+
+
+
 // Transforme une map de textes et génère des media queries
 @mixin texte-dynamique($selecteurs) {
     @each $selecteur, $tailles-dynamiques in $selecteurs {
         @each $taille-ecran, $taille-texte in $tailles-dynamiques {
+            // Attribuer 
             @if $taille-ecran == null {
                 font-size: $taille-texte;
             }
@@ -15,7 +21,7 @@
                     #{$selecteur} {
                         font-size: $taille-texte;
                         margin-block-start: $taille-texte / 2;
-                        margin-block-start: $taille-texte / 2;
+                        margin-block-end: $taille-texte / 2;
                     }
                 }
             }
@@ -36,7 +42,11 @@
     margin-block-end: 0;
 }
 
-// ===== Mixins de couleurs =====
+
+
+// ===== MIXINS DE COULEUR =====
+
+
 
 // Stylise plusieurs classe/balises prédéterminés d'après une map de thème
 @mixin themer($theme) {
@@ -71,28 +81,38 @@
 
 /*
     Permet de faire un fondu entre des degrades ou des images
-    Demande qu'un élément vide ayant la classe "destination" soit dans le conteneur de base
+    Demande qu'un élément vide ayant la classe "classe-destination" soit dans le conteneur de base
     et que l'attribut transition change sur le conteneur original, le temps de l'animation
 */
-@mixin fondu($duree) {
+@mixin fondu($duree, $classe-destination) {
     position: relative;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 
-    .destination {
+    .#{$classe-destination} {
         content: "";
         position: absolute;
         top:0;
         left:0;
-        width: 100%;
-        height: 100%;
+        @include pleine-taille;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
         opacity: 0;
+        @content;
     }
 
     &[transition="1"] {
-        .destination {
+        .#{$classe-destination} {
             animation: fondu-sortant $duree forwards;
         }
     }
 }
+
+
+
+// ===== MIXINS RANDOMS =====
+
+
 
 // Gère l'ouverture de différentes boites d'après des classes
 // Insérer dans la boite à ouvrir/fermer
@@ -111,6 +131,7 @@
     height: 100%;
 }
 
+// Cache la barre de défilement par défaut des browsers
 @mixin cacher-barre-defilement() {
     &::-webkit-scrollbar {
         display: none;
@@ -120,7 +141,24 @@
     scrollbar-width: none;
 }
 
+// Crée un flou gaussien pour flouter le fond
+@mixin fond-flou() {
+    backdrop-filter: blur(4px);
+}
+
+@mixin rond($taille) {
+    content: "";
+    border-radius: 50%;
+    width: $taille;
+    height: $taille;
+}
+
+
+
 // ===== MIXINS DE SECTIONS =====
+
+
+
 @mixin bulle() {
     aspect-ratio: 1;
     border-radius: 50% 50% 10px 50%;
@@ -160,7 +198,12 @@
     padding-right: $padding-h;
 }
 
-// ===== Mixins de tailles d'écran
+
+
+// ===== MIXINS DE REQUÊTES MÉDIAS =====
+
+
+
 @mixin mobile {
     @media screen and (min-width: map-get($largeurs-ecran, mobile)) {
         @content;
