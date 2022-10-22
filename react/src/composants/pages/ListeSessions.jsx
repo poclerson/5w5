@@ -123,7 +123,7 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
 
     useEffect(() => {
         tailleOrdinateur ? setCarousel(donneesCarousel.grand) : setCarousel(donneesCarousel.petit)
-    }, [tailleOrdinateur])
+    }, [tailleOrdinateur]) 
 
     return (
         <div 
