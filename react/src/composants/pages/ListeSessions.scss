@@ -4,9 +4,10 @@
 @import '../../sass/variables.scss';
 
 .ListeSessions {
-    @include fondu(.5s);
+    @include fondu(.5s, "destination");
     
-    @include pleine-taille();
+    @include pleine-taille;
+    width: unset;
 
     display: flex;
     flex-direction: column;
@@ -30,7 +31,7 @@
             transition: transform .5s;
 
             .session-rond {
-                @include fondu(.5s) {
+                @include fondu(.5s, "destination") {
                     border-radius: 50%;
                 }
 

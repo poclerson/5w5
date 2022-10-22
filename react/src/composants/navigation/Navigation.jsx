@@ -1,20 +1,14 @@
 import './Navigation.scss';
 
 import { Link } from 'react-router-dom';
-// import {QueryMenu} from 'wordpress-query-menu';
 
-export default function Navigation({routes, gererClic}) {
+export default function Navigation({pages, gererClic}) {
     return(
         <ul className="Navigation">
-            {/* <QueryMenu location={'primary'}/> */}
-            {routes.map(route => {
-                return <li className="item-nav" key={route.nom}>
+            {pages.map(page => {
+                return <li className="item-nav" key={"nav" + page.pageSlug}>
                     <h6 className="titre-page">
-                        {route.estRoute ?
-                            <Link className="lien-page" key={route.nom} to={route.chemin} onClick={gererClic} >{route.nom}</Link>  
-                            :
-                            route.composant
-                        }  
+                        <Link className="lien-page" to={page.pageSlug} onClick={gererClic}>{page.title}</Link>  
                     </h6>
                 </li>
                 

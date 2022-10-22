@@ -20,10 +20,17 @@
         padding: 10vw;
 
         border-radius: 0 70px 70px 0;
+
+        .SiteLogo {
+            display: none;
+        }
+    }
+
+    .resultats-recherche {
+        @include themer($theme-menu-mobile);
     }
 
     @include tablette {
-
         .BoutonBurger {
             display: none;
         }
@@ -31,10 +38,18 @@
         .contenu {
             @include themer($theme-menu-tablette);
             width: 100vw;
+            height: unset;
             border-radius: 0;
+            padding: 0;
+            justify-content: space-between;
+            align-items: center;
 
             &.ferme {
                 display: flex;
+            }
+
+            .SiteLogo {
+                display: block;
             }
         }
     }
