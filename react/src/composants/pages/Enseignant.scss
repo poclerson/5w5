@@ -1,9 +1,24 @@
 @import '../../sass/mixins.scss';
 
 .Enseignant {
+    flex-basis: 22.5%;
+    margin-bottom: 2.5%;
+
     .miniature {
         @include bulle;
         background-color: white;
+
+        .titre, .domaine {
+            display: none;
+        }
+    }
+
+    .contenu {
+        display: none;
+
+        @include tablette {
+            display: flex;
+        }
     }
 
     @include gerer-ouverture(flex);

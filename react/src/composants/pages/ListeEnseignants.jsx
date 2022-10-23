@@ -6,18 +6,13 @@ import Chargement from '../modules/Chargement';
 import './ListeEnseignants.scss';
 
 export default function ListeEnseignants() {
-    const enseignants = useObtenir('/enseignants');
-    const cours = useObtenir('/cours');
+    const enseignants = useObtenir('/enseignants', 'bre');
 
     return(
         enseignants != null ?
-        <section className="ListeEnseignants">    
-            <h1 className="titre">
-                {/* {u.capitaliserPremiereLettre(enseignants[0].type)} */}
-            </h1>
+            <section className="ListeEnseignants">    
+                <h1 className="titre">nos enseignants.</h1>
 
-            {
-                cours != null ?
                 <ul className="liste">
                     {enseignants.map(enseignant => 
                         <Enseignant 
@@ -26,9 +21,7 @@ export default function ListeEnseignants() {
                         />
                     )}
                 </ul>
-                : <Chargement />
-            }
-        </section>   
+            </section>   
         : <Chargement />
     );
 }
