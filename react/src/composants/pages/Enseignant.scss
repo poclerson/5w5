@@ -4,22 +4,40 @@
     flex-basis: 22.5%;
     margin-bottom: 2.5%;
 
-    .miniature {
-        @include bulle;
-        background-color: white;
+    &.ferme {
+        // Lorsque fermé, on ne montre que la miniature en cachant le contenu
+        .miniature {
+            @include bulle;
+            background-color: white;
+    
+            .titre, .domaine {
+                display: none;
+            }
 
-        .titre, .domaine {
+            @include tablette {
+                .titre {display: block}
+            }
+
+            @include ordinateur {
+                .domaine {display: block}
+            }
+        }
+
+        .contenu {
             display: none;
         }
     }
 
-    .contenu {
-        display: none;
+    // Si l'enseignant est ouvert, il doit être visible en tout temps
+    &.ouvert {
+        visibility: visible;
 
-        @include tablette {
+        .contenu {
             display: flex;
         }
-    }
 
-    @include gerer-ouverture(flex);
+        .miniature {
+            display: none;
+        }
+    }
 }
