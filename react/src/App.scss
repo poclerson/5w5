@@ -1,8 +1,12 @@
 @import 'sass/mixins.scss';
+@import 'sass/variables.scss';
 
 .App {
     overflow-x: hidden;
+    overflow-y: hidden;
     position: relative;
+    width: 100vw;
+    height: 100vh;
 
     // Toutes les pages
     & > *:not(.EnTete, .PiedPage) {
@@ -15,6 +19,10 @@
         // Le titre principal des pages
         & > .titre {
             display: none;
+        }
+
+        @include tablette {
+            margin-top: map-get($hauteur-header, tablette);
         }
     }
 }

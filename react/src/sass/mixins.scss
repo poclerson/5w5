@@ -159,6 +159,7 @@
 
 
 
+// Bulle avec le coin bas droit plus prononcé. Comprend une image
 @mixin bulle() {
     aspect-ratio: 1;
     border-radius: 50% 50% 10px 50%;
@@ -187,7 +188,7 @@
     $padding-v: 5vh;
     $padding-h: 5vw;
 
-    @media screen and (min-width: map-get($largeurs-ecran, tablette)) {
+    @include tablette {
         $padding-h: 2.5vh;
         $padding-v: 2.5vw;
     }

@@ -6,6 +6,12 @@ $largeurs-ecran: (
     ordinateur-large: 1440px
 );
 
+$hauteur-header: (
+    base: 50vh,
+    mobile: 65vh,
+    tablette: 10vh
+);
+
 /*
     Tailles de police
     taille d'écran (en min-width) : taille de texte

@@ -25,6 +25,14 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
             decalageAngle: 0
         },
 
+        moyen: {
+            rayonRond: 150,
+            rayonCarousel: 600,
+            decalageGauche: 75,
+            decalageHaut: 200,
+            decalageAngle: 0
+        },
+
         grand: {
             rayonRond: 200,
             rayonCarousel: 500,
@@ -35,6 +43,7 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
     }
 
     const tailleOrdinateur = useMediaQuery(medias.ordinateur);
+    const tailleTablette = useMediaQuery(medias.tablette);
 
     // Par défaut, utiliser la taille mobile
     const [carousel, setCarousel] = useState(donneesCarousel.petit);
@@ -121,9 +130,17 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
         setDegradePresent(obtenirDegrade(boites.obtenirOuverte(ouvertures)));
     }, []);
 
+    // Horrible, à retravailler
     useEffect(() => {
-        tailleOrdinateur ? setCarousel(donneesCarousel.grand) : setCarousel(donneesCarousel.petit)
-    }, [tailleOrdinateur]) 
+        if (tailleTablette) 
+            setCarousel(donneesCarousel.moyen)
+
+        else if (tailleOrdinateur)
+            setCarousel(donneesCarousel.grand)
+
+        else
+            setCarousel(donneesCarousel.petit)
+    }, [tailleOrdinateur, tailleTablette]) 
 
     return (
         <div 
