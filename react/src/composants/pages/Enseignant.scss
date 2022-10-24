@@ -1,11 +1,18 @@
 @import '../../sass/mixins.scss';
 
-.Enseignant {
-    flex-basis: 22.5%;
-    margin-bottom: 2.5%;
+/*
+    Les enseignants ont deux états, ouvert et fermé
+    Qu'un seul enseignant ne peut être ouvert à la fois.
+    Lorsqu'un enseignant est ouvert, tous les autres sont cachés.
+    Sinon, ils sont tous fermés et tous affichés en même temps
+*/
 
+.Enseignant {
+    // Lorsque fermé, on ne montre que la miniature en cachant le contenu
     &.ferme {
-        // Lorsque fermé, on ne montre que la miniature en cachant le contenu
+        flex-basis: 22.5%;
+        margin-bottom: 2.5%;
+
         .miniature {
             @include bulle;
             background-color: white;
@@ -30,10 +37,39 @@
 
     // Si l'enseignant est ouvert, il doit être visible en tout temps
     &.ouvert {
+        @include pleine-taille;
         visibility: visible;
 
+        // Lorsque ouvert, on montre le contenu en cachant la miniature
         .contenu {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .conteneur-photo {
+                @include bulle;
+
+                width: 80%;
+                padding: 10%;
+                background-color: red;
+
+                .fond-photo {
+                    background-color: white;
+                    border-radius: 50%;
+                    @include pleine-taille;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    overflow-x: clip;
+
+                    .photo {
+                        margin-top: -90%;
+                        margin-left: -17.5%;
+                        width: 132.5%;
+                        height: 132.5%;
+                    }
+                }
+            }
         }
 
         .miniature {

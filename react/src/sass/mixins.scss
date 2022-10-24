@@ -163,22 +163,10 @@
 @mixin bulle() {
     aspect-ratio: 1;
     border-radius: 50% 50% 10px 50%;
-    overflow: hidden;
-    position: relative;
 
     img {
         width: 100%;
         height: 100%;
-    }
-
-    *:not(img) {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-
-        text-align: right;
-        margin-block-start: 0;
-        margin-block-end: 0;
     }
 }
 

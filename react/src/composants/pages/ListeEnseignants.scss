@@ -22,7 +22,7 @@
 
             // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
             .Enseignant.ferme {
-                visibility: hidden;
+                display: none;
             }
         }
     }

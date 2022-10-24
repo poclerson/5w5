@@ -19,9 +19,14 @@ export default function Enseignant({nom, description, photo, domaine, gestionCli
             </div>
             <div className={"contenu " + ouverture}>
                 <ArrowBackIosIcon className="Icone" onClick={gestionClic} />
+                <div className="conteneur-photo">
+                    <div className="fond-photo">
+                            <img className="photo" src={photo} alt={"Photo de " + nom} />
+                    </div>
+                </div>
                 <h3 className="titre">{nom}</h3>
+                <h4 className="domaine">{domaine}</h4>
                 <p className="desc">{description}</p>
-                <p className="domaine">{domaine}</p>
             </div>
         </li>
     )
