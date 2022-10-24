@@ -1,8 +1,29 @@
+@import '../../sass/mixins.scss';
+
 .ListeEnseignants {
+    margin-top: 10vh;
+
     .liste {
+        margin-left: 5vw;
+        margin-right: 5vw;
         display: flex;
+        justify-content: space-evenly;
         flex-wrap: wrap;
-        justify-content: space-between;
-        padding-left: 0;
+        gap: 10%;
+
+        // Quand la liste est ouverte, on montre tout
+        &.ouvert {
+            visibility: visible;
+        }
+
+        // Quand elle est fermée (donc, qu'un enseignant a été ouvert)...
+        &.ferme {
+            visibility: hidden;
+
+            // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
+            .Enseignant.ferme {
+                display: none;
+            }
+        }
     }
 }
