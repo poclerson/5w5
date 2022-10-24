@@ -56,11 +56,13 @@ $couleurs: (
     sombre: #0f0f0f,
     sombre-transparent: #0f0f0f6c,
 
-    accent1: #da3e66,
-    accent2: #2c2c7f,
-    accent3: #4a52a3,
-    accent4: #fed900,
-    accent5: #da6f67,
+    domaines: (
+        design: #da3e66,
+        jeu: #2c2c7f,
+        modelisation3d: #fed900,
+        video: #da6f67,
+        web: #4a52a3,
+    ),
 
     gris1: #a7a6a6,
     gris2: #747474,

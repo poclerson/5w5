@@ -8,6 +8,11 @@
 */
 
 .Enseignant {
+    $classes-couleur-domaine: (
+        conteneur-photo: background-color
+    );
+
+    @include couleurs-domaines($classes-couleur-domaine);
     // Lorsque fermé, on ne montre que la miniature en cachant le contenu
     &.ferme {
         flex-basis: 22.5%;
@@ -46,12 +51,15 @@
             flex-direction: column;
             align-items: center;
 
+            .Icone {
+                align-self: flex-start;
+            }
+
             .conteneur-photo {
                 @include bulle;
 
-                width: 80%;
-                padding: 10%;
-                background-color: red;
+                width: 60%;
+                padding: 7.5%;
 
                 .fond-photo {
                     background-color: white;

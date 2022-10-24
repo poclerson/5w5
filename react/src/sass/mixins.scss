@@ -109,6 +109,44 @@
 }
 
 
+/*
+    Attribue la bonne couleur reliée à un domaine (dans la map $couleurs)
+    Le domaine doit être pareil à la classe donnée à l'élément
+
+    $classes-proprietes-map contient une map qui fait correspondre des classes enfant
+    de l'élément principal à des propriétés CSS (color, background-color, etc)
+
+    Si on passe une clé se nommant 'soi' dans $classes-proprietes-map, la propriété sera appliquée à l'élément lui-même
+*/
+@mixin couleurs-domaines($classes-proprietes-map) {
+    // Itérer chaque classe enfant/propriété dans la map reçue
+    @each $classe, $propriete in $classes-proprietes-map {
+
+        // Itérer chaque couleur disponible dans les domaines
+        @each $domaine, $couleur in map-get($couleurs, domaines) {
+            @if ($classe == 'soi') {
+                &.#{$domaine} {
+                    #{$propriete}: $couleur;
+                }
+            }
+
+            @else {
+                // L'élément original doit avoir une classe correspondant aux différents domaines (voir Enseignant.scss pour exemple)
+                &.#{$domaine} {
+
+                    // Sélection de la classe enfant
+                    .#{$classe} {
+
+                        // Application de la couleur à la propriété
+                        #{$propriete}: $couleur;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 
 // ===== MIXINS RANDOMS =====
 
