@@ -9,20 +9,16 @@
 
 // Transforme une map de textes et génère des media queries
 @mixin texte-dynamique($selecteurs) {
-    @each $selecteur, $tailles-dynamiques in $selecteurs {
-        @each $taille-ecran, $taille-texte in $tailles-dynamiques {
-            // Attribuer 
-            @if $taille-ecran == null {
-                font-size: $taille-texte;
-            }
-    
-            @else {
-                @media screen and (min-width: $taille-ecran) {
-                    #{$selecteur} {
-                        font-size: $taille-texte;
-                        margin-block-start: $taille-texte / 2;
-                        margin-block-end: $taille-texte / 2;
-                    }
+    @each $selecteur, $tailles-ecran in $selecteurs {
+        @each $taille-ecran, $proprietes in $tailles-ecran {
+            @media screen and (min-width: $taille-ecran) {
+                #{$selecteur} {
+                    font-size: map-get($proprietes, taille);
+                    margin-block-start: map-get($proprietes, taille) / 2;
+                    margin-block-end: map-get($proprietes, taille) / 2;
+
+                    // Ajouter les propriétés ajoutées dans variables.scss ici
+                    // $proprietes représente toutes les propriétés présentes (présentement, taille et hauteur-ligne)
                 }
             }
         }
