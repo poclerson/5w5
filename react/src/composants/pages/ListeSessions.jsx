@@ -135,10 +135,10 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
         if (tailleTablette) 
             setCarousel(donneesCarousel.moyen)
 
-        else if (tailleOrdinateur)
+        if (tailleOrdinateur)
             setCarousel(donneesCarousel.grand)
 
-        else
+        if (!tailleTablette && !tailleOrdinateur)
             setCarousel(donneesCarousel.petit)
     }, [tailleOrdinateur, tailleTablette]) 
 
@@ -148,6 +148,7 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
             transition={transition} 
             style={stylesDegrades.section}
         >
+            {console.log(tailleOrdinateur, tailleTablette)}
             <div className="destination" onAnimationEnd={actualiserDegrade} style={stylesDegrades.prochaineSection}></div>
             <ol className="sessions-titres">
                 {sessions.map((session, index) => {

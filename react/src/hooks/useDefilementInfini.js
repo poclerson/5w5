@@ -10,9 +10,13 @@ const useDefilementInfini = (prolongerDefilement, ref) => {
     const [estArrive, setEstArrive] = useState(false);
 
     useEffect(() => {
-        ref.current.addEventListener("scroll", defile);
-        return () => {ref.current.removeEventListener("scroll", defile)}
-    }, []);
+        if (ref.current)
+            ref.current.addEventListener("scroll", defile);
+        return () => {
+            if (ref.current)
+                ref.current.removeEventListener("scroll", defile)
+        }
+    }, [ref]);
 
     useEffect(() => {
         if (estArrive) prolongerDefilement();
