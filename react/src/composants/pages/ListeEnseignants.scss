@@ -3,13 +3,16 @@
 .ListeEnseignants {
     margin-top: 10vh;
 
+    .titre {
+        @include gerer-ouverture(block)
+    }
+
     .liste {
-        margin-left: 5vw;
-        margin-right: 5vw;
         display: flex;
         justify-content: space-evenly;
         flex-wrap: wrap;
         gap: 10%;
+        @include pleine-taille;
 
         // Quand la liste est ouverte, on montre tout
         &.ouvert {
