@@ -6,6 +6,16 @@ $largeurs-ecran: (
     ordinateur-large: 1440px
 );
 
+$polices: (
+    titre: 'Lalezar',
+    texte: 'Mukta',
+);
+
+/*
+    Tailles de police et leur style
+    taille d'écran (en min-width) : taille de texte
+*/
+
 $hauteur-header: (
     base: 50vh,
     mobile: 65vh,
@@ -16,115 +26,206 @@ $hauteur-header: (
     Tailles de police
     On peut ajouter d'autres propriétés pour chaque taille d'écran/sélecteur
     Il suffit de les intégrer dans mixins.scss par la suite
+
 */
 $tailles-textes: (
+    /** Titre principal lorsqu’on rentre dans une page, le nom des projets et ‘inscription’ */
     h1: (
         0px: (
-            taille: 32px,
-            hauteur-ligne: 12px
+            taille: 32pt,
+            hauteur-ligne: 130pt
         ),
 
         360px:(
-            taille: 48px,
-            hauteur-ligne: 12px
+            taille: 35pt,
+            hauteur-ligne: 130pt
         ),
 
         640px:(
-            taille: 56px,
-            hauteur-ligne: 12px
+            taille: 65pt,
+            hauteur-ligne: 110pt
         ),
 
         1024px:(
-            taille: 72px,
-            hauteur-ligne: 12px
+            taille: 85pt,
+            hauteur-ligne: 145pt
         ),
 
         1440px:(
-            taille: 96px,
-            hauteur-ligne: 12px
+            taille: 96pt,
+            hauteur-ligne: 145pt
         ),
+
     ),
 
+    /** Nom de l'enseignant (dans sa page) et ‘session’ */
     h2: (
         0px:(
-            taille: 32px,
-            hauteur-ligne: 12px
+            taille: 20pt,
+            hauteur-ligne: 130pt
         ),
 
         360px:(
-            taille: 96px,
-            hauteur-ligne: 12px
+            taille: 20pt,
+            hauteur-ligne: 130pt
         ),
 
         640px:(
-            taille: 56px,
-            hauteur-ligne: 12px
+            taille: 45pt,
+            hauteur-ligne: 110pt
         ),
 
         1024px:(
-            taille: 72px,
-            hauteur-ligne: 12px
+            taille: 45pt,
+            hauteur-ligne: 145pt
         ),
 
         1440px:(
-            taille: 96px,
-            hauteur-ligne: 12px
+            taille: 50pt,
+            hauteur-ligne: 145pt
         ),
     ),
+
+    
 
     h3: (
         0px:(
-            taille: 24px,
-            hauteur-ligne: 12px
+            taille: 24pt,
+            hauteur-ligne: 130pt
         ),
 
         360px:(
-            taille: 30px,
-            hauteur-ligne: 12px
+            taille: 25pt,
+            hauteur-ligne: 130pt
         ),
 
         640px:(
-            taille: 36px,
-            hauteur-ligne: 12px
+            taille: 35pt,
+            hauteur-ligne: 110pt
         ),
 
         1024px:(
-            taille: 40px,
-            hauteur-ligne: 12px
+            taille: 30pt,
+            hauteur-ligne: 145pt
         ),
 
         1440px:(
-            taille: 48px,
-            hauteur-ligne: 12px
+            taille: 35pt,
+            hauteur-ligne: 145pt
         ),
     ),
 
-    h6: (
+    /** ‘Soumettre ma demande d'admission’ */
+    h4: (
         0px:(
-            taille: 20px,
-            hauteur-ligne: 12px
+            taille: 32pt,
+            hauteur-ligne: 130pt
         ),
 
         360px:(
-            taille: 24px,
-            hauteur-ligne: 12px
+            taille: 35pt,
+            hauteur-ligne: 130pt
         ),
 
         640px:(
-            taille: 20px,
-            hauteur-ligne: 12px
+            taille: 85pt,
+            hauteur-ligne: 110pt
         ),
 
         1024px:(
-            taille: 24px,
-            hauteur-ligne: 12px
+            taille: 105tx,
+            hauteur-ligne: 145pt
         ),
 
         1440px:(
-            taille: 32px,
-            hauteur-ligne: 12px
+            taille: 110tx,
+            hauteur-ligne: 145pt
         ),
-    )
+    ),
+
+    /** ‘spécialité’, la spécialisation de l'enseignant et ‘biographie’ */
+    h5: (
+        0px:(
+            taille: 15pt,
+            hauteur-ligne: 130pt
+        ),
+    
+        360px:(
+            taille: 16pt,
+            hauteur-ligne: 130pt
+        ),
+    
+        640px:(
+            taille: 25pt,
+            hauteur-ligne: 110pt
+        ),
+    
+        1024px:(
+            taille: 25pt,
+            hauteur-ligne: 145pt
+        ),
+    
+        1440px:(
+            taille: 32pt,
+            hauteur-ligne: 145pt
+        ),
+    ),
+
+    /** pour le menu */
+    h6: (
+        0px:(
+            taille: 23pt,
+            hauteur-ligne: 130pt
+        ),
+
+        360px:(
+            taille: 25pt,
+            hauteur-ligne: 130pt
+        ),
+
+        640px:(
+            taille: 23pt,
+            hauteur-ligne: 110pt
+        ),
+
+        1024px:(
+            taille: 25pt,
+            hauteur-ligne: 145pt
+        ),
+
+        1440px:(
+            taille: 27pt,
+            hauteur-ligne: 145pt
+        ),
+    ),
+
+        /** les textes */
+        p: (
+            0px:(
+                taille: 13pt,
+                hauteur-ligne: 130pt
+            ),
+
+            360px:(
+                taille: 15pt,
+                hauteur-ligne: 130pt
+            ),
+    
+            640px:(
+                taille: 25pt,
+                hauteur-ligne: 145pt
+            ),
+    
+            1024px:(
+                taille: 20pt,
+                hauteur-ligne: 145pt
+            ),
+    
+            1440px:(
+                taille: 25pt,
+                hauteur-ligne: 145pt
+            ),
+        )
 );
 
 $couleurs: (
