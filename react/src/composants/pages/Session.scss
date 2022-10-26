@@ -19,7 +19,7 @@
 
         @include tablette {
             gap: 20vw;
-            scroll-snap-type: x proximity;
+            scroll-snap-type: unset;
         }
 
         @include ordinateur {

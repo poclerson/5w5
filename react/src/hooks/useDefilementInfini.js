@@ -23,7 +23,7 @@ const useDefilementInfini = (prolongerDefilement, ref) => {
     }, [estArrive])
 
     function defile() {
-        if (ref.current.scrollLeft + 50 < (ref.current.scrollWidth - ref.current.clientWidth) || estArrive)
+        if (ref.current.scrollLeft + window.innerWidth / 2 < (ref.current.scrollWidth - ref.current.clientWidth) || estArrive)
             return;
         setEstArrive(true);
     }

@@ -17,7 +17,7 @@ export default function Session({cours, enseignants, session, pageRef}) {
     const coursRef = useRef(null);
 
     const [estArrive, setEstArrive] = useDefilmentInfini(ajouterDonnees, listeCoursRef);
-    useDefilementHorizontal(pageRef.current, listeCoursRef.current, 16);
+    useDefilementHorizontal(pageRef.current, listeCoursRef.current, 6);
     const [coursInfinis, setCoursInfinis] = useState(cours);
 
     const gestionDefilement = () => {
