@@ -1,4 +1,5 @@
 @import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
 
 /*
     Les enseignants ont deux états, ouvert et fermé
@@ -8,8 +9,11 @@
 */
 
 .Enseignant {
+    @include themer($theme-enseignant);
+
     $classes-couleur-domaine: (
-        conteneur-photo: background-color
+        conteneur-photo: background-color,
+        texte: background-color
     );
 
     @include couleurs-domaines($classes-couleur-domaine);
@@ -50,32 +54,66 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 20px;
+            height: 100%;
 
             .Icone {
                 align-self: flex-start;
             }
 
+            // Photo de l'enseignant
             .conteneur-photo {
                 @include bulle;
-
-                width: 60%;
                 padding: 7.5%;
 
                 .fond-photo {
-                    background-color: white;
+                    background-color: map-get($couleurs, clair);
                     border-radius: 50%;
                     @include pleine-taille;
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-end;
-                    overflow-x: clip;
+                    overflow-x: clip; // Firefox seulement
 
+                    // Image
                     .photo {
                         margin-top: -90%;
                         margin-left: -17.5%;
                         width: 132.5%;
                         height: 132.5%;
                     }
+                }
+            }
+
+            // Section de texte avec l'image de l'enseignant
+            .texte {
+                @include pleine-taille;
+                box-sizing: border-box;
+                padding-top: 5%;
+                padding-bottom: 5%;
+                padding-left: 7.5%;
+                padding-right: 7.5%;
+
+                border-radius: 30px 30px 0 0;
+
+                display: flex;
+                flex-direction: column;
+
+                .conteneur-description {
+                    background-color: map-get($couleurs, clair);
+                    color: map-get($couleurs, sombre);
+
+                    border-radius: 30px;
+                    height: 100%;
+                    padding: 10%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    
+                    .description {
+
+                    }
+                    
                 }
             }
         }

@@ -17,7 +17,7 @@ export default function ListeEnseignants() {
     return(
         enseignants != null ?
             <section className="ListeEnseignants">    
-                <h1 className="titre">nos enseignants.</h1>
+                <h1 className={"titre " + listeOuverte}>nos enseignants.</h1>
 
                 <ul className={"liste " + listeOuverte}>
                     {enseignants.map(enseignant => 

@@ -423,6 +423,35 @@ $theme-cours: (
     )
 );
 
+// Chaque enseignant
+$theme-enseignant: (
+    titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 700,
+        style: normal
+    ),
+
+    texte: (
+        couleur: map-get($couleurs, sombre),
+        poids: 300,
+        style: normal
+    ),
+
+    icone: (),
+
+    lien: (),
+
+    lien-hover: (),
+
+    fond: ()
+);
+
 $theme-PiedDePage: (
     titre: (
         couleur: map-get($couleurs, clair),
