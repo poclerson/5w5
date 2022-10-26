@@ -1,7 +1,6 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/variables.scss';
 
-
 .PiedPage {
     @include themer($theme-PiedDePage);
     width: 100%;
@@ -9,4 +8,12 @@
     //overflow: hidden;
 
     .vague{}
+}
+
+.PiedPage {
+    display: none;
+
+    @include tablette {
+        display: flex;
+    }
 }

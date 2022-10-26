@@ -1,28 +1,33 @@
 import './Session.scss';
 
-import {useState, useEffect, useRef, useLayoutEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import useDefilmentInfini from '../../hooks/useDefilementInfini';
+import useDefilementHorizontal from '../../hooks/useDefilementHorizontal';
 import * as boites from '../../boites';
 
 import Cours from './Cours';
-import FlecheCarousel from '../modules/FlecheCarousel';
-import BarreDefilement from '../modules/BarreDefilement';
-import Chargement from '../modules/Chargement';
 
-export default function Session({cours, enseignants, session}) {
+export default function Session({cours, enseignants, session, pageRef}) {
     const [ouvertures, setOuvertures] = useState(cours.map(() => 'ferme'));
 
-    const sessionRef = useRef(null);
+    // Liste des cours
+    const listeCoursRef = useRef(null);
+
+    // Un cours
     const coursRef = useRef(null);
-    const [estArrive, setEstArrive] = useDefilmentInfini(ajouterDonnees, sessionRef);
+
+    const [estArrive, setEstArrive] = useDefilmentInfini(ajouterDonnees, listeCoursRef);
+    useDefilementHorizontal(pageRef.current, listeCoursRef.current, 6);
     const [coursInfinis, setCoursInfinis] = useState(cours);
 
     const gestionDefilement = () => {
-        Array.from(sessionRef.current.children).forEach((enfant, index) => {
-            if (enfant.getBoundingClientRect().x > 0 && enfant.getBoundingClientRect().x < window.innerWidth / 2) {
-                setOuvertures(boites.ouvrir(index, coursInfinis.map(() => 'ferme')))
-            }
-        })
+        // Obtenir le cours le plus à gauche pour le rendre plus gros
+        // Array.from(listeCoursRef.current.children).forEach((enfant, index) => {
+        //     if (enfant.getBoundingClientRect().x > 0 && enfant.getBoundingClientRect().x < window.innerWidth / 2) {
+        //         setOuvertures(boites.ouvrir(index, coursInfinis.map(() => 'ferme')));
+        //         return;
+        //     }
+        // })
     }
 
     function ajouterDonnees() {
@@ -31,7 +36,7 @@ export default function Session({cours, enseignants, session}) {
     }
 
     useEffect(() => {
-        setOuvertures(boites.ouvrir(0, coursInfinis.map(() => 'ferme')))
+        setOuvertures(boites.ouvrir(0, coursInfinis.map(() => 'ferme')));
     }, [])
 
     useEffect(() => {
@@ -40,7 +45,7 @@ export default function Session({cours, enseignants, session}) {
 
     return (
         <article className={"Session " + session}>
-            <ul className="liste-cours" onScroll={gestionDefilement} ref={sessionRef} >
+            <ul className="liste-cours" onScroll={gestionDefilement} ref={listeCoursRef}>
                 {coursInfinis.map((cours, index) => 
                     <Cours 
                         key={cours.acf.titre + index}
@@ -52,8 +57,8 @@ export default function Session({cours, enseignants, session}) {
                     />
                 )}
             </ul>
-            {/* {sessionRef.current != null ?
-                <BarreDefilement largeurTotale={largeurDefilement} elementScroll={sessionRef.current} />
+            {/* {listeCoursRef.current != null ?
+                <BarreDefilement largeurTotale={largeurDefilement} elementScroll={listeCoursRef.current} />
                 :
                 <Chargement />
             } */}

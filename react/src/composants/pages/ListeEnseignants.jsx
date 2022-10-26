@@ -1,34 +1,34 @@
+import './ListeEnseignants.scss';
+
 import useObtenir from '../../hooks/useObtenir';
+import {useState} from 'react';
 
 import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
 
-import './ListeEnseignants.scss';
-
 export default function ListeEnseignants() {
-    const enseignants = useObtenir('/enseignants');
-    const cours = useObtenir('/cours');
+    const enseignants = useObtenir('/enseignants', 'bre');
+    const [listeOuverte, setListeOuverte] = useState('ouvert');
+
+    const gestionClicListe = () => {
+        setListeOuverte(listeOuverte == 'ouvert' ? 'ferme' : 'ouvert');
+    }
 
     return(
         enseignants != null ?
-        <section className="ListeEnseignants">    
-            <h1 className="titre">
-                {/* {u.capitaliserPremiereLettre(enseignants[0].type)} */}
-            </h1>
+            <section className="ListeEnseignants">    
+                <h1 className="titre">nos enseignants.</h1>
 
-            {
-                cours != null ?
-                <ul className="liste">
+                <ul className={"liste " + listeOuverte}>
                     {enseignants.map(enseignant => 
                         <Enseignant 
                             {... enseignant.acf}
                             key={enseignant.id} 
+                            gestionClicListe={gestionClicListe}
                         />
                     )}
                 </ul>
-                : <Chargement />
-            }
-        </section>   
+            </section>   
         : <Chargement />
     );
 }

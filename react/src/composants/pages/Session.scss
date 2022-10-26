@@ -4,26 +4,27 @@
     @include pleine-taille;
 
     @include gerer-ouverture(flex);
-    scroll-margin: -10vw;
 
     .liste-cours {
         @include pleine-taille;
+        @include cacher-barre-defilement;
+
         display: flex;
-        gap: 10vw;
+        align-items: center;
+        gap: 40vw;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
+        scroll-padding: 10vw;
 
-        @include cacher-barre-defilement;
+        @include tablette {
+            gap: 20vw;
+            scroll-snap-type: unset;
+        }
 
         @include ordinateur {
-            gap: 5vw;
+            gap: 10vw;
+            padding: unset;
         }
-    }
-
-    .prochain-cours {
-        position: fixed;
-        top: 50vh;
-        right: 5vw;
     }
 }

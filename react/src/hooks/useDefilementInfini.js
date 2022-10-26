@@ -10,7 +10,12 @@ const useDefilementInfini = (prolongerDefilement, ref) => {
     const [estArrive, setEstArrive] = useState(false);
 
     useEffect(() => {
-        ref.current.addEventListener("scroll", defile);
+        if (ref.current)
+            ref.current.addEventListener("scroll", defile);
+        return () => {
+            if (ref.current)
+                ref.current.removeEventListener("scroll", defile)
+        }
     }, [ref]);
 
     useEffect(() => {
@@ -18,9 +23,8 @@ const useDefilementInfini = (prolongerDefilement, ref) => {
     }, [estArrive])
 
     function defile() {
-        if (ref.current.scrollLeft + 50 < ref.current.scrollLeftMax || estArrive)
+        if (ref.current.scrollLeft + window.innerWidth / 2 < (ref.current.scrollWidth - ref.current.clientWidth) || estArrive)
             return;
-
         setEstArrive(true);
     }
 
