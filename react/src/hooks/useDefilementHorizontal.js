@@ -16,8 +16,7 @@ export default function useDefilementHorizontal(ecouteur, applicateur, multiplic
                 e.stopPropagation();
 
                 applicateur.scrollTo({
-                    left: applicateur.scrollLeft + (e.deltaY * multiplicateur),
-                    behavior: 'smooth'
+                    left: applicateur.scrollLeft + (e.deltaY * multiplicateur)
                 });
             }
 
