@@ -29,31 +29,31 @@ $hauteur-header: (
 
 */
 $tailles-textes: (
-    /** Titre principal lorsqu’on rentre dans une page, le nom des projets et ‘inscription’ */
+    /** Titre principal lorsqu’on rentre dans une page, le nom des projets et ‘inscripxion’ */
     h1: (
         0px: (
-            taille: 32pt,
-            hauteur-ligne: 130pt
+            taille: 32px,
+            hauteur-ligne: 12px
         ),
 
         360px:(
-            taille: 35pt,
-            hauteur-ligne: 130pt
+            taille: 35px,
+            hauteur-ligne: 12px
         ),
 
         640px:(
-            taille: 65pt,
-            hauteur-ligne: 110pt
+            taille: 65px,
+            hauteur-ligne: 12px
         ),
 
         1024px:(
-            taille: 85pt,
-            hauteur-ligne: 145pt
+            taille: 85px,
+            hauteur-ligne: 12px
         ),
 
         1440px:(
-            taille: 96pt,
-            hauteur-ligne: 145pt
+            taille: 96px,
+            hauteur-ligne: 12px
         ),
 
     ),
@@ -61,28 +61,28 @@ $tailles-textes: (
     /** Nom de l'enseignant (dans sa page) et ‘session’ */
     h2: (
         0px:(
-            taille: 20pt,
-            hauteur-ligne: 130pt
+            taille: 20px,
+            hauteur-ligne: 12px
         ),
 
         360px:(
-            taille: 20pt,
-            hauteur-ligne: 130pt
+            taille: 20px,
+            hauteur-ligne: 12px
         ),
 
         640px:(
-            taille: 45pt,
-            hauteur-ligne: 110pt
+            taille: 45px,
+            hauteur-ligne: 12px
         ),
 
         1024px:(
-            taille: 45pt,
-            hauteur-ligne: 145pt
+            taille: 45px,
+            hauteur-ligne: 12px
         ),
 
         1440px:(
-            taille: 50pt,
-            hauteur-ligne: 145pt
+            taille: 50px,
+            hauteur-ligne: 12px
         ),
     ),
 
@@ -90,140 +90,140 @@ $tailles-textes: (
 
     h3: (
         0px:(
-            taille: 24pt,
-            hauteur-ligne: 130pt
+            taille: 24px,
+            hauteur-ligne: 12px
         ),
 
         360px:(
-            taille: 25pt,
-            hauteur-ligne: 130pt
+            taille: 25px,
+            hauteur-ligne: 12px
         ),
 
         640px:(
-            taille: 35pt,
-            hauteur-ligne: 110pt
+            taille: 35px,
+            hauteur-ligne: 12px
         ),
 
         1024px:(
-            taille: 30pt,
-            hauteur-ligne: 145pt
+            taille: 30px,
+            hauteur-ligne: 12px
         ),
 
         1440px:(
-            taille: 35pt,
-            hauteur-ligne: 145pt
+            taille: 35px,
+            hauteur-ligne: 12px
         ),
     ),
 
     /** ‘Soumettre ma demande d'admission’ */
     h4: (
         0px:(
-            taille: 32pt,
-            hauteur-ligne: 130pt
+            taille: 32px,
+            hauteur-ligne: 12px
         ),
 
         360px:(
-            taille: 35pt,
-            hauteur-ligne: 130pt
+            taille: 35px,
+            hauteur-ligne: 12px
         ),
 
         640px:(
-            taille: 85pt,
-            hauteur-ligne: 110pt
+            taille: 85px,
+            hauteur-ligne: 12px
         ),
 
         1024px:(
             taille: 105tx,
-            hauteur-ligne: 145pt
+            hauteur-ligne: 12px
         ),
 
         1440px:(
             taille: 110tx,
-            hauteur-ligne: 145pt
+            hauteur-ligne: 12px
         ),
     ),
 
     /** ‘spécialité’, la spécialisation de l'enseignant et ‘biographie’ */
     h5: (
         0px:(
-            taille: 15pt,
-            hauteur-ligne: 130pt
+            taille: 15px,
+            hauteur-ligne: 12px
         ),
     
         360px:(
-            taille: 16pt,
-            hauteur-ligne: 130pt
+            taille: 16px,
+            hauteur-ligne: 12px
         ),
     
         640px:(
-            taille: 25pt,
-            hauteur-ligne: 110pt
+            taille: 25px,
+            hauteur-ligne: 12px
         ),
     
         1024px:(
-            taille: 25pt,
-            hauteur-ligne: 145pt
+            taille: 25px,
+            hauteur-ligne: 12px
         ),
     
         1440px:(
-            taille: 32pt,
-            hauteur-ligne: 145pt
+            taille: 32px,
+            hauteur-ligne: 12px
         ),
     ),
 
     /** pour le menu */
     h6: (
         0px:(
-            taille: 23pt,
-            hauteur-ligne: 130pt
+            taille: 23px,
+            hauteur-ligne: 12px
         ),
 
         360px:(
-            taille: 25pt,
-            hauteur-ligne: 130pt
+            taille: 25px,
+            hauteur-ligne: 12px
         ),
 
         640px:(
-            taille: 23pt,
-            hauteur-ligne: 110pt
+            taille: 23px,
+            hauteur-ligne: 12px
         ),
 
         1024px:(
-            taille: 25pt,
-            hauteur-ligne: 145pt
+            taille: 25px,
+            hauteur-ligne: 12px
         ),
 
         1440px:(
-            taille: 27pt,
-            hauteur-ligne: 145pt
+            taille: 27px,
+            hauteur-ligne: 12px
         ),
     ),
 
         /** les textes */
         p: (
             0px:(
-                taille: 13pt,
-                hauteur-ligne: 130pt
+                taille: 13px,
+                hauteur-ligne: 12px
             ),
 
             360px:(
-                taille: 15pt,
-                hauteur-ligne: 130pt
+                taille: 15px,
+                hauteur-ligne: 12px
             ),
     
             640px:(
-                taille: 25pt,
-                hauteur-ligne: 145pt
+                taille: 25px,
+                hauteur-ligne: 12px
             ),
     
             1024px:(
-                taille: 20pt,
-                hauteur-ligne: 145pt
+                taille: 20px,
+                hauteur-ligne: 12px
             ),
     
             1440px:(
-                taille: 25pt,
-                hauteur-ligne: 145pt
+                taille: 25px,
+                hauteur-ligne: 12px
             ),
         )
 );
@@ -384,6 +384,46 @@ $theme-liste-session: (
 
 // Chaque cours
 $theme-cours: (
+    titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 700,
+        style: normal
+    ),
+
+    texte: (
+        couleur: map-get($couleurs, clair),
+        poids: 300,
+        style: normal
+    ),
+
+    icone: (
+        couleur: map-get($couleurs, clair),
+    ),
+
+    lien: (
+        couleur: map-get($couleurs, clair),
+        poids: 300,
+        style: normal
+    ),
+
+    lien-hover: (
+        couleur: map-get($couleurs, clair),
+        poids: 300,
+        style: normal
+    ),
+
+    fond: (
+        couleur-primaire: map-get($couleurs, clair-transparent)
+    )
+);
+
+$theme-PiedDePage: (
     titre: (
         couleur: map-get($couleurs, clair),
         poids: 900,
