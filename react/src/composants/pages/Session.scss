@@ -13,12 +13,13 @@
         align-items: center;
         gap: 40vw;
         overflow-x: scroll;
-        scroll-snap-type: x mandatory;
+        // scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
         scroll-padding: 10vw;
 
         @include tablette {
             gap: 20vw;
+            // scroll-snap-type: x proximity;
         }
 
         @include ordinateur {
