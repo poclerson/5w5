@@ -2,7 +2,7 @@
 @import './variables.scss';
 
 html {
-    font-family: Helvetica;
+    font-family: 'Lalezar', cursive;
     @include texte-dynamique($tailles-textes);
 }
 
