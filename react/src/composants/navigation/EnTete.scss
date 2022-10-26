@@ -16,7 +16,7 @@
         @include gerer-ouverture(flex);
 
         width: 90vw;
-        height: 65vh;
+        height: map-get($hauteur-header, mobile);
         box-sizing: border-box;
         padding: 10vw;
 
@@ -39,7 +39,7 @@
         .contenu {
             @include themer($theme-menu-tablette);
             width: 100vw;
-            height: unset;
+            height: map-get($hauteur-header, tablette);
             border-radius: 0;
             padding: 0;
             justify-content: space-between;

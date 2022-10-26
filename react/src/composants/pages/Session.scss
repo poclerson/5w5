@@ -10,6 +10,7 @@
         @include cacher-barre-defilement;
 
         display: flex;
+        align-items: center;
         gap: 40vw;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;

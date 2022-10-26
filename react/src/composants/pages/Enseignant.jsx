@@ -1,27 +1,34 @@
 import './Enseignant.scss';
-
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {useState} from 'react';
 
-import Icone from '../modules/Icone';
+export default function Enseignant({nom, description, photo, domaine, gestionClicListe}) {
+    const [ouverture, setOuverture] = useState('ferme');
 
-export default function Enseignant({nom, description, photo, domaines}) {
-    const [ouverture, setOuverture] = useState("ferme");
+    const gestionClic = () => {
+        gestionClicListe();
+        setOuverture(ouverture == 'ouvert' ? 'ferme' : 'ouvert');
+    }
 
     return(
-        <li className="Enseignant">
-            <div className="miniature" onClick={() => setOuverture(ouverture == "ferme" ? "ouvert" : "ferme")}>
-                <h2 className="titre">{nom}</h2>
+        <li className={`Enseignant ${ouverture} ${domaine}`}>
+            <div className="miniature" onClick={gestionClic}>
+                <h3 className="titre">{nom}</h3>
                 <img className="photo" src={photo} alt={"Photo de " + nom} />
+                <p className="domaine">{domaine}</p>
             </div>
             <div className={"contenu " + ouverture}>
-                <p className="desc">{description}</p>
-                <ul className="domaines">
-                    {domaines.map(domaine => 
-                        <li className="domaine" key={domaine}>
-                            <Icone type={domaine} />
-                        </li>
-                    )}
-                </ul>
+                <ArrowBackIosIcon className="Icone" onClick={gestionClic} />
+                <div className={"conteneur-photo " + domaine}>
+                    <div className="fond-photo">
+                        <img className="photo" src={photo} alt={"Photo de " + nom} />
+                    </div>
+                </div>
+                <article className="texte">
+                    <h3 className="titre">{nom}</h3>
+                    <h4 className="domaine">{domaine}</h4>
+                    <p className="desc">{description}</p>
+                </article>
             </div>
         </li>
     )

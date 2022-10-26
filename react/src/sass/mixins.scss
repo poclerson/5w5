@@ -9,20 +9,16 @@
 
 // Transforme une map de textes et génère des media queries
 @mixin texte-dynamique($selecteurs) {
-    @each $selecteur, $tailles-dynamiques in $selecteurs {
-        @each $taille-ecran, $taille-texte in $tailles-dynamiques {
-            // Attribuer 
-            @if $taille-ecran == null {
-                font-size: $taille-texte;
-            }
-    
-            @else {
-                @media screen and (min-width: $taille-ecran) {
-                    #{$selecteur} {
-                        font-size: $taille-texte;
-                        margin-block-start: $taille-texte / 2;
-                        margin-block-end: $taille-texte / 2;
-                    }
+    @each $selecteur, $tailles-ecran in $selecteurs {
+        @each $taille-ecran, $proprietes in $tailles-ecran {
+            @media screen and (min-width: $taille-ecran) {
+                #{$selecteur} {
+                    font-size: map-get($proprietes, taille);
+                    margin-block-start: map-get($proprietes, taille) / 2;
+                    margin-block-end: map-get($proprietes, taille) / 2;
+
+                    // Ajouter les propriétés ajoutées dans variables.scss ici
+                    // $proprietes représente toutes les propriétés présentes (présentement, taille et hauteur-ligne)
                 }
             }
         }
@@ -109,6 +105,44 @@
 }
 
 
+/*
+    Attribue la bonne couleur reliée à un domaine (dans la map $couleurs)
+    Le domaine doit être pareil à la classe donnée à l'élément
+
+    $classes-proprietes-map contient une map qui fait correspondre des classes enfant
+    de l'élément principal à des propriétés CSS (color, background-color, etc)
+
+    Si on passe une clé se nommant 'soi' dans $classes-proprietes-map, la propriété sera appliquée à l'élément lui-même
+*/
+@mixin couleurs-domaines($classes-proprietes-map) {
+    // Itérer chaque classe enfant/propriété dans la map reçue
+    @each $classe, $propriete in $classes-proprietes-map {
+
+        // Itérer chaque couleur disponible dans les domaines
+        @each $domaine, $couleur in map-get($couleurs, domaines) {
+            @if ($classe == 'soi') {
+                &.#{$domaine} {
+                    #{$propriete}: $couleur;
+                }
+            }
+
+            @else {
+                // L'élément original doit avoir une classe correspondant aux différents domaines (voir Enseignant.scss pour exemple)
+                &.#{$domaine} {
+
+                    // Sélection de la classe enfant
+                    .#{$classe} {
+
+                        // Application de la couleur à la propriété
+                        #{$propriete}: $couleur;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 
 // ===== MIXINS RANDOMS =====
 
@@ -159,25 +193,14 @@
 
 
 
+// Bulle avec le coin bas droit plus prononcé. Comprend une image
 @mixin bulle() {
     aspect-ratio: 1;
     border-radius: 50% 50% 10px 50%;
-    overflow: hidden;
-    position: relative;
 
     img {
         width: 100%;
         height: 100%;
-    }
-
-    *:not(img) {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-
-        text-align: right;
-        margin-block-start: 0;
-        margin-block-end: 0;
     }
 }
 
@@ -187,7 +210,7 @@
     $padding-v: 5vh;
     $padding-h: 5vw;
 
-    @media screen and (min-width: map-get($largeurs-ecran, tablette)) {
+    @include tablette {
         $padding-h: 2.5vh;
         $padding-v: 2.5vw;
     }

@@ -1,10 +1,87 @@
 @import '../../sass/mixins.scss';
 
+/*
+    Les enseignants ont deux états, ouvert et fermé
+    Qu'un seul enseignant ne peut être ouvert à la fois.
+    Lorsqu'un enseignant est ouvert, tous les autres sont cachés.
+    Sinon, ils sont tous fermés et tous affichés en même temps
+*/
+
 .Enseignant {
-    .miniature {
-        @include bulle;
-        background-color: white;
+    $classes-couleur-domaine: (
+        conteneur-photo: background-color
+    );
+
+    @include couleurs-domaines($classes-couleur-domaine);
+    // Lorsque fermé, on ne montre que la miniature en cachant le contenu
+    &.ferme {
+        flex-basis: 22.5%;
+        margin-bottom: 2.5%;
+
+        .miniature {
+            @include bulle;
+            background-color: white;
+    
+            .titre, .domaine {
+                display: none;
+            }
+
+            @include tablette {
+                .titre {display: block}
+            }
+
+            @include ordinateur {
+                .domaine {display: block}
+            }
+        }
+
+        .contenu {
+            display: none;
+        }
     }
 
-    @include gerer-ouverture(flex);
+    // Si l'enseignant est ouvert, il doit être visible en tout temps
+    &.ouvert {
+        @include pleine-taille;
+        visibility: visible;
+
+        // Lorsque ouvert, on montre le contenu en cachant la miniature
+        .contenu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .Icone {
+                align-self: flex-start;
+            }
+
+            .conteneur-photo {
+                @include bulle;
+
+                width: 60%;
+                padding: 7.5%;
+
+                .fond-photo {
+                    background-color: white;
+                    border-radius: 50%;
+                    @include pleine-taille;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    overflow-x: clip;
+
+                    .photo {
+                        margin-top: -90%;
+                        margin-left: -17.5%;
+                        width: 132.5%;
+                        height: 132.5%;
+                    }
+                }
+            }
+        }
+
+        .miniature {
+            display: none;
+        }
+    }
 }

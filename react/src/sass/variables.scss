@@ -14,72 +14,130 @@ $polices: (
 /*
     Tailles de police et leur style
     taille d'écran (en min-width) : taille de texte
+
+$hauteur-header: (
+    base: 50vh,
+    mobile: 65vh,
+    tablette: 10vh
+);
+
+/*
+    Tailles de police
+    On peut ajouter d'autres propriétés pour chaque taille d'écran/sélecteur
+    Il suffit de les intégrer dans mixins.scss par la suite
+
 */
 $tailles-textes: (
     /** Titre principal lorsqu’on rentre dans une page, le nom des projets et ‘inscription’ */
     h1: (
-        0px: 32px,
-        360px: 35px,
-        640px: 65px,
-        1024px: 85px,
-        1440px: 96px,
-        //font-family: 'EB Garamond', serif
+        0px: (
+            taille: 32px,
+            hauteur-ligne: 12px
+        ),
+
+        360px:(
+            taille: 48px,
+            hauteur-ligne: 12px
+        ),
+
+        640px:(
+            taille: 56px,
+            hauteur-ligne: 12px
+        ),
+
+        1024px:(
+            taille: 72px,
+            hauteur-ligne: 12px
+        ),
+
+        1440px:(
+            taille: 96px,
+            hauteur-ligne: 12px
+        ),
+
     ),
 
     /** Nom de l'enseignant (dans sa page) et ‘session’ */
     h2: (
-        0px: 20px, 
-        360px: 20px,
-        640px: 45px,
-        1024px: 45px,
-        1440px: 50px,
-        //font-family: 'EB Garamond', serif
+        0px:(
+            taille: 32px,
+            hauteur-ligne: 12px
+        ),
+
+        360px:(
+            taille: 96px,
+            hauteur-ligne: 12px
+        ),
+
+        640px:(
+            taille: 56px,
+            hauteur-ligne: 12px
+        ),
+
+        1024px:(
+            taille: 72px,
+            hauteur-ligne: 12px
+        ),
+
+        1440px:(
+            taille: 96px,
+            hauteur-ligne: 12px
+        ),
     ),
 
     /** Nom des cour, nom des étudiants et ‘description’ */
     h3: (
-        0px: 24px,
-        360px: 25px,
-        640px: 35px,
-        1024px: 30px,
-        1440px: 35px,
-        //font-family: 'EB Garamond', serif
+        0px:(
+            taille: 24px,
+            hauteur-ligne: 12px
+        ),
+
+        360px:(
+            taille: 30px,
+            hauteur-ligne: 12px
+        ),
+
+        640px:(
+            taille: 36px,
+            hauteur-ligne: 12px
+        ),
+
+        1024px:(
+            taille: 40px,
+            hauteur-ligne: 12px
+        ),
+
+        1440px:(
+            taille: 48px,
+            hauteur-ligne: 12px
+        ),
     ),
 
-    /** ‘Soumettre ma demande d'admission’ */
-    h4: (
-        0px: 32px,
-        360px: 35px,
-        640px: 85px,
-        1024px: 105px,
-        1440px: 110px
-    ),
-
-    /** ‘spécialité’, la spécialisation de l'enseignant et ‘biographie’ */
-    h5: (
-        0px: 15px,
-        360px: 16px,
-        640px: 25px,
-        1024px: 25px,
-        1440px: 32px
-    ),
-
-    /** pour le menu */
     h6: (
-        0px: 23px,
-        360px: 25px,
-        640px: 23px,
-        1024px: 25px,
-        1440px: 27px
-    ),
+        0px:(
+            taille: 20px,
+            hauteur-ligne: 12px
+        ),
 
-    /** les textes */
-    p: (
-        0px: 13px,
-        360px: 15px,
-        640px: 25px,
-        1024px: 20px,
-        1440px: 25px
+        360px:(
+            taille: 24px,
+            hauteur-ligne: 12px
+        ),
+
+        640px:(
+            taille: 20px,
+            hauteur-ligne: 12px
+        ),
+
+        1024px:(
+            taille: 24px,
+            hauteur-ligne: 12px
+        ),
+
+        1440px:(
+            taille: 32px,
+            hauteur-ligne: 12px
+        ),
     )
 );
 
@@ -89,11 +147,13 @@ $couleurs: (
     sombre: #0f0f0f,
     sombre-transparent: #0f0f0f6c,
 
-    accent1: #da3e66,
-    accent2: #2c2c7f,
-    accent3: #4a52a3,
-    accent4: #fed900,
-    accent5: #da6f67,
+    domaines: (
+        design: #da3e66,
+        jeu: #2c2c7f,
+        modelisation3d: #fed900,
+        video: #da6f67,
+        web: #4a52a3,
+    ),
 
     gris1: #a7a6a6,
     gris2: #747474,
@@ -139,7 +199,7 @@ $theme-base: (
     fond: (
         couleur-primaire: map-get($couleurs, sombre),
         couleur-secondaire: map-get($couleurs, sombre),
-    )
+    ),
 );
 
 // Entête et autres menus flottants

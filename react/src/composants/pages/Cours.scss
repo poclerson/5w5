@@ -6,7 +6,7 @@
     width: 70vw;
     min-width: 70vw;
     height: 40vh;
-    margin-top: 20vh;
+    margin-bottom: 15vh;
     box-sizing: border-box;
 
     scroll-snap-align: start;
@@ -15,6 +15,7 @@
         width: 25vw;
         min-width: 25vw;
         height: 35vh;
+        margin-bottom: 25vh;
 
         transition: transform .15s ease-in-out;
 
