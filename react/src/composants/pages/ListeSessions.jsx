@@ -11,7 +11,7 @@ import * as u from '../../utilitaires';
 import medias from '../../medias';
 import useMediaQuery from '../../hooks/useMediaQuery';
 
-export default function ListeSessions({sessions, cours, enseignants, degrades}) {
+export default function ListeSessions({sessions, cours, enseignants, degrades, pageRef}) {
     // Gestion de l'ouverture de chaque session
     const [ouvertures, setOuvertures] = useState(boites.ouvrir(0, sessions.map(() => "ferme")));
 
@@ -135,10 +135,10 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
         if (tailleTablette) 
             setCarousel(donneesCarousel.moyen)
 
-        else if (tailleOrdinateur)
+        if (tailleOrdinateur)
             setCarousel(donneesCarousel.grand)
 
-        else
+        if (!tailleTablette && !tailleOrdinateur)
             setCarousel(donneesCarousel.petit)
     }, [tailleOrdinateur, tailleTablette]) 
 
@@ -148,7 +148,10 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
             transition={transition} 
             style={stylesDegrades.section}
         >
+            {/* Destination permet de gérer le fondu entre les images */}
             <div className="destination" onAnimationEnd={actualiserDegrade} style={stylesDegrades.prochaineSection}></div>
+
+            {/* Titres des sessions */}
             <ol className="sessions-titres">
                 {sessions.map((session, index) => {
                     if (ouvertures[index] == "ferme") {
@@ -158,6 +161,8 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
                     }
                 })}
             </ol>
+
+            {/* La session ouverte */}
             {
                 sessions.map((session, index) => {
                     if (ouvertures[index] == "ouvert") {
@@ -168,15 +173,16 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
                             )} 
                             enseignants={enseignants}
                             session={session}
+                            pageRef={pageRef}
                         />
                     }
                 })
             }
+
+            {/* Carousel des ronds de titres de session */}
             <div className="sessions-ronds">
-                {/* Placement sert à correctement placer le carousel rond sans fucker le layout */}
+                {/* carousel sert à correctement placer le carousel rond sans fucker le layout */}
                 <ol className="carousel" style={gestionStylePlacement()}>
-                    
-                        
                     {sessions.map((session, index) => 
                         <li className={`session-rond ${ouvertures[index]} ${session}`} key={"rond" + session} style={placerEnCercle(index)}>
                             <div className="destination" style={stylesDegrades.prochaineSection}></div>
@@ -187,7 +193,6 @@ export default function ListeSessions({sessions, cours, enseignants, degrades}) 
                             >
                                     {session.charAt(7)}
                             </h2>
-                            {/* <ArrowForwardIcon className="Icone" onClick={() => controllerOuvertures(index)} /> */}
                             <FlecheDefilement gestionClic={() => gestionProchaineSession(index + 1)} />
                         </li>
                     )}
