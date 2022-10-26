@@ -8,12 +8,9 @@ html {
 
 h1, h2, h3, h4, h5 {
     font-family: map-get($polices, titre);
-    //line-height: ;
-    //letter-spacing: ;
 }
 
 h6, p {
     font-family: map-get($polices, texte);
     letter-spacing: 0;
-    line-height: 20;
 }

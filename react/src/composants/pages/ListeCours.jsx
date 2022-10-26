@@ -26,10 +26,6 @@ export default function ListeCours() {
     return(
         cours != null ?
         <section className="ListeCours" ref={listeCoursRef}>
-            <h1 className="titre">
-                {/* {u.capitaliserPremiereLettre(cours[0].type)} */}
-            </h1>
-
             {
                 enseignants && sessions && degrades != null ? 
                 <ListeSessions sessions={sessions} cours={cours} enseignants={enseignants} degrades={degrades} pageRef={listeCoursRef} />

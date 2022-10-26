@@ -48,7 +48,7 @@ export default function App() {
                     <EnTete enteteWP={hcms.data.header} />
                 </>:
             <Chargement />
-            }xs
+            }
             
             <PiedPage />
         </div>
