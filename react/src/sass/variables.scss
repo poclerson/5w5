@@ -6,6 +6,15 @@ $largeurs-ecran: (
     ordinateur-large: 1440px
 );
 
+$polices: (
+    titre: 'Lalezar',
+    texte: 'Mukta',
+);
+
+/*
+    Tailles de police et leur style
+    taille d'écran (en min-width) : taille de texte
+
 $hauteur-header: (
     base: 50vh,
     mobile: 65vh,
@@ -16,8 +25,10 @@ $hauteur-header: (
     Tailles de police
     On peut ajouter d'autres propriétés pour chaque taille d'écran/sélecteur
     Il suffit de les intégrer dans mixins.scss par la suite
+
 */
 $tailles-textes: (
+    /** Titre principal lorsqu’on rentre dans une page, le nom des projets et ‘inscription’ */
     h1: (
         0px: (
             taille: 32px,
@@ -43,8 +54,10 @@ $tailles-textes: (
             taille: 96px,
             hauteur-ligne: 12px
         ),
+
     ),
 
+    /** Nom de l'enseignant (dans sa page) et ‘session’ */
     h2: (
         0px:(
             taille: 32px,
@@ -72,6 +85,7 @@ $tailles-textes: (
         ),
     ),
 
+    /** Nom des cour, nom des étudiants et ‘description’ */
     h3: (
         0px:(
             taille: 24px,
