@@ -27,6 +27,7 @@
 
     .resultats-recherche {
         @include themer($theme-menu-mobile);
+        @include gerer-ouverture(block);
     }
 
     @include tablette {

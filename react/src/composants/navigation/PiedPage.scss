@@ -5,7 +5,6 @@
     width: 100%;
     display: none;
     background-color: transparent;
-    display: flex;
     flex-direction: column;
     position: relative;
 
@@ -19,5 +18,9 @@
     .vague {
         position: absolute;
         bottom: 100%;
+    }
+
+    @include tablette {
+        display: flex;
     }
 }

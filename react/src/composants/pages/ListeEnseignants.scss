@@ -1,7 +1,6 @@
 @import '../../sass/mixins.scss';
 
 .ListeEnseignants {
-    margin-top: 10vh;
 
     .titre {
         @include gerer-ouverture(block);
