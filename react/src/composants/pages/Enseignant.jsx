@@ -36,25 +36,19 @@ export default function Enseignant({nom, description, photo, domaine, gestionCli
                         <img className="photo" src={photo} alt={"Photo de " + nom} />
                     </div>
                 </div>
-                {!tablette ?
-                    <article className="texte">
-                        <h3 className="titre">{nom}</h3>
-                        <h4 className="domaine sous-titre">{domaine}</h4>
-                        <div className="conteneur-description">
-                            <p className="description">{description}</p>
-                        </div>
-                    </article>
-                    :
-                    <>
-                        <article className="texte">
-                            <h3 className="titre">{nom}</h3>
-                            <h4 className="domaine sous-titre">{domaine}</h4>
-                        </article>
-                        <article className="conteneur-description">
-                            <p className="description">{description}</p>
-                        </article>
-                    </>
-                }
+                <article className="texte">
+                    <h5 className="titre-etiquette">nom</h5>
+                    <h3 className="titre">{nom}</h3>
+                    <h5 className="sous-titre-etiquette">spécialité</h5>
+                    <h4 className="domaine sous-titre">{domaine}</h4>
+                    <h5 className="description-etiquette">biographie</h5>
+                    <div className="conteneur-description">
+                        <p className="description">
+                            {/* {description} */}
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere dolorem temporibus eos reprehenderit veritatis culpa error dolor cupiditate officia qui, totam, consequatur esse ipsam fugiat sapiente architecto distinctio. Esse, sequi!
+                        </p>
+                    </div>
+                </article>
             </div>
         </li>
     )
