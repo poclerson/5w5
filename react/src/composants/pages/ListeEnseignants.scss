@@ -1,16 +1,22 @@
 @import '../../sass/mixins.scss';
 
 .ListeEnseignants {
+    $taille-gouttieres: 10%;
+    
+    overflow-y: scroll;
+    padding-left: $taille-gouttieres;
+    padding-right: $taille-gouttieres;
+    box-sizing: border-box;
 
     .titre {
         @include gerer-ouverture(block);
     }
 
     .liste {
-        display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
-        gap: 10%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: calc(100vw / 2 - $taille-gouttieres);
+        gap: $taille-gouttieres;
         height: 100%;
 
         // Quand la liste est ouverte, on montre tout

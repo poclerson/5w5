@@ -19,12 +19,10 @@
     @include couleurs-domaines($classes-couleur-domaine);
     // Lorsque fermé, on ne montre que la miniature en cachant le contenu
     &.ferme {
-        flex-basis: 22.5%;
-        margin-bottom: 2.5%;
-
         .miniature {
+            overflow: hidden;
             @include bulle;
-            background-color: white;
+            background-color: map-get($couleurs, clair);
     
             .titre, .domaine {
                 display: none;
