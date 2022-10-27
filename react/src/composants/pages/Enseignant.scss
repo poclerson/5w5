@@ -1,21 +1,63 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/variables.scss';
 
-/**
- * On change la position dans le document de conteneur-description pour les médias tablette et ordinateur
- * On crée donc une mixin locale pour éviter d'avoir à appliquer les styles deux fois
- */
-@mixin conteneur-description() {
-    .conteneur-description {
-        background-color: map-get($couleurs, clair);
-        color: map-get($couleurs, sombre);
+@mixin carte-enseignant() {
+    @include carte;
+    @include pleine-taille;
+    padding: 0;
 
-        border-radius: 30px;
-        height: 100%;
-        padding: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+
+    .titre {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        max-width: 60%;
+    }
+
+    .conteneur-domaine {
+        // Positionnement dans .Enseignant
+        position: absolute;
+        right: -31vh;
+        top: -1vh;
+        width: 31vh;
+        transform: rotate(90deg);
+        transform-origin: top left;
+
+        background-color: map-get($couleurs, sombre);
+
         display: flex;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-end;
+        min-height: 4vw;
+
+        .domaine {
+            height: 100%;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            z-index: 1;
+            padding-left: 20%;
+        }
+    }
+
+    .photo {
+        width: 90%;
+        height: 70%;
+        position: absolute;
+        bottom: 0;
+        left: 5%;
+        z-index: 2;
+    }
+
+    .fond-photo {
+        // width: 20%;
+
+        .photo {
+            @include pleine-taille;
+            margin: 0;
+        }
     }
 }
 
@@ -31,17 +73,28 @@
 
     $classes-couleur-domaine: (
         conteneur-photo: background-color,
-        texte: background-color,
         miniature: background-color
     );
 
     @include couleurs-domaines($classes-couleur-domaine);
+
+    @include ordinateur {
+        .miniature {
+            @include carte-enseignant();
+        }
+    }
+
     // Lorsque fermé, on ne montre que la miniature en cachant le contenu
     &.ferme {
+        $classes-couleur-domaine-ferme: (
+            domaine: color
+        );
+
+        @include couleurs-domaines($classes-couleur-domaine-ferme);
+
         .miniature {
             overflow: hidden;
             @include bulle;
-            position: relative;
     
             .titre {
                 display: none;
@@ -50,7 +103,7 @@
                 top: 10%;
             }
 
-            .domaine {
+            .conteneur-domaine {
                 display: none;
             }
 
@@ -63,21 +116,30 @@
             }
 
             @include ordinateur {
-                .domaine {display: block}
+                @include carte-enseignant;
             }
         }
 
         .contenu {
             display: none;
         }
+
+        @include ordinateur {
+            width: 20%;
+            height: 30vh;
+            flex-shrink: 0;
+        }
     }
 
-    // Si l'enseignant est ouvert, il doit être visible en tout temps
     &.ouvert {
         @include pleine-taille;
         visibility: visible;
         display: flex;
         justify-content: center;
+
+        @include selection-texte {
+            color: map-get($couleurs, clair);
+        }
 
         // Lorsque ouvert, on montre le contenu en cachant la miniature
         .contenu {
@@ -111,6 +173,15 @@
                         margin-left: -17.5%;
                         width: 132.5%;
                         height: 132.5%;
+                        z-index: 3;
+                    }
+                }
+
+                @include ordinateur {
+                    display: none;
+
+                    .fond-photo {
+                        background-color: transparent;
                     }
                 }
             }
@@ -125,7 +196,13 @@
                 display: flex;
                 flex-direction: column;
 
-                @include conteneur-description;
+                .conteneur-description {
+                    height: 100%;
+                    padding: 10%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
             }
 
             @include tablette {
@@ -134,14 +211,12 @@
                 display: grid;
                 grid-template-areas: 
                     "icone ."
-                    "photo desc"
-                    "texte desc"
-                    ". desc"
+                    "photo texte"
+                    ". texte"
+                    ". texte"
                 ;
                 grid-template-columns: 2fr 3.5fr;
                 grid-template-rows: 0 3fr 3fr 3fr;
-
-                @include conteneur-description;
 
                 .Icone {
                     grid-area: icone;
@@ -153,24 +228,23 @@
 
                 .texte {
                     grid-area: texte;
-                    border-radius: 30px;
-                }
-
-                .conteneur-description {
-                    grid-area: desc;
-                    background-color: unset;
                     border-radius: 0;
                     @include bordures-coins-diagonales(60px, white);
-
-                    .description {
-                        color: map-get($couleurs, clair);
-                    }
                 }
+            }
+
+            @include ordinateur {
+                width: 40vw;
             }
         }
 
         .miniature {
             display: none;
+
+            @include ordinateur {
+                display: flex;
+                width: 25vw;
+            }
         }
     }
 }

@@ -144,6 +144,7 @@
 
 
 
+
 // ===== MIXINS RANDOMS =====
 
 
@@ -185,6 +186,12 @@
     border-radius: 50%;
     width: $taille;
     height: $taille;
+}
+
+@mixin etiquette() {
+    background: rgba(0, 0, 0, 0.377);
+    border-radius: 20px;
+    padding: 5%;
 }
 
 
@@ -232,7 +239,7 @@
         // Bas
         linear-gradient(to right, transparent 0 calc(100% - $taille), $couleur 0) 0 100% / 100% 4px
     ;
-  background-repeat: no-repeat;
+    background-repeat: no-repeat;
 }
 
 
@@ -260,6 +267,18 @@
 
 @mixin ordinateur-large {
     @media screen and (min-width: map-get($largeurs-ecran, ordinateur-large)) {
+        @content;
+    }
+}
+
+
+
+// ===== MIXINS DE SÉLECTION =====
+
+
+
+@mixin selection-texte() {
+    h1, h2, h3, h4, h5, h6, p, a {
         @content;
     }
 }
