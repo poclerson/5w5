@@ -4,8 +4,6 @@
     $taille-gouttieres: 10%;
 
     overflow-y: scroll;
-    padding-left: $taille-gouttieres;
-    padding-right: $taille-gouttieres;
     box-sizing: border-box;
 
     .titre {
@@ -13,6 +11,8 @@
     }
 
     .liste {
+        padding-left: $taille-gouttieres;
+        padding-right: $taille-gouttieres;
         display: grid;
 
         // Deux colonnes
@@ -34,7 +34,15 @@
 
         // Quand elle est fermée (donc, qu'un enseignant a été ouvert)...
         &.ferme {
+            display: flex;
             visibility: hidden;
+            margin-top: map-get($hauteur-header, mobile);
+            height: calc(100vh - map-get($hauteur-header, mobile));
+            padding: 0;
+
+            @include tablette {
+                margin-top: 5vh;
+            }
 
             // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
             .Enseignant.ferme {

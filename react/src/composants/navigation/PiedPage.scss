@@ -20,7 +20,7 @@
         bottom: 100%;
     }
 
-    @include tablette {
+    @include ordinateur {
         display: flex;
     }
 }

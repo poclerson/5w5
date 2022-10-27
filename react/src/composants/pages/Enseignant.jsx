@@ -1,6 +1,10 @@
 import './Enseignant.scss';
+
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import {useState} from 'react';
+
+import useMediaQuery from '../../hooks/useMediaQuery';
+import medias from '../../medias';
+import {useState, useEffect} from 'react';
 
 export default function Enseignant({nom, description, photo, domaine, gestionClicListe}) {
     const [ouverture, setOuverture] = useState('ferme');
@@ -10,8 +14,15 @@ export default function Enseignant({nom, description, photo, domaine, gestionCli
         setOuverture(ouverture == 'ouvert' ? 'ferme' : 'ouvert');
     }
 
+    const tablette = useMediaQuery(medias.tablette);
+
+    useEffect(() => {
+
+    }, [tablette])
+
     return(
         <li className={`Enseignant ${ouverture} ${domaine}`}>
+            {console.log(tablette)}
             <div className="miniature" onClick={gestionClic}>
                 <h3 className="titre">{nom}</h3>
                 <img className="photo" src={photo} alt={"Photo de " + nom} />
@@ -24,13 +35,25 @@ export default function Enseignant({nom, description, photo, domaine, gestionCli
                         <img className="photo" src={photo} alt={"Photo de " + nom} />
                     </div>
                 </div>
-                <article className="texte">
-                    <h3 className="titre">{nom}</h3>
-                    <h4 className="domaine sous-titre">{domaine}</h4>
-                    <div className="conteneur-description">
-                        <p className="description">{description}</p>
-                    </div>
-                </article>
+                {!tablette ?
+                    <article className="texte">
+                        <h3 className="titre">{nom}</h3>
+                        <h4 className="domaine sous-titre">{domaine}</h4>
+                        <div className="conteneur-description">
+                            <p className="description">{description}</p>
+                        </div>
+                    </article>
+                    :
+                    <>
+                        <article className="texte">
+                            <h3 className="titre">{nom}</h3>
+                            <h4 className="domaine sous-titre">{domaine}</h4>
+                        </article>
+                        <article className="conteneur-description">
+                            <p className="description">{description}</p>
+                        </article>
+                    </>
+                }
             </div>
         </li>
     )

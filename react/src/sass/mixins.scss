@@ -221,6 +221,19 @@
     padding-right: $padding-h;
 }
 
+@mixin bordures-coins-diagonales($taille, $couleur) {
+    background:
+        // Gauche
+        linear-gradient($couleur $taille, transparent 0 calc(100% - $taille)) 0 0 / 4px 100%,
+        // Droite
+        linear-gradient(transparent 0 calc(100% - $taille), $couleur 0) 100% 0 / 4px 100%,
+        // Haut
+        linear-gradient(to right, $couleur $taille, transparent 0 calc(100% - $taille)) 0 0 / 100% 4px,
+        // Bas
+        linear-gradient(to right, transparent 0 calc(100% - $taille), $couleur 0) 0 100% / 100% 4px
+    ;
+  background-repeat: no-repeat;
+}
 
 
 // ===== MIXINS DE REQUÊTES MÉDIAS =====

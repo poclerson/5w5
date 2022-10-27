@@ -19,7 +19,7 @@
         & > *:first-child {
             
             // Laisser un espacement pour l'entête
-            margin-top: 10vh;
+            margin-top: map-get($hauteur-header, mobile);
         }
 
         @include tablette {
