@@ -126,6 +126,11 @@
                 flex-direction: column;
 
                 @include conteneur-description;
+
+                .domaine {
+                    @include etiquette;
+                    text-align: center;
+                }
             }
 
             @include tablette {

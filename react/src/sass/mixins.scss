@@ -187,6 +187,12 @@
     height: $taille;
 }
 
+@mixin etiquette() {
+    background: rgba(0, 0, 0, 0.377);
+    border-radius: 20px;
+    padding: 5%;
+}
+
 
 
 // ===== MIXINS DE SECTIONS =====
