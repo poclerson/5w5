@@ -22,11 +22,12 @@ export default function Enseignant({nom, description, photo, domaine, gestionCli
 
     return(
         <li className={`Enseignant ${ouverture} ${domaine}`}>
-            {console.log(tablette)}
             <div className="miniature" onClick={gestionClic}>
-                <h3 className="titre">{nom}</h3>
+                <h3 className="titre">{nom.toUpperCase()}</h3>
                 <img className="photo" src={photo} alt={"Photo de " + nom} />
-                <p className="domaine">{domaine}</p>
+                <span className="conteneur-domaine">
+                    <p className="domaine">{domaine.toUpperCase()}</p>
+                </span>
             </div>
             <div className={"contenu " + ouverture}>
                 <ArrowBackIosIcon className="Icone" onClick={gestionClic} />
