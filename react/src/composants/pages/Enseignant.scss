@@ -13,7 +13,8 @@
 
     $classes-couleur-domaine: (
         conteneur-photo: background-color,
-        texte: background-color
+        texte: background-color,
+        miniature: background-color
     );
 
     @include couleurs-domaines($classes-couleur-domaine);
@@ -22,14 +23,25 @@
         .miniature {
             overflow: hidden;
             @include bulle;
-            background-color: map-get($couleurs, clair);
+            position: relative;
     
-            .titre, .domaine {
+            .titre {
+                display: none;
+                position: absolute;
+                left: 5%;
+                top: 10%;
+            }
+
+            .domaine {
                 display: none;
             }
 
             @include tablette {
                 .titre {display: block}
+
+                .photo {
+                    position: relative;
+                }
             }
 
             @include ordinateur {
