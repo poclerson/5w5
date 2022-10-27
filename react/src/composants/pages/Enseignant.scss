@@ -1,6 +1,66 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/variables.scss';
 
+@mixin carte-enseignant() {
+    @include carte;
+    @include pleine-taille;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+
+    .titre {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        max-width: 60%;
+    }
+
+    .conteneur-domaine {
+        // Positionnement dans .Enseignant
+        position: absolute;
+        right: -31vh;
+        top: -1vh;
+        width: 31vh;
+        transform: rotate(90deg);
+        transform-origin: top left;
+
+        background-color: map-get($couleurs, sombre);
+
+        display: flex;
+        align-items: flex-end;
+        min-height: 4vw;
+
+        .domaine {
+            height: 100%;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            z-index: 1;
+            padding-left: 20%;
+        }
+    }
+
+    .photo {
+        width: 90%;
+        height: 70%;
+        position: absolute;
+        bottom: 0;
+        left: 5%;
+        z-index: 2;
+    }
+
+    .fond-photo {
+        // width: 20%;
+
+        .photo {
+            @include pleine-taille;
+            margin: 0;
+        }
+    }
+}
+
 /*
     Les enseignants ont deux états, ouvert et fermé
     Qu'un seul enseignant ne peut être ouvert à la fois.
@@ -17,6 +77,12 @@
     );
 
     @include couleurs-domaines($classes-couleur-domaine);
+
+    @include ordinateur {
+        .miniature {
+            @include carte-enseignant();
+        }
+    }
 
     // Lorsque fermé, on ne montre que la miniature en cachant le contenu
     &.ferme {
@@ -50,54 +116,7 @@
             }
 
             @include ordinateur {
-                @include carte;
-                @include pleine-taille;
-                padding: 0;
-
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                position: relative;
-
-                .titre {
-                    display: block;
-                    position: absolute;
-                    z-index: 2;
-                    max-width: 60%;
-                }
-
-                .conteneur-domaine {
-                    // Positionnement dans .Enseignant
-                    position: absolute;
-                    right: -31vh;
-                    top: -1vh;
-                    width: 31vh;
-                    transform: rotate(90deg);
-                    transform-origin: top left;
-
-                    background-color: map-get($couleurs, sombre);
-
-                    display: flex;
-                    align-items: flex-end;
-                    min-height: 4vw;
-
-                    .domaine {
-                        height: 100%;
-                        margin-block-start: 0;
-                        margin-block-end: 0;
-                        z-index: 1;
-                        padding-left: 20%;
-                    }
-                }
-
-                .photo {
-                    width: 90%;
-                    height: 70%;
-                    position: absolute;
-                    z-index: 3;
-                    bottom: 0;
-                    left: 5%;
-                }
+                @include carte-enseignant;
             }
         }
 
@@ -112,7 +131,6 @@
         }
     }
 
-    // Si l'enseignant est ouvert, il doit être visible en tout temps
     &.ouvert {
         @include pleine-taille;
         visibility: visible;
@@ -155,6 +173,15 @@
                         margin-left: -17.5%;
                         width: 132.5%;
                         height: 132.5%;
+                        z-index: 3;
+                    }
+                }
+
+                @include ordinateur {
+                    display: none;
+
+                    .fond-photo {
+                        background-color: transparent;
                     }
                 }
             }
@@ -205,10 +232,19 @@
                     @include bordures-coins-diagonales(60px, white);
                 }
             }
+
+            @include ordinateur {
+                width: 40vw;
+            }
         }
 
         .miniature {
             display: none;
+
+            @include ordinateur {
+                display: flex;
+                width: 25vw;
+            }
         }
     }
 }

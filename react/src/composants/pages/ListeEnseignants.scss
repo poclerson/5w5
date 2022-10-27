@@ -13,7 +13,7 @@
     @include ordinateur {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        // justify-content: ;
     }
 
     .liste {
@@ -56,9 +56,15 @@
                 margin-top: 5vh;
             }
 
+            @include ordinateur {
+                visibility: visible;
+            }
+
             // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
             .Enseignant.ferme {
                 display: none;
+
+                @include ordinateur {display: flex;}
             }
         }
     }

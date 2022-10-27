@@ -6,12 +6,10 @@ import useMediaQuery from '../../hooks/useMediaQuery';
 import medias from '../../medias';
 import {useState, useEffect} from 'react';
 
-export default function Enseignant({nom, description, photo, domaine, gestionClicListe}) {
-    const [ouverture, setOuverture] = useState('ferme');
+export default function Enseignant({nom, description, photo, domaine, gestionClicListe, index, ouverture}) {
 
     const gestionClic = () => {
-        gestionClicListe();
-        setOuverture(ouverture == 'ouvert' ? 'ferme' : 'ouvert');
+        gestionClicListe(index, ouverture);
     }
 
     const tablette = useMediaQuery(medias.tablette);
@@ -32,9 +30,13 @@ export default function Enseignant({nom, description, photo, domaine, gestionCli
             <div className={"contenu " + ouverture}>
                 <ArrowBackIosIcon className="Icone" onClick={gestionClic} />
                 <div className={"conteneur-photo " + domaine}>
+                    <h3 className="titre">{nom.toUpperCase()}</h3>
                     <div className="fond-photo">
                         <img className="photo" src={photo} alt={"Photo de " + nom} />
                     </div>
+                    <span className="conteneur-domaine">
+                        <p className="domaine">{domaine.toUpperCase()}</p>
+                    </span>
                 </div>
                 <article className="texte">
                     <h5 className="titre-etiquette">nom</h5>
