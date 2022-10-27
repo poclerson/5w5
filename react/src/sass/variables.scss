@@ -18,8 +18,8 @@ $polices: (
 
 $hauteur-header: (
     base: 50vh,
-    mobile: 65vh,
-    tablette: 10vh
+    mobile: 10vh,
+    tablette: 15vh
 );
 
 /*
@@ -421,6 +421,35 @@ $theme-cours: (
     fond: (
         couleur-primaire: map-get($couleurs, clair-transparent)
     )
+);
+
+// Chaque enseignant
+$theme-enseignant: (
+    titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 700,
+        style: normal
+    ),
+
+    texte: (
+        couleur: map-get($couleurs, sombre),
+        poids: 300,
+        style: normal
+    ),
+
+    icone: (),
+
+    lien: (),
+
+    lien-hover: (),
+
+    fond: ()
 );
 
 $theme-PiedDePage: (

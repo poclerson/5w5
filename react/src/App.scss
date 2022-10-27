@@ -2,8 +2,7 @@
 @import 'sass/variables.scss';
 
 .App {
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow: hidden;
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -15,10 +14,13 @@
     // Toutes les pages
     & > *:not(.EnTete, .PiedPage) {
         @include pleine-taille;
-        width: unset;
-        min-width: 100vw;
-        height: 100vh;
-        box-sizing: content-box;
+
+        // Premier élément de chaque page
+        & > *:first-child {
+            
+            // Laisser un espacement pour l'entête
+            margin-top: map-get($hauteur-header, mobile);
+        }
 
         @include tablette {
             margin-top: map-get($hauteur-header, tablette);
