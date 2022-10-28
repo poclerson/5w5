@@ -75,15 +75,15 @@
                 @include ordinateur {display: flex;}
             }
         }
-    }
 
-    .Suivant {
-        display: none;
-        right: 2.5%;
-        bottom: 17.5%;
-
-        @include ordinateur {
-            display: flex;
+        .Suivant {
+            display: none;
+            right: 2.5%;
+            bottom: 17.5%;
+    
+            @include ordinateur {
+                display: flex;
+            }
         }
     }
 }

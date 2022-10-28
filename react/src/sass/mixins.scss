@@ -113,13 +113,27 @@
     de l'élément principal à des propriétés CSS (color, background-color, etc)
 
     Si on passe une clé se nommant 'soi' dans $classes-proprietes-map, la propriété sera appliquée à l'élément lui-même
+
+
+    Si $nouvelles-couleurs-selon-domaines est attribuée, à la place d'utiliser les couleurs de domaines normales
+    on utilise ses couleurs qu'on réattribue par rapport à chaque domaine
 */
-@mixin couleurs-domaines($classes-proprietes-map) {
+@mixin couleurs-domaines($classes-proprietes-map, $nouvelles-couleurs-selon-domaines: ()) {
+    $map-couleurs-domaines: null;
+
     // Itérer chaque classe enfant/propriété dans la map reçue
     @each $classe, $propriete in $classes-proprietes-map {
 
+        @if length($nouvelles-couleurs-selon-domaines) > 0 {
+            $map-couleurs-domaines: $nouvelles-couleurs-selon-domaines;
+        }
+
+        @else {
+            $map-couleurs-domaines: map-get($couleurs, domaines);
+        }
+
         // Itérer chaque couleur disponible dans les domaines
-        @each $domaine, $couleur in map-get($couleurs, domaines) {
+        @each $domaine, $couleur in $map-couleurs-domaines {
             @if ($classe == 'soi') {
                 &.#{$domaine} {
                     #{$propriete}: $couleur;

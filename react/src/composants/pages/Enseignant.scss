@@ -68,14 +68,32 @@
 
     $classes-couleur-domaine: (
         conteneur-photo: background-color,
-        miniature: background-color
+        miniature: background-color,
+        texte: background-color
     );
 
     $classes-couleur-domaine-ferme: (
         domaine: color
     );
 
+    $classes-couleur-domaine-contraste-texte: (
+        titre-etiquette: color,
+        titre: color,
+        domaine-etiquette: color,
+        domaine: color,
+        description-etiquette: color,
+        description: color
+    );
+
+    $couleurs-domaines-modifiees: (
+        modelisation3d: map-get($couleurs, sombre)
+    );
+
     @include couleurs-domaines($classes-couleur-domaine);
+    @include couleurs-domaines(
+        $classes-couleur-domaine-contraste-texte,
+        $couleurs-domaines-modifiees
+    );
 
     @include ordinateur {
         flex-direction: row-reverse;
@@ -143,7 +161,7 @@
             // Photo de l'enseignant
             .conteneur-photo {
                 @include bulle;
-                padding: 7.5%;
+                padding: 30px;
 
                 .fond-photo {
                     background-color: map-get($couleurs, clair);
@@ -191,10 +209,22 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    background-color: map-get($couleurs, clair);
+                    border-radius: 30px;
+
+                    .description {color: map-get($couleurs, sombre)}
+
+                    @include tablette {
+                        background-color: transparent;
+
+                        .description {color: map-get($couleurs, clair);}
+                    }
                 }
                 
-                // Annuler le style donné par @couleurs-domaines sur ordinateur
-                .domaine {color: map-get($couleurs, clair)}
+                // Annuler le style donné par @couleurs-domaines à partir de tablettes
+                @include tablette {
+                    & > * {color: map-get($couleurs, clair)}
+                }
             }
 
             @include tablette {
@@ -253,8 +283,6 @@
             @include couleurs-domaines($classes-couleur-domaine-ferme);
         }
 
-        @include ordinateur-large {
-            width: 60vw;
-        }
+        @include ordinateur-large {width: 60vw}
     }
 }
