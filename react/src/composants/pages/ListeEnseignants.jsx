@@ -6,19 +6,12 @@ import * as boites from '../../boites';
 
 import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
+import Suivant from '../modules/Suivant';
 
 export default function ListeEnseignants() {
     const enseignants = useObtenir('/enseignants', 'bre');
     const [listeOuverte, setListeOuverte] = useState('ouvert');
     const [ouvertures, setOuvertures] = useState(null);
-
-    // Initialiser les états d'ouverture
-    useEffect(() => {
-        if (enseignants != null) {
-            setOuvertures(enseignants.map(() => 'ferme'))
-        }
-    }, [enseignants])
-    
 
     const gestionClicListe = (index, ouverture) => {
         // S'il était fermé, on ouvre
@@ -26,18 +19,39 @@ export default function ListeEnseignants() {
             setOuvertures(boites.ouvrir(index, enseignants.map(() => 'ferme')))
 
         // Sinon on ferme
-        else
+        else 
             setOuvertures(enseignants.map(() => 'ferme'))
-
-        // Ouvrir ou fermer la liste
-        setListeOuverte(listeOuverte == 'ouvert' ? 'ferme' : 'ouvert');
     }
+
+    const gestionClicSuivant = () => {
+        setOuvertures(
+            boites.ouvrir(
+                boites.obtenirOuverte(ouvertures) + 1,
+                enseignants.map(() => 'ferme')
+            )
+        )
+    }
+
+    // Initialiser les états d'ouverture
+    useEffect(() => {
+        if (enseignants != null) {
+            setOuvertures(enseignants.map(() => 'ferme'))
+        }
+    }, [enseignants])
+
+    useEffect(() => {
+        if (ouvertures) {
+            // S'il y a une boite ouverte, on doit mettre l'état d'ouverture de la liste à fermé
+            ouvertures.includes('ouvert') ?
+
+            setListeOuverte('ferme') : setListeOuverte('ouvert');
+        }
+    }, [ouvertures])
 
     return(
         enseignants != null ?
-            <section className="ListeEnseignants">    
+            <section className="ListeEnseignants">
                 <h1 className={"titre " + listeOuverte}>nos enseignants.</h1>
-
                 <ul className={"liste " + listeOuverte}>
                     {
                         // Vérifier l'existence d'ouvertures
@@ -71,6 +85,7 @@ export default function ListeEnseignants() {
                                 )
                         : <Chargement />
                     }
+                    <Suivant gestionClic={gestionClicSuivant} />
                 </ul>
             </section>   
         : <Chargement />

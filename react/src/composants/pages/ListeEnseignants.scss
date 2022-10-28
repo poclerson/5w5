@@ -2,6 +2,7 @@
 
 .ListeEnseignants {
     $taille-gouttieres: 10%;
+    position: relative;
 
     overflow-y: scroll;
     box-sizing: border-box;
@@ -13,7 +14,6 @@
     @include ordinateur {
         display: flex;
         flex-direction: column;
-        // justify-content: ;
     }
 
     .liste {
@@ -42,6 +42,10 @@
         // Quand la liste est ouverte, on montre tout
         &.ouvert {
             visibility: visible;
+
+            .Suivant {
+                @include ordinateur {display: none}
+            }
         }
 
         // Quand elle est fermée (donc, qu'un enseignant a été ouvert)...
@@ -58,6 +62,10 @@
 
             @include ordinateur {
                 visibility: visible;
+                padding-left: $taille-gouttieres;
+                padding-right: $taille-gouttieres;
+                overflow-x: hidden;
+                gap: 5%;
             }
 
             // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
@@ -65,6 +73,16 @@
                 display: none;
 
                 @include ordinateur {display: flex;}
+            }
+        }
+
+        .Suivant {
+            display: none;
+            right: 2.5%;
+            bottom: 17.5%;
+    
+            @include ordinateur {
+                display: flex;
             }
         }
     }
