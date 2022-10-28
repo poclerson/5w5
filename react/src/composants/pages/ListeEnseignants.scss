@@ -13,7 +13,6 @@
     @include ordinateur {
         display: flex;
         flex-direction: column;
-        // justify-content: ;
     }
 
     .liste {
@@ -58,6 +57,9 @@
 
             @include ordinateur {
                 visibility: visible;
+                padding-left: $taille-gouttieres;
+                padding-right: $taille-gouttieres;
+                overflow-x: hidden;
             }
 
             // On cache tous les autres enseignants (qui sont donc fermés à ce moment)

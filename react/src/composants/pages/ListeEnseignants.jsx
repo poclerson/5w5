@@ -26,16 +26,22 @@ export default function ListeEnseignants() {
             setOuvertures(boites.ouvrir(index, enseignants.map(() => 'ferme')))
 
         // Sinon on ferme
-        else
+        else 
             setOuvertures(enseignants.map(() => 'ferme'))
-
-        // Ouvrir ou fermer la liste
-        setListeOuverte(listeOuverte == 'ouvert' ? 'ferme' : 'ouvert');
     }
+
+    useEffect(() => {
+        if (ouvertures) {
+            // S'il y a une boite ouverte, on doit mettre l'état d'ouverture de la liste à fermé
+            ouvertures.includes('ouvert') ?
+
+            setListeOuverte('ferme') : setListeOuverte('ouvert');
+        }
+    }, [ouvertures])
 
     return(
         enseignants != null ?
-            <section className="ListeEnseignants">    
+            <section className="ListeEnseignants">
                 <h1 className={"titre " + listeOuverte}>nos enseignants.</h1>
 
                 <ul className={"liste " + listeOuverte}>
