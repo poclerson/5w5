@@ -10,6 +10,7 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    overflow: hidden;
 
     .titre {
         display: block;
@@ -21,24 +22,20 @@
     .conteneur-domaine {
         // Positionnement dans .Enseignant
         position: absolute;
-        right: -31vh;
-        top: -1vh;
-        width: 31vh;
-        transform: rotate(90deg);
-        transform-origin: top left;
+        right: 0;
+        top: 0;
+        width: 20%;
+        height: 100%;
 
         background-color: map-get($couleurs, sombre);
 
-        display: flex;
-        align-items: flex-end;
-        min-height: 4vw;
-
         .domaine {
-            height: 100%;
+            position: relative;
+            top: 10%;
             margin-block-start: 0;
             margin-block-end: 0;
             z-index: 1;
-            padding-left: 20%;
+            transform: rotate(90deg);
         }
     }
 
@@ -52,8 +49,6 @@
     }
 
     .fond-photo {
-        // width: 20%;
-
         .photo {
             @include pleine-taille;
             margin: 0;
@@ -80,15 +75,13 @@
         domaine: color
     );
 
-
     @include couleurs-domaines($classes-couleur-domaine);
 
     @include ordinateur {
         flex-direction: row-reverse;
         gap: 10%;
-        .miniature {
-            @include carte-enseignant();
-        }
+
+        .miniature {@include carte-enseignant()}
     }
 
     // Lorsque fermé, on ne montre que la miniature en cachant le contenu
@@ -131,6 +124,7 @@
         visibility: visible;
         display: flex;
         justify-content: center;
+        position: relative;
 
         @include selection-texte {
             color: map-get($couleurs, clair);
@@ -144,7 +138,7 @@
             gap: 20px;
             height: 100%;
 
-            .Icone {align-self: flex-start}
+            .retour-liste {align-self: flex-start}
 
             // Photo de l'enseignant
             .conteneur-photo {
@@ -170,12 +164,14 @@
                     }
                 }
 
+                & > *:not(.fond-photo) {display: none}
+
                 @include ordinateur {
                     display: none;
 
-                    .fond-photo {
-                        background-color: transparent;
-                    }
+                    .fond-photo {background-color: transparent}
+
+                    & > *:not(.fond-photo) {display: block}
                 }
             }
 
@@ -214,7 +210,7 @@
                 grid-template-columns: 2fr 3.5fr;
                 grid-template-rows: 0 3fr 3fr 3fr;
 
-                .Icone {grid-area: icone}
+                .retour-liste {grid-area: icone}
 
                 .conteneur-photo {grid-area: photo}
 
@@ -231,7 +227,10 @@
                 width: 60%;
                 height: 100%;
 
-                .Icone {display: none}
+                .retour-liste {
+                    position: absolute;
+                    left: -10%;
+                }
             }
         }
 
@@ -242,17 +241,20 @@
             @include ordinateur {
                 display: flex;
                 width: 40%;
-                height: 100%;
             }
         }
 
         // Ajuster le conteneur de l'enseignant ouvert sur ordinateur
         @include ordinateur {
-            width: 60vw;
+            width: 80vw;
             height: 70vh;
             flex-shrink: 0;
 
             @include couleurs-domaines($classes-couleur-domaine-ferme);
+        }
+
+        @include ordinateur-large {
+            width: 60vw;
         }
     }
 }

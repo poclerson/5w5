@@ -28,7 +28,7 @@ export default function Enseignant({nom, description, photo, domaine, gestionCli
                 </span>
             </div>
             <div className={"contenu " + ouverture}>
-                <ArrowBackIosIcon className="Icone" onClick={gestionClic} />
+                <ArrowBackIosIcon className="Icone retour-liste" onClick={gestionClic} />
                 <div className={"conteneur-photo " + domaine}>
                     <h3 className="titre">{nom.toUpperCase()}</h3>
                     <div className="fond-photo">
