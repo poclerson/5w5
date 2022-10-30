@@ -1,0 +1,5 @@
+@import '../../sass/mixins.scss';
+
+.Projet {
+    @include gerer-ouverture(flex);
+}

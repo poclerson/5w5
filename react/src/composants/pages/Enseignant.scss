@@ -119,9 +119,10 @@
 
             .conteneur-domaine {display: none}
 
-            @include tablette {
+            @include ordinateur {
                 .titre {display: block}
 
+                .conteneur-domaine {display: block}
                 .photo {position: relative}
             }
 

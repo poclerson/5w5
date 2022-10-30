@@ -8,7 +8,7 @@ import Accueil from './composants/pages/Accueil';
 import ListeEnseignants from './composants/pages/ListeEnseignants';
 import ListeCours from './composants/pages/ListeCours';
 import Contact from './composants/pages/Contact';
-import Etudiants from './composants/pages/Etudiants';
+import ListeProjets from './composants/pages/ListeProjets';
 
 import {Route, Routes} from 'react-router-dom';
 import useObtenir from './hooks/useObtenir';
@@ -24,7 +24,7 @@ export default function App() {
             'accueil': Accueil,
             'enseignants': ListeEnseignants,
             'cours': ListeCours,
-            'etudiants': Etudiants,
+            'galerie-etudiante': ListeProjets,
             'contact': Contact
         };
 
