@@ -1,0 +1,98 @@
+@import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
+
+.ListeProjets {
+    height: unset;
+    overflow-y: scroll;
+    @include cacher-barre-defilement;
+
+    @include tablette {
+        overflow-y: visible;
+        overflow-x: scroll;
+    }
+
+    .titre {
+        @include tablette {grid-column: span 2}
+    }
+
+    .liste {
+        @include pleine-taille;
+        box-sizing: border-box;
+
+        &.ouvert {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 15vh;
+            grid-auto-flow: row dense; // Permettre aux éléments de prendre de la place quand il y en a
+            gap: 5% 10%;
+            padding-left: 10%;
+            padding-right: 10%;
+
+            @include tablette {
+                grid-auto-columns: 30vw;
+                grid-template-rows: repeat(2, 1fr);
+                grid-auto-flow: column dense;
+
+                grid-auto-rows: unset;
+                grid-template-columns: unset;
+                
+                gap: 10% 5%;
+                width: 100%;
+                height: 50vh;
+            }
+
+            @include ordinateur {
+                grid-auto-columns: 15vw;
+                height: 60vh;
+            }
+
+            li {
+                background-color: lightblue;
+                position: relative;
+                display: flex;
+                border-radius: 20px;
+                overflow: hidden;
+
+                &.photo-environnement {
+                    // Largeur de 1
+                    grid-column: span 1;
+                    
+                    // Les photos d'environnement ne prennent qu'une seule rangée de hauteur
+                    grid-row: span 1;
+                }
+
+                .miniature {
+                    @include pleine-taille;
+                    .image-presentation {
+                        @include pleine-taille;
+                    }
+                }
+            }
+        }
+
+        &.ferme {
+            display: block;
+            margin-top: map-get($hauteur-header, mobile);
+            height: calc(100vh - map-get($hauteur-header, mobile));
+
+            @include tablette {
+                margin-top: 0;
+                height: calc(100vh - map-get($hauteur-header, tablette));
+            }
+
+            @include ordinateur {
+                padding-left: 10%;
+                padding-right: 10%;
+                padding-bottom: 10%;
+                height: unset;
+            }
+
+            // Cacher les éléments fermés
+            & > *:not(.ouvert) {display: none;}
+        }
+    }
+
+    @include ordinateur {
+        padding-bottom: 10%;
+    }
+}

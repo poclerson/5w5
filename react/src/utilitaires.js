@@ -39,3 +39,9 @@ export function inserer(string, index, valeur) {
  * @param {int} max Valeur minimale
  */
 export const clamp = (chiffre, min, max) => Math.min(Math.max(chiffre, min), max);
+
+Array.prototype.shuffle = function() {
+    for (var i = 0; i < this.length; i++)
+        this.push(this.splice(Math.random() * (this.length - i), 1)[0]);
+    return this;
+}
