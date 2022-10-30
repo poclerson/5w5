@@ -41,6 +41,11 @@
                 height: 50vh;
             }
 
+            @include ordinateur {
+                grid-auto-columns: 15vw;
+                height: 60vh;
+            }
+
             li {
                 background-color: lightblue;
                 position: relative;
@@ -75,8 +80,19 @@
                 height: calc(100vh - map-get($hauteur-header, tablette));
             }
 
+            @include ordinateur {
+                padding-left: 10%;
+                padding-right: 10%;
+                padding-bottom: 10%;
+                height: unset;
+            }
+
             // Cacher les éléments fermés
             & > *:not(.ouvert) {display: none;}
         }
+    }
+
+    @include ordinateur {
+        padding-bottom: 10%;
     }
 }
