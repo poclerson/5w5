@@ -1,4 +1,5 @@
 @import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
 
 .Recherche {
     display: flex;
@@ -6,12 +7,25 @@
     margin-left: 2.5%;
     margin-right: 2.5%;
 
+    .zone-saisie {
+        * {
+            border: none;
+        }
+
+        border-bottom: 2px solid map-get($couleurs, clair);
+    }
+
+    .icone-recherche {
+        transform: scaleX(-1);
+    }
+
     @include tablette {
         &.ouvert {
             width: 100%;
         }
         .zone-saisie {
             @include gerer-ouverture(flex);
+            width: 100%;
         }
     }
 }

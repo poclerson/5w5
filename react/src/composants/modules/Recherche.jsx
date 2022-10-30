@@ -38,7 +38,6 @@ export default function Rechercher({gestionResultats, ouverture, gestionClic}) {
         <div className={"Recherche " + ouverture}>
             <SearchIcon className="Icone icone-recherche" onClick={gestionClic} />
             <TextField
-                placeholder="Recherche..."
                 onChange={gestionSaisie}
                 className={"zone-saisie " + ouverture}
             />
