@@ -69,10 +69,12 @@ export default function ListeProjets() {
     return(
         projets != null && photosEnvironnement != null ?
             <section className="ListeProjets">
-                <h1 className={"titre " + listeOuverte}>galerie étudiante</h1>
                 <ul className={"liste " + listeOuverte}>
                     {ouvertures != null ?
-                        rendreCases()
+                        <> 
+                            <h1 className={"titre " + listeOuverte}>galerie étudiante</h1>
+                            {rendreCases()}
+                        </>
                         : <Chargement />
                     }
                 </ul>

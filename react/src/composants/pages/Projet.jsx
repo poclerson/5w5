@@ -18,7 +18,7 @@ export default function Projet({
         gestionClicListe(index, ouverture)
     }
     return (
-        <li className={"Projet " + ouverture}>
+        <li className={"Projet case " + ouverture}>
             <div className="miniature" onClick={gestionClic}>
                 <div className="information">
                     <h3 className="titre">{nom}</h3>
