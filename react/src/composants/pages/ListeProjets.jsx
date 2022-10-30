@@ -42,6 +42,7 @@ export default function ListeProjets() {
 
     const rendreCases = () => {
         let index = 0;
+
         return [...projets, ...photosEnvironnement].shuffle().map((projet => {
             if (projet.acf.hasOwnProperty('nom')) {
                 let composant = <Projet 
@@ -56,7 +57,7 @@ export default function ListeProjets() {
             }
 
             else {
-                return <li className="case photo-environnement">
+                return <li key={projet.id} className="case photo-environnement">
                     <div className="miniature">
                         <img src={projet.acf.photo} alt="" className="image-presentation"/>
                     </div>
@@ -68,9 +69,8 @@ export default function ListeProjets() {
     return(
         projets != null && photosEnvironnement != null ?
             <section className="ListeProjets">
-                {console.log(photosEnvironnement)}
-                <h1 className="titre">galerie étudiante</h1>
-                <ul className="liste">
+                <h1 className={"titre " + listeOuverte}>galerie étudiante</h1>
+                <ul className={"liste " + listeOuverte}>
                     {ouvertures != null ?
                         rendreCases()
                         : <Chargement />

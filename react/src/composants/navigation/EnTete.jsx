@@ -30,7 +30,7 @@ export default function EnTete({enteteWP}) {
             <ul className={"resultats-recherche " + ouverture}>
                 {resultatsRecherche != null ?
                     resultatsRecherche.map(resultat => 
-                        <li className="resultat">
+                        <li className="resultat" key={resultat.id}>
                             <a href={resultat.permalink} className="lien">
                                 <p className="titre">{resultat.title}</p>
                             </a>

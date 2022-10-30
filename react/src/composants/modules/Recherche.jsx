@@ -16,7 +16,6 @@ export default function Rechercher({gestionResultats}) {
     useEffect(() => {
         async function obtenirArticles() {
             const reponse = await fetch(wp.traiterRequete('/search', 'bre', "&content=true&search=" + saisie));
-            console.log(wp.traiterRequete('/search', 'bre', "&content=true&search=" + saisie), saisie)
 
             if(!reponse.ok)
                 return;
