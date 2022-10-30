@@ -18,8 +18,8 @@ $polices: (
 
 $hauteur-header: (
     base: 50vh,
-    mobile: 65vh,
-    tablette: 10vh
+    mobile: 10vh,
+    tablette: 15vh
 );
 
 /*
@@ -29,7 +29,7 @@ $hauteur-header: (
 
 */
 $tailles-textes: (
-    /** Titre principal lorsqu’on rentre dans une page, le nom des projets et ‘inscription’ */
+    /** Titre principal lorsqu’on rentre dans une page, le nom des projets et ‘inscripxion’ */
     h1: (
         0px: (
             taille: 32px,
@@ -47,7 +47,7 @@ $tailles-textes: (
         ),
 
         1024px:(
-            taille: 85px,
+            taille: 40px,
             hauteur-ligne: 12px
         ),
 
@@ -133,12 +133,12 @@ $tailles-textes: (
         ),
 
         1024px:(
-            taille: 105xx,
+            taille: 105tx,
             hauteur-ligne: 12px
         ),
 
         1440px:(
-            taille: 110xx,
+            taille: 110tx,
             hauteur-ligne: 12px
         ),
     ),
@@ -223,7 +223,7 @@ $tailles-textes: (
     
             1440px:(
                 taille: 25px,
-                hauteur-ligne: 12px            
+                hauteur-ligne: 12px
             ),
         )
 );
@@ -384,6 +384,75 @@ $theme-liste-session: (
 
 // Chaque cours
 $theme-cours: (
+    titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 700,
+        style: normal
+    ),
+
+    texte: (
+        couleur: map-get($couleurs, clair),
+        poids: 300,
+        style: normal
+    ),
+
+    icone: (
+        couleur: map-get($couleurs, clair),
+    ),
+
+    lien: (
+        couleur: map-get($couleurs, clair),
+        poids: 300,
+        style: normal
+    ),
+
+    lien-hover: (
+        couleur: map-get($couleurs, clair),
+        poids: 300,
+        style: normal
+    ),
+
+    fond: (
+        couleur-primaire: map-get($couleurs, clair-transparent)
+    )
+);
+
+// Chaque enseignant
+$theme-enseignant: (
+    titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 700,
+        style: normal
+    ),
+
+    texte: (
+        couleur: map-get($couleurs, sombre),
+        poids: 300,
+        style: normal
+    ),
+
+    icone: (),
+
+    lien: (),
+
+    lien-hover: (),
+
+    fond: ()
+);
+
+$theme-PiedDePage: (
     titre: (
         couleur: map-get($couleurs, clair),
         poids: 900,

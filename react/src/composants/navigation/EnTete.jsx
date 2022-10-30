@@ -27,7 +27,7 @@ export default function EnTete({enteteWP}) {
                 <Navigation pages={enteteWP.headerMenuItems} gererClic={gererOuverture} />
                 <Recherche gestionResultats={gestionResultatsRecherche} />
             </div>
-            <ul className="resultats-recherche">
+            <ul className={"resultats-recherche " + ouverture}>
                 {resultatsRecherche != null ?
                     resultatsRecherche.map(resultat => 
                         <li className="resultat">
