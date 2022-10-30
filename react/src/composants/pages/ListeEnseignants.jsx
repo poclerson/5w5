@@ -13,14 +13,6 @@ export default function ListeEnseignants() {
     const [listeOuverte, setListeOuverte] = useState('ouvert');
     const [ouvertures, setOuvertures] = useState(null);
 
-    // Initialiser les états d'ouverture
-    useEffect(() => {
-        if (enseignants != null) {
-            setOuvertures(enseignants.map(() => 'ferme'))
-        }
-    }, [enseignants])
-    
-
     const gestionClicListe = (index, ouverture) => {
         // S'il était fermé, on ouvre
         if (ouverture == 'ferme')
@@ -30,6 +22,22 @@ export default function ListeEnseignants() {
         else 
             setOuvertures(enseignants.map(() => 'ferme'))
     }
+
+    const gestionClicSuivant = () => {
+        setOuvertures(
+            boites.ouvrir(
+                boites.obtenirOuverte(ouvertures) + 1,
+                enseignants.map(() => 'ferme')
+            )
+        )
+    }
+
+    // Initialiser les états d'ouverture
+    useEffect(() => {
+        if (enseignants != null) {
+            setOuvertures(enseignants.map(() => 'ferme'))
+        }
+    }, [enseignants])
 
     useEffect(() => {
         if (ouvertures) {
@@ -79,7 +87,7 @@ export default function ListeEnseignants() {
                         : <Chargement />
                     }
                 </ul>
-                <Suivant />
+                <Suivant gestionClic={gestionClicSuivant} />
             </section>   
         : <Chargement />
     );

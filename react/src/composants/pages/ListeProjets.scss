@@ -1,3 +1,39 @@
+@import '../../sass/mixins.scss';
+
 .ListeProjets {
-    
+    .liste {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-flow: row dense; // Permettre aux éléments de prendre de la place quand il y en a
+        gap: 5% 10%;
+
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        box-sizing: border-box;
+        padding-left: 10%;
+        padding-right: 10%;
+
+        li {
+            background-color: white;
+            position: relative;
+            display: flex;
+
+            // Tous les éléments prennent une colonne de largeur
+            grid-column: span 1;
+
+            &.photo-environnement {
+                height: 15vh;
+
+                // Les photos d'environnement ne prennent qu'une seule rangée de hauteur
+                grid-row: span 1;
+            }
+
+            .miniature {
+                .image-presentation {
+                    @include pleine-taille;
+                }
+            }
+        }
+    }
 }

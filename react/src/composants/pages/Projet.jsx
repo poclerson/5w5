@@ -1,12 +1,25 @@
 import './Projet.scss';
 
-export default function Projet({nom, createurs, description, image_presentation, image_0, image_1, lien}) {
+export default function Projet({
+    nom,
+    createurs,
+    description,
+    image_presentation,
+    image_0,
+    image_1,
+    lien,
+    index,
+    ouverture,
+    gestionClicListe
+}) {
     return (
-        <li className="Projet">
+        <li className={"Projet " + ouverture}>
             <div className="miniature">
-                <h3 className="titre">{nom}</h3>
-                <h4 className="sous-titre">{createurs}</h4>
-                <button className="details">Voir en détails</button>
+                <div className="information">
+                    <h3 className="titre">{nom}</h3>
+                    <h4 className="sous-titre">{createurs}</h4>
+                    <button className="details">Voir en détails</button>
+                </div>
                 <img 
                     className="image-presentation" 
                     src={image_presentation} 

@@ -1,5 +1,32 @@
 @import '../../sass/mixins.scss';
 
 .Projet {
-    @include gerer-ouverture(flex);
+    //  Les projets prennent deux rangées de hauteur
+    grid-row: span 2;
+
+    &.ferme {
+        .miniature {
+            height: 30vh;
+            .information {
+                position: absolute;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .contenu {
+            display: none;
+        }
+    }
+
+    &.ouvert {
+        .miniature {
+            display: none;
+        }
+
+        .contenu {
+            display: flex;
+        }
+    }
 }
