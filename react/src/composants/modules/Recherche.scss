@@ -1,11 +1,17 @@
 @import '../../sass/mixins.scss';
-@import '../../sass/variables.scss';
 
 .Recherche {
-    @include themer($theme-menu-mobile);
-    .zone-saisie {
-        input {
-            color: white;
+    display: flex;
+    align-items: center;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+
+    @include tablette {
+        &.ouvert {
+            width: 100%;
+        }
+        .zone-saisie {
+            @include gerer-ouverture(flex);
         }
     }
 }
