@@ -6,6 +6,7 @@ export default function Enseignant({nom, description, photo, domaine, gestionCli
 
     const gestionClic = () => {
         gestionClicListe(index, ouverture);
+        console.log("allo")
     }
 
     return(

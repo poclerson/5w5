@@ -12,12 +12,12 @@
     justify-content: space-between;
     @include pleine-taille;
 
-    &.ouvert {
-        height: 100%;
-    }
-
     &.ferme {
         height: unset;
+
+        .resultats-recherche {
+            padding: 0;
+        }
     }
 
     @include tablette {justify-content: unset;}
