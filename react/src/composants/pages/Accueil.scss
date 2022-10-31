@@ -1,6 +1,30 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/variables.scss';
+@import '../../sass/animations.scss';
 
 .Accueil {
+    position: relative;
+    display: flex;
+    .marquee-container {
+        position: absolute;
+        transform:  rotate(-90deg);
+        bottom:35%;
+        width: 100vh;
+        height: 100vw;
+        overflow-x: visible !important;
 
+        .marquee {
+            &:nth-child(1) {
+                * {color: red;}
+            }
+
+            &:nth-child(2) {
+                * {color: blue;}
+            }
+
+            .titre {
+                font-size: 1000%;
+            }
+        }
+    }
 }
