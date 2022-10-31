@@ -45,3 +45,13 @@
         opacity: 0;
     }
 }
+
+@keyframes marquee {
+    0% {
+        left: 100%;
+    }
+
+    // 50% {left: -100%}
+
+    100% {left: -100%}
+}

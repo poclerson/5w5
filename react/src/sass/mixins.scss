@@ -59,7 +59,7 @@
         color: map-deep-get($theme, "icone", "couleur");
     }
 
-    p {
+    p, input {
         @include texte-general($theme, "texte");
     }
 
@@ -192,7 +192,7 @@
 
 // Crée un flou gaussien pour flouter le fond
 @mixin fond-flou() {
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(10px);
 }
 
 @mixin rond($taille) {
