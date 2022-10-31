@@ -1,6 +1,7 @@
 import './Contact.scss';
 import useObtenir from '../../hooks/useObtenir';
 import Chargement from '../modules/Chargement';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export default function Contact() {
     const degrades = useObtenir('/degrades', 'bre');
@@ -8,8 +9,8 @@ export default function Contact() {
 
     return (
         degrades != null ?
-        <section className="Contact">
-            <img className="degradeContact" src={degrades[0].acf.degrade} />
+        <section className="Contact" style={{backgroundImage:`url(${degrades[2].acf.degrade})`}}>
+            
             <h1 className="titre">À propos <br/> de nous</h1>
             <div></div>
             <div>
@@ -25,7 +26,10 @@ export default function Contact() {
                     Tu réaliseras des projets d’envergure diversifiés, amusants et stimulants qui te permettront d’explorer les multiples facettes de l’intégration multimédia.
                     Sites Web, jeux interactifs, applications mobiles, animations 2D/3D, créations audio et vidéo.
                     Un stage crédité de 8 semaines en entreprise.</p>
-                    <h1>Inscription➔</h1>
+                    <div className='Inscription'>
+                        <h1>Inscription</h1>
+                        <ArrowForwardIosIcon className='Icone'/>
+                    </div>
             </div>
 
         </section>
