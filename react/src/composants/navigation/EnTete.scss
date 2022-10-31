@@ -12,9 +12,15 @@
     justify-content: space-between;
     @include pleine-taille;
 
-    @include tablette {
-        justify-content: unset;
+    &.ouvert {
+        height: 100%;
     }
+
+    &.ferme {
+        height: unset;
+    }
+
+    @include tablette {justify-content: unset;}
 
     .contenu {
         @include themer($theme-menu-mobile);
@@ -29,13 +35,9 @@
 
         border-radius: 0 70px 70px 0;
 
-        @include tablette {
-            flex-direction: row;
-        }
+        @include tablette {flex-direction: row;}
 
-        .SiteLogo {
-            display: none;
-        }
+        .SiteLogo {display: none;}
     }
 
     .resultats-recherche {
@@ -61,13 +63,9 @@
 
             border-bottom: 2px solid map-get($couleurs, clair);
 
-            &.ferme {
-                display: flex;
-            }
+            &.ferme {display: flex;}
 
-            .SiteLogo {
-                display: block;
-            }
+            .SiteLogo {display: block;}
         }
     }
 }
