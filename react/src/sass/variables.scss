@@ -292,27 +292,31 @@ $theme-base: (
 // Entête et autres menus flottants
 $theme-menu-mobile: (
     titre: (
-        couleur: map-get($couleurs, sombre),
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),
 
     sous-titre: (),
 
-    texte: (),
+    texte: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
 
     icone: (
         couleur: map-get($couleurs, clair),
     ),
 
     lien: (
-        couleur: map-get($couleurs, sombre),
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),
 
     lien-hover: (
-        couleur: map-get($couleurs, sombre),
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),

@@ -8,7 +8,6 @@ import Chargement from '../modules/Chargement';
 import ListeSessions from './ListeSessions';
 
 export default function ListeCours() {
-    const enseignants = useObtenir('/enseignants');
     const cours = useObtenir('/cours');
     const degrades = useObtenir('/degrades', 'bre');
 
@@ -26,9 +25,10 @@ export default function ListeCours() {
     return(
         cours != null ?
         <section className="ListeCours" ref={listeCoursRef}>
+            {console.log(cours)}
             {
-                enseignants && sessions && degrades != null ? 
-                <ListeSessions sessions={sessions} cours={cours} enseignants={enseignants} degrades={degrades} pageRef={listeCoursRef} />
+                sessions && degrades != null ? 
+                <ListeSessions sessions={sessions} cours={cours} degrades={degrades} pageRef={listeCoursRef} />
                 : <Chargement />
             }
         </section>

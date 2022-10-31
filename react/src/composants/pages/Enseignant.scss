@@ -1,9 +1,11 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/variables.scss';
+@import '../../sass/animations.scss';
 
 @mixin carte-enseignant() {
     @include carte;
     @include pleine-taille;
+    aspect-ratio: 1 / 1.75;
     padding: 0;
 
     display: flex;
@@ -40,7 +42,7 @@
     }
 
     .photo {
-        width: 90%;
+        object-fit: cover;
         height: 70%;
         position: absolute;
         bottom: 0;
@@ -97,9 +99,13 @@
 
     @include ordinateur {
         flex-direction: row-reverse;
+        align-items: center;
+        justify-content: center;
         gap: 10%;
 
-        .miniature {@include carte-enseignant()}
+        .miniature {
+            @include carte-enseignant();
+        }
     }
 
     // Lorsque fermé, on ne montre que la miniature en cachant le contenu
@@ -117,24 +123,27 @@
                 top: 10%;
             }
 
+            .photo {object-fit: cover;}
+
             .conteneur-domaine {display: none}
 
-            @include tablette {
+            @include ordinateur {
                 .titre {display: block}
 
+                .conteneur-domaine {display: block}
                 .photo {position: relative}
             }
 
-            @include ordinateur {@include carte-enseignant}
+            @include ordinateur {
+                @include carte-enseignant;
+                height: 60%;
+                width: auto;
+            }
         }
 
         .contenu {display: none;}
 
-        @include ordinateur {
-            width: 20%;
-            height: 40vh;
-            flex-shrink: 1;
-        }
+        @include ordinateur {aspect-ratio: 1 / 1.75;}
     }
 
     &.ouvert {
@@ -155,6 +164,7 @@
             align-items: center;
             gap: 20px;
             height: 100%;
+            overflow: hidden;
 
             .retour-liste {align-self: flex-start}
 
@@ -254,7 +264,7 @@
             // Ajuster le texte de l'enseignant ouvert
             @include ordinateur {
                 display: flex;
-                width: 60%;
+                flex: 0 2 60%;
                 height: 100%;
 
                 .retour-liste {
@@ -270,7 +280,7 @@
             // Ajuste la miniature de l'enseignant ouvert (sur ordinateur, un enseignant ouvert affiche sa miniature et son contenu)
             @include ordinateur {
                 display: flex;
-                width: 40%;
+                flex: 2 0 40%;
             }
         }
 

@@ -2,21 +2,12 @@ import './Enseignant.scss';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-import useMediaQuery from '../../hooks/useMediaQuery';
-import medias from '../../medias';
-import {useState, useEffect} from 'react';
-
 export default function Enseignant({nom, description, photo, domaine, gestionClicListe, index, ouverture}) {
 
     const gestionClic = () => {
         gestionClicListe(index, ouverture);
+        console.log("allo")
     }
-
-    const tablette = useMediaQuery(medias.tablette);
-
-    useEffect(() => {
-
-    }, [tablette])
 
     return(
         <li className={`Enseignant ${ouverture} ${domaine}`}>

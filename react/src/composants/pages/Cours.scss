@@ -11,6 +11,8 @@
 
     scroll-snap-align: start;
 
+    position: relative;
+
     @include tablette {
         width: 25vw;
         min-width: 25vw;
@@ -32,6 +34,19 @@
     @include ordinateur {
         min-width: 15vw;
         width: 15vw;
+    }
+
+    .domaines {
+        position: absolute;
+        top: -10px;
+        right: -60px;
+
+        .domaine {
+            .Icone {
+                transform: scale(2.5);
+                color: map-get($couleurs, clair);
+            }
+        }
     }
 
     .carte {

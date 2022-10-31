@@ -9,7 +9,8 @@ import Recherche from '../modules/Recherche';
 import Chargement from '../modules/Chargement';
 
 export default function EnTete({enteteWP}) {
-    const [ouverture, setOuverture] = useState("ferme");
+    const [ouverture, setOuverture] = useState('ferme');
+    const [ouvertureRecherche, setOuvertureRecherche] = useState('ferme');
 
     const [resultatsRecherche, setResultatsRecherche] = useState(null);
 
@@ -19,25 +20,35 @@ export default function EnTete({enteteWP}) {
 
     const gererOuverture = () => setOuverture(ouverture == "ferme" ? "ouvert" : "ferme");
 
+    const gestionClicLoupe = () => {
+        ouvertureRecherche == 'ouvert' ? setOuvertureRecherche('ferme') : setOuvertureRecherche('ouvert')
+    }
+
     return (
-        <header className="EnTete">
+        <header className={"EnTete " + ouvertureRecherche}>
             <BoutonBurger gererClic={gererOuverture} />
             <div className={"contenu " + ouverture}>
                 <SiteLogo url={enteteWP.siteLogoUrl} taille={"p"} />
-                <Navigation pages={enteteWP.headerMenuItems} gererClic={gererOuverture} />
-                <Recherche gestionResultats={gestionResultatsRecherche} />
+                <Navigation 
+                    pages={enteteWP.headerMenuItems} 
+                    gererClic={gererOuverture} 
+                    ouverture={ouvertureRecherche == 'ouvert' ? 'ferme' : 'ouvert'} 
+                />
+                <Recherche 
+                    gestionResultats={gestionResultatsRecherche} 
+                    ouverture={ouvertureRecherche} 
+                    gestionClic={gestionClicLoupe} 
+                />
             </div>
-            <ul className={"resultats-recherche " + ouverture}>
+            <ul className="resultats-recherche">
                 {resultatsRecherche != null ?
                     resultatsRecherche.map(resultat => 
-                        <li className="resultat">
+                        <li className="resultat" key={resultat.id}>
                             <a href={resultat.permalink} className="lien">
-                                <p className="titre">{resultat.title}</p>
+                                <h6 className="titre">{resultat.title}</h6>
                             </a>
                         </li>
-                    ) 
-                    :
-                    <Chargement />
+                    ) : <Chargement />
                 }
             </ul>
         </header>

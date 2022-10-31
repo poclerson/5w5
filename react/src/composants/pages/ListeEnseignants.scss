@@ -3,23 +3,25 @@
 .ListeEnseignants {
     $taille-gouttieres: 10%;
     position: relative;
-
-    overflow-y: scroll;
     box-sizing: border-box;
 
     .titre {
         @include gerer-ouverture(block);
+        padding-left: $taille-gouttieres;
     }
 
     @include ordinateur {
         display: flex;
         flex-direction: column;
+        overflow-y: scroll;
     }
 
     .liste {
         padding-left: $taille-gouttieres;
         padding-right: $taille-gouttieres;
         display: grid;
+
+        @include cacher-barre-defilement;
 
         // Deux colonnes
         grid-template-columns: repeat(2, 1fr);
@@ -43,8 +45,14 @@
         &.ouvert {
             visibility: visible;
 
-            .Suivant {
-                @include ordinateur {display: none}
+            & ~ .Suivant {
+                display: none;
+            }
+
+            .Enseignant.ferme {
+                .miniature {
+                    height: 100%;
+                }
             }
         }
 
@@ -75,15 +83,15 @@
                 @include ordinateur {display: flex;}
             }
         }
+    }
 
-        .Suivant {
-            display: none;
-            right: 2.5%;
-            bottom: 17.5%;
-    
-            @include ordinateur {
-                display: flex;
-            }
+    .Suivant {
+        display: none;
+        right: 2.5%;
+        bottom: 17.5%;
+
+        @include ordinateur {
+            display: flex;
         }
     }
 }
