@@ -19,7 +19,7 @@
     }
 
     @include tablette {
-        width: 100%;
+        flex: 1 0 50%;
         flex-direction: row;
         justify-content: space-around;
 
