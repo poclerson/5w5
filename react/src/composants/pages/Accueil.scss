@@ -21,8 +21,11 @@
                 font-size: 1000%;
                 @include desactiver-margin-block;
 
-                @include tablette {font-size: 3000%;}
+                @include tablette {font-size: 2000%;}
+                @include ordinateur {font-size: 4000%;}
             }
+
+            @include tablette {align-items: flex-end;}
         }
 
         @include tablette {
