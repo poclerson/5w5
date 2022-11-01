@@ -30,7 +30,7 @@ export default function Contact({titre}) {
                     Sites Web, jeux interactifs, applications mobiles, animations 2D/3D, créations audio et vidéo.
                     Un stage crédité de 8 semaines en entreprise.</p>
                     <div className='Inscription'>
-                        <h1>Inscription</h1>
+                        <h2>Inscription</h2>
                         <ArrowForwardIosIcon className='Icone'/>
                     </div>
             </div>
