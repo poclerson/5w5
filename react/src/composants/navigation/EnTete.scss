@@ -13,14 +13,17 @@
     @include pleine-taille;
 
     &.ferme {
+        // Empêcher de prendre tout la place quand fermé
         height: unset;
 
-        .resultats-recherche {
-            padding: 0;
-        }
+        .resultats-recherche {padding: 0;}
     }
 
     @include tablette {justify-content: unset;}
+
+    .BoutonBurger {
+        @include tablette {display: none;}
+    }
 
     .contenu {
         @include themer($theme-menu-mobile);
@@ -35,25 +38,8 @@
 
         border-radius: 0 70px 70px 0;
 
-        @include tablette {flex-direction: row;}
-
-        .SiteLogo {display: none;}
-    }
-
-    .resultats-recherche {
-        @include themer($theme-base);
-        @include gerer-ouverture(flex);
-
-        padding: 5%;
-        flex-direction: column;
-        gap: 10%;
-        overflow-y: scroll;
-    }
-
-    @include tablette {
-        .BoutonBurger {display: none}
-
-        .contenu {
+        @include tablette {
+            flex-direction: row;
             @include themer($theme-menu-tablette);
             width: 100vw;
             border-radius: 0;
@@ -64,8 +50,22 @@
             border-bottom: 2px solid map-get($couleurs, clair);
 
             &.ferme {display: flex;}
-
-            .SiteLogo {display: block;}
         }
+
+        .SiteLogo {
+            display: none;
+
+            @include tablette {display: block;}
+        }
+    }
+
+    .resultats-recherche {
+        @include themer($theme-base);
+        @include gerer-ouverture(flex);
+
+        padding: 5%;
+        flex-direction: column;
+        gap: 10%;
+        overflow-y: scroll; // Permettre le défilement des résultats s'il y en a trop
     }
 }

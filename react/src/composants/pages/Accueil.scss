@@ -5,26 +5,31 @@
 .Accueil {
     position: relative;
     display: flex;
+
     .marquee-container {
         position: absolute;
         transform:  rotate(-90deg);
-        bottom:35%;
-        width: 100vh;
-        height: 100vw;
-        overflow-x: visible !important;
+
+        // bottom right permet de mieux positionner relativement au côté droit de l'écran
+        transform-origin: bottom right;
+        right: 0;
+        bottom: 30vh;
+        overflow-x: visible !important; // Override
 
         .marquee {
-            &:nth-child(1) {
-                * {color: red;}
-            }
-
-            &:nth-child(2) {
-                * {color: blue;}
-            }
-
             .titre {
                 font-size: 1000%;
+                @include desactiver-margin-block;
+
+                @include tablette {font-size: 3000%;}
             }
         }
+
+        @include tablette {
+            position: static;
+            transform: unset;
+        }
     }
+
+    @include tablette {justify-content: flex-end;}
 }
