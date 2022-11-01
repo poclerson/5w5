@@ -3,15 +3,18 @@ import useObtenir from '../../hooks/useObtenir';
 import Chargement from '../modules/Chargement';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-export default function Contact() {
+export default function Contact({titre}) {
     const degrades = useObtenir('/degrades', 'bre');
     
-
     return (
         degrades != null ?
         <section className="Contact" style={{backgroundImage:`url(${degrades[2].acf.degrade})`}}>
             
-            <h1 className="titre">À propos <br/> de nous</h1>
+            <h1 className="titre">
+                {titre.tronquerMots(2)}
+                <br/>
+                {titre.tronquerMots(2, true)}
+            </h1>
             <div></div>
             <div>
                 <h3>Description</h3>
