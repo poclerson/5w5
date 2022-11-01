@@ -1,4 +1,62 @@
 @import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
+@import '../../sass/animations.scss';
+
+@mixin carte-enseignant() {
+    @include carte;
+    @include pleine-taille;
+    aspect-ratio: 1 / 1.75;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+
+    .titre {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        max-width: 60%;
+    }
+
+    .conteneur-domaine {
+        // Positionnement dans .Enseignant
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 20%;
+        height: 100%;
+
+        background-color: map-get($couleurs, sombre);
+
+        .domaine {
+            position: relative;
+            top: 10%;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            z-index: 1;
+            transform: rotate(90deg);
+        }
+    }
+
+    .photo {
+        object-fit: cover;
+        height: 70%;
+        position: absolute;
+        bottom: 0;
+        left: 5%;
+        z-index: 2;
+    }
+
+    .fond-photo {
+        .photo {
+            @include pleine-taille;
+            margin: 0;
+        }
+    }
+}
 
 /*
     Les enseignants ont deux états, ouvert et fermé
@@ -8,80 +66,233 @@
 */
 
 .Enseignant {
+    @include themer($theme-enseignant);
+
     $classes-couleur-domaine: (
-        conteneur-photo: background-color
+        conteneur-photo: background-color,
+        miniature: background-color,
+        texte: background-color
+    );
+
+    $classes-couleur-domaine-ferme: (
+        domaine: color
+    );
+
+    $classes-couleur-domaine-contraste-texte: (
+        titre-etiquette: color,
+        titre: color,
+        domaine-etiquette: color,
+        domaine: color,
+        description-etiquette: color,
+        description: color
+    );
+
+    $couleurs-domaines-modifiees: (
+        modelisation3d: map-get($couleurs, sombre)
     );
 
     @include couleurs-domaines($classes-couleur-domaine);
-    // Lorsque fermé, on ne montre que la miniature en cachant le contenu
-    &.ferme {
-        flex-basis: 22.5%;
-        margin-bottom: 2.5%;
+    @include couleurs-domaines(
+        $classes-couleur-domaine-contraste-texte,
+        $couleurs-domaines-modifiees
+    );
+
+    @include ordinateur {
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: center;
+        gap: 10%;
 
         .miniature {
-            @include bulle;
-            background-color: white;
-    
-            .titre, .domaine {
-                display: none;
-            }
-
-            @include tablette {
-                .titre {display: block}
-            }
-
-            @include ordinateur {
-                .domaine {display: block}
-            }
-        }
-
-        .contenu {
-            display: none;
+            @include carte-enseignant();
         }
     }
 
-    // Si l'enseignant est ouvert, il doit être visible en tout temps
+    // Lorsque fermé, on ne montre que la miniature en cachant le contenu
+    &.ferme {
+        @include couleurs-domaines($classes-couleur-domaine-ferme);
+
+        .miniature {
+            overflow: hidden;
+            @include bulle;
+    
+            .titre {
+                display: none;
+                position: absolute;
+                left: 5%;
+                top: 10%;
+            }
+
+            .photo {object-fit: cover;}
+
+            .conteneur-domaine {display: none}
+
+            @include ordinateur {
+                .titre {display: block}
+
+                .conteneur-domaine {display: block}
+                .photo {position: relative}
+            }
+
+            @include ordinateur {
+                @include carte-enseignant;
+                height: 60%;
+                width: auto;
+            }
+        }
+
+        .contenu {display: none;}
+
+        @include ordinateur {aspect-ratio: 1 / 1.75;}
+    }
+
     &.ouvert {
         @include pleine-taille;
         visibility: visible;
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        @include selection-texte {
+            color: map-get($couleurs, clair);
+        }
 
         // Lorsque ouvert, on montre le contenu en cachant la miniature
         .contenu {
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 20px;
+            height: 100%;
+            overflow: hidden;
 
-            .Icone {
-                align-self: flex-start;
-            }
+            .retour-liste {align-self: flex-start}
 
+            // Photo de l'enseignant
             .conteneur-photo {
                 @include bulle;
-
-                width: 60%;
-                padding: 7.5%;
+                padding: 30px;
 
                 .fond-photo {
-                    background-color: white;
+                    background-color: map-get($couleurs, clair);
                     border-radius: 50%;
                     @include pleine-taille;
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-end;
-                    overflow-x: clip;
+                    overflow-x: clip; // fonctionne sur Firefox seulement
 
+                    // Image
                     .photo {
                         margin-top: -90%;
                         margin-left: -17.5%;
                         width: 132.5%;
                         height: 132.5%;
+                        z-index: 3;
                     }
+                }
+
+                & > *:not(.fond-photo) {display: none}
+
+                @include ordinateur {
+                    display: none;
+
+                    .fond-photo {background-color: transparent}
+
+                    & > *:not(.fond-photo) {display: block}
+                }
+            }
+
+            // Section de texte avec l'image de l'enseignant
+            .texte {
+                @include pleine-taille;
+                box-sizing: border-box;
+                padding: 7.5%;
+                border-radius: 30px 30px 0 0;
+
+                display: flex;
+                flex-direction: column;
+
+                .conteneur-description {
+                    height: 100%;
+                    padding: 10%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: map-get($couleurs, clair);
+                    border-radius: 30px;
+
+                    .description {color: map-get($couleurs, sombre)}
+
+                    @include tablette {
+                        background-color: transparent;
+
+                        .description {color: map-get($couleurs, clair);}
+                    }
+                }
+                
+                // Annuler le style donné par @couleurs-domaines à partir de tablettes
+                @include tablette {
+                    & > * {color: map-get($couleurs, clair)}
+                }
+            }
+
+            @include tablette {
+                width: 80%;
+                height: 80%;
+                display: grid;
+                grid-template-areas: 
+                    "icone ."
+                    "photo texte"
+                    ". texte"
+                    ". texte"
+                ;
+                grid-template-columns: 2fr 3.5fr;
+                grid-template-rows: 0 3fr 3fr 3fr;
+
+                .retour-liste {grid-area: icone}
+
+                .conteneur-photo {grid-area: photo}
+
+                .texte {
+                    grid-area: texte;
+                    border-radius: 0;
+                    @include bordures-coins-diagonales(60px, map-get($couleurs, clair));
+                }
+            }
+
+            // Ajuster le texte de l'enseignant ouvert
+            @include ordinateur {
+                display: flex;
+                flex: 0 2 60%;
+                height: 100%;
+
+                .retour-liste {
+                    position: absolute;
+                    left: -10%;
                 }
             }
         }
 
         .miniature {
             display: none;
+
+            // Ajuste la miniature de l'enseignant ouvert (sur ordinateur, un enseignant ouvert affiche sa miniature et son contenu)
+            @include ordinateur {
+                display: flex;
+                flex: 2 0 40%;
+            }
         }
+
+        // Ajuster le conteneur de l'enseignant ouvert sur ordinateur
+        @include ordinateur {
+            width: 80vw;
+            height: 70vh;
+            flex-shrink: 0;
+
+            @include couleurs-domaines($classes-couleur-domaine-ferme);
+        }
+
+        @include ordinateur-large {width: 60vw}
     }
 }

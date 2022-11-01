@@ -18,8 +18,8 @@ $polices: (
 
 $hauteur-header: (
     base: 50vh,
-    mobile: 65vh,
-    tablette: 10vh
+    mobile: 10vh,
+    tablette: 15vh
 );
 
 /*
@@ -47,7 +47,7 @@ $tailles-textes: (
         ),
 
         1024px:(
-            taille: 85px,
+            taille: 40px,
             hauteur-ligne: 12px
         ),
 
@@ -87,7 +87,7 @@ $tailles-textes: (
     ),
 
     
-
+/** Nom des cours, nom des étudiants et ‘description’ */
     h3: (
         0px:(
             taille: 24px,
@@ -292,27 +292,31 @@ $theme-base: (
 // Entête et autres menus flottants
 $theme-menu-mobile: (
     titre: (
-        couleur: map-get($couleurs, sombre),
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),
 
     sous-titre: (),
 
-    texte: (),
+    texte: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
 
     icone: (
         couleur: map-get($couleurs, clair),
     ),
 
     lien: (
-        couleur: map-get($couleurs, sombre),
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),
 
     lien-hover: (
-        couleur: map-get($couleurs, sombre),
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),
@@ -421,6 +425,35 @@ $theme-cours: (
     fond: (
         couleur-primaire: map-get($couleurs, clair-transparent)
     )
+);
+
+// Chaque enseignant
+$theme-enseignant: (
+    titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 700,
+        style: normal
+    ),
+
+    texte: (
+        couleur: map-get($couleurs, sombre),
+        poids: 300,
+        style: normal
+    ),
+
+    icone: (),
+
+    lien: (),
+
+    lien-hover: (),
+
+    fond: ()
 );
 
 $theme-PiedDePage: (

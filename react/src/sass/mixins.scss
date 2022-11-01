@@ -59,7 +59,7 @@
         color: map-deep-get($theme, "icone", "couleur");
     }
 
-    p {
+    p, input {
         @include texte-general($theme, "texte");
     }
 
@@ -113,13 +113,27 @@
     de l'élément principal à des propriétés CSS (color, background-color, etc)
 
     Si on passe une clé se nommant 'soi' dans $classes-proprietes-map, la propriété sera appliquée à l'élément lui-même
+
+
+    Si $nouvelles-couleurs-selon-domaines est attribuée, à la place d'utiliser les couleurs de domaines normales
+    on utilise ses couleurs qu'on réattribue par rapport à chaque domaine
 */
-@mixin couleurs-domaines($classes-proprietes-map) {
+@mixin couleurs-domaines($classes-proprietes-map, $nouvelles-couleurs-selon-domaines: ()) {
+    $map-couleurs-domaines: null;
+
     // Itérer chaque classe enfant/propriété dans la map reçue
     @each $classe, $propriete in $classes-proprietes-map {
 
+        @if length($nouvelles-couleurs-selon-domaines) > 0 {
+            $map-couleurs-domaines: $nouvelles-couleurs-selon-domaines;
+        }
+
+        @else {
+            $map-couleurs-domaines: map-get($couleurs, domaines);
+        }
+
         // Itérer chaque couleur disponible dans les domaines
-        @each $domaine, $couleur in map-get($couleurs, domaines) {
+        @each $domaine, $couleur in $map-couleurs-domaines {
             @if ($classe == 'soi') {
                 &.#{$domaine} {
                     #{$propriete}: $couleur;
@@ -141,6 +155,7 @@
         }
     }
 }
+
 
 
 
@@ -177,7 +192,7 @@
 
 // Crée un flou gaussien pour flouter le fond
 @mixin fond-flou() {
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(10px);
 }
 
 @mixin rond($taille) {
@@ -185,6 +200,12 @@
     border-radius: 50%;
     width: $taille;
     height: $taille;
+}
+
+@mixin etiquette() {
+    background: rgba(0, 0, 0, 0.377);
+    border-radius: 20px;
+    padding: 5%;
 }
 
 
@@ -221,6 +242,19 @@
     padding-right: $padding-h;
 }
 
+@mixin bordures-coins-diagonales($taille, $couleur) {
+    background:
+        // Gauche
+        linear-gradient($couleur $taille, transparent 0 calc(100% - $taille)) 0 0 / 4px 100%,
+        // Droite
+        linear-gradient(transparent 0 calc(100% - $taille), $couleur 0) 100% 0 / 4px 100%,
+        // Haut
+        linear-gradient(to right, $couleur $taille, transparent 0 calc(100% - $taille)) 0 0 / 100% 4px,
+        // Bas
+        linear-gradient(to right, transparent 0 calc(100% - $taille), $couleur 0) 0 100% / 100% 4px
+    ;
+    background-repeat: no-repeat;
+}
 
 
 // ===== MIXINS DE REQUÊTES MÉDIAS =====
@@ -247,6 +281,17 @@
 
 @mixin ordinateur-large {
     @media screen and (min-width: map-get($largeurs-ecran, ordinateur-large)) {
+        @content;
+    }
+}
+
+
+// ===== MIXINS DE SÉLECTION =====
+
+
+
+@mixin selection-texte() {
+    h1, h2, h3, h4, h5, h6, p, a {
         @content;
     }
 }

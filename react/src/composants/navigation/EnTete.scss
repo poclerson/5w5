@@ -2,54 +2,70 @@
 @import '../../sass/variables.scss';
 
 .EnTete {
-    @include fond-flou;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 10;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include pleine-taille;
+
+    &.ferme {
+        height: unset;
+
+        .resultats-recherche {
+            padding: 0;
+        }
+    }
+
+    @include tablette {justify-content: unset;}
+
     .contenu {
         @include themer($theme-menu-mobile);
+        @include fond-flou;
 
         @include gerer-ouverture(flex);
+        flex-direction: column;
 
-        width: 90vw;
-        height: map-get($hauteur-header, mobile);
+        width: 95vw;
         box-sizing: border-box;
         padding: 10vw;
 
         border-radius: 0 70px 70px 0;
 
-        .SiteLogo {
-            display: none;
-        }
+        @include tablette {flex-direction: row;}
+
+        .SiteLogo {display: none;}
     }
 
     .resultats-recherche {
-        @include themer($theme-menu-mobile);
+        @include themer($theme-base);
+        @include gerer-ouverture(flex);
+
+        padding: 5%;
+        flex-direction: column;
+        gap: 10%;
+        overflow-y: scroll;
     }
 
     @include tablette {
-        .BoutonBurger {
-            display: none;
-        }
+        .BoutonBurger {display: none}
 
         .contenu {
             @include themer($theme-menu-tablette);
             width: 100vw;
-            height: map-get($hauteur-header, tablette);
             border-radius: 0;
             padding: 0;
             justify-content: space-between;
             align-items: center;
 
-            &.ferme {
-                display: flex;
-            }
+            border-bottom: 2px solid map-get($couleurs, clair);
 
-            .SiteLogo {
-                display: block;
-            }
+            &.ferme {display: flex;}
+
+            .SiteLogo {display: block;}
         }
     }
 }
