@@ -3,6 +3,7 @@
 @import '../../sass/fonctions.scss';
 
 .Cours {
+    // Un cours prend presque tout l'écran sur mobile
     width: 70vw;
     min-width: 70vw;
     height: 40vh;
@@ -14,6 +15,7 @@
     position: relative;
 
     @include tablette {
+        // Afficher deux cours à la fois sur tablette
         width: 25vw;
         min-width: 25vw;
         height: 35vh;
@@ -21,21 +23,18 @@
 
         transition: transform .15s ease-in-out;
 
-        &.ouvert {
-            transform: scale(1.25);
-        }
+        &.ouvert {transform: scale(1.25);}
 
-        &.ferme {
-            transform: scale(1);
-        }
-
+        &.ferme {transform: scale(1);}
     }
 
     @include ordinateur {
+        // Afficher trois cours ou plus sur grands écrans
         min-width: 15vw;
         width: 15vw;
     }
 
+    // Deviendra l'icône 3D, placeholder d'un svg pour l'instant
     .domaines {
         position: absolute;
         top: -10px;
@@ -49,6 +48,7 @@
         }
     }
 
+    // Une carte de cours
     .carte {
         display: flex;
         flex-direction: column;
@@ -60,6 +60,7 @@
         @include themer($theme-cours);
     }
 
+    // Rond décoratif sous la carte
     .rond {
         $taille: 5vw;
 
@@ -69,16 +70,12 @@
 
         @include rond($taille);
 
-        background-color: red;
+        background-color: red; // placeholder
         z-index: -1;
     }
 
+    // S'assurer que le premier et dernier enfant ne soient pas collés au bords
+    &:first-child {margin-left: 10vw;}
 
-    &:first-child {
-        margin-left: 10vw;
-    }
-
-    &:last-child {
-        margin-right: 10vw;
-    }
+    &:last-child {margin-right: 10vw;}
 }
