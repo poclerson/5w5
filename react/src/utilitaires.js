@@ -40,8 +40,24 @@ export function inserer(string, index, valeur) {
  */
 export const clamp = (chiffre, min, max) => Math.min(Math.max(chiffre, min), max);
 
+/**
+ * Réorganise aléatoirement les éléments d'un tableau
+ * @returns {Array}
+ */
 Array.prototype.shuffle = function() {
     for (var i = 0; i < this.length; i++)
         this.push(this.splice(Math.random() * (this.length - i), 1)[0]);
     return this;
+}
+
+/**
+ * Retire des mots d'un string
+ * @param {int} nombreMotsAGarder nombre de mots à garder dans le string
+ * @param {bool} commencerFin si on doit commencer à tronquer à partir de la fin ou du début
+ * @returns {string} 
+ */
+String.prototype.tronquerMots = function(nombreMotsAGarder, commencerFin = false) {
+    if (commencerFin)
+        return this.split(' ').slice(-nombreMotsAGarder).join(' ');
+    return this.split(' ').slice(0, nombreMotsAGarder).join(' ');
 }

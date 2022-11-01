@@ -1,23 +1,6 @@
 @import '../../sass/mixins.scss';
 
+// Logo du site, permet de gérer les différentes tailles du logo
 .SiteLogo {
-    &.p {
-        max-width: 100px;
-        max-height: 100px;
-    }
-
-    &.m {
-        max-width: 200px;
-        max-height: 200px;
-    }
-
-    &.g {
-        max-width: 300px;
-        max-height: 300px;
-    }
-
-    &.tg {
-        max-width: 400px;
-        max-height: 400px;
-    }
+    flex: 0 1 15%;
 }

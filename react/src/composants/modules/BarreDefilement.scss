@@ -1,8 +1,10 @@
 @import '../../sass/variables.scss';
 
+// Barre de défilement virtuelle qui permet de faire défiler une page sans devoir utiliser la barre de défilement du navigateur
 .BarreDefilement {
     position: relative;
 
+    // Barre de défilement
     .barre {
         background-color: map-get($couleurs, clair);
         width: 30vw;
@@ -10,6 +12,7 @@
         content: "";
     }
 
+    // Indicateur de défilement
     .indicateur {
         background-color: map-get($couleurs, clair);
         content: "";

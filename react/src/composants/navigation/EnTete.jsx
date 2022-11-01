@@ -28,7 +28,7 @@ export default function EnTete({enteteWP}) {
         <header className={"EnTete " + ouvertureRecherche}>
             <BoutonBurger gererClic={gererOuverture} />
             <div className={"contenu " + ouverture}>
-                <SiteLogo url={enteteWP.siteLogoUrl} taille={"p"} />
+                <SiteLogo url={enteteWP.siteLogoUrl} />
                 <Navigation 
                     pages={enteteWP.headerMenuItems} 
                     gererClic={gererOuverture} 

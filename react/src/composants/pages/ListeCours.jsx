@@ -7,7 +7,7 @@ import useObtenir from '../../hooks/useObtenir';
 import Chargement from '../modules/Chargement';
 import ListeSessions from './ListeSessions';
 
-export default function ListeCours() {
+export default function ListeCours({titre}) {
     const cours = useObtenir('/cours');
     const degrades = useObtenir('/degrades', 'bre');
 
@@ -25,7 +25,7 @@ export default function ListeCours() {
     return(
         cours != null ?
         <section className="ListeCours" ref={listeCoursRef}>
-            {console.log(cours)}
+            {console.log(titre)}
             {
                 sessions && degrades != null ? 
                 <ListeSessions sessions={sessions} cours={cours} degrades={degrades} pageRef={listeCoursRef} />
