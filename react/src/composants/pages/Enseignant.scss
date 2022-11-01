@@ -153,9 +153,7 @@
         justify-content: center;
         position: relative;
 
-        @include selection-texte {
-            color: map-get($couleurs, clair);
-        }
+        @include selection-texte {color: map-get($couleurs, clair);}
 
         // Lorsque ouvert, on montre le contenu en cachant la miniature
         .contenu {
@@ -191,7 +189,7 @@
                         z-index: 3;
                     }
                 }
-ru
+
                 & > *:not(.fond-photo) {display: none}
 
                 @include ordinateur {

@@ -42,6 +42,7 @@
             flex-direction: row;
             @include themer($theme-menu-tablette);
             width: 100vw;
+            height: 12.5vh;
             border-radius: 0;
             padding: 0;
             justify-content: space-between;
@@ -56,6 +57,11 @@
             display: none;
 
             @include tablette {display: block;}
+        }
+
+        & > * {
+            &:first-child {padding-left: 2.5%;}
+            &:last-child {padding-right: 2.5%;}
         }
     }
 
