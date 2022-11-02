@@ -15,8 +15,7 @@
 
     @include tablette {
         // Afficher deux cours à la fois sur tablette
-        width: 25vw;
-        min-width: 25vw;
+        flex: 0 0 25vw;
         height: 35vh;
         margin-bottom: 25vh;
 
@@ -29,8 +28,7 @@
 
     @include ordinateur {
         // Afficher trois cours ou plus sur grands écrans
-        min-width: 15vw;
-        width: 15vw;
+        flex: 0 0 15vw;
     }
 
     // Deviendra l'icône 3D, placeholder d'un svg pour l'instant
