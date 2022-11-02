@@ -21,8 +21,8 @@ export default function Projet({
         <li className={"Projet case " + ouverture}>
             <div className="miniature" onClick={gestionClic}>
                 <div className="information">
-                    <h3 className="titre">{nom}</h3>
-                    <h4 className="sous-titre">{createurs}</h4>
+                    <h2 className="titre">{nom}</h2>
+                    <h3 className="sous-titre">{createurs}</h3>
                     <button onClick={gestionClic} className="details">Voir en détails</button>
                 </div>
                 <img 
@@ -35,10 +35,10 @@ export default function Projet({
                 <div className="texte-conteneur">
                     <ArrowBackIosIcon className="Icone retour-liste" onClick={gestionClic} />
                     <div className="texte">
-                        <h3 className="titre">
+                        <h2 className="titre">
                             <a href={lien} className="lien-titre">{nom}</a>
-                        </h3>
-                        <h4 className="sous-titre">{createurs}</h4>
+                        </h2>
+                        <h3 className="sous-titre">{createurs}</h3>
                         <p className="description">{description}</p>
                     </div>
                 </div>

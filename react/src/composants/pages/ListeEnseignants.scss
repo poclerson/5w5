@@ -5,7 +5,7 @@
     position: relative;
     box-sizing: border-box;
 
-    .titre {
+    & > .titre {
         @include gerer-ouverture(block);
         padding-left: $taille-gouttieres;
     }
