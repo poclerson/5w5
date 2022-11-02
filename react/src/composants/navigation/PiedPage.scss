@@ -19,7 +19,6 @@
         flex-direction: row;
         justify-content: space-around;
         padding-bottom: 5%;
-       
         
     }
     .nous-joindre{
@@ -34,7 +33,20 @@
         
     }
 
+        .nous-joindre{
+            display: flex;
+            flex-direction: column;
+        }
     
+        .inscription{
+            display: flex;
+            flex-direction: column;
+        }
+
+        & > * {
+            flex: 1 1 25%;
+        }
+    }
 
     .vague {
         // max-height: ;
@@ -42,8 +54,6 @@
         bottom: 100%;
         width: 100%;
     }
-
-    
 
     @include ordinateur {
         display: flex;
