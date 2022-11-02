@@ -13,7 +13,7 @@ export default function Cours({titre, description, domaines, id, ouverture}) {
                 )}
             </ul>
             <div className="carte">
-                <h3 className="titre">{titre}</h3>
+                <h4 className="titre">{titre}</h4>
                 <p className="description">{description}</p>
             </div>
             <div className="rond"></div>

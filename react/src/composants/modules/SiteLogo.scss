@@ -2,5 +2,15 @@
 
 // Logo du site, permet de gérer les différentes tailles du logo
 .SiteLogo {
-    flex: 0 1 15%;
+    flex: 0 2 10%;
+
+    .logo {
+        width: 80%;
+    }
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    @include tablette {display: flex;}
 }
