@@ -13,6 +13,7 @@ export default function ListeEnseignants({titre}) {
     const [listeOuverte, setListeOuverte] = useState('ouvert');
     const [ouvertures, setOuvertures] = useState(null);
 
+    // Quand on ouvre/ferme la liste
     const gestionClicListe = (index, ouverture) => {
         // S'il était fermé, on ouvre
         if (ouverture == 'ferme')
@@ -23,6 +24,7 @@ export default function ListeEnseignants({titre}) {
             setOuvertures(enseignants.map(() => 'ferme'))
     }
 
+    // Quand on clique sur le bouton suivant (ordinateur seulement)
     const gestionClicSuivant = () => {
         setOuvertures(
             boites.ouvrir(
@@ -83,13 +85,11 @@ export default function ListeEnseignants({titre}) {
                                         index={index}
                                         ouverture={ouvertures[index]}
                                     />
-                                )
-                        : <Chargement />
+                                ) : <Chargement />
                     }
                 </ul>
                 <Suivant gestionClic={gestionClicSuivant} />
-            </section>   
-        : <Chargement />
+            </section>  : <Chargement />
     );
 }
 

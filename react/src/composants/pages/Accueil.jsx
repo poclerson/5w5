@@ -6,9 +6,12 @@ import useMediaQuery from '../../hooks/useMediaQuery';
 import medias from '../../medias';
 
 export default function Accueil() {
+
+    // À récupérer depuis WP
     const nombreTitres = 5;
     const tablette = useMediaQuery(medias.tablette);
 
+    // À optimiser
     const determinerVitesse = () => {
         if (tablette) {
             return 40;

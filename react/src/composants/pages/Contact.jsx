@@ -9,7 +9,7 @@ export default function Contact({titre}) {
     return (
         degrades != null ?
         <section className="Contact" style={{backgroundImage:`url(${degrades[2].acf.degrade})`}}>
-            
+            {/* À récupérer depuis WP */}
             <h1 className="titre">À propos <br/> de nous</h1>
             <article className='contenu'>
                 <div className='images'>

@@ -7,12 +7,19 @@ import useObtenir from '../../hooks/useObtenir';
 import Chargement from '../modules/Chargement';
 import ListeSessions from './ListeSessions';
 
+/**
+ * Gère la page en entier.
+ * ListeSessions s'occupe du positionnement de tous les éléments relatifs aux sessions dans la pages
+ * 
+ * On a besoin de deux composants pour permettre au deuxième de ne pas avoir de restrictions de chargement
+ */
 export default function ListeCours({titre}) {
     const cours = useObtenir('/cours');
     const degrades = useObtenir('/degrades', 'bre');
 
     const [sessions, setSessions] = useState(null);
 
+    // Permettre aux composants plus bas de gérer l'affiche de ListeCours
     const listeCoursRef = useRef(null);
 
     useEffect(() => {
@@ -25,7 +32,6 @@ export default function ListeCours({titre}) {
     return(
         cours != null ?
         <section className="ListeCours" ref={listeCoursRef}>
-            {console.log(titre)}
             {
                 sessions && degrades != null ? 
                 <ListeSessions sessions={sessions} cours={cours} degrades={degrades} pageRef={listeCoursRef} />

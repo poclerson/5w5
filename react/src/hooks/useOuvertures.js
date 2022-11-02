@@ -1,6 +1,12 @@
 import {useState, useEffect} from 'react';
 import * as boites from '../boites';
 
+/**
+ * 
+ * @param {Object} dependance données obtenue dans REST 
+ * @param {bool} ouvrirPremierAuChargement 
+ * @returns {Object} actions possibles d'effectuer et états
+ */
 export default function useOuvertures(dependance, ouvrirPremierAuChargement) {
     const [ouvertures, setOuvertures] = useState(null);
     const [ouvertureListe, setOuvertureListe] = useState('ouvert');

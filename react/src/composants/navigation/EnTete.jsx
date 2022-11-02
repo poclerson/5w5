@@ -9,7 +9,11 @@ import Recherche from '../modules/Recherche';
 import Chargement from '../modules/Chargement';
 
 export default function EnTete({enteteWP}) {
+
+    // Ouverture de l'entête, mobile seulement
     const [ouverture, setOuverture] = useState('ferme');
+
+    // Ouverture de la barre de recherche, si on clique dessus
     const [ouvertureRecherche, setOuvertureRecherche] = useState('ferme');
 
     const [resultatsRecherche, setResultatsRecherche] = useState(null);

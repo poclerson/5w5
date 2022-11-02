@@ -10,6 +10,7 @@ import * as wp from '../wp-rest-api';
  */
 export default function useObtenir(chemin = '', fournisseur = 'wp' || 'bre' || 'hcms', parametres) {
     const [donnees, setDonnees] = useState(null);
+    
     useEffect(() => {
         async function obtenirArticles() {
             const reponse = await fetch(wp.traiterRequete(chemin, fournisseur, parametres));
