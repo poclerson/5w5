@@ -36,6 +36,7 @@ export default function App() {
         <div className="App">
             {hcms != null ?
                 <>
+                    <EnTete enteteWP={hcms.data.header} />
                     <Routes>
                         {hcms.data.header.headerMenuItems.map(page => {
                             let Composant = identifierComposant(page.pageSlug);
@@ -46,11 +47,9 @@ export default function App() {
                             />
                         })}
                     </Routes> 
-                    <EnTete enteteWP={hcms.data.header} />
+                    <PiedPage enteteWP={hcms.data.header} />
                 </> : <Chargement />
             }
-            
-            <PiedPage />
         </div>
     );
 }
