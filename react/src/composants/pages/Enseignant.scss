@@ -207,48 +207,38 @@
 
                     @include tablette {
                         background-color: transparent;
-
                         .description {color: map-get($couleurs, clair);}
-                    }
-
-                    @include ordinateur {
-                        padding: 0;
                         height: unset;
+                        padding: 0;
                     }
-                }
-                
-                // Annuler le style donné par @couleurs-domaines à partir de tablettes
-                @include tablette {
-                    & > * {color: map-get($couleurs, clair)}
                 }
 
-                @include ordinateur {
+                .etiquette-description {display: none;}
+
+                @include tablette {
                     // Tous les éléments qui ne sont pas des étiquettes
-                    *:not([class^="etiquette-"]) {
-                        margin-left: 5%;
-                    }
+                    *:not([class^="etiquette-"]) {margin-left: 5%;}
+
+                    // Annuler le style donné par @couleurs-domaines à partir de tablettes
+                    & > * {color: map-get($couleurs, clair)}
+
+                    height: unset;
+
+                    .etiquette-description {display: block;}
                 }
             }
 
             @include tablette {
-                width: 80%;
-                height: 80%;
-                display: grid;
-                grid-template-areas: 
-                    "icone ."
-                    "photo texte"
-                    ". texte"
-                    ". texte"
-                ;
-                grid-template-columns: 2fr 3.5fr;
-                grid-template-rows: 0 3fr 3fr 3fr;
+                width: 90%;
+                height: 90%;
+                flex-direction: row;
+                align-items: flex-start;
 
-                .retour-liste {grid-area: icone}
-
-                .conteneur-photo {grid-area: photo}
+                .retour-liste {
+                    position: absolute;
+                }
 
                 .texte {
-                    grid-area: texte;
                     border-radius: 0;
                     @include bordures-coins-diagonales(60px, map-get($couleurs, clair));
                 }

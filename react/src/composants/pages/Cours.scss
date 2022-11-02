@@ -4,8 +4,7 @@
 
 .Cours {
     // Un cours prend presque tout l'écran sur mobile
-    width: 70vw;
-    min-width: 70vw;
+    flex: 0 0 60vw;
     height: 40vh;
     margin-bottom: 15vh;
     box-sizing: border-box;
