@@ -1,6 +1,7 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/variables.scss';
 
+// Barre de recherche présente dans EnTete
 .Recherche {
     display: flex;
     align-items: center;
@@ -16,13 +17,17 @@
     }
 
     .icone-recherche {
-        transform: scaleX(-1);
+        transform: scaleX(-1); // Tourner l'icône
     }
 
     @include tablette {
-        &.ouvert {
-            width: 100%;
-        }
+        flex: 0 2 5%;
+        /* 
+            Lorsque la zone de recherche est ouverte, on la fait prendre toute la largeur
+            afin de permettre de mieux voir ce qu'on écrit
+        */
+        &.ouvert {flex-basis: 100%;}
+
         .zone-saisie {
             @include gerer-ouverture(flex);
             width: 100%;

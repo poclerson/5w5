@@ -14,8 +14,8 @@
             @media screen and (min-width: $taille-ecran) {
                 #{$selecteur} {
                     font-size: map-get($proprietes, taille);
-                    margin-block-start: map-get($proprietes, taille) / 2;
-                    margin-block-end: map-get($proprietes, taille) / 2;
+                    margin-block-start: map-get($proprietes, taille) / 4;
+                    margin-block-end: map-get($proprietes, taille) / 4;
 
                     // Ajouter les propriétés ajoutées dans variables.scss ici
                     // $proprietes représente toutes les propriétés présentes (présentement, taille et hauteur-ligne)

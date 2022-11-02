@@ -8,7 +8,7 @@ import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
 import Suivant from '../modules/Suivant';
 
-export default function ListeEnseignants() {
+export default function ListeEnseignants({titre}) {
     const enseignants = useObtenir('/enseignants', 'bre');
     const [listeOuverte, setListeOuverte] = useState('ouvert');
     const [ouvertures, setOuvertures] = useState(null);
@@ -51,7 +51,7 @@ export default function ListeEnseignants() {
     return(
         enseignants != null ?
             <section className="ListeEnseignants">
-                <h1 className={"titre " + listeOuverte}>nos enseignants.</h1>
+                <h1 className={"titre " + listeOuverte}>nos <br/> enseignants.</h1>
 
                 <ul className={"liste " + listeOuverte}>
                     {
