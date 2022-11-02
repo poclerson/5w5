@@ -232,6 +232,7 @@ $couleurs: (
     clair-transparent: #f3f3ea3a,
     sombre: #0f0f0f,
     sombre-transparent: #0f0f0f6c,
+    dark: #444444,
 
     domaines: (
         design: #da3e66,
@@ -491,6 +492,8 @@ $theme-PiedDePage: (
     ),
 
     fond: (
-        couleur-primaire: map-get($couleurs, clair-transparent)
-    )
+        couleur-primaire: map-get($couleurs, dark)
+    ),
+
+    
 );
