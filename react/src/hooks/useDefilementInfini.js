@@ -12,12 +12,14 @@ const useDefilementInfini = (prolongerDefilement, ref) => {
     useEffect(() => {
         if (ref.current)
             ref.current.addEventListener("scroll", defile);
+
         return () => {
             if (ref.current)
                 ref.current.removeEventListener("scroll", defile)
         }
     }, [ref]);
 
+    // estArrive se fait mettre a true à une certaine distance de défilement
     useEffect(() => {
         if (estArrive) prolongerDefilement();
     }, [estArrive])

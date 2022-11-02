@@ -26,18 +26,17 @@ $hauteur-header: (
     Tailles de police
     On peut ajouter d'autres propriétés pour chaque taille d'écran/sélecteur
     Il suffit de les intégrer dans mixins.scss par la suite
-
 */
 $tailles-textes: (
-    /** Titre principal lorsqu’on rentre dans une page, le nom des projets et ‘inscripxion’ */
+    // Nom d'une page
     h1: (
         0px: (
-            taille: 32px,
+            taille: 40px,
             hauteur-ligne: 12px
         ),
 
         360px:(
-            taille: 35px,
+            taille: 60px,
             hauteur-ligne: 12px
         ),
 
@@ -58,15 +57,15 @@ $tailles-textes: (
 
     ),
 
-    /** Nom de l'enseignant (dans sa page) et ‘session’ */
+    // Nom d'un article
     h2: (
         0px:(
-            taille: 20px,
+            taille: 25px,
             hauteur-ligne: 12px
         ),
 
         360px:(
-            taille: 20px,
+            taille: 35px,
             hauteur-ligne: 12px
         ),
 
@@ -87,15 +86,15 @@ $tailles-textes: (
     ),
 
     
-
+    // Sous-titre d'une section d'un élément en contexte
     h3: (
         0px:(
-            taille: 24px,
+            taille: 20px,
             hauteur-ligne: 12px
         ),
 
         360px:(
-            taille: 25px,
+            taille: 30px,
             hauteur-ligne: 12px
         ),
 
@@ -105,17 +104,16 @@ $tailles-textes: (
         ),
 
         1024px:(
-            taille: 30px,
+            taille: 35px,
             hauteur-ligne: 12px
         ),
 
         1440px:(
-            taille: 35px,
+            taille: 40px,
             hauteur-ligne: 12px
         ),
     ),
 
-    /** ‘Soumettre ma demande d'admission’ */
     h4: (
         0px:(
             taille: 32px,
@@ -128,17 +126,17 @@ $tailles-textes: (
         ),
 
         640px:(
-            taille: 85px,
+            taille: 25px,
             hauteur-ligne: 12px
         ),
 
         1024px:(
-            taille: 105tx,
+            taille: 28px,
             hauteur-ligne: 12px
         ),
 
         1440px:(
-            taille: 110tx,
+            taille: 30px,
             hauteur-ligne: 12px
         ),
     ),
@@ -171,7 +169,7 @@ $tailles-textes: (
         ),
     ),
 
-    /** pour le menu */
+    // Éléments de navigation de l'entête
     h6: (
         0px:(
             taille: 23px,
@@ -184,7 +182,7 @@ $tailles-textes: (
         ),
 
         640px:(
-            taille: 23px,
+            taille: 18px,
             hauteur-ligne: 12px
         ),
 
@@ -194,38 +192,38 @@ $tailles-textes: (
         ),
 
         1440px:(
-            taille: 27px,
+            taille: 30px,
             hauteur-ligne: 12px
         ),
     ),
 
-        /** les textes */
-        p: (
-            0px:(
-                taille: 13px,
-                hauteur-ligne: 12px
-            ),
+    // Texte courant
+    p: (
+        0px:(
+            taille: 13px,
+            hauteur-ligne: 12px
+        ),
 
-            360px:(
-                taille: 15px,
-                hauteur-ligne: 12px
-            ),
-    
-            640px:(
-                taille: 25px,
-                hauteur-ligne: 12px
-            ),
-    
-            1024px:(
-                taille: 20px,
-                hauteur-ligne: 12px
-            ),
-    
-            1440px:(
-                taille: 25px,
-                hauteur-ligne: 12px
-            ),
-        )
+        360px:(
+            taille: 15px,
+            hauteur-ligne: 12px
+        ),
+
+        640px:(
+            taille: 18px,
+            hauteur-ligne: 12px
+        ),
+
+        1024px:(
+            taille: 20px,
+            hauteur-ligne: 12px
+        ),
+
+        1440px:(
+            taille: 20px,
+            hauteur-ligne: 12px
+        ),
+    )
 );
 
 $couleurs: (
@@ -233,6 +231,7 @@ $couleurs: (
     clair-transparent: #f3f3ea3a,
     sombre: #0f0f0f,
     sombre-transparent: #0f0f0f6c,
+    dark: #444444,
 
     domaines: (
         design: #da3e66,
@@ -292,27 +291,31 @@ $theme-base: (
 // Entête et autres menus flottants
 $theme-menu-mobile: (
     titre: (
-        couleur: map-get($couleurs, sombre),
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),
 
     sous-titre: (),
 
-    texte: (),
+    texte: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
 
     icone: (
         couleur: map-get($couleurs, clair),
     ),
 
     lien: (
-        couleur: map-get($couleurs, sombre),
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),
 
     lien-hover: (
-        couleur: map-get($couleurs, sombre),
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),
@@ -488,6 +491,8 @@ $theme-PiedDePage: (
     ),
 
     fond: (
-        couleur-primaire: map-get($couleurs, clair-transparent)
-    )
+        couleur-primaire: map-get($couleurs, dark)
+    ),
+
+    
 );

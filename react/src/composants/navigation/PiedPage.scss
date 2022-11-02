@@ -7,20 +7,56 @@
     background-color: transparent;
     flex-direction: column;
     position: relative;
+    margin-top: 10vw;
 
     .contenu {
         width: 100%;
         @include themer($theme-PiedDePage);
+        
 
         // Ajouter les styles des éléments du footer ici
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding-bottom: 5%;
+        
+    }
+    .nous-joindre{
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .inscription{
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+        .nous-joindre{
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .inscription{
+            display: flex;
+            flex-direction: column;
+        }
+
+        & > * {
+            flex: 1 1 25%;
+        }
     }
 
     .vague {
+        // max-height: ;
         position: absolute;
         bottom: 100%;
+        width: 100%;
     }
 
     @include ordinateur {
         display: flex;
+
     }
 }

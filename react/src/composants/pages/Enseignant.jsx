@@ -2,35 +2,25 @@ import './Enseignant.scss';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-import useMediaQuery from '../../hooks/useMediaQuery';
-import medias from '../../medias';
-import {useState, useEffect} from 'react';
-
 export default function Enseignant({nom, description, photo, domaine, gestionClicListe, index, ouverture}) {
 
     const gestionClic = () => {
         gestionClicListe(index, ouverture);
     }
 
-    const tablette = useMediaQuery(medias.tablette);
-
-    useEffect(() => {
-
-    }, [tablette])
-
     return(
         <li className={`Enseignant ${ouverture} ${domaine}`}>
             <div className="miniature" onClick={gestionClic}>
-                <h3 className="titre">{nom.toUpperCase()}</h3>
+                <h2 className="titre">{nom.toUpperCase()}</h2>
                 <img className="photo" src={photo} alt={"Photo de " + nom} />
                 <span className="conteneur-domaine">
-                    <p className="domaine">{domaine.toUpperCase()}</p>
+                    <h2 className="domaine">{domaine.toUpperCase()}</h2>
                 </span>
             </div>
             <div className={"contenu " + ouverture}>
                 <ArrowBackIosIcon className="Icone retour-liste" onClick={gestionClic} />
                 <div className={"conteneur-photo " + domaine}>
-                    <h3 className="titre">{nom.toUpperCase()}</h3>
+                    <h2 className="titre">{nom.toUpperCase()}</h2>
                     <div className="fond-photo">
                         <img className="photo" src={photo} alt={"Photo de " + nom} />
                     </div>
@@ -39,11 +29,11 @@ export default function Enseignant({nom, description, photo, domaine, gestionCli
                     </span>
                 </div>
                 <article className="texte">
-                    <h5 className="titre-etiquette">nom</h5>
-                    <h3 className="titre">{nom}</h3>
-                    <h5 className="domaine-etiquette">spécialité</h5>
-                    <h4 className="domaine sous-titre">{domaine}</h4>
-                    <h5 className="description-etiquette">biographie</h5>
+                    <h5 className="etiquette-titre">nom</h5>
+                    <h2 className="titre">{nom}</h2>
+                    <h5 className="etiquette-domaine">spécialité</h5>
+                    <h3 className="domaine sous-titre">{domaine}</h3>
+                    <h5 className="etiquette-description">biographie</h5>
                     <div className="conteneur-description">
                         <p className="description">
                             {/* {description} */}

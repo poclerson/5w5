@@ -1,11 +1,36 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/variables.scss';
 
+// Barre de recherche présente dans EnTete
 .Recherche {
-    @include themer($theme-menu-mobile);
+    display: flex;
+    align-items: center;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+
     .zone-saisie {
-        input {
-            color: white;
+        * {
+            border: none;
+        }
+
+        border-bottom: 2px solid map-get($couleurs, clair);
+    }
+
+    .icone-recherche {
+        transform: scaleX(-1); // Tourner l'icône
+    }
+
+    @include tablette {
+        flex: 0 2 5%;
+        /* 
+            Lorsque la zone de recherche est ouverte, on la fait prendre toute la largeur
+            afin de permettre de mieux voir ce qu'on écrit
+        */
+        &.ouvert {flex-basis: 100%;}
+
+        .zone-saisie {
+            @include gerer-ouverture(flex);
+            width: 100%;
         }
     }
 }
