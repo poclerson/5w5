@@ -8,17 +8,13 @@
     aspect-ratio: 1 / 1.75;
     padding: 0;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     position: relative;
     overflow: hidden;
 
     .titre {
-        display: block;
-        position: absolute;
-        z-index: 2;
-        max-width: 60%;
+        max-width: 40%;
+        position: static;
+        margin-left: 5%;
     }
 
     .conteneur-domaine {
@@ -46,15 +42,7 @@
         height: 70%;
         position: absolute;
         bottom: 0;
-        left: 5%;
         z-index: 2;
-    }
-
-    .fond-photo {
-        .photo {
-            @include pleine-taille;
-            margin: 0;
-        }
     }
 }
 
@@ -79,11 +67,11 @@
     );
 
     $classes-couleur-domaine-contraste-texte: (
-        titre-etiquette: color,
+        etiquette-titre: color,
         titre: color,
-        domaine-etiquette: color,
+        etiquette-domaine: color,
         domaine: color,
-        description-etiquette: color,
+        etiquette-description: color,
         description: color
     );
 
@@ -166,7 +154,7 @@
 
             .retour-liste {align-self: flex-start}
 
-            // Photo de l'enseignant
+            // Photo de l'enseignant (mobile et tablette)
             .conteneur-photo {
                 @include bulle;
                 padding: 30px;
@@ -192,13 +180,8 @@
 
                 & > *:not(.fond-photo) {display: none}
 
-                @include ordinateur {
-                    display: none;
-
-                    .fond-photo {background-color: transparent}
-
-                    & > *:not(.fond-photo) {display: block}
-                }
+                // Faire disparaitre la photo du contenu sur ordinateur puisqu'on utilise la miniature
+                @include ordinateur {display: none;}
             }
 
             // Section de texte avec l'image de l'enseignant
@@ -227,11 +210,23 @@
 
                         .description {color: map-get($couleurs, clair);}
                     }
+
+                    @include ordinateur {
+                        padding: 0;
+                        height: unset;
+                    }
                 }
                 
                 // Annuler le style donné par @couleurs-domaines à partir de tablettes
                 @include tablette {
                     & > * {color: map-get($couleurs, clair)}
+                }
+
+                @include ordinateur {
+                    // Tous les éléments qui ne sont pas des étiquettes
+                    *:not([class^="etiquette-"]) {
+                        margin-left: 5%;
+                    }
                 }
             }
 

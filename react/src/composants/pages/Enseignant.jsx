@@ -30,11 +30,11 @@ export default function Enseignant({nom, description, photo, domaine, gestionCli
                     </span>
                 </div>
                 <article className="texte">
-                    <h4 className="titre-etiquette">nom</h4>
+                    <h5 className="etiquette-titre">nom</h5>
                     <h2 className="titre">{nom}</h2>
-                    <h4 className="domaine-etiquette">spécialité</h4>
+                    <h5 className="etiquette-domaine">spécialité</h5>
                     <h3 className="domaine sous-titre">{domaine}</h3>
-                    <h4 className="description-etiquette">biographie</h4>
+                    <h5 className="etiquette-description">biographie</h5>
                     <div className="conteneur-description">
                         <p className="description">
                             {/* {description} */}
