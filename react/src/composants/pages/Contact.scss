@@ -17,7 +17,12 @@ padding-right: 5%;
 box-sizing: border-box;
 
 .contenu{
-    display: flex;
+    // display: flex;
+
+    @include tablette{
+        display: flex;
+    }
+
     .images{
         display: none;
         flex: 1 0 60%;
@@ -28,8 +33,11 @@ box-sizing: border-box;
             width: 80%;
             content: "";
             
-            &:nth-child(2){
-                grid-row: span 2;
+            
+            @include tablette{
+                &:nth-child(2){
+                    grid-row: span 2;
+                }
             }
         }
 
@@ -42,6 +50,7 @@ box-sizing: border-box;
         }
     }
 
+    /*'Description et le texte'*/
     .informations{
         flex: 0 1 40%;
 
@@ -51,10 +60,14 @@ box-sizing: border-box;
         }
     }
 
-    .inscription{
-        text-align:right;
-    }
+
+    
 }
 
+    /*'Inscription et son icône'*/
+        .inscription {
+            display: flex;
+            align-items: center;
+        }
 }
 
