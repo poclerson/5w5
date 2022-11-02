@@ -7,14 +7,11 @@
     @include fondu(.5s, "destination");
     
     @include pleine-taille;
-    width: unset;
 
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    height: 100vh;
 
     @include ordinateur {
         flex-direction: row;

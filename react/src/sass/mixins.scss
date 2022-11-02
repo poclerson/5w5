@@ -256,6 +256,25 @@
     background-repeat: no-repeat;
 }
 
+@mixin page($ajuster-contenu: false) {
+    @include pleine-taille;
+    display: flex;
+
+    @if $ajuster-contenu {
+        padding: 80px 0;
+    }
+
+    @include tablette {
+        padding: 80px 0;
+    }
+
+    @include ordinateur {
+        height: unset;
+        min-height: 100%;
+        padding: 120px 0;
+    }
+}
+
 
 // ===== MIXINS DE REQUÊTES MÉDIAS =====
 
