@@ -29,7 +29,7 @@ export default function ListeSessions({sessions, cours, enseignants, degrades, p
             rayonRond: 150,
             rayonCarousel: 600,
             decalageGauche: 75,
-            decalageHaut: 200,
+            decalageHaut: 140,
             decalageAngle: 0
         },
 
