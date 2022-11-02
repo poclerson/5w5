@@ -46,11 +46,12 @@ export default function App() {
                         })}
                     </Routes> 
                     <EnTete enteteWP={hcms.data.header} />
+                    <PiedPage enteteWP={hcms.data.header}/>
                 </>:
             <Chargement />
             }
             
-            <PiedPage />
+           
         </div>
     );
 }
