@@ -11,9 +11,7 @@ export default function Contact({titre}) {
         <section className="Contact" style={{backgroundImage:`url(${degrades[2].acf.degrade})`}}>
             
             <h1 className="titre">
-                {titre.tronquerMots(2)}
-                <br/>
-                {titre.tronquerMots(2, true)}
+                à propos <br/> de nous
             </h1>
             <div></div>
             <div>

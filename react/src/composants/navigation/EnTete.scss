@@ -52,17 +52,6 @@
 
             &.ferme {display: flex;}
         }
-
-        .SiteLogo {
-            display: none;
-
-            @include tablette {display: block;}
-        }
-
-        & > * {
-            &:first-child {padding-left: 2.5%;}
-            &:last-child {padding-right: 2.5%;}
-        }
     }
 
     .resultats-recherche {
