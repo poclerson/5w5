@@ -57,6 +57,7 @@ export default function Session({cours, enseignants, session, pageRef}) {
                     />
                 )}
             </ul>
+            {/* Pour l'utilisation de la barre de défilement */}
             {/* {listeCoursRef.current != null ?
                 <BarreDefilement largeurTotale={largeurDefilement} elementScroll={listeCoursRef.current} />
                 :

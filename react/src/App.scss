@@ -15,15 +15,9 @@
     & > *:not(.EnTete, .PiedPage) {
         @include pleine-taille;
 
-        // Premier élément de chaque page
-        & > *:first-child {
-            
-            // Laisser un espacement pour l'entête
-            margin-top: map-get($hauteur-header, mobile);
-        }
-
         @include tablette {
-            margin-top: map-get($hauteur-header, tablette);
+            margin-top: 80px;
+            height: calc(100% - map-get($hauteur-header, tablette));
         }
 
         @include ordinateur {

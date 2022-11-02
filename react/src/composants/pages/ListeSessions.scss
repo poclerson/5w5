@@ -51,15 +51,20 @@
                     font-size: 1500%;
                     @include desactiver-margin-block;
 
-                    &[transition="1"] {
-                        animation: fondu-vers-prochain .5s ease-in-out;
-                    }
+                    // Préférer l'utilisation d'une mixin
+                    &[transition="1"] {animation: fondu-vers-prochain .5s ease-in-out;}
+
+                    color: map-get($couleurs, clair);
                 }
 
                 .Icone {
                     position: absolute;
                     right: 15%;
                     top: 50%;
+                }
+
+                .FlecheDefilement {
+                    @include ordinateur {display: none}
                 }
             }
         }
@@ -73,8 +78,6 @@
         padding: 5vw;
         white-space: nowrap;
 
-        @include ordinateur {
-            display: flex;
-        }
+        @include ordinateur {display: flex;}
     }
 }
