@@ -72,7 +72,7 @@ export default function ListeProjets() {
                 <ul className={"liste " + listeOuverte}>
                     {ouvertures != null ?
                         <> 
-                            <h1 className={"titre " + listeOuverte}>galerie étudiante</h1>
+                            <h1 className={"titre " + listeOuverte}>galerie <br/> étudiante.</h1>
                             {rendreCases()}
                         </>
                         : <Chargement />
