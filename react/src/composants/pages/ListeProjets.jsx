@@ -40,6 +40,7 @@ export default function ListeProjets() {
         }
     }, [ouvertures])
 
+    // Tout mettre dans un callback permet de déclarer des variables (index)
     const rendreCases = () => {
         let index = 0;
 

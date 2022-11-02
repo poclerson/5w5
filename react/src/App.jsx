@@ -19,6 +19,7 @@ export default function App() {
      */
     const hcms = useObtenir('', 'hcms');
 
+    // Statique
     const identifierComposant = (page) => {
         const composants = {
             'accueil': Accueil,
@@ -46,8 +47,7 @@ export default function App() {
                         })}
                     </Routes> 
                     <EnTete enteteWP={hcms.data.header} />
-                </>:
-            <Chargement />
+                </> : <Chargement />
             }
             
             <PiedPage />

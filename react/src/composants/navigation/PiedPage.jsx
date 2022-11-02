@@ -13,6 +13,7 @@ export default function PiedPage() {
                 <SiteLogo/>
                 </div>
                 <div className="nous-joindre">
+                    {/* À récupérer depuis WP */}
                 <h2 className="sous-titre">Nous joindre</h2>
                 <h6>adresse courriel</h6> 
                 <h6>numéro téléphone</h6>
