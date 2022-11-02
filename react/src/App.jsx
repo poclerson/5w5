@@ -19,6 +19,7 @@ export default function App() {
      */
     const hcms = useObtenir('', 'hcms');
 
+    // Statique
     const identifierComposant = (page) => {
         const composants = {
             'accueil': Accueil,
@@ -35,6 +36,7 @@ export default function App() {
         <div className="App">
             {hcms != null ?
                 <>
+                    <EnTete enteteWP={hcms.data.header} />
                     <Routes>
                         {hcms.data.header.headerMenuItems.map(page => {
                             let Composant = identifierComposant(page.pageSlug);
@@ -45,12 +47,9 @@ export default function App() {
                             />
                         })}
                     </Routes> 
-                    <EnTete enteteWP={hcms.data.header} />
-                </>:
-            <Chargement />
+                    <PiedPage enteteWP={hcms.data.header} />
+                </> : <Chargement />
             }
-            
-            <PiedPage />
         </div>
     );
 }

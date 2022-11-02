@@ -16,7 +16,7 @@
         @include pleine-taille;
 
         @include tablette {
-            margin-top: map-get($hauteur-header, tablette);
+            margin-top: 80px;
             height: calc(100% - map-get($hauteur-header, tablette));
         }
 

@@ -20,17 +20,19 @@
         padding-left: $taille-gouttieres;
         padding-right: $taille-gouttieres;
         display: grid;
-        align-items: center;
 
         @include cacher-barre-defilement;
 
         // Deux colonnes
         grid-template-columns: repeat(2, 1fr);
+        // Ne trouve pas la hauteur automatiquement. Cette formule la trouve
+        grid-auto-rows: calc(100vw / 2 - $taille-gouttieres);
         gap: $taille-gouttieres;
+        height: 100%;
 
         @include tablette {
-            // Trois colonnes
             grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: calc(100vw / 3 - $taille-gouttieres);
         }
 
         @include ordinateur {

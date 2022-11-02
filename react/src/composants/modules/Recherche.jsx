@@ -11,12 +11,9 @@ export default function Rechercher({gestionResultats, ouverture, gestionClic}) {
 
     const gestionSaisie = e => {
         setSaisie(e.target.value);
-
-        if (e.target.value.length) {
-
-        }
     }
 
+    // Ne peut pas utiliser useObtenir parce qu'il doit appeler gestionResultats
     useEffect(() => {
         async function obtenirArticles() {
             const reponse = await fetch(wp.traiterRequete('/search', 'bre', "&content=true&search=" + saisie));
@@ -31,7 +28,6 @@ export default function Rechercher({gestionResultats, ouverture, gestionClic}) {
     
         obtenirArticles();
     }, [saisie]);
-
 
     // Appeler la fonction de recherche chaque fois qu'on écrit un caractère
     return(
