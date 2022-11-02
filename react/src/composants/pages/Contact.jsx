@@ -9,7 +9,7 @@ export default function Contact({titre}) {
     return (
         degrades != null ?
         <section className="Contact" style={{backgroundImage:`url(${degrades[2].acf.degrade})`}}>
-            
+            <article className='boite-principale'>
             <h1 className="titre">À propos <br/> de nous</h1>
             <article className='contenu'>
                 <div className='images'>
@@ -20,17 +20,16 @@ export default function Contact({titre}) {
                 <div className='informations'>
                     <h3>Description</h3>
                     <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non odio euismod lacinia at quis risus sed. Eu nisl nunc mi ipsum faucibus. Eget mauris pharetra et ultrices neque ornare aenean euismod. 
-
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non odio euismod lacinia at quis risus sed. Eu nisl nunc mi ipsum faucibus. Eget mauris pharetra et ultrices neque ornare aenean euismod. 
                     </p>
                 </div>
             </article>
 
-            <div className='inscription'>
-                <h2 className='titre-inscription'>Inscription</h2>
-                <ArrowForwardIosIcon className='Icone'/>
-            </div>
-
+                <div className='inscription'>
+                    <h2 className='titre-inscription'>Inscription</h2>
+                    <ArrowForwardIosIcon className='Icone'/>
+                </div>
+            </article>
         </section>
          : <Chargement />
     )
