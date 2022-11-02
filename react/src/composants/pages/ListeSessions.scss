@@ -51,9 +51,9 @@
                     font-size: 1500%;
                     @include desactiver-margin-block;
 
-                    &[transition="1"] {
-                        animation: fondu-vers-prochain .5s ease-in-out;
-                    }
+                    &[transition="1"] {animation: fondu-vers-prochain .5s ease-in-out;}
+
+                    color: map-get($couleurs, clair);
                 }
 
                 .Icone {
