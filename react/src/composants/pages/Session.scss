@@ -1,0 +1,30 @@
+@import '../../sass//mixins.scss';
+
+.Session {
+    @include pleine-taille;
+
+    @include gerer-ouverture(flex);
+
+    .liste-cours {
+        @include pleine-taille;
+        @include cacher-barre-defilement;
+
+        display: flex;
+        align-items: center;
+        gap: 40vw;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        scroll-padding: 10vw;
+
+        @include tablette {
+            gap: 20vw;
+            scroll-snap-type: unset;
+        }
+
+        @include ordinateur {
+            gap: 10vw;
+            padding: unset;
+        }
+    }
+}

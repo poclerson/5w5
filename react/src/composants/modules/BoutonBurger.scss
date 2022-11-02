@@ -1,0 +1,17 @@
+@import '../../sass/variables.scss';
+@import '../../sass/fonctions.scss';
+
+// Bouton burger gérant l'ouverture et la fermeture d'une section
+.BoutonBurger {
+    padding-right: 2.5vw;
+    padding-bottom: 2.5vw;
+    position: fixed;
+    background-color: map-deep-get($theme-menu-mobile, fond, couleur-secondaire);
+    border-bottom-right-radius: 50%;
+    z-index: 100; // Doit TOUJOURS être par-dessus tout
+
+    // Icône des trois lignes
+    .Icone {
+        font-size: 10vw;
+    }
+}

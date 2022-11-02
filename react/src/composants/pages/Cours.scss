@@ -1,3 +1,80 @@
+@import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
+@import '../../sass/fonctions.scss';
+
 .Cours {
-    
+    // Un cours prend presque tout l'écran sur mobile
+    flex: 0 0 60vw;
+    height: 40vh;
+    margin-bottom: 15vh;
+    box-sizing: border-box;
+
+    scroll-snap-align: start;
+
+    position: relative;
+
+    @include tablette {
+        // Afficher deux cours à la fois sur tablette
+        width: 25vw;
+        min-width: 25vw;
+        height: 35vh;
+        margin-bottom: 25vh;
+
+        transition: transform .15s ease-in-out;
+
+        &.ouvert {transform: scale(1.25);}
+
+        &.ferme {transform: scale(1);}
+    }
+
+    @include ordinateur {
+        // Afficher trois cours ou plus sur grands écrans
+        min-width: 15vw;
+        width: 15vw;
+    }
+
+    // Deviendra l'icône 3D, placeholder d'un svg pour l'instant
+    .domaines {
+        position: absolute;
+        top: -10px;
+        right: -60px;
+
+        .domaine {
+            .Icone {
+                transform: scale(2.5);
+                color: map-get($couleurs, clair);
+            }
+        }
+    }
+
+    // Une carte de cours
+    .carte {
+        display: flex;
+        flex-direction: column;
+
+        @include pleine-taille;
+
+        @include carte;
+        @include fond-flou;
+        @include themer($theme-cours);
+    }
+
+    // Rond décoratif sous la carte
+    .rond {
+        $taille: 5vw;
+
+        position: absolute;
+        left: - $taille / 2;
+        bottom: 20%;
+
+        @include rond($taille);
+
+        background-color: red; // placeholder
+        z-index: -1;
+    }
+
+    // S'assurer que le premier et dernier enfant ne soient pas collés au bords
+    &:first-child {margin-left: 10vw;}
+
+    &:last-child {margin-right: 10vw;}
 }

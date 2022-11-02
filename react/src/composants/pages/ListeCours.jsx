@@ -1,40 +1,43 @@
 import './ListeCours.scss';
 
-import * as wp from '../../wp-rest-api';
-import * as u from '../../utilitaires';
+import {useEffect, useState, useRef} from 'react';
+
+import useObtenir from '../../hooks/useObtenir';
 
 import Chargement from '../modules/Chargement';
-import Cours from './Cours';
+import ListeSessions from './ListeSessions';
 
-export default function ListeCours() {
-    const enseignants = wp.useObtenir('/enseignants');
-    const cours = wp.useObtenir('/cours');
-    const media = wp.useObtenir('/media');
+/**
+ * Gère la page en entier.
+ * ListeSessions s'occupe du positionnement de tous les éléments relatifs aux sessions dans la pages
+ * 
+ * On a besoin de deux composants pour permettre au deuxième de ne pas avoir de restrictions de chargement
+ */
+export default function ListeCours({titre}) {
+    const cours = useObtenir('/cours');
+    const degrades = useObtenir('/degrades', 'bre');
+
+    const [sessions, setSessions] = useState(null);
+
+    // Permettre aux composants plus bas de gérer l'affiche de ListeCours
+    const listeCoursRef = useRef(null);
+
+    useEffect(() => {
+        if (cours != null) {
+            // Un Set ne prend qu'une seule occurence de chaque itération dans un tableau
+            setSessions([... new Set(cours.map(_cours => _cours.acf.session))].sort());
+        }
+    }, [cours])
+
     return(
         cours != null ?
-        <div className="ListeCours">
-            <h1 className="titre">
-                {u.capitaliserPremiereLettre(cours[0].type)}
-            </h1>
-
+        <section className="ListeCours" ref={listeCoursRef}>
             {
-                enseignants && media != null ? 
-                <ul className="liste">
-                    {cours.map(_cours => 
-                        <Cours
-                            key={_cours.id} 
-                            titre={_cours.acf.titre} 
-                            description={_cours.acf.description}
-                            enseignantsAttitres={_cours.acf.enseignants}
-                            enseignants={enseignants}
-                            domaines={_cours.acf.domaines}
-                            session={_cours.acf.session}
-                        />
-                    )}
-                </ul>
+                sessions && degrades != null ? 
+                <ListeSessions sessions={sessions} cours={cours} degrades={degrades} pageRef={listeCoursRef} />
                 : <Chargement />
             }
-        </div>
+        </section>
         : <Chargement />
     )
 }

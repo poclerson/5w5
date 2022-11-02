@@ -5,6 +5,7 @@ upgrade
 uploads
 wp-admin
 wp-includes
+wp-content/ai1wm-backups
 
 # react
 node_modules/
@@ -12,3 +13,4 @@ node_modules/
 # extensions
 *.DS_Store
 *.pack
+*.icloud

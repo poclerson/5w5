@@ -1,19 +1,48 @@
 @import './fonctions.scss';
+@import './variables.scss';
+ 
 
-// Transforme une map de polices et génère des media queries
-@mixin texte-responsif($element) {
-    @each $taille-ecran, $taille-police in $element {
-        @if $taille-ecran == null {
-            font-size: $taille-police;
-        }
 
-        @else {
+// ===== MIXINS DE TEXTE =====
+
+
+
+// Transforme une map de textes et génère des media queries
+@mixin texte-dynamique($selecteurs) {
+    @each $selecteur, $tailles-ecran in $selecteurs {
+        @each $taille-ecran, $proprietes in $tailles-ecran {
             @media screen and (min-width: $taille-ecran) {
-                font-size: $taille-police;
+                #{$selecteur} {
+                    font-size: map-get($proprietes, taille);
+                    margin-block-start: map-get($proprietes, taille) / 4;
+                    margin-block-end: map-get($proprietes, taille) / 4;
+
+                    // Ajouter les propriétés ajoutées dans variables.scss ici
+                    // $proprietes représente toutes les propriétés présentes (présentement, taille et hauteur-ligne)
+                }
             }
         }
     }
 }
+
+// Remlpit automatiquement les informations génériques pour tout type de texte
+// Fonctionne avec themer()
+@mixin texte-general($theme, $element) {
+    color: map-deep-get($theme, $element, "couleur");
+    font-weight: map-deep-get($theme, $element, "poids");
+    font-style: map-deep-get($theme, $element, "style");
+}
+
+@mixin desactiver-margin-block() {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+
+
+// ===== MIXINS DE COULEUR =====
+
+
 
 // Stylise plusieurs classe/balises prédéterminés d'après une map de thème
 @mixin themer($theme) {
@@ -30,7 +59,7 @@
         color: map-deep-get($theme, "icone", "couleur");
     }
 
-    p {
+    p, input {
         @include texte-general($theme, "texte");
     }
 
@@ -43,15 +72,226 @@
     }
 
     // Boites
-    background-color: map-get($theme, couleur-fond);
+    background-color: map-deep-get($theme, "fond", "couleur-primaire");
 }
 
-@mixin texte-general($theme, $element) {
-    color: map-deep-get($theme, $element, "couleur");
-    font-weight: map-deep-get($theme, $element, "poids");
-    font-style: map-deep-get($theme, $element, "style");
+/*
+    Permet de faire un fondu entre des degrades ou des images
+    Demande qu'un élément vide ayant la classe "classe-destination" soit dans le conteneur de base
+    et que l'attribut transition change sur le conteneur original, le temps de l'animation
+*/
+@mixin fondu($duree, $classe-destination) {
+    position: relative;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    .#{$classe-destination} {
+        content: "";
+        position: absolute;
+        top:0;
+        left:0;
+        @include pleine-taille;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        opacity: 0;
+        @content;
+    }
+
+    &[transition="1"] {
+        .#{$classe-destination} {
+            animation: fondu-sortant $duree forwards;
+        }
+    }
 }
 
-@mixin cartes-horizontales() {
 
+/*
+    Attribue la bonne couleur reliée à un domaine (dans la map $couleurs)
+    Le domaine doit être pareil à la classe donnée à l'élément
+
+    $classes-proprietes-map contient une map qui fait correspondre des classes enfant
+    de l'élément principal à des propriétés CSS (color, background-color, etc)
+
+    Si on passe une clé se nommant 'soi' dans $classes-proprietes-map, la propriété sera appliquée à l'élément lui-même
+
+
+    Si $nouvelles-couleurs-selon-domaines est attribuée, à la place d'utiliser les couleurs de domaines normales
+    on utilise ses couleurs qu'on réattribue par rapport à chaque domaine
+*/
+@mixin couleurs-domaines($classes-proprietes-map, $nouvelles-couleurs-selon-domaines: ()) {
+    $map-couleurs-domaines: null;
+
+    // Itérer chaque classe enfant/propriété dans la map reçue
+    @each $classe, $propriete in $classes-proprietes-map {
+
+        @if length($nouvelles-couleurs-selon-domaines) > 0 {
+            $map-couleurs-domaines: $nouvelles-couleurs-selon-domaines;
+        }
+
+        @else {
+            $map-couleurs-domaines: map-get($couleurs, domaines);
+        }
+
+        // Itérer chaque couleur disponible dans les domaines
+        @each $domaine, $couleur in $map-couleurs-domaines {
+            @if ($classe == 'soi') {
+                &.#{$domaine} {
+                    #{$propriete}: $couleur;
+                }
+            }
+
+            @else {
+                // L'élément original doit avoir une classe correspondant aux différents domaines (voir Enseignant.scss pour exemple)
+                &.#{$domaine} {
+
+                    // Sélection de la classe enfant
+                    .#{$classe} {
+
+                        // Application de la couleur à la propriété
+                        #{$propriete}: $couleur;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+// ===== MIXINS RANDOMS =====
+
+
+
+// Gère l'ouverture de différentes boites d'après des classes
+// Insérer dans la boite à ouvrir/fermer
+@mixin gerer-ouverture($valeur-quand-ouvert) {
+    &.ouvert {
+        display: $valeur-quand-ouvert;
+    }
+
+    &.ferme {
+        display: none;
+    }
+}
+
+@mixin pleine-taille() {
+    width: 100%;
+    height: 100%;
+}
+
+// Cache la barre de défilement par défaut des browsers
+@mixin cacher-barre-defilement() {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+// Crée un flou gaussien pour flouter le fond
+@mixin fond-flou() {
+    backdrop-filter: blur(10px);
+}
+
+@mixin rond($taille) {
+    content: "";
+    border-radius: 50%;
+    width: $taille;
+    height: $taille;
+}
+
+@mixin etiquette() {
+    background: rgba(0, 0, 0, 0.377);
+    border-radius: 20px;
+    padding: 5%;
+}
+
+
+
+// ===== MIXINS DE SECTIONS =====
+
+
+
+// Bulle avec le coin bas droit plus prononcé. Comprend une image
+@mixin bulle() {
+    aspect-ratio: 1;
+    border-radius: 50% 50% 10px 50%;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@mixin carte() {
+    border-radius: 20px;
+
+    $padding-v: 5vh;
+    $padding-h: 5vw;
+
+    @include tablette {
+        $padding-h: 2.5vh;
+        $padding-v: 2.5vw;
+    }
+
+    padding-top: $padding-v;
+    padding-bottom: $padding-v;
+    padding-left: $padding-h;
+    padding-right: $padding-h;
+}
+
+@mixin bordures-coins-diagonales($taille, $couleur) {
+    background:
+        // Gauche
+        linear-gradient($couleur $taille, transparent 0 calc(100% - $taille)) 0 0 / 4px 100%,
+        // Droite
+        linear-gradient(transparent 0 calc(100% - $taille), $couleur 0) 100% 0 / 4px 100%,
+        // Haut
+        linear-gradient(to right, $couleur $taille, transparent 0 calc(100% - $taille)) 0 0 / 100% 4px,
+        // Bas
+        linear-gradient(to right, transparent 0 calc(100% - $taille), $couleur 0) 0 100% / 100% 4px
+    ;
+    background-repeat: no-repeat;
+}
+
+
+// ===== MIXINS DE REQUÊTES MÉDIAS =====
+
+
+
+@mixin mobile {
+    @media screen and (min-width: map-get($largeurs-ecran, mobile)) {
+        @content;
+    }
+}
+
+@mixin tablette {
+    @media screen and (min-width: map-get($largeurs-ecran, tablette)) {
+        @content;
+    }
+}
+
+@mixin ordinateur {
+    @media screen and (min-width: map-get($largeurs-ecran, ordinateur)) {
+        @content;
+    }
+}
+
+@mixin ordinateur-large {
+    @media screen and (min-width: map-get($largeurs-ecran, ordinateur-large)) {
+        @content;
+    }
+}
+
+
+// ===== MIXINS DE SÉLECTION =====
+
+
+
+@mixin selection-texte() {
+    h1, h2, h3, h4, h5, h6, p, a {
+        @content;
+    }
 }

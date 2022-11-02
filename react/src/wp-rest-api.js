@@ -1,64 +1,15 @@
-import {useEffect, useState} from 'react';
+export const url = 'https://timm175.sg-host.com';
 
-export const url = 'https://timm175.sg-host.com/wordpress/wp-json/wp/v2';
+export const cheminsFournisseurs = {
+    bre: "/wp-json/better-rest-endpoints/v1%%cheminFinal%%?acf=true&media=true",
+    hcms: "/wp-json/rae/v1/header-footer?header_location_id=hcms-menu-header&footer_location_id=hcms-menu-footer",
+    wp: "/wp-json/wp/v2%%cheminFinal%%?per_page=100"
+};
 
-/**     
- * Filtre toutes les images de WP pour trouver celle ayant l'ID demandé
- * @param {string} id ID de l'image dans WP
- * @param {array} media Liste des médias dans WP
- * @returns Lien de l'image dans WP
- */
-export function trouverImage(id, media) {
-    return media.filter(medium =>
-        medium.id == id)[0].guid.rendered
-}
+export const traiterRequete = (chemin, fournisseur, parametres) => {
+    if (parametres == undefined)
+        return url + cheminsFournisseurs[fournisseur].replace("%%cheminFinal%%", chemin);
 
-/**
- * Hook permettant de récupérer les données de WP
- * @param {string} url URL des données à obtenir
- * @returns Articles demandées par l'URL
- */
-export function useObtenir(chemin) {
-    const [donnees, setDonnees] = useState(null);
-    useEffect(() => {
-        async function obtenirArticles() {
-            const reponse = await fetch(url + '' + chemin);
-
-            if(!reponse.ok)
-                return;
-    
-            const reponseJSON = await reponse.json();
-
-            setDonnees(reponseJSON);
-        }
-    
-        obtenirArticles();
-    }, [url]);
-
-    return donnees;
-}
-
-/**
- * Hook permettant de récupérer plusieurs articles WP
- * @param {array} urls Liste des URLs dont on veut obtenir les données WP
- * @returns {array} Liste d'objets d'articles WP
- */
-export function useObtenirMultipleTypes(chemins) {
-    const [articles, setArticles] = useState(null);
-    useEffect(() => {
-        async function obtenirArticles() {
-            chemins.map(async (chemin) => {
-                const reponse = await fetch(url + '' + chemin);
-
-                if(!reponse.ok)
-                    return;
-
-                setArticles(await reponse.json())
-            })
-        }
-    
-        obtenirArticles();
-    }, []);
-
-    return articles;
+    else
+        return url + cheminsFournisseurs[fournisseur].replace("%%cheminFinal%%", chemin) + parametres;
 }

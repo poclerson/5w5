@@ -1,0 +1,57 @@
+@keyframes fondu-vers-prochain {
+    0% {
+        opacity: 1; 
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% { 
+        opacity: 1;
+    }
+}
+
+@keyframes fondu-vers-prochain-inverse {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% { 
+        opacity: 0;
+    }
+}
+
+@keyframes fondu-entrant {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fondu-sortant {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes marquee {
+    0% {
+        left: 100%;
+    }
+
+    // 50% {left: -100%}
+
+    100% {left: -100%}
+}

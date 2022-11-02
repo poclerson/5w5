@@ -1,4 +1,30 @@
+@import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
+
 .Navigation {
     display: flex;
     flex-direction: column;
+
+    .titre-page {
+        border: 1px solid transparent; // Ne pas déplacer lors du hover
+        display: block;
+        padding: 5vw 1vw;
+
+        border-radius: 5px;
+        border-bottom-right-radius: 25px;
+
+        &:hover {
+            border: 1px solid map-get($couleurs, sombre);
+        }
+    }
+
+    @include tablette {
+        flex: 1 0 50%;
+        flex-direction: row;
+        justify-content: space-around;
+
+        .titre-page {padding: 2.5vw 0;}
+
+        @include gerer-ouverture(flex);
+    }
 }

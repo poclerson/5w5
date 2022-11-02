@@ -1,13 +1,10 @@
 import './Cours.scss';
 
 import Icone from '../modules/Icone';
-import {Link} from 'react-router-dom';
 
-export default function Cours({titre, description, enseignants, enseignantsAttitres, domaines, session}) {
+export default function Cours({titre, description, domaines, id, ouverture}) {
     return(
-        <li className="Cours">
-            <h2 className="titre">{titre}</h2>
-            <p className="description">{description}</p>
+        <li className={"Cours " + ouverture} id={id}>
             <ul className="domaines">
                 {domaines.map(domaine => 
                     <li className="domaine" key={domaine}>
@@ -15,20 +12,11 @@ export default function Cours({titre, description, enseignants, enseignantsAttit
                     </li>
                 )}
             </ul>
-            <div className="enseignants">
-                <h3 className="titre">Enseignants</h3>
-                <ul className="liste">
-                    {enseignantsAttitres.map(enseignantAttitre => 
-                        <li className="item" key={enseignantAttitre} >
-                            <Link className="lien">
-                                {enseignants.filter(enseignant =>
-                                        enseignant.id == enseignantAttitre  
-                                )[0].acf.nom}
-                            </Link>
-                        </li>
-                    )}
-                </ul>
+            <div className="carte">
+                <h4 className="titre">{titre}</h4>
+                <p className="description">{description}</p>
             </div>
+            <div className="rond"></div>
         </li>
     )
 }

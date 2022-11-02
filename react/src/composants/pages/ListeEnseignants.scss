@@ -1,3 +1,87 @@
+@import '../../sass/mixins.scss';
+
 .ListeEnseignants {
-    
+    $taille-gouttieres: 10%;
+    position: relative;
+    box-sizing: border-box;
+
+    & > .titre {
+        @include gerer-ouverture(block);
+        padding-left: $taille-gouttieres;
+    }
+
+    @include ordinateur {
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+
+    .liste {
+        padding-left: $taille-gouttieres;
+        padding-right: $taille-gouttieres;
+        display: grid;
+        align-items: center;
+
+        @include cacher-barre-defilement;
+
+        // Deux colonnes
+        grid-template-columns: repeat(2, 1fr);
+        gap: $taille-gouttieres;
+
+        @include tablette {
+            // Trois colonnes
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include ordinateur {
+            display: flex;
+            overflow: auto;
+            height: 50vh;
+        }
+
+        // Quand la liste est ouverte, on montre tout
+        &.ouvert {
+            visibility: visible;
+
+            & ~ .Suivant {display: none;}
+
+            .Enseignant.ferme {
+                .miniature {height: 100%;}
+            }
+        }
+
+        // Quand elle est fermée (donc, qu'un enseignant a été ouvert)...
+        &.ferme {
+            display: flex;
+            visibility: hidden;
+            margin-top: map-get($hauteur-header, mobile);
+            height: calc(100vh - map-get($hauteur-header, mobile));
+            padding: 0;
+
+            @include tablette {margin-top: 5vh;}
+
+            @include ordinateur {
+                visibility: visible;
+                padding-left: $taille-gouttieres;
+                padding-right: $taille-gouttieres;
+                overflow-x: hidden;
+                gap: 5%;
+            }
+
+            // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
+            .Enseignant.ferme {
+                display: none;
+
+                @include ordinateur {display: flex;}
+            }
+        }
+    }
+
+    .Suivant {
+        display: none;
+        right: 2.5%;
+        bottom: 17.5%;
+
+        @include ordinateur {display: flex;}
+    }
 }

@@ -1,65 +1,55 @@
 import './App.scss';
 
-// Meta
 import EnTete from './composants/navigation/EnTete';
 import PiedPage from './composants/navigation/PiedPage';
+import Chargement from './composants/modules/Chargement';
 
-// Contenu
 import Accueil from './composants/pages/Accueil';
-import APropos from './composants/pages/APropos';
 import ListeEnseignants from './composants/pages/ListeEnseignants';
 import ListeCours from './composants/pages/ListeCours';
 import Contact from './composants/pages/Contact';
-import Etudiants from './composants/pages/Etudiants';
+import ListeProjets from './composants/pages/ListeProjets';
 
 import {Route, Routes} from 'react-router-dom';
+import useObtenir from './hooks/useObtenir';
 
 export default function App() {
     /**
      * Array contenant tout ce qui est nécessaire pour render les routes et créer le menu de navigation
      */
-    const routes = [
-        {
-            nom: 'Accueil',
-            chemin: '/',
-            composant: () => <Accueil />
-        },
-        {
-            nom: 'Enseignants',
-            chemin: '/enseignants',
-            composant: () => <ListeEnseignants />
-        },
-        {
-            nom: 'Cours',
-            chemin: '/cours',
-            composant: () => <ListeCours />
-        },
-        {
-            nom: 'Étudiants',
-            chemin: '/etudiants',
-            composant: () => <Etudiants />
-        },
-        {
-            nom: 'À propos',
-            chemin: '/a-propos',
-            composant: () => <APropos />
-        },
-        {
-            nom: 'Contact',
-            chemin: '/contact',
-            composant: () => <Contact />
-        },
-    ]        
+    const hcms = useObtenir('', 'hcms');
+
+    // Statique
+    const identifierComposant = (page) => {
+        const composants = {
+            'accueil': Accueil,
+            'enseignants': ListeEnseignants,
+            'cours': ListeCours,
+            'galerie-etudiante': ListeProjets,
+            'contact': Contact
+        };
+
+        return composants[page];
+    }
         
     return (
         <div className="App">
-            <EnTete routes={routes} />
-            <Routes>
-                {routes.map(route => {
-                    return <Route key={route.nom} path={route.chemin} element={ <route.composant />} />
-                })}
-            </Routes>
-            <PiedPage />
+            {hcms != null ?
+                <>
+                    <EnTete enteteWP={hcms.data.header} />
+                    <Routes>
+                        {hcms.data.header.headerMenuItems.map(page => {
+                            let Composant = identifierComposant(page.pageSlug);
+                            return <Route 
+                                key={"page" + page.pageID}
+                                path={page.pageSlug}
+                                element={<Composant titre={page.title} />}
+                            />
+                        })}
+                    </Routes> 
+                    <PiedPage enteteWP={hcms.data.header} />
+                </> : <Chargement />
+            }
         </div>
     );
 }

@@ -1,21 +1,66 @@
+@import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
+
 .EnTete {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 10;
 
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include pleine-taille;
+
+    &.ferme {
+        // Empêcher de prendre tout la place quand fermé
+        height: unset;
+
+        .resultats-recherche {padding: 0;}
+    }
+
+    @include tablette {justify-content: unset;}
+
+    .BoutonBurger {
+        @include tablette {display: none;}
+    }
 
     .contenu {
-        display: flex;
+        @include themer($theme-menu-mobile);
+        @include fond-flou;
+
+        @include gerer-ouverture(flex);
         flex-direction: column;
+
+        width: 95vw;
+        box-sizing: border-box;
+        padding: 10vw;
+
+        border-radius: 0 70px 70px 0;
+
+        @include tablette {
+            flex-direction: row;
+            @include themer($theme-menu-tablette);
+            width: 100vw;
+            height: 80px;
+            border-radius: 0;
+            padding: 0;
+            justify-content: space-between;
+            align-items: center;
+
+            border-bottom: 2px solid map-get($couleurs, clair);
+
+            &.ferme {display: flex;}
+        }
     }
 
-    // États
-    .ouvert {
-        display: flex;
-    }
+    .resultats-recherche {
+        @include themer($theme-base);
+        @include gerer-ouverture(flex);
 
-    .ferme {
-        display: none;
+        padding: 5%;
+        flex-direction: column;
+        gap: 10%;
+        overflow-y: scroll; // Permettre le défilement des résultats s'il y en a trop
     }
 }

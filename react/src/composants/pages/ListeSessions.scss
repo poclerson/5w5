@@ -1,0 +1,83 @@
+@import '../../sass/mixins.scss';
+@import '../../sass/animations.scss';
+@import '../../sass/fonctions.scss';
+@import '../../sass/variables.scss';
+
+.ListeSessions {
+    @include fondu(.5s, "destination");
+    
+    @include pleine-taille;
+    width: unset;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100vh;
+
+    @include ordinateur {
+        flex-direction: row;
+    }
+
+    .sessions-ronds{
+        @include pleine-taille();
+        overflow: hidden;
+        flex: 0;
+
+        .carousel {
+            @include pleine-taille();
+            transform-origin: center;
+            position: absolute; 
+            transition: transform .5s;
+
+            .session-rond {
+                @include fondu(.5s, "destination") {
+                    border-radius: 50%;
+                }
+
+                transition: transform .5s;
+                border-radius: 100%;
+        
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+        
+                .titre {
+                    position: absolute;
+                    right: 15%;
+                    top: -15%;
+                    font-size: 1500%;
+                    @include desactiver-margin-block;
+
+                    // Préférer l'utilisation d'une mixin
+                    &[transition="1"] {animation: fondu-vers-prochain .5s ease-in-out;}
+
+                    color: map-get($couleurs, clair);
+                }
+
+                .Icone {
+                    position: absolute;
+                    right: 15%;
+                    top: 50%;
+                }
+
+                .FlecheDefilement {
+                    @include ordinateur {display: none}
+                }
+            }
+        }
+    }
+
+    .sessions-titres {
+        z-index: 1;
+        display: none;
+        flex: 2;
+        flex-direction: column;
+        padding: 5vw;
+        white-space: nowrap;
+
+        @include ordinateur {display: flex;}
+    }
+}

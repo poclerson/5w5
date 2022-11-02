@@ -2,13 +2,16 @@
 @import './variables.scss';
 
 html {
-    font-family: Helvetica;
+    font-family: 'Lalezar', cursive;
+    @include texte-dynamique($tailles-textes);
 }
 
-h1 { 
-    @include texte-responsif($h1); 
+h1, h2, h3, h4, h5 {
+    font-family: map-get($polices, titre);
+    color: #F3F3EA;
 }
 
-h2 { @include texte-responsif($h2); }
-
-h3 { @include texte-responsif($h3); }
+h6, p {
+    font-family: map-get($polices, texte);
+    letter-spacing: 0;
+}
