@@ -41,7 +41,7 @@ export default function App() {
                             return <Route 
                                 key={"page" + page.pageID}
                                 path={page.pageSlug}
-                                element={<Composant />}
+                                element={<Composant titre={page.title} />}
                             />
                         })}
                     </Routes> 

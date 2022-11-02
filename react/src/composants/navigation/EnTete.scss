@@ -13,14 +13,17 @@
     @include pleine-taille;
 
     &.ferme {
+        // Empêcher de prendre tout la place quand fermé
         height: unset;
 
-        .resultats-recherche {
-            padding: 0;
-        }
+        .resultats-recherche {padding: 0;}
     }
 
     @include tablette {justify-content: unset;}
+
+    .BoutonBurger {
+        @include tablette {display: none;}
+    }
 
     .contenu {
         @include themer($theme-menu-mobile);
@@ -35,9 +38,20 @@
 
         border-radius: 0 70px 70px 0;
 
-        @include tablette {flex-direction: row;}
+        @include tablette {
+            flex-direction: row;
+            @include themer($theme-menu-tablette);
+            width: 100vw;
+            height: 80px;
+            border-radius: 0;
+            padding: 0;
+            justify-content: space-between;
+            align-items: center;
 
-        .SiteLogo {display: none;}
+            border-bottom: 2px solid map-get($couleurs, clair);
+
+            &.ferme {display: flex;}
+        }
     }
 
     .resultats-recherche {
@@ -47,25 +61,6 @@
         padding: 5%;
         flex-direction: column;
         gap: 10%;
-        overflow-y: scroll;
-    }
-
-    @include tablette {
-        .BoutonBurger {display: none}
-
-        .contenu {
-            @include themer($theme-menu-tablette);
-            width: 100vw;
-            border-radius: 0;
-            padding: 0;
-            justify-content: space-between;
-            align-items: center;
-
-            border-bottom: 2px solid map-get($couleurs, clair);
-
-            &.ferme {display: flex;}
-
-            .SiteLogo {display: block;}
-        }
+        overflow-y: scroll; // Permettre le défilement des résultats s'il y en a trop
     }
 }
