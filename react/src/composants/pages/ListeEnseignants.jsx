@@ -1,44 +1,38 @@
 import './ListeEnseignants.scss';
 
-import useObtenir from '../../hooks/useObtenir';
-import {useState} from 'react';
+import ContexteDonneesSite from '../../ContexteDonneesSite';
+import useOuvertures from '../../hooks/useOuvertures';
+import {useState, useContext} from 'react';
 
 import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
 import Suivant from '../modules/Suivant';
 
 export default function ListeEnseignants({titre}) {
-    const enseignants = useObtenir('/enseignants', 'bre');
-    const [indexOuvert, setIndexOuvert] = useState(-1);
+    const {enseignants} = useContext(ContexteDonneesSite);
 
-    // Quand on clique sur le bouton suivant (ordinateur seulement)
-    const gestionClicSuivant = () => {
-        if (indexOuvert + 1 == enseignants.length) {
-            setIndexOuvert(0);
-            return;
-        }
-
-        setIndexOuvert(indexOuvert + 1);
-    }
+    const {surClic, surClicSuivant, gestionClicParent, verifierOuverture} = useOuvertures(enseignants)
 
     return(
         enseignants != null ?
-            <section className="ListeEnseignants" enseignant-ouvert={indexOuvert != -1 ? "true" : "false"} >
+            <section className="ListeEnseignants" enseignant-ouvert={gestionClicParent()} >
                 <h1 className="titre">nos <br/> enseignants.</h1>
                 <ul className="liste">
                     {
-                        enseignants.map((enseignant, index) => 
-                            <Enseignant 
-                                ouvert={index == indexOuvert ? "true" : "false"}
+                        enseignants.map((enseignant, index) => {
+                            return <Enseignant 
+                                ouvert={false}
                                 {... enseignant.acf}
                                 key={enseignant.id} 
                                 index={index}
-                                setIndexOuvert={setIndexOuvert}
+                                surClic={surClic}
+                                verifierOuverture={verifierOuverture}
                             />
+                        }
                         ) 
                     }
                 </ul>
-                <Suivant gestionClic={gestionClicSuivant} />
+                <Suivant gestionClic={surClicSuivant} />
             </section>  
         : <Chargement />
     );
