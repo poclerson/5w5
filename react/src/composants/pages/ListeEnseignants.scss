@@ -1,27 +1,68 @@
 @import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
 
 .ListeEnseignants {
     @include page(true);
     flex-direction: column;
-    $taille-gouttieres: 10vw;
+    $taille-gouttieres: 10%;
     position: relative;
     box-sizing: border-box;
     overflow-y: scroll;
 
-    & > .titre {
-        @include gerer-ouverture(block);
-        padding-left: $taille-gouttieres;
-    }
+    & > .titre {padding-left: $taille-gouttieres;}
 
     @include ordinateur {
-        display: flex;
-        flex-direction: column;
         overflow-y: scroll;
+        @include page(false);
+    }
+
+    &[enseignant-ouvert="false"] {
+        .titre {display: block;}
+
+        // Quand la liste est ouverte, on montre tout
+        .liste {
+            visibility: visible;
+
+            & ~ .Suivant {
+                display: none;
+            }
+        }
+    }
+
+    &[enseignant-ouvert="true"] {
+        padding-bottom: 0;
+        & > .titre {display: none;}
+
+        // Quand elle est fermée (donc, qu'un enseignant a été ouvert)...
+        .liste {
+            display: flex;
+            visibility: hidden;
+
+            // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
+            .Enseignant[ouvert="false"] {
+                display: none;
+            }
+
+            @include ordinateur {
+                @include padding-auto;
+                // Empêcher les cartes de prendre trop de place
+                max-height: calc(100vh - map-get($decalage-pages, ordinateur));
+                visibility: visible;
+                padding: 0 $taille-gouttieres;
+                overflow-x: hidden;
+                gap: 5%;
+
+
+                .Enseignant[ouvert="true"] {
+                    &, & + * {display: flex;}
+                }
+            }
+        }
     }
 
     .liste {
-        padding-left: $taille-gouttieres;
-        padding-right: $taille-gouttieres;
+        height: 100%;
+        padding: 0 5%;
         display: grid;
         box-sizing: border-box;
 
@@ -32,44 +73,13 @@
         gap: $taille-gouttieres;
 
         @include tablette {
+            // Trois colonnes
             grid-template-columns: repeat(3, 1fr);
         }
 
         @include ordinateur {
             display: flex;
             overflow: auto;
-            height: 50vh;
-        }
-
-        // Quand la liste est ouverte, on montre tout
-        &.ouvert {
-            visibility: visible;
-
-            & ~ .Suivant {
-                display: none;
-            }
-        }
-
-        // Quand elle est fermée (donc, qu'un enseignant a été ouvert)...
-        &.ferme {
-            display: flex;
-            visibility: hidden;
-            padding: 0;
-
-            @include ordinateur {
-                visibility: visible;
-                padding-left: $taille-gouttieres;
-                padding-right: $taille-gouttieres;
-                overflow-x: hidden;
-                gap: 5%;
-            }
-
-            // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
-            .Enseignant.ferme {
-                display: none;
-
-                @include ordinateur {display: flex;}
-            }
         }
     }
 
@@ -78,8 +88,6 @@
         right: 2.5%;
         bottom: 17.5%;
 
-        @include ordinateur {
-            display: flex;
-        }
+        @include ordinateur {display: flex;}
     }
 }

@@ -208,6 +208,12 @@
     padding: 5%;
 }
 
+@mixin padding-auto() {
+    padding: map-get($decalage-pages, mobile) 0;
+    @include tablette {padding: calc(map-get($decalage-pages, tablette) / 2) 0;}
+    @include ordinateur {padding: calc(map-get($decalage-pages, ordinateur) / 2) 0;}
+}
+
 
 
 // ===== MIXINS DE SECTIONS =====
@@ -261,17 +267,25 @@
     display: flex;
 
     @if $ajuster-contenu {
-        padding: 80px 0;
+        padding: map-get($decalage-pages, mobile) 0;
     }
 
     @include tablette {
-        padding: 80px 0;
+        padding: map-get($decalage-pages, tablette) 0;
+
+        @if $ajuster-contenu {
+            padding: map-get($decalage-pages, tablette) * 1.5 0;
+        }
     }
 
     @include ordinateur {
         height: unset;
         min-height: 100%;
-        padding: 120px 0;
+        padding: map-get($decalage-pages, ordinateur) 0;
+
+        @if $ajuster-contenu {
+            padding: map-get($decalage-pages, ordinateur) * 1.5 0;
+        }
     }
 }
 
