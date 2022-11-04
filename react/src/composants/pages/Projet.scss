@@ -1,7 +1,7 @@
 @import '../../sass/mixins.scss';
 
 .Projet {
-    &.ferme {
+    &[ouvert="false"] {
         //  Les projets prennent deux rangées de hauteur
         grid-row: span 2;
 
@@ -29,7 +29,7 @@
         }
     }
 
-    &.ouvert {
+    &[ouvert="true"] {
         @include pleine-taille;
 
         .miniature {

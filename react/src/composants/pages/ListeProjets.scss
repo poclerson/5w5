@@ -15,8 +15,8 @@
         @include tablette {grid-column: span 2}
     }
 
-    .liste {
-        &.ouvert {
+    &[item-ouvert="false"] {
+        .liste {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-auto-rows: 15%;
@@ -64,8 +64,10 @@
                 }
             }
         }
+    }
 
-        &.ferme {
+    &[item-ouvert="true"] {
+        .liste {
             display: block;
 
             @include tablette {
@@ -80,8 +82,9 @@
             }
 
             // Cacher les éléments fermés
-            & > *:not(.ouvert) {display: none;}
+            & > *:not([ouvert="true"]) {display: none;}
         }
+            
     }
 
     @include ordinateur {

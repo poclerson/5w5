@@ -38,7 +38,8 @@ export default function App() {
         '/cours',
         '/degrades',
         '/enseignants',
-        '/projets'
+        '/projets',
+        '/environnement'
     ]); 
         
     return (

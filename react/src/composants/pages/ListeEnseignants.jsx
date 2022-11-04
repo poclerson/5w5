@@ -2,7 +2,7 @@ import './ListeEnseignants.scss';
 
 import ContexteDonneesSite from '../../ContexteDonneesSite';
 import useOuvertures from '../../hooks/useOuvertures';
-import {useState, useContext} from 'react';
+import {useContext} from 'react';
 
 import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
