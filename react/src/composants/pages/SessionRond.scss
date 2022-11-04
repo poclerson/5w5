@@ -1,0 +1,38 @@
+@import '../../sass/mixins.scss';
+
+.SessionRond {
+    @include fondu(.5s, "destination") {
+        border-radius: 50%;
+    }
+
+    transition: transform .5s;
+    border-radius: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+
+    .titre {
+        position: absolute;
+        right: 15%;
+        top: -15%;
+        font-size: 1500%;
+        @include desactiver-margin-block;
+
+        // Préférer l'utilisation d'une mixin
+        &[transition="1"] {animation: fondu-vers-prochain .5s ease-in-out;}
+
+        color: map-get($couleurs, clair);
+    }
+
+    .Icone {
+        position: absolute;
+        right: 15%;
+        top: 50%;
+    }
+
+    .FlecheDefilement {
+        @include ordinateur {display: none}
+    }
+}

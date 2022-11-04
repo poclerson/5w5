@@ -5,18 +5,20 @@ import {useState} from 'react';
  * @param {Array | Object} donnees Données relatives à la page. Si plusieurs sont nécessaires, on passe un object
  * @returns {Object} Callbacks nécessaires à la gestion des ouvertures
  */
-export default function useOuverture(donnees) {
-    const [indexOuvert, setIndexOuvert] = useState(-1);
+export default function useOuverture(donnees, ouvertureInitiale = -1) {
+    const [indexOuvert, setIndexOuvert] = useState(ouvertureInitiale);
 
     const gestionClicParent = () => {
         return indexOuvert != -1 ? "true" : "false"
     }
 
     const surClic = index => {
+        console.log("clic" + index)
         setIndexOuvert(index);
     }
 
     const verifierOuverture = index => {
+        console.log("verif" + index, index == indexOuvert ? "true" : "false")
         return index == indexOuvert ? "true" : "false"
     }
 
@@ -43,5 +45,6 @@ export default function useOuverture(donnees) {
         surClic: surClic,
         verifierOuverture: verifierOuverture,
         surClicSuivant: surClicSuivant,
+        indexOuvert: indexOuvert
     }
 }

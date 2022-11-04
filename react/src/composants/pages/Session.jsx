@@ -7,7 +7,7 @@ import * as boites from '../../boites';
 
 import Cours from './Cours';
 
-export default function Session({cours, enseignants, session, pageRef}) {
+export default function Session({cours, session, index, pageRef, verifierOuverture}) {
     const [ouvertures, setOuvertures] = useState(cours.map(() => 'ferme'));
 
     // Liste des cours
@@ -44,13 +44,12 @@ export default function Session({cours, enseignants, session, pageRef}) {
     }, [coursInfinis])
 
     return (
-        <article className={"Session " + session}>
+        <article className={"Session " + session} ouvert={verifierOuverture(index)}>
             <ul className="liste-cours" onScroll={gestionDefilement} ref={listeCoursRef}>
                 {coursInfinis.map((cours, index) => 
                     <Cours 
                         key={cours.acf.titre + index}
                         {... cours.acf}
-                        tousEnseignants={enseignants}
                         id={"cours" + index}
                         ouverture={ouvertures[index]}
                         innerRef={coursRef}

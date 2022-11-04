@@ -1,6 +1,14 @@
 @import '../../sass//mixins.scss';
 
 .Session {
+
+    &[ouvert="true"] {
+        display: flex;
+    }
+
+    &[ouvert="false"] {
+        display: none;
+    }
     @include pleine-taille;
 
     @include gerer-ouverture(flex);
