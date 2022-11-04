@@ -167,11 +167,13 @@
 // Gère l'ouverture de différentes boites d'après des classes
 // Insérer dans la boite à ouvrir/fermer
 @mixin gerer-ouverture($valeur-quand-ouvert) {
-    &.ouvert {
+    &.ouvert,
+    &[ouvert="true"] {
         display: $valeur-quand-ouvert;
     }
 
-    &.ferme {
+    &.ferme,
+    &[ouvert="false"] {
         display: none;
     }
 }
@@ -263,7 +265,7 @@
     background-repeat: no-repeat;
 }
 
-@mixin page($ajuster-contenu: false) {
+@mixin page($ajuster-contenu: false, $padding-bottom: true) {
     @include pleine-taille;
     display: flex;
 
@@ -281,12 +283,17 @@
 
     @include ordinateur {
         height: unset;
-        min-height: 100%;
+        min-height: calc(100vh - map-get($decalage-pages, ordinateur));
         padding: map-get($decalage-pages, ordinateur) 0;
 
         @if $ajuster-contenu {
             padding: map-get($decalage-pages, ordinateur) * 1.5 0;
+            min-height: calc(100vh - map-get($decalage-pages, ordinateur) * 1.5);
         }
+    }
+
+    @if $padding-bottom == false {
+        padding-bottom: 0 !important;
     }
 }
 

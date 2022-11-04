@@ -1,38 +1,24 @@
 @import '../../sass//mixins.scss';
 
 .Session {
-
-    &[ouvert="true"] {
-        display: flex;
-    }
-
-    &[ouvert="false"] {
-        display: none;
-    }
-    @include pleine-taille;
-
     @include gerer-ouverture(flex);
-
+    box-sizing: border-box;
     .liste-cours {
-        @include pleine-taille;
         @include cacher-barre-defilement;
+        @include padding-auto;
+        overflow-x: scroll;
+        box-sizing: border-box;
 
         display: flex;
         align-items: center;
-        gap: 40vw;
-        overflow-x: scroll;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
-        scroll-padding: 10vw;
+        gap: 40%;
+        scroll-padding-right: 10%;
 
         @include tablette {
-            gap: 20vw;
+            gap: 10%;
             scroll-snap-type: unset;
-        }
-
-        @include ordinateur {
-            gap: 10vw;
-            padding: unset;
         }
     }
 }

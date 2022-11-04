@@ -1,12 +1,10 @@
 @import '../../sass/mixins.scss';
 
 .SessionRonds{
-    @include pleine-taille();
     overflow: hidden;
     flex: 0;
 
     .carousel {
-        @include pleine-taille();
         transform-origin: center;
         position: absolute; 
         transition: transform .5s;

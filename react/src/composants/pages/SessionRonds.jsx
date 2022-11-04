@@ -6,79 +6,38 @@ import {useState, useEffect} from 'react';
 import medias from '../../medias';
 import useMediaQuery from '../../hooks/useMediaQuery';
 
-export default function SessionRonds({surClic, surClicSuivant, quantite, sessions}) {
+export default function SessionRonds({surClic, quantite, sessions, rotation}) {
     const tailleOrdinateur = useMediaQuery(medias.ordinateur);
     const tailleTablette = useMediaQuery(medias.tablette);
-
-    // État de rotation du carousel rond des titres de session
-    const [rotation, setRotation] = useState(0);
 
     // Données permettant au carousel d'être dynamique
     const donneesCarousel = {
         petit: {
             rayonRond: 150,
-            rayonCarousel: 600,
-            decalageGauche: 75,
+            rayonCarousel: 1000,
+            decalageGauche: 80,
             decalageHaut: 100,
             decalageAngle: 0
         },
 
         moyen: {
-            rayonRond: 150,
-            rayonCarousel: 500,
-            decalageGauche: 75,
-            decalageHaut: 0,
+            rayonRond: 175,
+            rayonCarousel: 650,
+            decalageGauche: 125,
+            decalageHaut: 175,
             decalageAngle: 0
         },
 
         grand: {
             rayonRond: 200,
-            rayonCarousel: 500,
-            decalageGauche: -500,
-            decalageHaut: 900,
+            rayonCarousel: 700,
+            decalageGauche: -600,
+            decalageHaut: 500,
             decalageAngle: 90
         }
     }
     // Par défaut, utiliser la taille mobile
     const [carousel, setCarousel] = useState(donneesCarousel.petit);
-
-    // Est activé quand on clique sur un bouton qui fait changer de session
-    function gestionProchaineSession(index) {
-        // Ouvrir selon l'index donné
-        if (tailleOrdinateur) {
-            surClic(index)
-            setRotation(-(360 * index / quantite))
-        }
-        
-        // Simplement ouvrir le prochain. Permet une rotation constante (ne brise pas à chaque cycle)
-        else {
-            surClicSuivant()
-            setRotation(rotation - (360 / quantite))
-        }
-
-        // setTransition(1)
-    }
-
-    function gestionStylePlacement() {
-        // Si on est sur ordinateur, la position du carousel des titres doit être relative au haut de la page
-        if (tailleOrdinateur) {
-            return {
-                top: -carousel.rayonCarousel * 2 - carousel.rayonRond + carousel.decalageHaut,
-                left: -carousel.rayonCarousel - carousel.rayonRond + carousel.decalageGauche,
-                width: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
-                height: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
-                transform: `rotate(${rotation + carousel.decalageAngle}deg)`
-            }
-        }
-
-        return {
-            bottom: -carousel.rayonCarousel * 2 - carousel.rayonRond + carousel.decalageHaut,
-            left: -carousel.rayonCarousel - carousel.rayonRond + carousel.decalageGauche,
-            width: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
-            height: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
-            transform: `rotate(${rotation + carousel.decalageAngle}deg)`
-        }
-    }
 
     // Place en cercle dynamiquement les titres de sessions pour permettre une bonne transition
     function placerEnCercle(index) {
@@ -88,10 +47,8 @@ export default function SessionRonds({surClic, surClicSuivant, quantite, session
             width: carousel.rayonRond * 2,
             height: carousel.rayonRond * 2,
             transform: `rotate(${-rotation - carousel.decalageAngle}deg)`,
-            // backgroundImage: `url(${obtenirDegrade(boites.obtenirOuverte(ouvertures))})`
         }
     }
-
 
     // Horrible, à retravailler
     useEffect(() => {
@@ -106,16 +63,23 @@ export default function SessionRonds({surClic, surClicSuivant, quantite, session
     }, [tailleOrdinateur, tailleTablette]) 
 
     return (
-        <div className="sessions-ronds">
+        <div className="SessionRonds">
             {/* carousel sert à correctement placer le carousel rond sans fucker le layout */}
-            <ol className="carousel" style={gestionStylePlacement()}>
+            <ol className="carousel" style={{
+                bottom: -carousel.rayonCarousel * 2 - carousel.rayonRond + carousel.decalageHaut,
+                left: -carousel.rayonCarousel - carousel.rayonRond + carousel.decalageGauche,
+                width: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
+                height: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
+                transform: `rotate(${rotation + carousel.decalageAngle}deg)`
+            }}>
                 {sessions.map((session, index) => 
                     <SessionRond 
                         key={"rond" + session} 
                         index={index}
                         session={session}
-                        gestionProchaineSession={gestionProchaineSession}
                         carousel={carousel}
+                        placement={placerEnCercle(index)}
+                        surClic={surClic}
                     />
                 )}
             </ol>

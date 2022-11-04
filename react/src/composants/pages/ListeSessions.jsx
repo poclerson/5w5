@@ -6,46 +6,51 @@ import SessionRonds from './SessionRonds';
 import {useState, useEffect} from 'react';
 import useOuvertures from '../../hooks/useOuvertures';
 
+import medias from '../../medias';
+import useMediaQuery from '../../hooks/useMediaQuery';
+
 import * as u from '../../utilitaires';
 
 export default function ListeSessions({sessions, cours, degrades, pageRef}) {
+    const tailleOrdinateur = useMediaQuery(medias.ordinateur);
+    const tailleTablette = useMediaQuery(medias.tablette);
+
     // Gestion de l'ouverture de chaque session
-    const {surClic, surClicSuivant, gestionClicParent, verifierOuverture, indexOuvert} = useOuvertures(sessions, 0);
+    const {surClic, surClicSuivant, verifierOuverture} = useOuvertures(sessions, 0);
 
     // Active certains styles uniquement aux bons moments. Change d'état dans onAnimationEnd des titres de session
     const [transition, setTransition] = useState(1);
 
-    // Conserve l'état du dégradé correspondant à la session sur laquelle on se trouve. 
-    // Permet de transitionner en changeant l'opacité vers la prochaine image de dégradé
-    const [degradePresent, setDegradePresent] = useState(null);
+    // État de rotation du carousel rond des titres de session
+    const [rotation, setRotation] = useState(0);
 
-    const stylesDegrades = {
-        section: {backgroundImage: `url(${degrades[indexOuvert]})`},
-        prochaineSection: {backgroundImage: `url(${degradePresent})`}
+    // Est activé quand on clique sur un bouton qui fait changer de session
+    function surClicSession(index) {
+        // Ouvrir selon l'index donné
+        if (tailleOrdinateur) {
+            surClic(index)
+            setRotation(-(360 * index / sessions.length))
+        }
+        
+        // Simplement ouvrir le prochain. Permet une rotation constante (ne brise pas à chaque cycle)
+        else {
+            surClicSuivant()
+            setRotation(rotation - (360 / sessions.length))
+        }
     }
-
-    const actualiserDegrade = () => {
-        setDegradePresent(degrades[indexOuvert]);
-    }
-
-    useEffect(() => {
-        actualiserDegrade();
-        surClic(0)
-    }, []);
 
     return (
         <div 
             className="ListeSessions" 
             transition={transition} 
-            style={stylesDegrades.section}
         >
             {/* Destination permet de gérer le fondu entre les images */}
-            <div className="destination" onAnimationEnd={actualiserDegrade} style={stylesDegrades.prochaineSection}></div>
+            <div className="destination"></div>
 
             {/* Titres des sessions */}
             <ol className="sessions-titres">
                 {sessions.map((session, index) => 
-                    <li className="session-titre" key={"titre" + session} onClick={() => surClic(index)}>
+                    <li className="session-titre" key={"titre" + session} onClick={() => surClicSession(index)}>
                         <h3 className="sous-titre">{u.inserer(session, 7, " ")}</h3>
                     </li>
                 )}
@@ -69,9 +74,9 @@ export default function ListeSessions({sessions, cours, degrades, pageRef}) {
 
             <SessionRonds 
                 sessions={sessions} 
-                surClic={surClic} 
-                surClicSuivant={surClicSuivant}
-                quantite={cours.length} 
+                surClic={surClicSession} 
+                quantite={sessions.length} 
+                rotation={rotation}
             />
         </div>
     )

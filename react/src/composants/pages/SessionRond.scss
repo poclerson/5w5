@@ -1,6 +1,7 @@
 @import '../../sass/mixins.scss';
 
 .SessionRond {
+    background-color: red;
     @include fondu(.5s, "destination") {
         border-radius: 50%;
     }

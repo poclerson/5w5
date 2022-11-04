@@ -5,26 +5,26 @@
 
 .ListeSessions {
     @include fondu(.5s, "destination");
-    
-    @include pleine-taille;
-
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    height: 100%;
     box-sizing: border-box;
 
+    // position: relative;
+
     @include ordinateur {
+        display: flex;
         flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 
-
     .sessions-titres {
-        z-index: 1;
+        z-index: 2;
         display: none;
+        position: relative;
         flex: 2;
         flex-direction: column;
-        padding: 5vw;
         white-space: nowrap;
+        padding: 0 5%;
 
         @include ordinateur {display: flex;}
     }
