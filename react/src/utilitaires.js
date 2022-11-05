@@ -67,25 +67,5 @@ String.prototype.tronquerMots = function(nombreMotsAGarder, commencerFin = false
  * @returns {string} String transformé en camel case
  */
 String.prototype.kebabVersCamel = function() {
-    let indexes = [];
-
-    let copie = this;
-
-    // Enregistrer la position des tirets
-    for (let char = 0; char < copie.length; char++) {
-        if (copie[char] === '-') {
-            indexes.push(char);
-        }
-    }
-
-    // Ne rien faire s'il n'y a qu'un mot
-    if (indexes.length == 0) return copie;
-
-    // Mettre les premières lettres en majuscule
-    indexes.forEach(index => copie = copie.replace(copie[index + 1], copie[index + 1].toUpperCase()));
-
-    // Retirer les tirets
-    copie = copie.replaceAll('-', '');
-
-    return copie;
+    return this.replace(/-./g, x=>x[1].toUpperCase())
 }
