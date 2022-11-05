@@ -31,8 +31,8 @@ export default function SessionRonds({surClic, quantite, sessions, rotation}) {
         grand: {
             rayonRond: 200,
             rayonCarousel: 700,
-            decalageGauche: -600,
-            decalageHaut: 500,
+            decalageGauche: -1800,
+            decalageHaut: 350,
             decalageAngle: 90
         }
     }

@@ -12,6 +12,7 @@
 
     position: relative;
 
+
     @include tablette {
         flex: 0 0 40%;
 
@@ -23,7 +24,9 @@
 
     @include ordinateur {
         // Afficher trois cours ou plus sur grands écrans
-        flex: 0 0 20%;
+        flex: 0 0 25%;
+
+        &:first-child{margin-left: 35%;}
     }
 
     // Deviendra l'icône 3D, placeholder d'un svg pour l'instant

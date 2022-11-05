@@ -4,11 +4,10 @@
 @import '../../sass/variables.scss';
 
 .ListeSessions {
+    background-color: transparent;
     @include fondu(.5s, "destination");
     height: 100%;
     box-sizing: border-box;
-
-    // position: relative;
 
     @include ordinateur {
         display: flex;
@@ -17,15 +16,44 @@
         align-items: center;
     }
 
-    .sessions-titres {
-        z-index: 2;
-        display: none;
+    .liste {
+        display: flex;
         position: relative;
-        flex: 2;
-        flex-direction: column;
-        white-space: nowrap;
-        padding: 0 5%;
+    }
 
+    // Reculer
+    transform: translateZ(-1px);
+    transform-style: preserve-3d;
+
+    .sessions-titres-conteneur {
+        position: absolute;
+        width: 25%;
+        height: 90%;
         @include ordinateur {display: flex;}
+        display: none;
+        padding: 0 5%;
+        background: linear-gradient(90deg, map-get($couleurs, sombre) 35%, transparent 100%);
+
+        // Avancer par-dessus la session
+        transform: translateZ(1px);
+        transform-style: preserve-3d;
+
+        .sessions-titres {
+            @include pleine-taille;
+            display: flex;
+            @include padding-auto;
+            flex-direction: column;
+            position: absolute;
+
+            // Avancer par-dessus le rond
+            transform: translateZ(1px);
+            transform-style: preserve-3d;
+
+            .session-titre {
+                &[ouvert="true"] {
+                    display: none;
+                }
+            }
+        }
     }
 }

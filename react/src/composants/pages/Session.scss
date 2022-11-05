@@ -3,15 +3,20 @@
 .Session {
     @include gerer-ouverture(flex);
     box-sizing: border-box;
+    position: relative;
+    transform-style: preserve-3d;
+
     .liste-cours {
         @include cacher-barre-defilement;
         @include padding-auto;
         overflow-x: scroll;
         box-sizing: border-box;
+        scroll-padding-left: 30vw;
 
         display: flex;
         align-items: center;
         scroll-snap-type: x mandatory;
+        overflow-y: hidden;
         scroll-behavior: smooth;
         gap: 40%;
         scroll-padding-right: 10%;

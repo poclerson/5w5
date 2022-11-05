@@ -44,33 +44,33 @@ export default function ListeSessions({sessions, cours, degrades, pageRef}) {
             className="ListeSessions" 
             transition={transition} 
         >
-            {/* Destination permet de gérer le fondu entre les images */}
-            <div className="destination"></div>
-
-            {/* Titres des sessions */}
-            <ol className="sessions-titres">
-                {sessions.map((session, index) => 
-                    <li className="session-titre" key={"titre" + session} onClick={() => surClicSession(index)}>
-                        <h3 className="sous-titre">{u.inserer(session, 7, " ")}</h3>
-                    </li>
-                )}
-            </ol>
+            <div className="sessions-titres-conteneur">
+                <ol className="sessions-titres">
+                    {sessions.map((session, index) => 
+                        <li className="session-titre" ouvert={verifierOuverture(index)} key={"titre" + session} onClick={() => surClicSession(index)}>
+                            <h3 className="sous-titre">{u.inserer(session, 7, " ")}</h3>
+                        </li>
+                    )}
+                </ol>
+            </div>
 
             {/* La session ouverte */}
-            {
-                sessions.map((session, index) => 
-                    <Session 
-                        key={session}   
-                        cours={cours.filter(_cours =>
-                            _cours.acf.session == session
-                        )} 
-                        session={session}
-                        index={index}
-                        pageRef={pageRef}
-                        verifierOuverture={verifierOuverture}
-                    />
-                )
-            }
+            <ul className="liste">
+                {
+                    sessions.map((session, index) => 
+                        <Session 
+                            key={session}   
+                            cours={cours.filter(_cours =>
+                                _cours.acf.session == session
+                            )} 
+                            session={session}
+                            index={index}
+                            pageRef={pageRef}
+                            verifierOuverture={verifierOuverture}
+                        />
+                    )
+                }
+            </ul>
 
             <SessionRonds 
                 sessions={sessions} 
