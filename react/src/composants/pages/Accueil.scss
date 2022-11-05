@@ -3,8 +3,8 @@
 @import '../../sass/animations.scss';
 
 .Accueil {
+    @include page;
     position: relative;
-    display: flex;
 
     .marquee-container {
         position: absolute;

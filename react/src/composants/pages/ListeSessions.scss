@@ -4,80 +4,56 @@
 @import '../../sass/variables.scss';
 
 .ListeSessions {
+    background-color: transparent;
     @include fondu(.5s, "destination");
-    
-    @include pleine-taille;
-    width: unset;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    height: 100%;
     box-sizing: border-box;
-    height: 100vh;
 
     @include ordinateur {
+        display: flex;
         flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    .sessions-ronds{
-        @include pleine-taille();
-        overflow: hidden;
-        flex: 0;
+    .liste {
+        display: flex;
+        position: relative;
+    }
 
-        .carousel {
-            @include pleine-taille();
-            transform-origin: center;
-            position: absolute; 
-            transition: transform .5s;
+    // Reculer
+    transform: translateZ(-1px);
+    transform-style: preserve-3d;
 
-            .session-rond {
-                @include fondu(.5s, "destination") {
-                    border-radius: 50%;
-                }
+    .sessions-titres-conteneur {
+        position: absolute;
+        width: 25%;
+        height: 90%;
+        @include ordinateur {display: flex;}
+        display: none;
+        padding: 0 5%;
+        background: linear-gradient(90deg, map-get($couleurs, sombre) 35%, transparent 100%);
 
-                transition: transform .5s;
-                border-radius: 100%;
-        
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: absolute;
-        
-                .titre {
-                    position: absolute;
-                    right: 15%;
-                    top: -15%;
-                    font-size: 1500%;
-                    @include desactiver-margin-block;
+        // Avancer par-dessus la session
+        transform: translateZ(1px);
+        transform-style: preserve-3d;
 
-                    // Préférer l'utilisation d'une mixin
-                    &[transition="1"] {animation: fondu-vers-prochain .5s ease-in-out;}
+        .sessions-titres {
+            @include pleine-taille;
+            display: flex;
+            @include padding-auto;
+            flex-direction: column;
+            position: absolute;
 
-                    color: map-get($couleurs, clair);
-                }
+            // Avancer par-dessus le rond
+            transform: translateZ(1px);
+            transform-style: preserve-3d;
 
-                .Icone {
-                    position: absolute;
-                    right: 15%;
-                    top: 50%;
-                }
-
-                .FlecheDefilement {
-                    @include ordinateur {display: none}
+            .session-titre {
+                &[ouvert="true"] {
+                    display: none;
                 }
             }
         }
-    }
-
-    .sessions-titres {
-        z-index: 1;
-        display: none;
-        flex: 2;
-        flex-direction: column;
-        padding: 5vw;
-        white-space: nowrap;
-
-        @include ordinateur {display: flex;}
     }
 }

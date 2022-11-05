@@ -2,9 +2,9 @@ import './Cours.scss';
 
 import Icone from '../modules/Icone';
 
-export default function Cours({titre, description, domaines, id, ouverture}) {
+export default function Cours({titre, description, domaines}) {
     return(
-        <li className={"Cours " + ouverture} id={id}>
+        <li className="Cours">
             <ul className="domaines">
                 {domaines.map(domaine => 
                     <li className="domaine" key={domaine}>

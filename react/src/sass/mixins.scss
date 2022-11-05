@@ -94,6 +94,7 @@
         background-size: 100% 100%;
         background-repeat: no-repeat;
         opacity: 0;
+        z-index: -1;
         @content;
     }
 
@@ -166,11 +167,13 @@
 // Gère l'ouverture de différentes boites d'après des classes
 // Insérer dans la boite à ouvrir/fermer
 @mixin gerer-ouverture($valeur-quand-ouvert) {
-    &.ouvert {
+    &.ouvert,
+    &[ouvert="true"] {
         display: $valeur-quand-ouvert;
     }
 
-    &.ferme {
+    &.ferme,
+    &[ouvert="false"] {
         display: none;
     }
 }
@@ -206,6 +209,12 @@
     background: rgba(0, 0, 0, 0.377);
     border-radius: 20px;
     padding: 5%;
+}
+
+@mixin padding-auto() {
+    padding: map-get($decalage-pages, mobile) 0;
+    @include tablette {padding: calc(map-get($decalage-pages, tablette) / 2) 0;}
+    @include ordinateur {padding: calc(map-get($decalage-pages, ordinateur) / 2) 0;}
 }
 
 
@@ -254,6 +263,38 @@
         linear-gradient(to right, transparent 0 calc(100% - $taille), $couleur 0) 0 100% / 100% 4px
     ;
     background-repeat: no-repeat;
+}
+
+@mixin page($ajuster-contenu: false, $padding-bottom: true) {
+    @include pleine-taille;
+    display: flex;
+
+    @if $ajuster-contenu {
+        padding: map-get($decalage-pages, mobile) 0;
+    }
+
+    @include tablette {
+        padding: map-get($decalage-pages, tablette) 0;
+
+        @if $ajuster-contenu {
+            padding: map-get($decalage-pages, tablette) * 1.5 0;
+        }
+    }
+
+    @include ordinateur {
+        height: unset;
+        min-height: calc(100vh - map-get($decalage-pages, ordinateur));
+        padding: map-get($decalage-pages, ordinateur) 0;
+
+        @if $ajuster-contenu {
+            padding: map-get($decalage-pages, ordinateur) * 1.5 0;
+            min-height: calc(100vh - map-get($decalage-pages, ordinateur) * 1.5);
+        }
+    }
+
+    @if $padding-bottom == false {
+        padding-bottom: 0 !important;
+    }
 }
 
 
