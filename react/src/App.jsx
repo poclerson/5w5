@@ -39,7 +39,8 @@ export default function App() {
         '/degrades',
         '/enseignants',
         '/projets',
-        '/environnement'
+        '/environnement',
+        '/pages'
     ]); 
         
     return (
@@ -53,7 +54,7 @@ export default function App() {
                             return <Route 
                                 key={"page" + page.pageID}
                                 path={page.pageSlug}
-                                element={<Composant titre={page.title} />}
+                                element={<Composant id={page.pageID} />}
                             />
                         })}
                     </Routes> 
