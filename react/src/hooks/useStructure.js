@@ -4,10 +4,11 @@ import ContexteDonneesSite from '../ContexteDonneesSite';
 
 /**
  * Prend automatiquement les éléments avec des classes d'une page de WP et crée un objet d'éléments avec
- * @param {string} id Identifiant de la page dans WP
+ * @param {String} id Identifiant de la page dans WP ou slug de l'url vers WP
+ * @param {Boolean} obtenirAvecSlug Détermine si on devrait obtenir les éléments à partir du slug de la page WP ou non
  * @returns {Object} Éléments HTML de la page
  */
-export default function useStructure(id) {
+export default function useStructure(id, obtenirAvecSlug = false) {
     // Récupérer les pages
     const {pages} = useContext(ContexteDonneesSite);
 
@@ -24,9 +25,18 @@ export default function useStructure(id) {
 
     useEffect(() => {
         if (pages != null) {
+            if (obtenirAvecSlug) {
+                id = pages.filter(page => page.slug == 'piedpage')[0].id
+                console.log(id)
+            }
+
             // Ajouter et nommer les éléments à l'objet
+            console.log(versElements())
             versElements().map(
-                element => objet[element.props.className.kebabVersCamel()] = element
+                element => {
+                    if (element.props.className)
+                        objet[element.props.className.kebabVersCamel()] = element
+                }
             )
 
             setHtml(objet)

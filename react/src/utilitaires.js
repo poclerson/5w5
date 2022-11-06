@@ -67,5 +67,6 @@ String.prototype.tronquerMots = function(nombreMotsAGarder, commencerFin = false
  * @returns {string} String transformé en camel case
  */
 String.prototype.kebabVersCamel = function() {
+    if (this == undefined) return;
     return this.replace(/-./g, x=>x[1].toUpperCase())
 }
