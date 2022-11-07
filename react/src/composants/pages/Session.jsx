@@ -1,49 +1,43 @@
 import './Session.scss';
 
-import {useState, useEffect, useRef} from 'react';
-import useDefilementHorizontal from '../../hooks/useDefilementHorizontal';
+import {useRef} from 'react';
 
 import Cours from './Cours';
+import FlecheCarousel from '../modules/FlecheCarousel';
 
-export default function Session({cours, session, index, pageRef, verifierOuverture}) {
+export default function Session({cours, session, index, pageRef, verifierOuverture, refTitres}) {
     // Liste des cours
     const listeCoursRef = useRef(null);
 
-    // Un cours
-    const coursRef = useRef(null);
+    const surClicSuivant = () => {
+        // Tous les cours de la session
+        const enfants = Array.from(listeCoursRef.current.children);
 
-    const gestionDefilement = () => {
-        // Obtenir le cours le plus à gauche pour le rendre plus gros
-        // Array.from(listeCoursRef.current.children).forEach((enfant, index) => {
-        //     if (enfant.getBoundingClientRect().x > 0 && enfant.getBoundingClientRect().x < window.innerWidth / 2) {
-        //         setOuvertures(boites.ouvrir(index, coursInfinis.map(() => 'ferme')));
-        //         return;
-        //     }
-        // })
+        // Trouver le cours le plus à gauche qui est encore dans la fenêtre
+        const plusAGauche = enfants.reduce((precedent, present) => {
+            return precedent.getBoundingClientRect().x < present.getBoundingClientRect().x && 
+                precedent.getBoundingClientRect().x > refTitres.current.offsetWidth / 2 ? 
+                precedent : present
+        })
+        const index = enfants.indexOf(plusAGauche) + 1;
+        
+        enfants[index].scrollIntoView({block: 'nearest', inline: 'start'});
     }
 
     return (
         <article className={"Session " + session} ouvert={verifierOuverture(index)}>
-            <ul className="liste-cours" onScroll={gestionDefilement} ref={listeCoursRef}>
+            <ul className="liste-cours" ref={listeCoursRef}>
                 {cours.map((cours, index) => 
                     <Cours 
                         key={cours.id}
                         id={cours.id}
-                        {... cours.acf}
-                        innerRef={coursRef}
+                        {...cours.acf}
                     />
                 )}
             </ul>
-            {/* Pour l'utilisation de la barre de défilement */}
-            {/* {listeCoursRef.current != null ?
-                <BarreDefilement largeurTotale={largeurDefilement} elementScroll={listeCoursRef.current} />
-                :
-                <Chargement />
-            } */}
-            {/* <a href={"#cours" + (ouvertures.indexOf("ouvert"))} className="prochain-cours" onClick={() => setOuvertures(boites.ouvrir(ouvertures.indexOf("ouvert") + 1, cours.map(() => "ferme")))}>
-                <ArrowForwardIosIcon className="Icone"  />
-            </a> */}
-            {/* <FlecheCarousel gestionClic={gestionClicFleche} /> */}
+            <div className="degrade">
+                <FlecheCarousel gestionClic={surClicSuivant} />
+            </div>  
         </article>
     )
 }

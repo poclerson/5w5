@@ -26,4 +26,27 @@
             scroll-snap-type: unset;
         }
     }
+
+    .degrade {
+        display: none;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 10%;
+        height: 100%;
+        z-index: 2;
+
+        background: linear-gradient(90deg, transparent 0%, map-get($couleurs, sombre) 100%);
+
+        @include ordinateur {
+            display: flex;
+        }
+
+        .Icone {
+            color: map-get($couleurs, clair);
+        }
+    }
 }
