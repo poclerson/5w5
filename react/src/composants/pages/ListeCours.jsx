@@ -1,8 +1,8 @@
 import './ListeCours.scss';
 
-import {useEffect, useState, useRef} from 'react';
+import {useEffect, useState, useRef, useContext} from 'react';
 
-import useObtenir from '../../hooks/useObtenir';
+import ContexteDonneesSite from '../../ContexteDonneesSite';
 
 import Chargement from '../modules/Chargement';
 import ListeSessions from './ListeSessions';
@@ -14,8 +14,7 @@ import ListeSessions from './ListeSessions';
  * On a besoin de deux composants pour permettre au deuxième de ne pas avoir de restrictions de chargement
  */
 export default function ListeCours({titre}) {
-    const cours = useObtenir('/cours');
-    const degrades = useObtenir('/degrades', 'bre');
+    const {cours, degrades} = useContext(ContexteDonneesSite)
 
     const [sessions, setSessions] = useState(null);
 

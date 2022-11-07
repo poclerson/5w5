@@ -16,10 +16,10 @@ $polices: (
     taille d'écran (en min-width) : taille de texte
 */
 
-$hauteur-header: (
-    base: 50vh,
-    mobile: 10vh,
-    tablette: 15vh
+$decalage-pages: (
+    mobile: 80px,
+    tablette: 80px,
+    ordinateur: 120px
 );
 
 /*
@@ -36,7 +36,7 @@ $tailles-textes: (
         ),
 
         360px:(
-            taille: 60px,
+            taille: 50px,
             hauteur-ligne: 12px
         ),
 
@@ -46,7 +46,7 @@ $tailles-textes: (
         ),
 
         1024px:(
-            taille: 40px,
+            taille: 75px,
             hauteur-ligne: 12px
         ),
 

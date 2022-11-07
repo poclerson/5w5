@@ -2,9 +2,9 @@
 @import '../../sass/variables.scss';
 
 .ListeProjets {
-    height: unset;
     overflow-y: scroll;
     @include cacher-barre-defilement;
+    @include page(true);
 
     @include tablette {
         overflow-y: visible;
@@ -15,18 +15,14 @@
         @include tablette {grid-column: span 2}
     }
 
-    .liste {
-        @include pleine-taille;
-        box-sizing: border-box;
-
-        &.ouvert {
+    &[item-ouvert="false"] {
+        .liste {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-auto-rows: 15vh;
+            grid-auto-rows: 15%;
             grid-auto-flow: row dense; // Permettre aux éléments de prendre de la place quand il y en a
-            gap: 5% 10%;
-            padding-left: 10%;
-            padding-right: 10%;
+            gap: 5vw;
+            padding: 0 5vw;
 
             @include tablette {
                 grid-auto-columns: 30vw;
@@ -36,7 +32,6 @@
                 grid-auto-rows: unset;
                 grid-template-columns: unset;
                 
-                gap: 10% 5%;
                 width: 100%;
                 height: 50vh;
             }
@@ -69,15 +64,14 @@
                 }
             }
         }
+    }
 
-        &.ferme {
+    &[item-ouvert="true"] {
+        .liste {
             display: block;
-            margin-top: map-get($hauteur-header, mobile);
-            height: calc(100vh - map-get($hauteur-header, mobile));
 
             @include tablette {
                 margin-top: 0;
-                height: calc(100vh - map-get($hauteur-header, tablette));
             }
 
             @include ordinateur {
@@ -88,8 +82,9 @@
             }
 
             // Cacher les éléments fermés
-            & > *:not(.ouvert) {display: none;}
+            & > *:not([ouvert="true"]) {display: none;}
         }
+            
     }
 
     @include ordinateur {

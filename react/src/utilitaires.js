@@ -61,3 +61,12 @@ String.prototype.tronquerMots = function(nombreMotsAGarder, commencerFin = false
         return this.split(' ').slice(-nombreMotsAGarder).join(' ');
     return this.split(' ').slice(0, nombreMotsAGarder).join(' ');
 }
+
+/**
+ * Prend un string en kebab case et le transforme en camel case
+ * @returns {string} String transformé en camel case
+ */
+String.prototype.kebabVersCamel = function() {
+    if (this == undefined) return;
+    return this.replace(/-./g, x=>x[1].toUpperCase())
+}
