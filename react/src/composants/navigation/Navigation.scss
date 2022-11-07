@@ -22,9 +22,5 @@
         flex: 1 0 50%;
         flex-direction: row;
         justify-content: space-around;
-
-        // .titre-page {padding: 2.5vw 0;}
-
-        @include gerer-ouverture(flex);
     }
 }

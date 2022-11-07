@@ -24,6 +24,7 @@ export default function ListeEnseignants({titre}) {
                                 ouvert={false}
                                 {... enseignant.acf}
                                 key={enseignant.id} 
+                                id={enseignant.id}
                                 index={index}
                                 surClic={surClic}
                                 verifierOuverture={verifierOuverture}

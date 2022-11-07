@@ -9,34 +9,34 @@
     Sinon, ils sont tous fermés et tous affichés en même temps
 */
 
+/*
+    Gestion des couleurs spécifiques à un certain domaine
+*/
+$classes-couleur-domaine: (
+    conteneur-photo: background-color,
+    miniature: background-color,
+    texte: background-color
+);
+
+$classes-couleur-domaine-ferme: (
+    domaine: color
+);
+
+$classes-couleur-domaine-contraste-texte: (
+    etiquette-titre: color,
+    titre: color,
+    etiquette-domaine: color,
+    domaine: color,
+    etiquette-description: color,
+    description: color
+);
+
+$couleurs-domaines-modifiees: (
+    modelisation3d: map-get($couleurs, sombre)
+);
+
 .Enseignant {
     @include themer($theme-enseignant);
-
-    /*
-        Gestion des couleurs spécifiques à un certain domaine
-    */
-    $classes-couleur-domaine: (
-        conteneur-photo: background-color,
-        miniature: background-color,
-        texte: background-color
-    );
-
-    $classes-couleur-domaine-ferme: (
-        domaine: color
-    );
-
-    $classes-couleur-domaine-contraste-texte: (
-        etiquette-titre: color,
-        titre: color,
-        etiquette-domaine: color,
-        domaine: color,
-        etiquette-description: color,
-        description: color
-    );
-
-    $couleurs-domaines-modifiees: (
-        modelisation3d: map-get($couleurs, sombre)
-    );
 
     @include couleurs-domaines($classes-couleur-domaine);
     @include couleurs-domaines(
@@ -45,6 +45,10 @@
     );
 
     @include couleurs-domaines($classes-couleur-domaine-ferme);
+
+
+    // ===== FERMÉ =====
+
 
     &[ouvert="false"] {
         .miniature {
@@ -64,18 +68,23 @@
         .contenu {display: none;}
     }
 
+
+    // ===== OUVERT =====
+
+
     &[ouvert="true"] {
         display: flex;
         justify-content: center;
         position: relative;
         // Permettre de rendre la liste invisible tout en gardant l'enseignant ouvert visible
         visibility: visible;
+        height: 100%;
 
         // Lorsque ouvert, on montre le contenu en cachant la miniature
         .contenu {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            // align-items: center;
             gap: 5%;
 
             .retour-liste {
@@ -116,7 +125,7 @@
 
             // Section de texte avec l'image de l'enseignant
             .texte {
-                flex: 0 1 70%;
+                flex: 0 1 80%;
                 box-sizing: border-box;
                 padding: 5%;
                 border-radius: 30px 30px 0 0;
@@ -202,21 +211,28 @@
             @include couleurs-domaines($classes-couleur-domaine-ferme);
             flex: 0 1 70%;
 
+            // Sélectionner l'enseignant juste après l'enseignant ouvert
             & + * {
                 flex: 1 0 30%;
                 transform: scale(0.75);
             }
         }
 
-        @include ordinateur-large {width: 60vw}
+        @include ordinateur-large {flex: 0 1 60%;}
+    }
+
+    // Général, peu importe l'état. N'override pas les règles de priorité
+    & {
+        flex: 1 0 20%;
     }
 
     // Général, peu importe l'état. Override les règles de priorité
     &[ouvert="true"],
     &[ouvert="false"] {
         flex-direction: row-reverse; // Afficher le contenu à gauche
-        justify-content: center;
+        // justify-content: center;
         gap: 10%;
+        width: 0;
 
         .miniature {
             overflow: hidden;

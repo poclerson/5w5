@@ -27,18 +27,15 @@ export default function useStructure(id, obtenirAvecSlug = false) {
         if (pages != null) {
             if (obtenirAvecSlug) {
                 id = pages.filter(page => page.slug == 'piedpage')[0].id
-                console.log(id)
             }
 
             // Ajouter et nommer les éléments à l'objet
-            console.log(versElements())
-            versElements().map(
+            versElements().forEach(
                 element => {
                     if (element.props.className)
                         objet[element.props.className.kebabVersCamel()] = element
                 }
             )
-
             setHtml(objet)
         }
     }, [pages])

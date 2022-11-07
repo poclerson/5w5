@@ -27,7 +27,8 @@ export default function Session({cours, session, index, pageRef, verifierOuvertu
             <ul className="liste-cours" onScroll={gestionDefilement} ref={listeCoursRef}>
                 {cours.map((cours, index) => 
                     <Cours 
-                        key={cours.acf.titre + index}
+                        key={cours.id}
+                        id={cours.id}
                         {... cours.acf}
                         innerRef={coursRef}
                     />

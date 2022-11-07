@@ -13,12 +13,10 @@ export default function useOuverture(donnees, ouvertureInitiale = -1) {
     }
 
     const surClic = index => {
-        console.log("clic" + index)
         setIndexOuvert(index);
     }
 
     const verifierOuverture = index => {
-        console.log("verif" + index, index == indexOuvert ? "true" : "false")
         return index == indexOuvert ? "true" : "false"
     }
 
@@ -33,7 +31,7 @@ export default function useOuverture(donnees, ouvertureInitiale = -1) {
             }
 
             else {
-                console.log(Object.values(donnees))
+                // console.log(Object.values(donnees))
             }
         }
 
