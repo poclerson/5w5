@@ -41,6 +41,11 @@
         .inscription{
             display: flex;
             flex-direction: column;
+
+            a{
+              text-decoration: underline;  
+            }
+            
         }
 
         & > * {
@@ -52,6 +57,11 @@
             position: absolute;
             bottom: 100%;
             width: 100%;
+        }
+
+        .logo{
+            position: relative;
+            flex-basis:16%;
         }
 
         @include ordinateur {

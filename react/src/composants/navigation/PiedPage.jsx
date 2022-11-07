@@ -24,19 +24,21 @@ export default function PiedPage({enteteWP}) {
                 </div>
                 <div className="nous-joindre">
                     {/* À récupérer depuis WP */}
-                <h2 className="sous-titre">Nous joindre</h2>
-                <h6>adresse courriel</h6> 
-                <h6>numéro téléphone</h6>
+                <h4 className="sous-titre">Nous joindre</h4>
+                <p> 3800 R. Sherbrooke E, Montréal, QC H1X 2A2</p> 
+                <p>(514) 254-7131</p>
                 <iframe className="carte" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2793.973181379664!2d-73.55548818445816!3d45.550865035677376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91bf5bacbeffd%3A0x68ff300997eff5c!2sColl%C3%A8ge%20de%20Maisonneuve!5e0!3m2!1sfr!2sca!4v1667395642086!5m2!1sfr!2sca" width="300" height="150" style={{border: 0}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 
                 
                 <div className="inscription">
-                 <h2 className="sous-titre">Inscription</h2>   
+                 <h4 className="sous-titre">Inscription</h4>   
+                 <p> <a href="https://admission.sram.qc.ca/"> Soummettre ma demande </a></p>
                 </div>
 
                 <div className="reseau-sociaux">
-                 <h2 className="sous-titre">Réseaux sociaux</h2>   
+                 <h4 className="sous-titre">Réseaux sociaux</h4>   
+                 <p>Instagram/Facebook/Twitter</p>
                 </div>
 
             </div>
