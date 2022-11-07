@@ -1,3 +1,7 @@
+// -
+// Définition de la taille des écrans pour un site web réactif. 
+// -
+
 $largeurs-ecran: (
     base: 0px,
     mobile: 360px,
@@ -16,10 +20,10 @@ $polices: (
     taille d'écran (en min-width) : taille de texte
 */
 
-$hauteur-header: (
-    base: 50vh,
-    mobile: 10vh,
-    tablette: 15vh
+$decalage-pages: (
+    mobile: 80px,
+    tablette: 80px,
+    ordinateur: 120px
 );
 
 /*
@@ -28,7 +32,7 @@ $hauteur-header: (
     Il suffit de les intégrer dans mixins.scss par la suite
 */
 $tailles-textes: (
-    // Nom d'une page
+    // Nom d'une page et chiffre dans la page de cours
     h1: (
         0px: (
             taille: 40px,
@@ -36,7 +40,7 @@ $tailles-textes: (
         ),
 
         360px:(
-            taille: 60px,
+            taille: 50px,
             hauteur-ligne: 12px
         ),
 
@@ -46,7 +50,7 @@ $tailles-textes: (
         ),
 
         1024px:(
-            taille: 40px,
+            taille: 75px,
             hauteur-ligne: 12px
         ),
 
@@ -113,7 +117,7 @@ $tailles-textes: (
             hauteur-ligne: 12px
         ),
     ),
-
+    // Titre des cours dans la page cours
     h4: (
         0px:(
             taille: 32px,
@@ -225,7 +229,7 @@ $tailles-textes: (
         ),
     )
 );
-
+//Definition des couleurs dans le site web
 $couleurs: (
     clair: #f3f3ea,
     clair-transparent: #f3f3ea3a,
@@ -288,7 +292,7 @@ $theme-base: (
     ),
 );
 
-// Entête et autres menus flottants
+// Entête et autres menus flottants pour mobile
 $theme-menu-mobile: (
     titre: (
         couleur: map-get($couleurs, clair),
@@ -325,7 +329,7 @@ $theme-menu-mobile: (
         couleur-secondaire: map-get($couleurs, sombre)
     )
 );
-
+//Style general pour la version tablette
 $theme-menu-tablette: (
     titre: (
         couleur: map-get($couleurs, clair),
@@ -358,7 +362,7 @@ $theme-menu-tablette: (
     )
 );
 
-// Liste des sessions
+// Style pour les elements dans la section/menu de la selection des session dans la page cours
 $theme-liste-session: (
     titre: (
         couleur: map-get($couleurs, sombre),
@@ -385,7 +389,7 @@ $theme-liste-session: (
     fond: ()
 );
 
-// Chaque cours
+// Styles pour les elements dans la page des cours
 $theme-cours: (
     titre: (
         couleur: map-get($couleurs, clair),
@@ -426,7 +430,7 @@ $theme-cours: (
     )
 );
 
-// Chaque enseignant
+// Style pour les elements dans la page des enseignants
 $theme-enseignant: (
     titre: (
         couleur: map-get($couleurs, clair),
@@ -454,7 +458,7 @@ $theme-enseignant: (
 
     fond: ()
 );
-
+//Style et grosseur du pied des élements dans le pied de page
 $theme-PiedDePage: (
     titre: (
         couleur: map-get($couleurs, clair),

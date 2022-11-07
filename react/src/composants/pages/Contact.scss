@@ -1,15 +1,13 @@
 @import '../../sass/variables.scss';
 @import '../../sass/mixins.scss';
 @import '../../sass/fonctions.scss';
-
+//Importation des variables, mixins et fonctions pour après mettre les elements dans un ordre et style defini sans le font d'écran de base
 .Contact {
 display: flex;
 flex-direction: column;
-
 background-repeat: no-repeat;
 background-position: 100% 50%;
 background-size: cover;
-
 overflow-x: hidden;
 width: 100%;
 padding-left: 5%;
