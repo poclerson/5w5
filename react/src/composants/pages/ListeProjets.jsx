@@ -2,18 +2,21 @@ import './ListeProjets.scss';
 
 import {useContext} from 'react';
 import useOuvertures from '../../hooks/useOuvertures';
+import useStructure from '../../hooks/useStructure';
 import ContexteDonneesSite from '../../ContexteDonneesSite';
 
 import Projet from './Projet';
 import Chargement from '../modules/Chargement';
 
-export default function ListeProjets() {
+export default function ListeProjets({id}) {
     const {projets, environnement} = useContext(ContexteDonneesSite);
 
     const {surClic, gestionClicParent, verifierOuverture} = useOuvertures({
         projets: projets,
         environnement: environnement
     });
+
+    const {titre} = useStructure(id);
 
     // Tout mettre dans un callback permet de déclarer des variables (index)
     const rendreCases = () => {
@@ -47,7 +50,7 @@ export default function ListeProjets() {
         projets != null && environnement != null ?
             <section className="ListeProjets" item-ouvert={gestionClicParent()}>
                 <ul className="liste">
-                    <h1 className="titre">galerie <br/> étudiante.</h1>
+                    {titre}
                     {rendreCases()}
                 </ul>
             </section> : <Chargement />
