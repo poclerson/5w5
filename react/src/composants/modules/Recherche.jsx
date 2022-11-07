@@ -6,7 +6,7 @@ import * as wp from '../../wp-rest-api';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 
-export default function Rechercher({gestionResultats, ouverture, gestionClic}) { 
+export default function Rechercher({gestionResultats, verifierOuverture, surClic}) { 
     const [saisie, setSaisie] = useState('');
 
     const gestionSaisie = e => {
@@ -31,11 +31,11 @@ export default function Rechercher({gestionResultats, ouverture, gestionClic}) {
 
     // Appeler la fonction de recherche chaque fois qu'on écrit un caractère
     return(
-        <div className={"Recherche " + ouverture}>
-            <SearchIcon className="Icone icone-recherche" onClick={gestionClic} />
+        <div className="Recherche" ouvert={verifierOuverture()}>
+            <SearchIcon className="Icone icone-recherche" onClick={surClic} />
             <TextField
                 onChange={gestionSaisie}
-                className={"zone-saisie " + ouverture}
+                className="zone-saisie"
             />
         </div>
     )
