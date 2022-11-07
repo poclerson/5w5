@@ -6,6 +6,7 @@ import Navigation from './Navigation';
 import BoutonBurger from '../modules/BoutonBurger';
 import SiteLogo from '../modules/SiteLogo';
 import Recherche from '../modules/Recherche';
+import ResultatRecherche from '../modules/ResultatRecherche';
 import Chargement from '../modules/Chargement';
 
 export default function EnTete({enteteWP}) {
@@ -47,11 +48,7 @@ export default function EnTete({enteteWP}) {
             <ul className="resultats-recherche">
                 {resultatsRecherche != null ?
                     resultatsRecherche.map(resultat => 
-                        <li className="resultat" key={resultat.id}>
-                            <a href={resultat.permalink} className="lien">
-                                <h6 className="titre">{resultat.title}</h6>
-                            </a>
-                        </li>
+                        <ResultatRecherche key={resultat.id} resultat={resultat} />
                     ) : <Chargement />
                 }
             </ul>

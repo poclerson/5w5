@@ -2,9 +2,9 @@ import './Enseignant.scss';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-export default function Enseignant({nom, description, photo, domaine, surClic, index, verifierOuverture}) {
+export default function Enseignant({nom, description, photo, domaine, surClic, index, verifierOuverture, id}) {
     return(
-        <li className={`Enseignant ${domaine}`} ouvert={verifierOuverture(index)}>
+        <li className={`Enseignant ${domaine}`} id={id} ouvert={verifierOuverture(index)}>
             <div className="miniature" onClick={() => surClic(index)}>
                 <h2 className="titre">{nom.toUpperCase()}</h2>
                 <img className="photo" src={photo} alt={"Photo de " + nom} />

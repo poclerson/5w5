@@ -12,10 +12,11 @@ export default function Projet({
     lien,
     index,
     surClic,
-    verifierOuverture
+    verifierOuverture,
+    id
 }) {
     return (
-        <li className="Projet" ouvert={verifierOuverture(index)}>
+        <li className="Projet" id={id} ouvert={verifierOuverture(index)}>
             <div className="miniature" onClick={() => surClic(index)}>
                 <div className="information">
                     <h2 className="titre">{nom}</h2>

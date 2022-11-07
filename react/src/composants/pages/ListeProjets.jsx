@@ -23,6 +23,7 @@ export default function ListeProjets() {
             if (projet.acf.hasOwnProperty('nom')) {
                 let composant = <Projet 
                     key={projet.id}
+                    id={projet.id}
                     {... projet.acf}
                     index={index}
                     surClic={surClic}
