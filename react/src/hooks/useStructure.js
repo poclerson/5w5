@@ -26,7 +26,7 @@ export default function useStructure(id, obtenirAvecSlug = false) {
     useEffect(() => {
         if (pages != null) {
             if (obtenirAvecSlug) {
-                id = pages.filter(page => page.slug == 'piedpage')[0].id
+                id = pages.filter(page => page.slug == id)[0].id
             }
 
             // Ajouter et nommer les éléments à l'objet

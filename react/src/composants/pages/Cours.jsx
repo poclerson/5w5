@@ -4,7 +4,7 @@ import Icone from '../modules/Icone';
 
 export default function Cours({titre, description, domaines, id}) {
     return(
-        <li className="Cours" id={id} >
+        <li className="Cours" id={id}>
             <ul className="domaines">
                 {domaines.map(domaine => 
                     <li className="domaine" key={domaine}>
