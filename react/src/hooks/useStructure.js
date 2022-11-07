@@ -30,13 +30,12 @@ export default function useStructure(id, obtenirAvecSlug = false) {
             }
 
             // Ajouter et nommer les éléments à l'objet
-            versElements().map(
+            versElements().forEach(
                 element => {
                     if (element.props.className)
                         objet[element.props.className.kebabVersCamel()] = element
                 }
             )
-
             setHtml(objet)
         }
     }, [pages])
