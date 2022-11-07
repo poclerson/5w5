@@ -24,7 +24,7 @@ export default function Contact({id}) {
                 <article className='contenu'>
                     <div className='images'>
                         <div className='image1'></div>
-                        <div className='image2'></div>
+                        <div className='carte'></div>
                         <div className='image3'></div>
                     </div>
                     <div className='informations'>

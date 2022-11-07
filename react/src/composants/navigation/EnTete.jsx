@@ -11,6 +11,7 @@ import Recherche from '../modules/Recherche';
 import ResultatRecherche from '../modules/ResultatRecherche';
 import Chargement from '../modules/Chargement';
 
+
 export default function EnTete({enteteWP}) {
 
     // Ouverture de l'entête, mobile seulement
