@@ -9,7 +9,7 @@ background-repeat: no-repeat;
 background-position: 100% 50%;
 background-size: cover;
 overflow-x: hidden;
-width: 100%;
+@include pleine-taille;
 padding-left: 5%;
 padding-right: 5%;
 box-sizing: border-box;

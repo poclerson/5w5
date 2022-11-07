@@ -1,37 +1,48 @@
-import {useState, useEffect} from 'react';
-import * as boites from '../boites';
+import {useState} from 'react';
 
 /**
- * 
- * @param {Object} dependance données obtenue dans REST 
- * @param {bool} ouvrirPremierAuChargement 
- * @returns {Object} actions possibles d'effectuer et états
+ * Gère l'ouverture des différents items sur la page grâce à des callbacks
+ * @param {Array | Object} donnees Données relatives à la page. Si plusieurs sont nécessaires, on passe un object
+ * @returns {Object} Callbacks nécessaires à la gestion des ouvertures
  */
-export default function useOuvertures(dependance, ouvrirPremierAuChargement) {
-    const [ouvertures, setOuvertures] = useState(null);
-    const [ouvertureListe, setOuvertureListe] = useState('ouvert');
+export default function useOuverture(donnees, ouvertureInitiale = -1) {
+    const [indexOuvert, setIndexOuvert] = useState(ouvertureInitiale);
 
-    useEffect(() => {
-        if (dependance != null) {
-            ouvrirPremierAuChargement ? 
-                setOuvertures(boites.ouvrir(0, dependance.map(() => 'ferme'))) :
-                setOuvertures(dependance.map(() => 'ferme'))
-        }
-    }, [dependance])
+    const gestionClicParent = () => {
+        return indexOuvert != -1 ? "true" : "false"
+    }
 
-    useEffect(() => {
-        if (ouvertures) {
-            // S'il y a une boite ouverte, on doit mettre l'état d'ouverture de la liste à fermé
-            ouvertures.includes('ouvert') ?
+    const surClic = index => {
+        setIndexOuvert(index);
+    }
 
-            setOuvertureListe('ferme') : setOuvertureListe('ouvert');
+    const verifierOuverture = index => {
+        return index == indexOuvert ? "true" : "false"
+    }
 
-                return {
-                    ouvertures: ouvertures,
-                    setOuvertures: setOuvertures,
-                    ouvertureListe: ouvertureListe,
-                    setOuvertureListe: setOuvertureListe
+    // Quand on clique sur le bouton suivant (ordinateur seulement)
+    const surClicSuivant = () => {
+        if (donnees != null) {
+            if (Array.isArray(donnees)) {
+                if (indexOuvert + 1 == donnees.length) {
+                    setIndexOuvert(0);
+                    return;
                 }
+            }
+
+            else {
+                // console.log(Object.values(donnees))
+            }
         }
-    }, [ouvertures])
+
+        setIndexOuvert(indexOuvert + 1);
+    }
+
+    return {
+        gestionClicParent: gestionClicParent,
+        surClic: surClic,
+        verifierOuverture: verifierOuverture,
+        surClicSuivant: surClicSuivant,
+        indexOuvert: indexOuvert
+    }
 }

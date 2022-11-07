@@ -12,6 +12,8 @@ import ListeProjets from './composants/pages/ListeProjets';
 
 import {Route, Routes} from 'react-router-dom';
 import useObtenir from './hooks/useObtenir';
+import ContexteDonneesSite from './ContexteDonneesSite';
+import useObtenirMultiples from './hooks/useObtenirMultiples';
 
 export default function App() {
     /**
@@ -31,11 +33,20 @@ export default function App() {
 
         return composants[page];
     }
+
+    const donneesSite = useObtenirMultiples([
+        '/cours',
+        '/degrades',
+        '/enseignants',
+        '/projets',
+        '/environnement',
+        '/pages'
+    ]); 
         
     return (
         <div className="App">
-            {hcms != null ?
-                <>
+            {hcms != null && donneesSite != null ?
+                <ContexteDonneesSite.Provider value={donneesSite}>
                     <EnTete enteteWP={hcms.data.header} />
                     <Routes>
                         {hcms.data.header.headerMenuItems.map(page => {
@@ -43,12 +54,12 @@ export default function App() {
                             return <Route 
                                 key={"page" + page.pageID}
                                 path={page.pageSlug}
-                                element={<Composant titre={page.title} />}
+                                element={<Composant id={page.pageID} />}
                             />
                         })}
                     </Routes> 
                     <PiedPage enteteWP={hcms.data.header} />
-                </> : <Chargement />
+                </ContexteDonneesSite.Provider> : <Chargement />
             }
         </div>
     );

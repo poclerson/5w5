@@ -22,15 +22,5 @@
 
     @include tablette {
         flex: 0 2 5%;
-        /* 
-            Lorsque la zone de recherche est ouverte, on la fait prendre toute la largeur
-            afin de permettre de mieux voir ce qu'on écrit
-        */
-        &.ouvert {flex-basis: 100%;}
-
-        .zone-saisie {
-            @include gerer-ouverture(flex);
-            width: 100%;
-        }
     }
 }
