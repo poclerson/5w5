@@ -43,4 +43,4 @@ Ce projet est organisé en suivant la méthodologie Agile Scrum
 - [Yeeun Kim](https://github.com/yexxun) (design, création de médias)
 
 ## Design
-Vous pouvez trouver une maquette de notre site web [ici(https://www.figma.com/file/HoeP24F8g6Mmb4m9WiWepB/web?node-id=0%3A1)]
+Vous pouvez trouver une maquette de notre site web [ici](https://www.figma.com/file/HoeP24F8g6Mmb4m9WiWepB/web?node-id=0%3A1)

@@ -11,19 +11,17 @@ export default function Projet({
     image_1,
     lien,
     index,
-    ouverture,
-    gestionClicListe
+    surClic,
+    verifierOuverture,
+    id
 }) {
-    const gestionClic = () => {
-        gestionClicListe(index, ouverture)
-    }
     return (
-        <li className={"Projet case " + ouverture}>
-            <div className="miniature" onClick={gestionClic}>
+        <li className="Projet" id={id} ouvert={verifierOuverture(index)}>
+            <div className="miniature" onClick={() => surClic(index)}>
                 <div className="information">
                     <h2 className="titre">{nom}</h2>
                     <h3 className="sous-titre">{createurs}</h3>
-                    <button onClick={gestionClic} className="details">Voir en détails</button>
+                    <button className="details">Voir en détails</button>
                 </div>
                 <img 
                     className="image-presentation" 
@@ -33,7 +31,7 @@ export default function Projet({
             </div>
             <div className="contenu">
                 <div className="texte-conteneur">
-                    <ArrowBackIosIcon className="Icone retour-liste" onClick={gestionClic} />
+                    <ArrowBackIosIcon className="Icone retour-liste" onClick={() => surClic(-1)} />
                     <div className="texte">
                         <h2 className="titre">
                             <a href={lien} className="lien-titre">{nom}</a>

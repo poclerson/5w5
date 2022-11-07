@@ -1,24 +1,16 @@
 import './Session.scss';
 
 import {useState, useEffect, useRef} from 'react';
-import useDefilmentInfini from '../../hooks/useDefilementInfini';
 import useDefilementHorizontal from '../../hooks/useDefilementHorizontal';
-import * as boites from '../../boites';
 
 import Cours from './Cours';
 
-export default function Session({cours, enseignants, session, pageRef}) {
-    const [ouvertures, setOuvertures] = useState(cours.map(() => 'ferme'));
-
+export default function Session({cours, session, index, pageRef, verifierOuverture}) {
     // Liste des cours
     const listeCoursRef = useRef(null);
 
     // Un cours
     const coursRef = useRef(null);
-
-    const [estArrive, setEstArrive] = useDefilmentInfini(ajouterDonnees, listeCoursRef);
-    // useDefilementHorizontal(pageRef.current, listeCoursRef.current, 6);
-    const [coursInfinis, setCoursInfinis] = useState(cours);
 
     const gestionDefilement = () => {
         // Obtenir le cours le plus à gauche pour le rendre plus gros
@@ -30,29 +22,14 @@ export default function Session({cours, enseignants, session, pageRef}) {
         // })
     }
 
-    function ajouterDonnees() {
-        setCoursInfinis([...coursInfinis, ...cours])
-        setEstArrive(false);
-    }
-
-    useEffect(() => {
-        setOuvertures(boites.ouvrir(0, coursInfinis.map(() => 'ferme')));
-    }, [])
-
-    useEffect(() => {
-        setOuvertures(boites.ouvrir(boites.obtenirOuverte(ouvertures), coursInfinis.map(() => 'ferme')))
-    }, [coursInfinis])
-
     return (
-        <article className={"Session " + session}>
+        <article className={"Session " + session} ouvert={verifierOuverture(index)}>
             <ul className="liste-cours" onScroll={gestionDefilement} ref={listeCoursRef}>
-                {coursInfinis.map((cours, index) => 
+                {cours.map((cours, index) => 
                     <Cours 
-                        key={cours.acf.titre + index}
+                        key={cours.id}
+                        id={cours.id}
                         {... cours.acf}
-                        tousEnseignants={enseignants}
-                        id={"cours" + index}
-                        ouverture={ouvertures[index]}
                         innerRef={coursRef}
                     />
                 )}

@@ -3,33 +3,18 @@ import './Accueil.scss';
 import Marquee from 'react-fast-marquee';
 
 import useMediaQuery from '../../hooks/useMediaQuery';
+import useStructure from '../../hooks/useStructure';
 import medias from '../../medias';
 
-export default function Accueil() {
-
-    // À récupérer depuis WP
-    const nombreTitres = 5;
+export default function Accueil({id}) {
     const tablette = useMediaQuery(medias.tablette);
 
-    // À optimiser
-    const determinerVitesse = () => {
-        if (tablette) {
-            return 40;
-        }
-
-        return 20;
-    }
+    const {titres} = useStructure(id);
 
     return(
         <section className="Accueil">
-            {console.log(determinerVitesse())}
-            <Marquee speed={tablette ? 300 : 20} gradient={false} pauseOnClick={true} children={
-                Array.from(Array(nombreTitres)).map(() => 
-                    <span className="item-titre">
-                        <h1 className="titre">TIM</h1>
-                    </span>
-                )
-            }>
+            <Marquee speed={tablette ? 300 : 20} gradient={false} pauseOnClick={true}>
+                {titres.props.children}
             </Marquee>
         </section>
     )

@@ -9,20 +9,6 @@
 
     @include ordinateur {
         height: unset;
-    }
-
-    // Toutes les pages
-    & > *:not(.EnTete, .PiedPage) {
-        @include pleine-taille;
-
-        @include tablette {
-            margin-top: 80px;
-            height: calc(100% - map-get($hauteur-header, tablette));
-        }
-
-        @include ordinateur {
-            height: unset;
-            min-height: 100vh;
-        }
+        min-height: 100vh;
     }
 }

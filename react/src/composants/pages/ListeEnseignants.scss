@@ -1,87 +1,85 @@
 @import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
 
 .ListeEnseignants {
+    @include page(true);
+    flex-direction: column;
     $taille-gouttieres: 10%;
     position: relative;
     box-sizing: border-box;
+    overflow-y: scroll;
 
-    & > .titre {
-        @include gerer-ouverture(block);
-        padding-left: $taille-gouttieres;
-    }
+    & > .titre {padding-left: $taille-gouttieres;}
 
     @include ordinateur {
-        display: flex;
-        flex-direction: column;
         overflow-y: scroll;
+        @include page(false);
     }
 
-    .liste {
-        padding-left: $taille-gouttieres;
-        padding-right: $taille-gouttieres;
-        display: grid;
-
-        @include cacher-barre-defilement;
-
-        // Deux colonnes
-        grid-template-columns: repeat(2, 1fr);
-        // Ne trouve pas la hauteur automatiquement. Cette formule la trouve
-        grid-auto-rows: calc(100vw / 2 - $taille-gouttieres);
-        gap: $taille-gouttieres;
-        height: 100%;
-
-        @include tablette {
-            grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: calc(100vw / 3 - $taille-gouttieres);
-        }
-
-        @include ordinateur {
-            display: flex;
-            overflow: auto;
-            height: 50vh;
-        }
+    &[enseignant-ouvert="false"] {
+        .titre {display: block;}
 
         // Quand la liste est ouverte, on montre tout
-        &.ouvert {
+        .liste {
             visibility: visible;
 
             & ~ .Suivant {
                 display: none;
             }
-
-            .Enseignant.ferme {
-                .miniature {
-                    height: 100%;
-                }
-            }
         }
+    }
+
+    &[enseignant-ouvert="true"] {
+        padding-bottom: 0;
+        & > .titre {display: none;}
 
         // Quand elle est fermée (donc, qu'un enseignant a été ouvert)...
-        &.ferme {
+        .liste {
             display: flex;
             visibility: hidden;
-            margin-top: map-get($hauteur-header, mobile);
-            height: calc(100vh - map-get($hauteur-header, mobile));
-            padding: 0;
 
-            @include tablette {
-                margin-top: 5vh;
+            // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
+            .Enseignant[ouvert="false"] {
+                display: none;
             }
 
             @include ordinateur {
+                @include padding-auto;
+                // Empêcher les cartes de prendre trop de place
+                max-height: calc(100vh - map-get($decalage-pages, ordinateur));
                 visibility: visible;
-                padding-left: $taille-gouttieres;
-                padding-right: $taille-gouttieres;
+                padding: 0 $taille-gouttieres;
                 overflow-x: hidden;
                 gap: 5%;
-            }
 
-            // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
-            .Enseignant.ferme {
-                display: none;
 
-                @include ordinateur {display: flex;}
+                .Enseignant[ouvert="true"] {
+                    &, & + * {display: flex;}
+                }
             }
+        }
+    }
+
+    .liste {
+        height: 100%;
+        padding: 0 5%;
+        display: grid;
+        box-sizing: border-box;
+
+        @include cacher-barre-defilement;
+
+        // Deux colonnes
+        grid-template-columns: repeat(2, 1fr);
+        gap: $taille-gouttieres;
+
+        @include tablette {
+            // Trois colonnes
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include ordinateur {
+            display: flex;
+            overflow: auto;
         }
     }
 
@@ -90,8 +88,6 @@
         right: 2.5%;
         bottom: 17.5%;
 
-        @include ordinateur {
-            display: flex;
-        }
+        @include ordinateur {display: flex;}
     }
 }
