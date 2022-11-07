@@ -31,6 +31,7 @@ export default function ListeCours({titre}) {
     return(
         cours != null ?
         <section className="ListeCours" ref={listeCoursRef}>
+            {console.log(ContexteDonneesSite)}
             {
                 sessions && degrades != null ? 
                 <ListeSessions sessions={sessions} cours={cours} degrades={degrades} pageRef={listeCoursRef} />
