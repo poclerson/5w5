@@ -4,16 +4,15 @@
 @import '../../sass/variables.scss';
 
 .ListeSessions {
-    background-color: transparent;
-    @include fondu(.5s, "destination");
-    height: 100%;
     box-sizing: border-box;
+    position: relative;
 
     @include ordinateur {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        @include padding-auto;
     }
 
     .liste {

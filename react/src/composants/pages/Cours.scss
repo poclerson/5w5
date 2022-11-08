@@ -4,27 +4,30 @@
 
 .Cours {
     // Un cours prend presque tout l'écran sur mobile
-    flex: 0 0 60%;
+    flex: 0 0 60vw;
     aspect-ratio: 1 / 1.5;
-    scroll-snap-align: center;
-    &:first-child {margin-left: 15%;}
+    scroll-snap-align: start;
+    &:first-child {margin-left: 20vw}
     &:last-child {margin-right: 20%;}
-
     position: relative;
 
+    &[ouvert="true"] {
+        .carte{transform: scale(1.25)};
+    }
 
     @include tablette {
-        flex: 0 0 40%;
+        flex: 0 0 30vw;
 
         &:first-child {margin-left: 5%;}
-        &:last-child {margin-right: 10%;}
+        &:last-child {margin-right: 20%;}
 
         transition: transform .15s ease-in-out;
     }
 
     @include ordinateur {
         // Afficher trois cours ou plus sur grands écrans
-        flex: 0 0 25%;
+        flex: 0 0 15vw;
+        max-height: 60vh;
 
         &:first-child{margin-left: 35%;}
     }
