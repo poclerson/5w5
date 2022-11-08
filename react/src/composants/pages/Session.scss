@@ -3,7 +3,6 @@
 .Session {
     @include gerer-ouverture(flex);
     box-sizing: border-box;
-    position: relative;
     transform-style: preserve-3d;
     overflow-x: scroll;
 
@@ -38,7 +37,7 @@
 
         position: absolute;
         top: 0;
-        right: 0;
+        left: 91vw; // right: 0 ne marche pas for some reason
         width: 10%;
         height: 100%;
         z-index: 2;

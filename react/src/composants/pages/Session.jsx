@@ -1,6 +1,8 @@
 import './Session.scss';
 
 import {useRef, useState, useEffect} from 'react';
+import medias from '../../medias';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 import Cours from './Cours';
 import FlecheCarousel from '../modules/FlecheCarousel';
@@ -12,6 +14,9 @@ export default function Session({cours, session, index, pageRef, verifierOuvertu
     const [indexPlusAGauche, setIndexPlusAGauche] = useState(0);
 
     const [enfants, setEnfants] = useState([]);
+
+    const tablette = useMediaQuery(medias.tablette);
+    const ordinateur = useMediaQuery(medias.ordinateur);
 
     /**
      * Trouve l'élément le plus à gauche dans un tableau d'éléments
@@ -35,7 +40,10 @@ export default function Session({cours, session, index, pageRef, verifierOuvertu
     }
 
     const surDefilement = () => {
-        setIndexPlusAGauche(enfants.indexOf(obtenirPlusAGauche(-200)));
+        setIndexPlusAGauche(enfants.indexOf(obtenirPlusAGauche(
+            ordinateur ? refTitres.current.offsetWidth / 2 : 
+                tablette ? -200 : -50
+        )));
     }
 
     useEffect(() => {

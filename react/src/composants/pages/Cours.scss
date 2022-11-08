@@ -8,16 +8,18 @@
     aspect-ratio: 1 / 1.5;
     scroll-snap-align: start;
     &:first-child {margin-left: 20vw}
-    &:last-child {margin-right: 20%;}
+    &:last-child {margin-right: 20vw;}
     position: relative;
 
     &[ouvert="true"] {
         .carte{transform: scale(1.25)};
+        transition: transform ease-in-out .1s;
     }
 
     @include tablette {
-        flex: 0 0 30vw;
+        flex: 0 0 25vw;
 
+        margin: 10% 0;
         &:first-child {margin-left: 5%;}
         &:last-child {margin-right: 20%;}
 
@@ -27,7 +29,9 @@
     @include ordinateur {
         // Afficher trois cours ou plus sur grands écrans
         flex: 0 0 15vw;
-        max-height: 60vh;
+        margin: 0;
+        // Limiter leur expansion
+        max-height: 60vh; 
 
         &:first-child{margin-left: 35%;}
     }
@@ -56,6 +60,7 @@
         @include carte;
         @include fond-flou;
         @include themer($theme-cours);
+        transition: transform ease-in-out .1s;
     }
 
     // Rond décoratif sous la carte

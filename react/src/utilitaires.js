@@ -70,3 +70,16 @@ String.prototype.kebabVersCamel = function() {
     if (this == undefined) return;
     return this.replace(/-./g, x=>x[1].toUpperCase())
 }
+
+// Object.prototype.trier = function() {
+//     return Object.keys(this).sort().reverse().reduce(
+//         (objet, cle) => {
+//             objet[cle] = this[cle];
+//             return objet
+//         }, {}
+//     )
+// }
+
+export function cleSelonValeur(objet, valeur) {
+    return Object.keys(objet).find(cle => objet[cle] === valeur);
+}

@@ -7,17 +7,19 @@
     box-sizing: border-box;
     position: relative;
 
+    @include tablette {
+        @include padding-auto;
+    }
+
     @include ordinateur {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        @include padding-auto;
     }
 
     .liste {
         display: flex;
-        position: relative;
     }
 
     // Reculer
