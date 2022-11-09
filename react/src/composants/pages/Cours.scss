@@ -23,7 +23,7 @@
         &:first-child {margin-left: 5%;}
         &:last-child {margin-right: 20%;}
 
-        transition: transform .15s ease-in-out;
+        transition: transform .25s ease-in-out;
     }
 
     @include ordinateur {

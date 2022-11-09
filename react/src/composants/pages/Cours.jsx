@@ -2,6 +2,8 @@ import './Cours.scss';
 
 import Icone from '../modules/Icone';
 
+import VisionneurModele from '../modules/VisionneurModele';
+
 export default function Cours({titre, description, domaines, id, ouvert}) {
     return(
         <li className="Cours" id={id} ouvert={ouvert}>

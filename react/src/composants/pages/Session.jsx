@@ -24,11 +24,11 @@ export default function Session({cours, session, index, pageRef, verifierOuvertu
      * @returns {Element} Élément le plus à gauche
      */
     function obtenirPlusAGauche(decalage) {
-        return enfants.reduce((precedent, present) => {
-            return precedent.getBoundingClientRect().x < present.getBoundingClientRect().x && 
-                precedent.getBoundingClientRect().x > decalage ? 
-                precedent : present
-        })
+        // return enfants.reduce((precedent, present) => {
+        //     return precedent.getBoundingClientRect().x < present.getBoundingClientRect().x && 
+        //         precedent.getBoundingClientRect().x > decalage ? 
+        //         precedent : present
+        // })
     }
 
     const surClicSuivant = () => {

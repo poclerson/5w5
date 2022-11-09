@@ -55,6 +55,7 @@ export default function App() {
                     <Routes>
                         {hcms.data.header.headerMenuItems.map(page => {
                             let Composant = identifierComposant(page.pageSlug);
+                            console.log(<Composant id={page.pageID} />)
                             return <Route 
                                 key={"page" + page.pageID}
                                 path={page.pageSlug}
