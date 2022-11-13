@@ -6,9 +6,11 @@
 .ListeSessions {
     box-sizing: border-box;
     position: relative;
+    height: 100%;
 
     @include tablette {
         @include padding-auto;
+        height: unset;
     }
 
     @include ordinateur {
@@ -21,6 +23,7 @@
     .liste {
         display: flex;
         width: 100vw;
+        height: 80%;
     }
 
     // Reculer

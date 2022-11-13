@@ -37,17 +37,14 @@
         &:last-child{margin-right: 10vw;}
     }
 
-    // Deviendra l'icône 3D, placeholder d'un svg pour l'instant
-    .domaines {
+    .modele {
         position: absolute;
-        top: -10px;
-        right: -60px;
+        top: -100px;
+        right: -200px;
+        z-index: 5;
 
-        .domaine {
-            .Icone {
-                transform: scale(2.5);
-                color: map-get($couleurs, clair);
-            }
+        &, &:hover {
+            transition: transform ease-in-out .5s;
         }
     }
 
@@ -77,9 +74,4 @@
         background-color: red; // placeholder
         z-index: -1;
     }
-
-    // // S'assurer que le premier et dernier enfant ne soient pas collés au bords
-    // &:first-child {margin-left: 10vw;}
-
-    // &:last-child {margin-right: 10vw;}
 }
