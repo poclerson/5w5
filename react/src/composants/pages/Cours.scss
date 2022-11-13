@@ -33,7 +33,8 @@
         // Limiter leur expansion
         max-height: 60vh; 
 
-        &:first-child{margin-left: 35%;}
+        &:first-child{margin-left: 35vw;}
+        &:last-child{margin-right: 10vw;}
     }
 
     // Deviendra l'icône 3D, placeholder d'un svg pour l'instant
