@@ -4,10 +4,14 @@
 @import '../../sass/variables.scss';
 
 .ListeSessions {
-    background-color: transparent;
-    @include fondu(.5s, "destination");
-    height: 100%;
     box-sizing: border-box;
+    position: relative;
+    height: 100%;
+
+    @include tablette {
+        @include padding-auto;
+        height: unset;
+    }
 
     @include ordinateur {
         display: flex;
@@ -18,7 +22,8 @@
 
     .liste {
         display: flex;
-        position: relative;
+        width: 100vw;
+        height: 80%;
     }
 
     // Reculer
