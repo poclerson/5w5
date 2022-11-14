@@ -1,7 +1,6 @@
 @import '../../sass/mixins.scss';
 
-.SessionRonds{
-    // overflow: hidden;
+.SessionRonds {
     flex: 0;
 
     position: absolute;
@@ -10,10 +9,28 @@
 
     transform: translateZ(1px);
 
+    // Sinon on ne peut pas scroll
+    @include ordinateur {
+        width: unset;
+        height: unset;
+    }
+
     .carousel {
         transform-style: preserve-3d;
         transform-origin: center;
         position: absolute; 
         transition: transform .5s;
+        left: -550px;
+        top: 77vh;
+
+        @include tablette {
+            left: -700px;
+            top: 68vh;
+        }
+
+        @include ordinateur {
+            left: -1500px;
+            top: -300px;
+        }
     }
 }

@@ -81,6 +81,11 @@
         }
 
         @include ordinateur {height: 120px;}
+
+        // Automatiquement fermer les résultats de recherche si l'entête est fermée
+        &[ouvert='false'] ~ .resultats-recherche {
+            display: none;
+        }
     }
 
     .resultats-recherche {

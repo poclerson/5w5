@@ -49,9 +49,10 @@ export default function Session({cours, session, index, pageRef, verifierOuvertu
             ordinateur ? 
                 refTitres.current.offsetWidth / 2 : 
             tablette ? 
-                -200 : 
+                -100 : 
                 -50
         )));
+        console.log(indexPlusAGauche)
     }
 
     useEffect(() => {
@@ -60,8 +61,8 @@ export default function Session({cours, session, index, pageRef, verifierOuvertu
     }, [listeCoursRef])
 
     return (
-        <article className={"Session " + session} ouvert={verifierOuverture(index)} onScroll={() => surDefilement}>
-            <ul className="liste-cours" ref={listeCoursRef} onScroll={() => surDefilement}>
+        <article className={"Session " + session} ouvert={verifierOuverture(index)} onScroll={surDefilement}>
+            <ul className="liste-cours" ref={listeCoursRef} onScroll={surDefilement}>
                 {cours.map((cours, index) => 
                     <Cours 
                         ouvert={index == indexPlusAGauche ? 'true' : 'false'}

@@ -16,7 +16,7 @@ export default function EnTete({enteteWP}) {
     // Ouverture de l'entête, mobile seulement
     const [surClicBurger, verifierOuvertureBurger] = useOuverture();
 
-    const [surClicRecherche, verifierOuvertureRecherche] = useOuverture();
+    const [surClicRecherche, verifierOuvertureRecherche, fermerRecherche] = useOuverture();
 
     const [resultatsRecherche, setResultatsRecherche] = useState(null);
 
@@ -54,7 +54,7 @@ export default function EnTete({enteteWP}) {
 
     return (
         <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
-            <BoutonBurger gererClic={() => surClicBurger} />
+            <BoutonBurger gererClic={surClicBurger} />
             <div className="contenu" ouvert={verifierOuvertureBurger()}>
                 <SiteLogo url={enteteWP.siteLogoUrl} />
                 <Navigation 
