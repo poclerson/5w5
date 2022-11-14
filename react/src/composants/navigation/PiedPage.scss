@@ -53,11 +53,10 @@
             bottom: 100%;
             width: 100%;
         }
+    }
+    @include ordinateur {
+        display: flex;
 
-        @include ordinateur {
-            display: flex;
-
-        }
     }
 }
 
