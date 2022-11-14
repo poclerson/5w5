@@ -14,7 +14,7 @@ export default function SessionRonds({surClic, quantite, sessions, rotation}) {
     const donneesCarousel = {
         petit: {
             rayonRond: 150,
-            rayonCarousel: 1000,
+            rayonCarousel: 500,
             decalageGauche: 80,
             decalageHaut: 2900,
             decalageAngle: 0
@@ -66,8 +66,6 @@ export default function SessionRonds({surClic, quantite, sessions, rotation}) {
         <div className="SessionRonds">
             {/* carousel sert à correctement placer le carousel rond sans fucker le layout */}
             <ol className="carousel" style={{
-                top: -carousel.rayonCarousel * 2 - carousel.rayonRond + carousel.decalageHaut,
-                left: -carousel.rayonCarousel - carousel.rayonRond + carousel.decalageGauche,
                 width: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
                 height: carousel.rayonCarousel * 2 + carousel.rayonRond * 2,
                 transform: `rotate(${rotation + carousel.decalageAngle}deg)`

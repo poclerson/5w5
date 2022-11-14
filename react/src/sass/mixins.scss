@@ -202,7 +202,7 @@
     content: "";
     border-radius: 50%;
     width: $taille;
-    height: $taille;
+    aspect-ratio: 1;
 }
 
 @mixin etiquette() {

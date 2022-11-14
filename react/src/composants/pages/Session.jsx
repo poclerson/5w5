@@ -49,7 +49,7 @@ export default function Session({cours, session, index, pageRef, verifierOuvertu
             ordinateur ? 
                 refTitres.current.offsetWidth / 2 : 
             tablette ? 
-                -200 : 
+                -100 : 
                 -50
         )));
         console.log(indexPlusAGauche)
