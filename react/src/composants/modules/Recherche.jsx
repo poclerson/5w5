@@ -36,7 +36,6 @@ export default function Rechercher({gestionResultats, verifierOuverture, surClic
         <div className="Recherche" ouvert={verifierOuverture()}>
             <SearchIcon className="Icone icone-recherche" onClick={surClic} />
             <TextField
-                onClick={surClic}
                 onChange={gestionSaisie}
                 className="zone-saisie"
             />
