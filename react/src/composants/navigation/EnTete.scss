@@ -81,6 +81,10 @@
         }
 
         @include ordinateur {height: 120px;}
+
+        &[ouvert='false'] ~ .resultats-recherche {
+            display: none;
+        }
     }
 
     .resultats-recherche {

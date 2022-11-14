@@ -12,10 +12,6 @@ const Modele3D = ({
     const gltf = useLoader(GLTFLoader, chemin);
     const [estHover, hover] = useState(false);
 
-    useEffect(() => {
-
-    }, [estHover])
-
     // useFrame(() => {
     //     ref.current.rotation.y += 0.02;
     // })

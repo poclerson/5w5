@@ -24,7 +24,7 @@ export default function SessionRonds({surClic, quantite, sessions, rotation}) {
             rayonRond: 175,
             rayonCarousel: 650,
             decalageGauche: 125,
-            decalageHaut: 2150,
+            decalageHaut: 2050,
             decalageAngle: 0
         },
 
