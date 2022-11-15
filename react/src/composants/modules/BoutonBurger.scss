@@ -16,11 +16,16 @@
     }
 }
 
-.Icone:active{
-    color: red;
+.MuiSvgIcon-root MuiSvgIcon-fontSizeMedium:active {
+    font-size: 15vw;
+    transition: all 0.3s 0s ease-in-out, all 0.5s 0s ease;
 }
 
-.Fermeture{
-    position: fixed;
-    color: white;
+
+.on {
+    visibility: visible;
 }
+.off {
+    visibility: hidden;
+}
+
