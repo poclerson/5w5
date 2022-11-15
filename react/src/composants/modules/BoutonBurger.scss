@@ -11,11 +11,16 @@
     z-index: 100; // Doit TOUJOURS être par-dessus tout
 
     // Icône des trois lignes
-    .Icone {
+    .Icone, .Fermeture {
         font-size: 10vw;
     }
 }
 
 .Icone:active{
     color: red;
+}
+
+.Fermeture{
+    position: fixed;
+    color: white;
 }
