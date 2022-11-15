@@ -13,7 +13,9 @@ export default function Contact({id}) {
         titre, 
         titreDescription, 
         description,
-        titreInscription
+        titreInscription,
+        wpBlockImageSizeMedium,
+        wpBlockWebfactoryMap
     } = useStructure(id);
     return (
         degrades != null ?
@@ -23,9 +25,9 @@ export default function Contact({id}) {
                 {titre}
                 <article className='contenu'>
                     <div className='images'>
-                        <div className='image1'></div>
-                        <div className='carte'></div>
-                        <div className='image3'></div>
+                        <div className='image1'>{wpBlockImageSizeMedium}</div>
+                        <div className='wpBlockWebfactoryMap'>{wpBlockWebfactoryMap}</div>
+                        <div className='image3'>{wpBlockImageSizeMedium}</div>
                     </div>
                     <div className='informations'>
                         {titreDescription}
