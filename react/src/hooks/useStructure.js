@@ -12,6 +12,9 @@ export default function useStructure(id, obtenirAvecSlug = false) {
     // Récupérer les pages
     const {pages} = useContext(ContexteDonneesSite);
 
+    // États des éléments obtenus de WP sous forme de HTML
+    const [elements, setElements] = useState({});
+
     // Récupère les éléments de la page spécifiée seulement
     function versElements() {
         return parse(
@@ -20,25 +23,24 @@ export default function useStructure(id, obtenirAvecSlug = false) {
                     element => typeof element != 'string')
     }
 
-    const [html, setHtml] = useState({});
-    let objet = {};
+    let html = {};
 
     useEffect(() => {
         if (pages != null) {
             if (obtenirAvecSlug) {
-                id = pages.filter(page => page.slug == 'piedpage')[0].id
+                id = pages.filter(page => page.slug == id)[0].id
             }
 
-            // Ajouter et nommer les éléments à l'objet
+            // Ajouter et nommer les éléments à l'html
             versElements().forEach(
                 element => {
                     if (element.props.className)
-                        objet[element.props.className.kebabVersCamel()] = element
+                        html[element.props.className.kebabVersCamel()] = element
                 }
             )
-            setHtml(objet)
+            setElements(html)
         }
     }, [pages])
-    return html;
+    return elements;
 }
 

@@ -9,8 +9,9 @@ import ListeEnseignants from './composants/pages/ListeEnseignants';
 import ListeCours from './composants/pages/ListeCours';
 import Contact from './composants/pages/Contact';
 import ListeProjets from './composants/pages/ListeProjets';
+import Page from './composants/pages/Page';
 
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, Navigate} from 'react-router-dom';
 import useObtenir from './hooks/useObtenir';
 import ContexteDonneesSite from './ContexteDonneesSite';
 import useObtenirMultiples from './hooks/useObtenirMultiples';
@@ -31,6 +32,9 @@ export default function App() {
             'contact': Contact
         };
 
+        if (!composants[page]) {
+            return Page
+        }
         return composants[page];
     }
 
@@ -49,6 +53,8 @@ export default function App() {
                 <ContexteDonneesSite.Provider value={donneesSite}>
                     <EnTete enteteWP={hcms.data.header} />
                     <Routes>
+                        {/* Aller à l'accueil par défaut */}
+                        <Route exact path={'/*'} element={<Navigate to={'/accueil'} />}/>
                         {hcms.data.header.headerMenuItems.map(page => {
                             let Composant = identifierComposant(page.pageSlug);
                             return <Route 

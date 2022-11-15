@@ -3,7 +3,7 @@ import './ListeSessions.scss';
 import Session from './Session';
 import SessionRonds from './SessionRonds';
 
-import {useState, useEffect} from 'react';
+import {useState, useRef} from 'react';
 import useOuvertures from '../../hooks/useOuvertures';
 
 import medias from '../../medias';
@@ -18,11 +18,10 @@ export default function ListeSessions({sessions, cours, degrades, pageRef}) {
     // Gestion de l'ouverture de chaque session
     const {surClic, surClicSuivant, verifierOuverture} = useOuvertures(sessions, 0);
 
-    // Active certains styles uniquement aux bons moments. Change d'état dans onAnimationEnd des titres de session
-    const [transition, setTransition] = useState(1);
-
     // État de rotation du carousel rond des titres de session
     const [rotation, setRotation] = useState(0);
+
+    const refTitres = useRef(null);
 
     // Est activé quand on clique sur un bouton qui fait changer de session
     function surClicSession(index) {
@@ -40,11 +39,8 @@ export default function ListeSessions({sessions, cours, degrades, pageRef}) {
     }
 
     return (
-        <div 
-            className="ListeSessions" 
-            transition={transition} 
-        >
-            <div className="sessions-titres-conteneur">
+        <div className="ListeSessions">
+            <div className="sessions-titres-conteneur" ref={refTitres}>
                 <ol className="sessions-titres">
                     {sessions.map((session, index) => 
                         <li className="session-titre" ouvert={verifierOuverture(index)} key={"titre" + session} onClick={() => surClicSession(index)}>
@@ -67,6 +63,7 @@ export default function ListeSessions({sessions, cours, degrades, pageRef}) {
                             index={index}
                             pageRef={pageRef}
                             verifierOuverture={verifierOuverture}
+                            refTitres={refTitres}
                         />
                     )
                 }

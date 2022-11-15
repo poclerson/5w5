@@ -16,7 +16,9 @@ export default function Rechercher({gestionResultats, verifierOuverture, surClic
     // Ne peut pas utiliser useObtenir parce qu'il doit appeler gestionResultats
     useEffect(() => {
         async function obtenirArticles() {
-            const reponse = await fetch(wp.traiterRequete('/search', 'bre', "&content=true&search=" + saisie));
+            const reponse = await fetch(
+                wp.traiterRequete('/search', 'bre', "&content=true&search=" + saisie)
+            );
 
             if(!reponse.ok)
                 return;
