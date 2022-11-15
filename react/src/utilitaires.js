@@ -41,12 +41,12 @@ export function inserer(string, index, valeur) {
 export const clamp = (chiffre, min, max) => Math.min(Math.max(chiffre, min), max);
 
 /**
- * Réorganise aléatoirement les éléments d'un tableau
+ * Réorganise pseudo-aléatoirement les éléments d'un tableau
  * @returns {Array}
  */
-Array.prototype.shuffle = function() {
+Array.prototype.pseudoMelanger = function() {
     for (var i = 0; i < this.length; i++)
-        this.push(this.splice(Math.random() * (this.length - i), 1)[0]);
+        this.push(this.splice(prng(i) * (this.length - i), 1)[0]);
     return this;
 }
 
@@ -69,6 +69,11 @@ String.prototype.tronquerMots = function(nombreMotsAGarder, commencerFin = false
 String.prototype.kebabVersCamel = function() {
     if (this == undefined) return;
     return this.replace(/-./g, x=>x[1].toUpperCase())
+}
+
+export function prng(seed) {
+    let x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
 }
 
 // Object.prototype.trier = function() {

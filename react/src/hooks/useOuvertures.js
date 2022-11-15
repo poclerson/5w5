@@ -8,7 +8,7 @@ import {useState} from 'react';
 export default function useOuverture(donnees, ouvertureInitiale = -1) {
     const [indexOuvert, setIndexOuvert] = useState(ouvertureInitiale);
 
-    const gestionClicParent = () => {
+    const verifierOuvertureParent = () => {
         return indexOuvert != -1 ? "true" : "false"
     }
 
@@ -39,7 +39,7 @@ export default function useOuverture(donnees, ouvertureInitiale = -1) {
     }
 
     return {
-        gestionClicParent: gestionClicParent,
+        verifierOuvertureParent: verifierOuvertureParent,
         surClic: surClic,
         verifierOuverture: verifierOuverture,
         surClicSuivant: surClicSuivant,
