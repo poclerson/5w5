@@ -19,15 +19,6 @@ export default function ListeEnseignants({id}) {
     const {titre} = useStructure(id);
 
     useOuvrirSelonId(surClic)
-    // const {recherche} = endroit.state;
-
-    // useLayoutEffect(() => {
-    //     console.log(verifierOuverture(indexOuvert))
-    //     if(verifierOuverture(indexOuvert) == 'true') {
-    //         surClic(indexOuvert)
-    //     }
-
-    // }, [verifierOuverture()])
 
     return(
         enseignants != null ?

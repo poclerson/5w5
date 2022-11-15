@@ -3,6 +3,7 @@ import './ListeProjets.scss';
 import {useContext} from 'react';
 import useOuvertures from '../../hooks/useOuvertures';
 import useStructure from '../../hooks/useStructure';
+import useOuvrirSelonId from '../../hooks/useOuvrirSelonId';
 import ContexteDonneesSite from '../../ContexteDonneesSite';
 
 import Projet from './Projet';
@@ -18,11 +19,13 @@ export default function ListeProjets({id}) {
 
     const {titre} = useStructure(id);
 
+    useOuvrirSelonId(surClic);
+
     // Tout mettre dans un callback permet de déclarer des variables (index)
     const rendreCases = () => {
         let index = 0;
 
-        return [...projets, ...environnement].shuffle().map((projet => {
+        return [...projets, ...environnement].pseudoMelanger().map((projet => {
             if (projet.acf.hasOwnProperty('nom')) {
                 let composant = <Projet 
                     key={projet.id}
