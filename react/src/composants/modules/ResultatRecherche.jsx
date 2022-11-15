@@ -2,7 +2,7 @@ import './ResultatRecherche.scss';
 
 import {Link, useLocation} from 'react-router-dom';
 
-export default function ResultatRecherche({resultat, surClic, ouvrirItem, article}) {
+export default function ResultatRecherche({resultat, surClic, article}) {
     return (
         <li className="ResultatRecherche">
             {article != null &&

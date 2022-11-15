@@ -1,7 +1,7 @@
 import './EnTete.scss';
 
 import ContexteDonneesSite from '../../ContexteDonneesSite';
-import {useContext, useState, useEffect} from 'react';
+import {useContext, useState} from 'react';
 import useOuverture from '../../hooks/useOuverture';
 
 import Navigation from './Navigation';
@@ -14,10 +14,9 @@ import Chargement from '../modules/Chargement';
 
 export default function EnTete({enteteWP}) {
 
-    // Ouverture de l'entête, mobile seulement
     const [surClicBurger, verifierOuvertureBurger] = useOuverture();
 
-    const [surClicRecherche, verifierOuvertureRecherche, fermerRecherche] = useOuverture();
+    const [surClicRecherche, verifierOuvertureRecherche] = useOuverture();
 
     const [resultatsRecherche, setResultatsRecherche] = useState(null);
 
@@ -45,14 +44,10 @@ export default function EnTete({enteteWP}) {
 
         return article
     }
-        
-    const ouvrirItem = id => {
-        document.getElementById(id).setAttribute('ouvert', 'true')
-    }
 
     return (
         <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
-            <BoutonBurger gererClic={surClicBurger} />
+            <BoutonBurger gererClic={surClicBurger} ouvert={verifierOuvertureBurger()} />
             <div className="contenu" ouvert={verifierOuvertureBurger()}>
                 <SiteLogo url={enteteWP.siteLogoUrl} />
                 <Navigation 
@@ -73,7 +68,6 @@ export default function EnTete({enteteWP}) {
                             resultat={resultat} 
                             surClic={surClicRecherche} 
                             article={trouverArticle(resultat.id)}
-                            ouvrirItem={ouvrirItem}
                         />
                     ) : <Chargement />
                 }
