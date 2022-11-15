@@ -12,7 +12,7 @@ export default function ResultatRecherche({resultat, surClic, ouvrirItem, articl
                 to={article.type} 
                 state={{
                     recherche: true,
-                    idArticle: article.article
+                    article: article
                 }}
                 onClick={surClic}
             >

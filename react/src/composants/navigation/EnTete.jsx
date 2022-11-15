@@ -31,16 +31,14 @@ export default function EnTete({enteteWP}) {
         const articles = [...Object.values(cours), ...Object.values(enseignants), ...Object.values(projets)];
         const article = articles.map(article => {
             if (article.id == id) {
-
-                // Trouver le type de chaque article d'après ce qui se trouve dans leurs champs ACF
-                if (article.acf.session)
-                    return {type: 'cours', article: article.id};
-
-                if (article.acf.domaine)
-                    return {type: 'enseignants', article: article.id};
-
-                if (article.acf.createurs)
-                    return {type: 'galerie-etudiante', article: article.id};
+                return {
+                    type: article.permalink
+                        .replace('https://timm175.sg-host.com/', '')
+                        .replace('?', '')
+                        .split('=')[0]
+                        .split('/')[0], 
+                    id: article.id
+                };
             }
         }).filter(article => article != undefined)[0]
 
@@ -49,7 +47,6 @@ export default function EnTete({enteteWP}) {
         
     const ouvrirItem = id => {
         document.getElementById(id).setAttribute('ouvert', 'true')
-        // document.getElementById(id).scrollIntoView()
     }
 
     return (

@@ -7,11 +7,13 @@ import {useEffect} from 'react';
  */
 export default function useOuvrirSelonId(ouvrir) {
     const endroit = useLocation();
-    const {recherche, idArticle} = endroit.state;
 
     useEffect(() => {
-        if (recherche) {
-            ouvrir(document.getElementById(idArticle).getAttribute('index'))
+        if (endroit.state) {
+            const {recherche, article} = endroit.state;
+            if (recherche && article.id != undefined) {
+                ouvrir(document.getElementById(article.id).getAttribute('index'))
+            }
         }
     }, [])
 }

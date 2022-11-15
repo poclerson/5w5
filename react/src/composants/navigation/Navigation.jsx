@@ -11,10 +11,6 @@ export default function Navigation({pages, surClic}) {
                         <Link 
                             className="lien-page" 
                             to={page.pageSlug}
-                            state={{
-                                recherche: false,
-                                idArticle: undefined
-                            }}
                             onClick={surClic}
                         >
                             {page.title}
