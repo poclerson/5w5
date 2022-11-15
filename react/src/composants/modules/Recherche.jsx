@@ -1,10 +1,11 @@
+/* Dès que l'utilisateur clique sur la loupe de recherche, prépare le système de recherche et prepare à prendre ce qui est écrit comme valeur */
 import './Recherche.scss';
-
 import {useEffect, useState} from 'react';
 import * as wp from '../../wp-rest-api';
-
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
+
+
 
 export default function Rechercher({gestionResultats, verifierOuverture, surClic}) { 
     const [saisie, setSaisie] = useState('');
