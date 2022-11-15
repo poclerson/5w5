@@ -49,7 +49,7 @@ export default function EnTete({enteteWP}) {
         
     const ouvrirItem = id => {
         document.getElementById(id).setAttribute('ouvert', 'true')
-        document.getElementById(id).scrollIntoView()
+        // document.getElementById(id).scrollIntoView()
     }
 
     return (

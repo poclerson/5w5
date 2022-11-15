@@ -11,7 +11,7 @@ import Chargement from '../modules/Chargement';
 export default function ListeProjets({id}) {
     const {projets, environnement} = useContext(ContexteDonneesSite);
 
-    const {surClic, gestionClicParent, verifierOuverture} = useOuvertures({
+    const {surClic, verifierOuvertureParent, verifierOuverture} = useOuvertures({
         projets: projets,
         environnement: environnement
     });
@@ -48,7 +48,7 @@ export default function ListeProjets({id}) {
 
     return(
         projets != null && environnement != null ?
-            <section className="ListeProjets" item-ouvert={gestionClicParent()}>
+            <section className="ListeProjets" item-ouvert={verifierOuvertureParent()}>
                 <ul className="liste">
                     {titre}
                     {rendreCases()}

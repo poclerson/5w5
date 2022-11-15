@@ -208,6 +208,10 @@ $couleurs-domaines-modifiees: (
             }
         }
 
+        & ~ .Enseignant[ouvert="false"] {
+            display: none !important;
+        }
+
         @include ordinateur {
             @include couleurs-domaines($classes-couleur-domaine-ferme);
             flex: 0 0 70%;

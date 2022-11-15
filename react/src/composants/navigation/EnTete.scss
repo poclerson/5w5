@@ -84,15 +84,13 @@
 
         @include ordinateur {height: 120px;}
 
-        &[ouvert="false"] ~ .resultats-recherche {
-            display: none;
-
-            @include tablette {display: block;}
-        }
-
         @include max-mobile {
             &[ouvert="true"] ~ .resultats-recherche {
                 display: flex;
+            }
+
+            &[ouvert="false"] ~ .resultats-recherche {
+                display: none;
             }
         }
     }

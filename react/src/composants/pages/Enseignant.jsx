@@ -4,10 +4,10 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export default function Enseignant({nom, description, photo, domaine, surClic, index, verifierOuverture, id}) {
     return(
-        <li className={`Enseignant ${domaine}`} id={id} ouvert={verifierOuverture(index)}>
+        <li className={`Enseignant ${domaine}`} id={id} index={index} ouvert={verifierOuverture(index)}>
             <div className="miniature" onClick={() => surClic(index)}>
                 <h2 className="titre">{nom.toUpperCase()}</h2>
-                <img className="photo" src={photo} alt={"Photo de " + nom} />
+                <img className="photo" src={typeof photo != 'boolean' ? photo : undefined} alt={"Photo de " + nom} />
                 <span className="conteneur-domaine">
                     <h2 className="domaine">{domaine.toUpperCase()}</h2>
                 </span>
@@ -17,7 +17,7 @@ export default function Enseignant({nom, description, photo, domaine, surClic, i
                 <div className={"conteneur-photo " + domaine}>
                     <h2 className="titre">{nom.toUpperCase()}</h2>
                     <div className="fond-photo">
-                        <img className="photo" src={photo} alt={"Photo de " + nom} />
+                        <img className="photo" src={typeof photo != 'boolean' ? photo : undefined} alt={"Photo de " + nom} />
                     </div>
                     <span className="conteneur-domaine">
                         <p className="domaine">{domaine.toUpperCase()}</p>
