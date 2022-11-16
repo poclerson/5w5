@@ -13,11 +13,13 @@ export default function Accueil({id}) {
 
     return(
         <section className="Accueil">
+
             {titres && 
                 <Marquee speed={tablette ? 300 : 20} gradient={false} pauseOnClick={true}>
                     {titres.props.children}
                 </Marquee>
             }
+
         </section>
     )
 }
