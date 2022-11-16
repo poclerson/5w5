@@ -7,7 +7,12 @@
     background-color: transparent;
     flex-direction: column;
     position: relative;
-    margin-top: 10vw;
+
+    .vague {
+        position: absolute;
+        bottom: 100%;
+        width: 100%;
+    }
 
     .contenu {
         width: 100%;
@@ -46,14 +51,8 @@
         & > * {
             flex: 1 1 25%;
         }
-        
-        .vague {
-            // max-height: ;
-            position: absolute;
-            bottom: 100%;
-            width: 100%;
-        }
     }
+
     @include ordinateur {
         display: flex;
 

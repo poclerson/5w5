@@ -38,7 +38,7 @@ export default function useOuverture(donnees, ouvertureInitiale = -1) {
                 }
             }
         }
-        console.log(callback)
+
         if (callback != undefined) callback();
         setIndexOuvert(indexOuvert + 1);
     }

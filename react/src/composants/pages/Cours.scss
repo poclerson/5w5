@@ -28,10 +28,9 @@
 
     @include ordinateur {
         // Afficher trois cours ou plus sur grands écrans
-        flex: 0 0 15vw;
+        flex: unset unset unset;
+        width: 15vw;
         margin: 0;
-        // Limiter leur expansion
-        max-height: 60vh; 
 
         &:first-child{margin-left: 35vw;}
         &:last-child{margin-right: 10vw;}
@@ -43,7 +42,7 @@
         flex-direction: column;
         position: relative;
 
-        @include pleine-taille;
+        height: 100%;
 
         @include carte;
         @include fond-flou;
@@ -65,6 +64,15 @@
                 width: 100% !important;
                 height: 100% !important;
             }
+        }
+
+        .titre {
+            flex: 1 0 20%;
+        }
+
+        .description {
+            flex: 0 1 80%;
+            overflow-y: scroll;
         }
 
         // Rond décoratif sous la carte
