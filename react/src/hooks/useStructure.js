@@ -1,6 +1,7 @@
 import parse from 'html-react-parser';
 import {useState, useEffect, useContext} from 'react';
 import ContexteDonneesSite from '../ContexteDonneesSite';
+import '../prototypes'
 
 /**
  * Prend automatiquement les éléments avec des classes d'une page de WP et crée un objet d'éléments avec
