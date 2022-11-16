@@ -1,7 +1,7 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/variables.scss';
 @import '../../sass/animations.scss';
-
+// Page d'accueil, import des animations, variables (qui contient la couleur et la majorité des elements) et les mixins
 .Accueil {
     @include page;
     position: relative;

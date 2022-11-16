@@ -1,10 +1,11 @@
+/* Dès que l'utilisateur clique sur la loupe de recherche, prépare le système de recherche et prepare à prendre ce qui est écrit comme valeur */
 import './Recherche.scss';
-
 import {useEffect, useState} from 'react';
 import * as wp from '../../wp-rest-api';
-
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
+
+
 
 export default function Rechercher({gestionResultats, verifierOuverture, surClic}) { 
     const [saisie, setSaisie] = useState('');
@@ -16,7 +17,9 @@ export default function Rechercher({gestionResultats, verifierOuverture, surClic
     // Ne peut pas utiliser useObtenir parce qu'il doit appeler gestionResultats
     useEffect(() => {
         async function obtenirArticles() {
-            const reponse = await fetch(wp.traiterRequete('/search', 'bre', "&content=true&search=" + saisie));
+            const reponse = await fetch(
+                wp.traiterRequete('/search', 'bre', "&content=true&search=" + saisie)
+            );
 
             if(!reponse.ok)
                 return;
