@@ -2,9 +2,9 @@ import './Cours.scss';
 
 import VisionneurModele from '../modules/VisionneurModele';
 
-export default function Cours({titre, description, modele, id, ouvert}) {
+export default function Cours({titre, description, modele, id, index, ouvert}) {
     return(
-        <li className="Cours" id={id} ouvert={ouvert}>
+        <li className="Cours" id={id} index={index} ouvert={ouvert}>
             <div className="carte">
             <div className="modele">
                 {modele != undefined && 
