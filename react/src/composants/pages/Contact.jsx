@@ -33,7 +33,7 @@ export default function Contact({id}) {
                 </article>
 
                 <div className='inscription'>
-                    {titreInscription}
+                     {titreInscription}
                     <ArrowForwardIosIcon className='Icone'/>
                 </div>
             </article>
