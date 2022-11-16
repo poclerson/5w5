@@ -40,6 +40,7 @@ export default function ListeSessions({sessions, cours, pageRef}) {
         }
     }
 
+    // Défile vers un cours en tenant en compte les titres de session
     const defilerVersCours = cours => {
         if (cours) {
             console.log(cours) 
@@ -49,9 +50,12 @@ export default function ListeSessions({sessions, cours, pageRef}) {
     }
 
     useOuvrirSelonId(undefined, article => {
+        // Sélectionner plusieurs éléments (session + titre de session)
         document.querySelectorAll('#' + article.articleWP.acf.session).forEach(
             element => {
                 const indexSession = element.getAttribute('index')
+
+                // Ouvrir les deux (et changer la rotation des titres)
                 surClic(
                     indexSession,
                     tailleOrdinateur ? 

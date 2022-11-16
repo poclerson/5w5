@@ -12,6 +12,11 @@ export default function useOuverture(donnees, ouvertureInitiale = -1) {
         return indexOuvert != -1 ? "true" : "false"
     }
 
+    /**
+     * Ouvre d'après un index
+     * @param {int} index Index de l'article
+     * @param {Callback} callback Fonction à effectuer, s'il y en a une
+     */
     const surClic = (index, callback) => {
         if (callback != undefined) callback()
         setIndexOuvert(index);
