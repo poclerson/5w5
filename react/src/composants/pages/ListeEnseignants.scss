@@ -46,7 +46,6 @@
             @include ordinateur {
                 @include padding-auto;
                 // Empêcher les cartes de prendre trop de place
-                max-height: calc(100vh - map-get($decalage-pages, ordinateur));
                 visibility: visible;
                 padding: 0 $taille-gouttieres;
                 overflow-x: hidden;
@@ -80,13 +79,14 @@
         @include ordinateur {
             display: flex;
             overflow: auto;
+            @include padding-auto;
         }
     }
 
     .Suivant {
         display: none;
         right: 2.5%;
-        bottom: 17.5%;
+        top: 700px;
 
         @include ordinateur {display: flex;}
     }

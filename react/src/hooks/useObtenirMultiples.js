@@ -8,7 +8,7 @@ import * as wp from '../wp-rest-api';
  * @returns {Object} Liste d'objets d'articles WP nommés par leur chemin de fetch
  */
 export default function useObtenirMultiples(chemins = [], fournisseur = 'bre' || 'wp' || 'hcms') {
-    const [articles, setArticles] = useState([]);
+    const [articles, setArticles] = useState(null);
     useEffect(() => {
         async function obtenirArticles() {
 

@@ -69,7 +69,10 @@ $couleurs-domaines-modifiees: (
                 top: 10%;
             }
     
-            .photo {object-fit: cover;}
+            .photo {
+                object-fit: cover;
+                width: 100%;
+            }
         }
     
         // Cacher le contenu lorsqu'un enseignant est fermé
@@ -106,14 +109,14 @@ $couleurs-domaines-modifiees: (
 
             // Photo de l'enseignant (mobile et tablette)
             .conteneur-photo {
-                flex: 1 0 30%;
+                flex: 0 0 30%;
                 @include bulle;
                 padding: 15px;
 
                 .fond-photo {
+                    aspect-ratio: 1;
                     background-color: map-get($couleurs, clair);
                     border-radius: 50%;
-                    @include pleine-taille;
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-end;
@@ -121,11 +124,9 @@ $couleurs-domaines-modifiees: (
 
                     // Image
                     .photo {
-                        margin-top: -90%;
-                        margin-left: -17.5%;
-                        width: 132.5%;
-                        height: 132.5%;
+                        width: 100%;
                         z-index: 3;
+                        object-fit: cover;
                     }
                 }
 
@@ -221,13 +222,17 @@ $couleurs-domaines-modifiees: (
         
         }
 
+        & ~ .Enseignant[ouvert="false"] {
+            display: none !important;
+        }
+
         @include ordinateur {
             @include couleurs-domaines($classes-couleur-domaine-ferme);
-            flex: 0 1 70%;
+            flex: 0 0 70%;
 
             // Sélectionner l'enseignant juste après l'enseignant ouvert
-            & + * {
-                flex: 1 0 30%;
+            & + .Enseignant {
+                flex: 0 0 30%;
                 transform: scale(0.75);
             }
         }
@@ -244,9 +249,7 @@ $couleurs-domaines-modifiees: (
     &[ouvert="true"],
     &[ouvert="false"] {
         flex-direction: row-reverse; // Afficher le contenu à gauche
-        // justify-content: center;
         gap: 10%;
-        width: 0;
 
         .miniature {
             overflow: hidden;
@@ -289,6 +292,7 @@ $couleurs-domaines-modifiees: (
 
                 .photo {
                     object-fit: cover;
+                    width: 100%;
                     height: 70%;
                     position: absolute;
                     bottom: 0;
@@ -303,7 +307,7 @@ $couleurs-domaines-modifiees: (
         .contenu {
             .conteneur-photo {
                 // Empêcher de prendre toute la largeur
-                margin: 0 10%;
+                margin: 0 20%;
 
                 @include tablette {margin: unset;}
 

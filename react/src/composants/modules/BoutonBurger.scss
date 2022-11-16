@@ -11,7 +11,21 @@
     z-index: 100; // Doit TOUJOURS être par-dessus tout
 
     // Icône des trois lignes
-    .Icone {
+    .Icone, .Fermeture {
         font-size: 10vw;
     }
 }
+
+.MuiSvgIcon-root MuiSvgIcon-fontSizeMedium:active {
+    font-size: 15vw;
+    transition: all 0.3s 0s ease-in-out, all 0.5s 0s ease;
+}
+
+
+.on {
+    visibility: visible;
+}
+.off {
+    visibility: hidden;
+}
+

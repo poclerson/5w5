@@ -8,11 +8,17 @@ import {useState} from 'react';
 export default function useOuverture(donnees, ouvertureInitiale = -1) {
     const [indexOuvert, setIndexOuvert] = useState(ouvertureInitiale);
 
-    const gestionClicParent = () => {
+    const verifierOuvertureParent = () => {
         return indexOuvert != -1 ? "true" : "false"
     }
 
-    const surClic = index => {
+    /**
+     * Ouvre d'après un index
+     * @param {int} index Index de l'article
+     * @param {Callback} callback Fonction à effectuer, s'il y en a une
+     */
+    const surClic = (index, callback) => {
+        if (callback != undefined) callback()
         setIndexOuvert(index);
     }
 
@@ -21,25 +27,24 @@ export default function useOuverture(donnees, ouvertureInitiale = -1) {
     }
 
     // Quand on clique sur le bouton suivant (ordinateur seulement)
-    const surClicSuivant = () => {
+    const surClicSuivant = (e, callback) => {
         if (donnees != null) {
             if (Array.isArray(donnees)) {
+
+                // Si on est arrivés à la fin
                 if (indexOuvert + 1 == donnees.length) {
                     setIndexOuvert(0);
                     return;
                 }
             }
-
-            else {
-                // console.log(Object.values(donnees))
-            }
         }
-
+        console.log(callback)
+        if (callback != undefined) callback();
         setIndexOuvert(indexOuvert + 1);
     }
 
     return {
-        gestionClicParent: gestionClicParent,
+        verifierOuvertureParent: verifierOuvertureParent,
         surClic: surClic,
         verifierOuverture: verifierOuverture,
         surClicSuivant: surClicSuivant,

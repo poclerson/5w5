@@ -8,7 +8,7 @@
         @return $map;
     }
 }
-
+//Definition de map comme variable
 @function is-map($var){
     @return type-of($var) == 'map';
 }
