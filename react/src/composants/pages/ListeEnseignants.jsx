@@ -14,7 +14,7 @@ import Suivant from '../modules/Suivant';
 export default function ListeEnseignants({id}) {
     const {enseignants} = useContext(ContexteDonneesSite);
 
-    const {surClic, surClicSuivant, verifierOuvertureParent, verifierOuverture, indexOuvert} = useOuvertures(enseignants)
+    const {surClic, surClicSuivant, verifierOuvertureParent, verifierOuverture} = useOuvertures(enseignants)
 
     const {titre} = useStructure(id);
 

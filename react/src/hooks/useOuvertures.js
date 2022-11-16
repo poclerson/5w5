@@ -12,7 +12,8 @@ export default function useOuverture(donnees, ouvertureInitiale = -1) {
         return indexOuvert != -1 ? "true" : "false"
     }
 
-    const surClic = index => {
+    const surClic = (index, callback) => {
+        if (callback != undefined) callback()
         setIndexOuvert(index);
     }
 
@@ -21,20 +22,19 @@ export default function useOuverture(donnees, ouvertureInitiale = -1) {
     }
 
     // Quand on clique sur le bouton suivant (ordinateur seulement)
-    const surClicSuivant = () => {
+    const surClicSuivant = (e, callback) => {
         if (donnees != null) {
             if (Array.isArray(donnees)) {
+
+                // Si on est arrivés à la fin
                 if (indexOuvert + 1 == donnees.length) {
                     setIndexOuvert(0);
                     return;
                 }
             }
-
-            else {
-                // console.log(Object.values(donnees))
-            }
         }
-
+        console.log(callback)
+        if (callback != undefined) callback();
         setIndexOuvert(indexOuvert + 1);
     }
 

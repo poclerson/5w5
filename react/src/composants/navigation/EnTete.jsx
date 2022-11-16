@@ -3,6 +3,7 @@ import './EnTete.scss';
 import ContexteDonneesSite from '../../ContexteDonneesSite';
 import {useContext, useState} from 'react';
 import useOuverture from '../../hooks/useOuverture';
+import * as wp from '../../wp-rest-api';
 
 import Navigation from './Navigation';
 import BoutonBurger from '../modules/BoutonBurger';
@@ -26,25 +27,6 @@ export default function EnTete({enteteWP}) {
 
     const {cours, enseignants, projets} = useContext(ContexteDonneesSite);
 
-    function trouverArticle(id) {
-        // Étaler dans un tableau toutes les valeurs recherchées
-        const articles = [...Object.values(cours), ...Object.values(enseignants), ...Object.values(projets)];
-        const article = articles.map(article => {
-            if (article.id == id) {
-                return {
-                    type: article.permalink
-                        .replace('https://timm175.sg-host.com/', '')
-                        .replace('?', '')
-                        .split('=')[0]
-                        .split('/')[0], 
-                    id: article.id
-                };
-            }
-        }).filter(article => article != undefined)[0]
-
-        return article
-    }
-
     return (
         <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
             <BoutonBurger gererClic={surClicBurger} ouvert={verifierOuvertureBurger()} />
@@ -67,7 +49,15 @@ export default function EnTete({enteteWP}) {
                             key={resultat.id} 
                             resultat={resultat} 
                             surClic={surClicRecherche} 
-                            article={trouverArticle(resultat.id)}
+                            article={wp.obtenirTypeArticle(
+                                resultat.id,
+                                // Étaler les valeurs dans lesquelles chercher l'article
+                                [
+                                    ...Object.values(cours), 
+                                    ...Object.values(enseignants), 
+                                    ...Object.values(projets)
+                                ]
+                            )}
                         />
                     ) : <Chargement />
                 }

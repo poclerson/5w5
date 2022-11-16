@@ -5,15 +5,14 @@ import SessionRonds from './SessionRonds';
 
 import {useState, useRef} from 'react';
 import useOuvertures from '../../hooks/useOuvertures';
-
 import medias from '../../medias';
 import useMediaQuery from '../../hooks/useMediaQuery';
+import useOuvrirSelonId from '../../hooks/useOuvrirSelonId';
 
 import * as u from '../../utilitaires';
 
-export default function ListeSessions({sessions, cours, degrades, pageRef}) {
+export default function ListeSessions({sessions, cours, pageRef}) {
     const tailleOrdinateur = useMediaQuery(medias.ordinateur);
-    const tailleTablette = useMediaQuery(medias.tablette);
 
     // Gestion de l'ouverture de chaque session
     const {surClic, surClicSuivant, verifierOuverture} = useOuvertures(sessions, 0);
@@ -22,6 +21,9 @@ export default function ListeSessions({sessions, cours, degrades, pageRef}) {
     const [rotation, setRotation] = useState(0);
 
     const refTitres = useRef(null);
+
+    // Référence vers une seule session, celle qui est ouverte
+    const refListeCoursSessionOuverte = useRef();
 
     // Est activé quand on clique sur un bouton qui fait changer de session
     function surClicSession(index) {
@@ -38,12 +40,44 @@ export default function ListeSessions({sessions, cours, degrades, pageRef}) {
         }
     }
 
+    const defilerVersCours = cours => {
+        if (cours) {
+            console.log(cours) 
+            refListeCoursSessionOuverte.current.scrollLeft = 
+            cours.offsetLeft - refTitres.current.offsetWidth;
+        }
+    }
+
+    useOuvrirSelonId(undefined, article => {
+        document.querySelectorAll('#' + article.articleWP.acf.session).forEach(
+            element => {
+                const indexSession = element.getAttribute('index')
+                surClic(
+                    indexSession,
+                    tailleOrdinateur ? 
+                        () => {setRotation(-(360 * indexSession / sessions.length))} :
+                        () => {setRotation(rotation - (360 / sessions.length))}
+                )
+
+                const cours = document.getElementById(article.articleWP.id)
+                defilerVersCours(cours)
+            }
+        )
+    })
+
     return (
         <div className="ListeSessions">
             <div className="sessions-titres-conteneur" ref={refTitres}>
                 <ol className="sessions-titres">
                     {sessions.map((session, index) => 
-                        <li className="session-titre" ouvert={verifierOuverture(index)} key={"titre" + session} onClick={() => surClicSession(index)}>
+                        <li 
+                            className="session-titre" 
+                            ouvert={verifierOuverture(index)} 
+                            key={"titre" + session} 
+                            id={session}
+                            index={index}
+                            onClick={() => surClicSession(index)}
+                        >
                             <h3 className="sous-titre">{u.inserer(session, 7, " ")}</h3>
                         </li>
                     )}
@@ -63,7 +97,11 @@ export default function ListeSessions({sessions, cours, degrades, pageRef}) {
                             index={index}
                             pageRef={pageRef}
                             verifierOuverture={verifierOuverture}
+                            defilerVersCours={defilerVersCours}
                             refTitres={refTitres}
+                            refListeCoursSessionOuverte={
+                                verifierOuverture(index) == 'true' && refListeCoursSessionOuverte
+                            }
                         />
                     )
                 }

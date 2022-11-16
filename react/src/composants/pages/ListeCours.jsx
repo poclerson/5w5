@@ -1,7 +1,6 @@
 import './ListeCours.scss';
 
 import {useEffect, useState, useRef, useContext} from 'react';
-
 import ContexteDonneesSite from '../../ContexteDonneesSite';
 
 import Chargement from '../modules/Chargement';
@@ -13,7 +12,7 @@ import ListeSessions from './ListeSessions';
  * 
  * On a besoin de deux composants pour permettre au deuxième de ne pas avoir de restrictions de chargement
  */
-export default function ListeCours({titre}) {
+export default function ListeCours() {
     const {cours, degrades} = useContext(ContexteDonneesSite)
 
     const [sessions, setSessions] = useState(null);
@@ -31,7 +30,6 @@ export default function ListeCours({titre}) {
     return(
         cours != null ?
         <section className="ListeCours" ref={listeCoursRef}>
-            {console.log(ContexteDonneesSite)}
             {
                 sessions && degrades != null ? 
                 <ListeSessions sessions={sessions} cours={cours} degrades={degrades} pageRef={listeCoursRef} />
