@@ -17,6 +17,7 @@ export default function Accueil({id}) {
             {titres && 
                 <Marquee speed={tablette ? 300 : 20} gradient={false} pauseOnClick={true}>
                     {titres.props.children}
+                    {console.log(titres)}
                 </Marquee>
             }
 
