@@ -1,49 +1,76 @@
 import './Session.scss';
 
-import {useState, useEffect, useRef} from 'react';
-import useDefilementHorizontal from '../../hooks/useDefilementHorizontal';
+import {useRef, useState, useEffect} from 'react';
+import medias from '../../medias';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 import Cours from './Cours';
+import FlecheCarousel from '../modules/FlecheCarousel';
 
-export default function Session({cours, session, index, pageRef, verifierOuverture}) {
-    // Liste des cours
-    const listeCoursRef = useRef(null);
+export default function Session({
+    cours, 
+    session, 
+    index, 
+    verifierOuverture, 
+    refTitres, 
+    refListeCoursSessionOuverte,
+    defilerVersCours
+}) {
+    const refListeCours = useRef();
+    const [indexPlusAGauche, setIndexPlusAGauche] = useState(0);
 
-    // Un cours
-    const coursRef = useRef(null);
+    const [enfants, setEnfants] = useState([]);
 
-    const gestionDefilement = () => {
-        // Obtenir le cours le plus à gauche pour le rendre plus gros
-        // Array.from(listeCoursRef.current.children).forEach((enfant, index) => {
-        //     if (enfant.getBoundingClientRect().x > 0 && enfant.getBoundingClientRect().x < window.innerWidth / 2) {
-        //         setOuvertures(boites.ouvrir(index, coursInfinis.map(() => 'ferme')));
-        //         return;
-        //     }
-        // })
+    const tablette = useMediaQuery(medias.tablette);
+    const ordinateur = useMediaQuery(medias.ordinateur);
+
+    const surClicSuivant = () => {
+        // Trouver le cours le plus à gauche qui est encore dans la fenêtre
+        const plusAGauche = enfants.obtenirElementPlusAGauche(refTitres.current.offsetWidth / 2);
+        defilerVersCours(enfants[enfants.indexOf(plusAGauche) + 1])
     }
 
+    const surDefilement = () => {
+        setIndexPlusAGauche(enfants.indexOf(enfants.obtenirElementPlusAGauche(
+            ordinateur ? 
+                refTitres.current.offsetWidth / 2 : 
+            tablette ? 
+                -100 : 
+                -50
+        )));
+    }
+
+    useEffect(() => {
+        if (refListeCoursSessionOuverte != false)
+        setEnfants(Array.from(refListeCoursSessionOuverte.current.children))
+    }, [refListeCoursSessionOuverte])
+
     return (
-        <article className={"Session " + session} ouvert={verifierOuverture(index)}>
-            <ul className="liste-cours" onScroll={gestionDefilement} ref={listeCoursRef}>
+        <article 
+            className="Session" 
+            id={session} 
+            index={index}
+            ouvert={verifierOuverture(index)} 
+            onScroll={surDefilement}
+        >
+            <ul 
+                className="liste-cours" 
+                ref={refListeCoursSessionOuverte != false ? refListeCoursSessionOuverte : refListeCours} 
+                onScroll={surDefilement}
+            >
                 {cours.map((cours, index) => 
                     <Cours 
+                        ouvert={index == indexPlusAGauche ? 'true' : 'false'}
                         key={cours.id}
                         id={cours.id}
-                        {... cours.acf}
-                        innerRef={coursRef}
+                        index={index}
+                        {...cours.acf}
                     />
                 )}
             </ul>
-            {/* Pour l'utilisation de la barre de défilement */}
-            {/* {listeCoursRef.current != null ?
-                <BarreDefilement largeurTotale={largeurDefilement} elementScroll={listeCoursRef.current} />
-                :
-                <Chargement />
-            } */}
-            {/* <a href={"#cours" + (ouvertures.indexOf("ouvert"))} className="prochain-cours" onClick={() => setOuvertures(boites.ouvrir(ouvertures.indexOf("ouvert") + 1, cours.map(() => "ferme")))}>
-                <ArrowForwardIosIcon className="Icone"  />
-            </a> */}
-            {/* <FlecheCarousel gestionClic={gestionClicFleche} /> */}
+            <div className="degrade">
+                <FlecheCarousel gestionClic={surClicSuivant} />
+            </div>  
         </article>
     )
 }

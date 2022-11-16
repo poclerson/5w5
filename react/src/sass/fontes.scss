@@ -1,6 +1,6 @@
 @import './mixins.scss';
 @import './variables.scss';
-
+//Importation des polices de charactères pour le mettre dans les variables polices 
 html {
     font-family: 'Lalezar', cursive;
     @include texte-dynamique($tailles-textes);

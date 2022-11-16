@@ -40,33 +40,20 @@ export function inserer(string, index, valeur) {
  */
 export const clamp = (chiffre, min, max) => Math.min(Math.max(chiffre, min), max);
 
-/**
- * Réorganise aléatoirement les éléments d'un tableau
- * @returns {Array}
- */
-Array.prototype.shuffle = function() {
-    for (var i = 0; i < this.length; i++)
-        this.push(this.splice(Math.random() * (this.length - i), 1)[0]);
-    return this;
+export function prng(seed) {
+    let x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
 }
 
-/**
- * Retire des mots d'un string
- * @param {int} nombreMotsAGarder nombre de mots à garder dans le string
- * @param {bool} commencerFin si on doit commencer à tronquer à partir de la fin ou du début
- * @returns {string} 
- */
-String.prototype.tronquerMots = function(nombreMotsAGarder, commencerFin = false) {
-    if (commencerFin)
-        return this.split(' ').slice(-nombreMotsAGarder).join(' ');
-    return this.split(' ').slice(0, nombreMotsAGarder).join(' ');
-}
+// Object.prototype.trier = function() {
+//     return Object.keys(this).sort().reverse().reduce(
+//         (objet, cle) => {
+//             objet[cle] = this[cle];
+//             return objet
+//         }, {}
+//     )
+// }
 
-/**
- * Prend un string en kebab case et le transforme en camel case
- * @returns {string} String transformé en camel case
- */
-String.prototype.kebabVersCamel = function() {
-    if (this == undefined) return;
-    return this.replace(/-./g, x=>x[1].toUpperCase())
+export function cleSelonValeur(objet, valeur) {
+    return Object.keys(objet).find(cle => objet[cle] === valeur);
 }

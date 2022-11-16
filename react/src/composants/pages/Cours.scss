@@ -4,73 +4,81 @@
 
 .Cours {
     // Un cours prend presque tout l'écran sur mobile
-    flex: 0 0 60%;
+    flex: 0 0 50vw;
     aspect-ratio: 1 / 1.5;
-    scroll-snap-align: center;
-    &:first-child {margin-left: 15%;}
-    &:last-child {margin-right: 20%;}
-
+    scroll-snap-align: start;
+    &:first-child {margin-left: 20vw}
+    &:last-child {margin-right: 20vw;}
     position: relative;
 
+    &[ouvert="true"] {
+        .carte{transform: scale(1.25)};
+        transition: transform ease-in-out .1s;
+    }
 
     @include tablette {
-        flex: 0 0 40%;
+        flex: 0 0 25vw;
 
-        &:first-child {margin-left: 5%;}
-        &:last-child {margin-right: 10%;}
+        margin: 10% 0;
+        &:first-child {margin-left: 10%;}
+        &:last-child {margin-right: 20%;}
 
-        transition: transform .15s ease-in-out;
+        transition: transform .25s ease-in-out;
     }
 
     @include ordinateur {
         // Afficher trois cours ou plus sur grands écrans
-        flex: 0 0 25%;
+        flex: 0 0 15vw;
+        margin: 0;
+        // Limiter leur expansion
+        max-height: 60vh; 
 
-        &:first-child{margin-left: 35%;}
-    }
-
-    // Deviendra l'icône 3D, placeholder d'un svg pour l'instant
-    .domaines {
-        position: absolute;
-        top: -10px;
-        right: -60px;
-
-        .domaine {
-            .Icone {
-                transform: scale(2.5);
-                color: map-get($couleurs, clair);
-            }
-        }
+        &:first-child{margin-left: 35vw;}
+        &:last-child{margin-right: 10vw;}
     }
 
     // Une carte de cours
     .carte {
         display: flex;
         flex-direction: column;
+        position: relative;
 
         @include pleine-taille;
 
         @include carte;
         @include fond-flou;
         @include themer($theme-cours);
+        transition: transform ease-in-out .1s;
+
+        .modele {
+            position: absolute;
+            top: -100px;
+            right: -200px;
+            z-index: 5;
+    
+            &, &:hover {
+                transition: transform ease-in-out .5s;
+            }
+
+            canvas {
+                // Sinon le modele "tombe"???
+                width: 100% !important;
+                height: 100% !important;
+            }
+        }
+
+        // Rond décoratif sous la carte
+        .rond {
+            $taille: 30%;
+
+            position: absolute;
+            left: - $taille / 2;
+            bottom: 20%;
+
+            @include rond($taille);
+
+            background-color: red; // placeholder
+            z-index: -3;
+        }
     }
-
-    // Rond décoratif sous la carte
-    .rond {
-        $taille: 5vw;
-
-        position: absolute;
-        left: - $taille / 2;
-        bottom: 20%;
-
-        @include rond($taille);
-
-        background-color: red; // placeholder
-        z-index: -1;
-    }
-
-    // // S'assurer que le premier et dernier enfant ne soient pas collés au bords
-    // &:first-child {margin-left: 10vw;}
-
-    // &:last-child {margin-right: 10vw;}
 }
