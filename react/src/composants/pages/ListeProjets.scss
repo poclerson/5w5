@@ -49,6 +49,14 @@
                 overflow: hidden;
 
                 &.photo-environnement {
+                    // Transition pour animation hover photo-emvironnement
+                    transition: .7s ease;
+                    // Animation de hover photo-environnement
+                    &:hover{
+                        transform: scale(1.1);
+                        transform: scale(1.1);
+                        transform: scale(1.1);
+                    }
                     // Largeur de 1
                     grid-column: span 1;
                     

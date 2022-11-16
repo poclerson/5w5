@@ -1,6 +1,12 @@
 @import '../../sass/mixins.scss';
 
 .Projet {
+    transition: .7s ease;
+    &:hover{
+        transform: scale(1.1);
+        transform: scale(1.1);
+        transform: scale(1.1);
+    }
     &[ouvert="false"] {
         //  Les projets prennent deux rangées de hauteur
         grid-row: span 2;
