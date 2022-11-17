@@ -212,9 +212,16 @@
 }
 
 @mixin padding-auto() {
-    padding: map-get($decalage-pages, mobile) 0;
-    @include tablette {padding: calc(map-get($decalage-pages, tablette) / 2) 0;}
-    @include ordinateur {padding: calc(map-get($decalage-pages, ordinateur) / 2) 0;}
+    padding-top: map-get($decalage-pages, mobile);
+    padding-bottom: map-get($decalage-pages, mobile);
+    @include tablette {
+        padding-top: calc(map-get($decalage-pages, tablette) / 2);
+        padding-bottom: calc(map-get($decalage-pages, tablette) / 2);
+    }
+    @include ordinateur {
+        padding-top: calc(map-get($decalage-pages, ordinateur) / 2);
+        padding-bottom: calc(map-get($decalage-pages, ordinateur) / 2);
+    }
 }
 
 
@@ -236,18 +243,7 @@
 @mixin carte() {
     border-radius: 20px;
 
-    $padding-v: 5vh;
-    $padding-h: 5vw;
-
-    @include tablette {
-        $padding-h: 2.5vh;
-        $padding-v: 2.5vw;
-    }
-
-    padding-top: $padding-v;
-    padding-bottom: $padding-v;
-    padding-left: $padding-h;
-    padding-right: $padding-h;
+    padding: 30px;
 }
 
 @mixin bordures-coins-diagonales($taille, $couleur) {
@@ -282,8 +278,12 @@
 
     @include ordinateur {
         height: unset;
-        min-height: calc(100vh - map-get($decalage-pages, ordinateur));
+        min-height: calc(115vh - map-get($decalage-pages, ordinateur));
         padding: map-get($decalage-pages, ordinateur) 0;
+
+        & > .titre {
+            padding-left: 10%;
+        }
 
         @if $ajuster-contenu {
             padding: map-get($decalage-pages, ordinateur) * 1.5 0;

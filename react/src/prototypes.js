@@ -1,16 +1,6 @@
 import * as u from './utilitaires';
 
 /**
- * Réorganise pseudo-aléatoirement les éléments d'un tableau
- * @returns {Array}
- */
-Array.prototype.pseudoMelanger = function() {
-    for (var i = 0; i < this.length; i++)
-        this.push(this.splice(u.prng(i) * (this.length - i), 1)[0]);
-    return this;
-}
-
-/**
  * Retire des mots d'un string
  * @param {int} nombreMotsAGarder nombre de mots à garder dans le string
  * @param {bool} commencerFin si on doit commencer à tronquer à partir de la fin ou du début
@@ -32,6 +22,16 @@ String.prototype.kebabVersCamel = function() {
 }
 
 /**
+ * Insère une chaine de caractère dans une autre d'après un index
+ * @param {string} valeur Chaine de caractère à insérer
+ * @param {int} index Index dans la chaine de caractère où on veut insérer quelque chose
+ * @returns {string} Chaine de caractère où on a inséré une valeur
+ */
+String.prototype.inserer = function(valeur, index) {
+    return this.substr(0, index) + valeur+ this.substr(index);
+}
+
+/**
  * Retourne l'élément le plus à gauche par rapport à la fenêtre à partir d'un tableau
  * @param {int} decalage 
  * @returns {Element} Élément le plus à gauche
@@ -47,6 +47,16 @@ Array.prototype.obtenirElementPlusAGauche = function(decalage) {
             // Choisir d'après la condition
             precedent : present
     })
+}
+
+/**
+ * Réorganise pseudo-aléatoirement les éléments d'un tableau
+ * @returns {Array}
+ */
+Array.prototype.pseudoMelanger = function() {
+    for (var i = 0; i < this.length; i++)
+        this.push(this.splice(u.prng(i) * (this.length - i), 1)[0]);
+    return this;
 }
 
 /**
