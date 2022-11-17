@@ -6,7 +6,6 @@
 .ListeSessions {
     box-sizing: border-box;
     position: relative;
-    height: 100%;
 
     @include tablette {
         @include padding-auto;

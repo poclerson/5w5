@@ -10,9 +10,9 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
                 {modele != undefined && 
                     <VisionneurModele 
                         cheminModele={modele}
-                        echelle={.9}
-                        position={[0, -1, 0]}
-                        rotation={[0, -.5, 0]}
+                        echelle={.5}
+                        position={[0, 0, 0]}
+                        rotation={[0, 0, 0]}
                     />
                 }
                 </div>
