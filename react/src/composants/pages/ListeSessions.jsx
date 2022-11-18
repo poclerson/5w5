@@ -33,7 +33,6 @@ export default function ListeSessions({sessions, cours, pageRef}) {
         
         // Simplement ouvrir le prochain. Permet une rotation constante (ne brise pas à chaque cycle)
         else {
-            console.log(verifierOuverture(index))
             surClicSuivant()
             setRotation(rotation - (360 / sessions.length))
         }

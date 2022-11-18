@@ -29,6 +29,10 @@
             gap: 10vw;
             scroll-padding-left: 35vw;
         }
+
+        @include ordinateur-large {
+            gap: 5vw;
+        }
     }
 
     .degrade {
