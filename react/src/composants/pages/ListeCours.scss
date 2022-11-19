@@ -3,7 +3,7 @@
 
 .ListeCours {
     @include themer($theme-liste-session);
-    @include page(false, false);
+    @include page(true, false);
     flex-direction: column;
     justify-content: space-between;
 }

@@ -54,8 +54,8 @@ export default function Session({
             ordinateur ? 
                 refTitres.current.offsetWidth / 2 : 
             tablette ? 
-                -100 : 
-                -50
+                -50 : 
+                -25
         )));
     }
 

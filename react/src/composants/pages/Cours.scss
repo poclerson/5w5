@@ -5,19 +5,25 @@
 .Cours {
     // Un cours prend presque tout l'écran sur mobile
     flex: 0 0 50vw;
-    aspect-ratio: 1 / 1.5;
+    // height: 40vh;
+    // width: 50vw;
+    aspect-ratio: 1 / 1.25;
     scroll-snap-align: start;
     &:first-child {margin-left: 20vw}
     &:last-child {margin-right: 20vw;}
     position: relative;
 
     &[ouvert="true"] {
-        .carte{transform: scale(1.25)};
+        .carte{transform: scale(1.1)};
         transition: transform ease-in-out .1s;
+
+        @include tablette {
+            .carte {transform: scale(1.25);}
+        }
     }
 
     @include tablette {
-        flex: 0 0 25vw;
+        flex: 0 0 30vw;
 
         margin: 10% 0;
         &:first-child {margin-left: 10%;}
@@ -52,6 +58,7 @@
         @include fond-flou;
         @include themer($theme-cours);
         transition: transform ease-in-out .1s;
+        padding: 15px;
 
         .modele {
             position: absolute;
