@@ -20,8 +20,8 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
                 </div>
                 <h4 className="titre">{titre}</h4>
                 <p className="description">{description}</p>
-                <div className="rond"></div>
             </div>
+            <div className="rond"></div>
         </li>
     )
 }

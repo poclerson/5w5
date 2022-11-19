@@ -10,10 +10,16 @@
     &:first-child {margin-left: 25vw}
     &:last-child {margin-right: 25vw;}
     position: relative;
+    backdrop-filter: blur(30px);
 
     &[ouvert="true"] {
-        .carte{transform: scale(1.1)};
+        .carte, .rond{transform: scale(1.1)};
         transition: transform ease-in-out .1s;
+
+        .rond {
+            transition: left ease-in-out .08s;
+            left: calc(-15% * 1.82);
+        }
 
         @include tablette {
             .carte {transform: scale(1.25);}
@@ -90,19 +96,19 @@
             overflow-x: hidden;
             overflow-y: scroll;
         }
+    }
 
-        // Rond décoratif sous la carte
-        .rond {
-            $taille: 30%;
+    // Rond décoratif sous la carte
+    .rond {
+        $taille: 30%;
+        z-index: -3;
 
-            position: absolute;
-            left: - $taille / 2;
-            bottom: 20%;
+        position: absolute;
+        left: - $taille / 2;
+        bottom: 20%;
 
-            @include rond($taille);
+        @include rond($taille);
 
-            background-color: map-get($couleurs, clair);
-            z-index: -3;
-        }
+        background-color: map-get($couleurs, clair);
     }
 }
