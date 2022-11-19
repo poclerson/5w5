@@ -157,6 +157,18 @@
     }
 }
 
+// Attribue des couleurs aléatoires de domaine à une propriété donnée aux enfants
+@mixin couleurs-aleatoires($propriete, $nombre-enfants) {
+    $nombre-couleurs: length(map-get($couleurs, domaines));
+    $couleurs: map-values(map-get($couleurs, domaines));
+
+    @for $element from 1 through $nombre-enfants {
+        &:nth-of-type(#{$element}) {
+            #{$propriete}: nth($couleurs, random(length($couleurs)));
+        }
+    }
+}
+
 
 
 
