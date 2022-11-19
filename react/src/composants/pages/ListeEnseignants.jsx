@@ -9,7 +9,7 @@ import {useContext, useLayoutEffect} from 'react';
 
 import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
-import Suivant from '../modules/Suivant';
+import FlecheNav from '../modules/FlecheNav';
 
 export default function ListeEnseignants({id}) {
     const {enseignants} = useContext(ContexteDonneesSite);
@@ -40,7 +40,7 @@ export default function ListeEnseignants({id}) {
                         ) 
                     }
                 </ul>
-                <Suivant gestionClic={surClicSuivant} />
+                <FlecheNav gestionClic={surClicSuivant} texte={true} classesAdditionnelles="suivant" />
             </section>  
         : <Chargement />
     );

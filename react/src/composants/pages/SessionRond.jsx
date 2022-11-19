@@ -1,7 +1,7 @@
 import './SessionRond.scss';
-import FlecheDefilement from '../modules/FlecheCarousel';
+import FlecheNav from '../modules/FlecheNav';
 
-export default function SessionRond({gestionProchaineSession, index, session, placement, surClic}) {
+export default function SessionRond({index, session, placement, surClic}) {
     return (
         <li className="SessionRond" style={placement}>
             <div className="destination"></div>
@@ -12,7 +12,7 @@ export default function SessionRond({gestionProchaineSession, index, session, pl
             >
                     {session.charAt(7)}
             </h2>
-            <FlecheDefilement gestionClic={() => surClic(index)} />
+            <FlecheNav gestionClic={() => surClic(index)} texte={false} />
         </li>
     )
 }

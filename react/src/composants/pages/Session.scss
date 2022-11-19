@@ -18,16 +18,20 @@
         overflow-x: scroll;
         overflow-y: hidden;
         scroll-behavior: smooth;
-        gap: 50vw;
-        scroll-padding-left: 20vw;
+        gap: 40vw;
+        scroll-padding-left: 25vw;
 
         @include tablette {
-            gap: 20vw;
+            gap: 15vw;
         }
 
         @include ordinateur {
             gap: 10vw;
             scroll-padding-left: 35vw;
+        }
+
+        @include ordinateur-large {
+            gap: 5vw;
         }
     }
 

@@ -8,11 +8,11 @@
     position: relative;
     box-sizing: border-box;
     overflow-y: scroll;
+    overflow-x: hidden;
 
     & > .titre {padding-left: $taille-gouttieres;}
 
     @include ordinateur {
-        overflow-y: scroll;
         @include page(false);
     }
 
@@ -23,13 +23,19 @@
         .liste {
             visibility: visible;
 
-            & ~ .Suivant {
+            @include ordinateur {
+                // overflow-x: scroll;
+                overflow-y: hidden;
+            }
+
+            & ~ .retour {
                 display: none;
             }
         }
     }
 
     &[enseignant-ouvert="true"] {
+        overflow-y: hidden;
         padding-bottom: 0;
         & > .titre {display: none;}
 
@@ -49,13 +55,36 @@
                 visibility: visible;
                 padding: 0 $taille-gouttieres;
                 overflow-x: hidden;
-                gap: 5%;
+                gap: 0;
 
+                // Réduire les paddings pour gagner de l'espace
+                padding-left: 7.5%;
+                padding-right: 2.5%;
 
+                // Afficher le prochain enseignant
                 .Enseignant[ouvert="true"] {
-                    &, & + * {display: flex;}
+                    & {
+                        & + .Enseignant {
+                            display: flex;
+
+                            @include ordinateur-large {
+                                & + .Enseignant {
+                                    display: flex;
+                                }
+                            }
+                        }
+                    }
                 }
             }
+        }
+
+        .retour {
+            // N'afficher que la flèche sur ordi + quand un enseignant est ouvert
+            display: flex;
+        }
+
+        .suivant {
+            @include ordinateur {display: flex}
         }
     }
 
@@ -78,16 +107,14 @@
 
         @include ordinateur {
             display: flex;
-            overflow: auto;
             @include padding-auto;
         }
     }
 
-    .Suivant {
-        display: none;
+    .suivant {
         right: 2.5%;
         top: 700px;
-
-        @include ordinateur {display: flex;}
+        position: absolute;
+        display: none;
     }
 }
