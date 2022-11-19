@@ -44,8 +44,6 @@ export default function Session({
 
     const surClicFleche = () => {
         const prochainCours = enfants[indexPlusAGauche + 1];
-
-        console.log(indexPlusAGauche)
         defilerVersCours(prochainCours)
     }
 

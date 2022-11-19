@@ -40,7 +40,7 @@ export default function ListeEnseignants({id}) {
                         ) 
                     }
                 </ul>
-                <FlecheNav gestionClic={surClicSuivant} texte={false} />
+                <FlecheNav gestionClic={surClicSuivant} texte={true} classesAdditionnelles="suivant" />
             </section>  
         : <Chargement />
     );

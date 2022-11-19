@@ -7,13 +7,16 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
         <li className="Cours" id={id} index={index} ouvert={ouvert}>
             <div className="carte">
             <div className="modele">
-                {modele != undefined && 
-                    <VisionneurModele 
-                        cheminModele={modele}
-                        echelle={.5}
-                        position={[0, 0, 0]}
-                        rotation={[0, 0, 0]}
-                    />
+                {modele != undefined && modele != false && 
+                    <>
+                        <VisionneurModele 
+                            cheminModele={modele}
+                            echelle={.5}
+                            position={[0, 0, 3]}
+                            rotation={[0, .5, 0]}
+                        />
+                        {console.log(titre, modele)}
+                    </>
                 }
                 </div>
                 <h4 className="titre">{titre}</h4>

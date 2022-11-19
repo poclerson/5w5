@@ -263,6 +263,7 @@
 @mixin page($ajuster-contenu: false, $padding-bottom: true) {
     @include pleine-taille;
     display: flex;
+    box-sizing: border-box;
 
     @if $ajuster-contenu {
         padding: map-get($decalage-pages, mobile) 0;
@@ -278,7 +279,7 @@
 
     @include ordinateur {
         height: unset;
-        min-height: calc(115vh - map-get($decalage-pages, ordinateur));
+        min-height: 130vh;
         padding: map-get($decalage-pages, ordinateur) 0;
 
         & > .titre {
@@ -287,7 +288,6 @@
 
         @if $ajuster-contenu {
             padding: map-get($decalage-pages, ordinateur) * 1.5 0;
-            min-height: calc(100vh - map-get($decalage-pages, ordinateur) * 1.5);
         }
     }
 
