@@ -1,9 +1,14 @@
-@import '../../sass//mixins.scss';
+@import '../../sass/mixins.scss';
+@import '../../sass/animations.scss';
 
 .Session {
     width: 100%;
     @include gerer-ouverture(flex);
     box-sizing: border-box;
+
+    &[ouvert="true"] {
+        animation: fondu-vers-prochain-partiel .5s;
+    }
 
     .liste-cours {
         // Prendre toute la place

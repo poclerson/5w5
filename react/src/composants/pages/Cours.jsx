@@ -15,7 +15,6 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
                             position={[0, 0, 3]}
                             rotation={[0, .5, 0]}
                         />
-                        {console.log(titre, modele)}
                     </>
                 }
                 </div>
