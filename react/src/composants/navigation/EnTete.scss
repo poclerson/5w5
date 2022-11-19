@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 5vh;
 
     &[ouvert="false"] {
         @include tablette {
@@ -95,13 +96,15 @@
     }
 
     .resultats-recherche {
-        @include themer($theme-base);
-        background-color: transparent !important;
+        @include themer($theme-resultats-recherche);
+        backdrop-filter: blur(15px);
         display: flex;
+        position: relative;
 
         padding: 5%;
         flex-direction: column;
         gap: 10%;
         overflow-y: scroll; // Permettre le défilement des résultats s'il y en a trop
+        max-height: 75vh;
     }
 }

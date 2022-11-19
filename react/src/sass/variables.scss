@@ -329,6 +329,45 @@ $theme-menu-mobile: (
         couleur-secondaire: map-get($couleurs, sombre)
     )
 );
+
+// Entête et autres menus flottants pour mobile
+$theme-resultats-recherche: (
+    titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (),
+
+    texte: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    icone: (
+        couleur: map-get($couleurs, clair),
+    ),
+
+    lien: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    lien-hover: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+    
+    fond: (
+        couleur-primaire: map-get($couleurs, sombre-transparent),
+        couleur-secondaire: map-get($couleurs, sombre)
+    )
+);
+
 //Style general pour la version tablette
 $theme-menu-tablette: (
     titre: (

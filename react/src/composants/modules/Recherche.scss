@@ -5,16 +5,9 @@
 .Recherche {
     display: flex;
     align-items: center;
+    gap: 2.5%;
     margin-left: 2.5%;
     margin-right: 2.5%;
-
-    .zone-saisie {
-        * {
-            border: none;
-        }
-
-        border-bottom: 2px solid map-get($couleurs, clair);
-    }
 
     .icone-recherche {
         transform: scaleX(-1); // Tourner l'icône
@@ -22,5 +15,13 @@
 
     @include tablette {
         flex: 0 2 5%;
+    }
+
+    .zone-saisie {
+        border-bottom: 2px solid map-get($couleurs, clair);
+
+        &:focus {
+            outline: none;
+        }
     }
 }
