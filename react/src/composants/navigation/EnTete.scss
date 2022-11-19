@@ -57,14 +57,14 @@
     .contenu {
         @include themer($theme-menu-mobile);
         @include fond-flou;
-
         @include gerer-ouverture(flex);
-        flex-direction: column;
 
+        flex-direction: column;
+        height: 50vh;
         width: 95vw;
         box-sizing: border-box;
         padding: 10vw;
-
+        transition: all 0.3s 0s ease-in-out, all 0.5s 0s ease;
         border-radius: 0 70px 70px 0;
 
         @include tablette {

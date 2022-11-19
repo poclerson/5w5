@@ -7,7 +7,7 @@
     padding-bottom: 2.5vw;
     position: fixed;
     background-color: map-deep-get($theme-menu-mobile, fond, couleur-secondaire);
-    border-bottom-right-radius: 50%;
+    border-bottom-right-radius: 40%;
     z-index: 100; // Doit TOUJOURS être par-dessus tout
 
     // Icône des trois lignes
@@ -17,7 +17,7 @@
 }
 
 .MuiSvgIcon-root MuiSvgIcon-fontSizeMedium:active {
-    font-size: 15vw;
+    font-size: 10%;
     transition: all 0.3s 0s ease-in-out, all 0.5s 0s ease;
 }
 
