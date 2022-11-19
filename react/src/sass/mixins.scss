@@ -265,6 +265,9 @@
     display: flex;
     box-sizing: border-box;
 
+    // Padding minimal
+    padding: 40px 0;
+
     @if $ajuster-contenu {
         padding: map-get($decalage-pages, mobile) 0;
     }
@@ -300,6 +303,11 @@
 // ===== MIXINS DE REQUÊTES MÉDIAS =====
 
 
+@mixin petit-mobile {
+    @media screen and (max-width: map-get($largeurs-ecran, mobile)) {
+        @content;
+    }
+}
 
 @mixin mobile {
     @media screen and (min-width: map-get($largeurs-ecran, mobile)) {

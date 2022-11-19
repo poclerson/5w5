@@ -4,7 +4,7 @@
     flex: 0;
 
     position: absolute;
-    left: 0;
+    left: 0; 
     top: 0;
 
     transform: translateZ(1px);
@@ -21,16 +21,15 @@
         position: absolute; 
         transition: transform .5s;
         left: -550px;
-        top: 77vh;
+        top: 65vh;
 
         @include tablette {
             left: -700px;
-            top: 68vh;
         }
 
         @include ordinateur {
-            left: -1500px;
-            top: -300px;
+            left: -1550px;
+            top: -275px;
         }
     }
 }
