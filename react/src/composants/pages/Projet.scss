@@ -1,4 +1,5 @@
 @import '../../sass/mixins.scss';
+@import '../../sass/animations.scss';
 
 .Projet {
     transition: .7s ease;
@@ -36,6 +37,7 @@
     }
 
     &[ouvert="true"] {
+        animation: fondu-vers-prochain .5s ease-in-out;
         @include pleine-taille;
 
         .miniature {

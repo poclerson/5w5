@@ -18,7 +18,6 @@
                     margin-block-end: map-get($proprietes, taille) / 4;
 
                     // Ajouter les propriétés ajoutées dans variables.scss ici
-                    // $proprietes représente toutes les propriétés présentes (présentement, taille et hauteur-ligne)
                 }
             }
         }
@@ -47,6 +46,10 @@
 // Stylise plusieurs classe/balises prédéterminés d'après une map de thème
 @mixin themer($theme) {
     // Styles de texte
+    @include selection-texte {
+        @include texte-general($theme, "texte");
+    }
+
     .titre {
         @include texte-general($theme, "titre");
     }
@@ -59,7 +62,7 @@
         color: map-deep-get($theme, "icone", "couleur");
     }
 
-    p, input {
+    input {
         @include texte-general($theme, "texte");
     }
 
@@ -142,7 +145,8 @@
             }
 
             @else {
-                // L'élément original doit avoir une classe correspondant aux différents domaines (voir Enseignant.scss pour exemple)
+                // L'élément original doit avoir une classe correspondant aux différents domaines
+                // (voir Enseignant.scss pour exemple)
                 &.#{$domaine} {
 
                     // Sélection de la classe enfant
@@ -167,6 +171,27 @@
             #{$propriete}: nth($couleurs, random(length($couleurs)));
         }
     }
+}
+
+
+
+// ===== MIXINS DE HOVER & TRANSITIONS =====
+@mixin hover-bordures-cotes {
+    transition: border 0.35s ease;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    padding: 0 11.2px;
+    cursor: pointer;
+
+    &:hover {
+        transition: border 0.35s ease;
+        border-left: 3px solid map-get($couleurs, clair);
+        border-right: 3px solid map-get($couleurs, clair);
+    }
+}
+
+@mixin transition-base($propriete: all, $courbe: cubic-bezier(.99,-0.01,.65,.73), $duree: .5s) {
+    transition: $propriete $courbe $duree;
 }
 
 
