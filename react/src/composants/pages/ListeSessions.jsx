@@ -18,6 +18,8 @@ export default function ListeSessions({sessions, cours, pageRef}) {
     // État de rotation du carousel rond des titres de session
     const [rotation, setRotation] = useState(0);
 
+    const [transition, setTransition] = useState(false);
+
     const refTitres = useRef(null);
 
     // Référence vers une seule session, celle qui est ouverte
@@ -33,7 +35,6 @@ export default function ListeSessions({sessions, cours, pageRef}) {
         
         // Simplement ouvrir le prochain. Permet une rotation constante (ne brise pas à chaque cycle)
         else {
-            console.log(verifierOuverture(index))
             surClicSuivant()
             setRotation(rotation - (360 / sessions.length))
         }

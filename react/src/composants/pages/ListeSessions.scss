@@ -8,11 +8,11 @@
     position: relative;
 
     @include tablette {
-        @include padding-auto;
         height: unset;
     }
 
     @include ordinateur {
+        @include padding-auto;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -22,7 +22,7 @@
     .liste {
         display: flex;
         width: 100vw;
-        height: 80%;
+        height: 100%;
     }
 
     // Reculer

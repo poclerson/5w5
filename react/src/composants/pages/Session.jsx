@@ -3,9 +3,10 @@ import './Session.scss';
 import {useRef, useState, useEffect} from 'react';
 import medias from '../../medias';
 import useMediaQuery from '../../hooks/useMediaQuery';
+import useDefilementInfini from '../../hooks/useDefilementInfini';
 
 import Cours from './Cours';
-import FlecheCarousel from '../modules/FlecheCarousel';
+import FlecheNav from '../modules/FlecheNav';
 
 export default function Session({
     cours, 
@@ -23,20 +24,38 @@ export default function Session({
 
     const tablette = useMediaQuery(medias.tablette);
     const ordinateur = useMediaQuery(medias.ordinateur);
+    const ordinateurLarge = useMediaQuery(medias.ordinateurLarge);
 
-    const surClicSuivant = () => {
-        // Trouver le cours le plus à gauche qui est encore dans la fenêtre
-        const plusAGauche = enfants.obtenirElementPlusAGauche(refTitres.current.offsetWidth / 2);
-        defilerVersCours(enfants[enfants.indexOf(plusAGauche) + 1])
+    const [coursInfinis, setCoursInfinis] = useState(cours);
+
+    const [setEstArrive, setDonneesAjoutees] = useDefilementInfini(
+        refListeCoursSessionOuverte, 
+        () => {
+            setCoursInfinis([...coursInfinis, ...cours]);
+            // Activer le useEffect
+            setEstArrive(false);
+            setDonneesAjoutees(true);
+        },
+        () => { 
+            setEnfants(Array.from(refListeCoursSessionOuverte.current.children))
+            setDonneesAjoutees(false)
+        }
+    )
+
+    const surClicFleche = () => {
+        const prochainCours = enfants[indexPlusAGauche + 1];
+        defilerVersCours(prochainCours)
     }
 
     const surDefilement = () => {
         setIndexPlusAGauche(enfants.indexOf(enfants.obtenirElementPlusAGauche(
+            ordinateurLarge ? 
+                refTitres.current.offsetWidth / 1.5 :
             ordinateur ? 
                 refTitres.current.offsetWidth / 2 : 
             tablette ? 
-                -100 : 
-                -50
+                -50 : 
+                -25
         )));
     }
 
@@ -58,18 +77,18 @@ export default function Session({
                 ref={refListeCoursSessionOuverte != false ? refListeCoursSessionOuverte : refListeCours} 
                 onScroll={surDefilement}
             >
-                {cours.map((cours, index) => 
-                    <Cours 
+                {coursInfinis.map((_cours, index) => 
+                    { return <Cours 
                         ouvert={index == indexPlusAGauche ? 'true' : 'false'}
-                        key={cours.id}
-                        id={cours.id}
+                        key={_cours.id + "" + index}
+                        id={_cours.id}
                         index={index}
-                        {...cours.acf}
-                    />
+                        {..._cours.acf}
+                    />}
                 )}
             </ul>
             <div className="degrade">
-                <FlecheCarousel gestionClic={surClicSuivant} />
+                <FlecheNav gestionClic={surClicFleche} texte={false}/>
             </div>  
         </article>
     )
