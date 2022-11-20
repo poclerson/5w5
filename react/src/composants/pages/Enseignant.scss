@@ -46,6 +46,13 @@ $couleurs-domaines-modifiees: (
 
     @include couleurs-domaines($classes-couleur-domaine-ferme);
 
+    
+
+    &:hover{
+        
+    }
+
+
 
     // ===== FERMÉ =====
 
@@ -53,6 +60,7 @@ $couleurs-domaines-modifiees: (
     &[ouvert="false"] {
         .miniature {
             @include bulle;
+            
             
             .titre {
                 display: none;
@@ -69,7 +77,11 @@ $couleurs-domaines-modifiees: (
     
         // Cacher le contenu lorsqu'un enseignant est fermé
         .contenu {display: none;}
+
+       
     }
+
+    
 
 
     // ===== OUVERT =====
@@ -219,6 +231,8 @@ $couleurs-domaines-modifiees: (
                 display: flex;
                 flex: 0 1 40%;
             }
+
+        
         }
 
         // & ~ .Enseignant[ouvert="false"] {

@@ -23,9 +23,9 @@
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        padding-bottom: 5%;
-        
+        padding-bottom: 5%; 
     }
+    
     .nous-joindre{
         display: flex;
         flex-direction: column;
@@ -46,6 +46,11 @@
         .inscription{
             display: flex;
             flex-direction: column;
+
+            a{
+              text-decoration: underline;  
+            }
+            
         }
 
         & > * {
@@ -55,6 +60,7 @@
 
     @include ordinateur {
         display: flex;
+
 
     }
 }
