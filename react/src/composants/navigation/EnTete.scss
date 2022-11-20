@@ -19,31 +19,17 @@
             height: unset;
         }
 
-        .resultats-recherche {display: none;}
-
-        @include tablette {
-            .contenu {
-                .Recherche {
-                    .zone-saisie {display: none;}
-                }
-    
-                .Navigation {
-                    display: flex;
-                }
-            }
-        }
+        .resultats-recherche {transform: scaleY(0);}
     }
 
     &[ouvert="true"] {
         @include tablette {
             .contenu {
-                .Recherche {
-                    flex-basis: 100%;
-                    .zone-saisie {display: flex; width: 100%;}
-                }
-    
                 .Navigation {
-                    display: none;
+                    @include transition-base;
+                    transform: scaleX(0);
+                    width: 0;
+                    flex: 0 0 0;
                 }
             }
         }
@@ -97,10 +83,15 @@
     }
 
     .resultats-recherche {
+        transform-origin: top center;
+        transform: scaleY(1);
+        @include transition-base(transform);
+        
         width: 95vw;
         box-sizing: border-box;
         @include themer($theme-resultats-recherche);
         backdrop-filter: blur(15px);
+        
         display: flex;
         position: relative;
         border-radius: 0 70px 70px 0;

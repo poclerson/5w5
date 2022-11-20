@@ -1,5 +1,6 @@
 @import 'sass/mixins.scss';
 @import 'sass/variables.scss';
+@import 'sass/animations.scss';
 
 .App {
     overflow: hidden;
@@ -10,5 +11,9 @@
     @include ordinateur {
         height: unset;
         min-height: 100vh;
+    }
+
+    & > * {
+        animation: fondu-entrant ease-in-out .5s;
     }
 }

@@ -3,6 +3,7 @@
 
 // Barre de recherche présente dans EnTete
 .Recherche {
+    transition: flex-basis cubic-bezier(.99,-0.01,.65,.73) .5s;
     display: flex;
     align-items: center;
     gap: 2.5%;
@@ -14,6 +15,8 @@
 
     .icone-recherche {
         transform: scaleX(-1); // Tourner l'icône
+        cursor: pointer;
+        @include hover-bordures-cotes;
     }
 
     .zone-saisie {
@@ -21,6 +24,32 @@
 
         &:focus {
             outline: none;
+        }
+    }
+
+    &[ouvert="true"] {
+        @include tablette {
+            flex: 0 0 100%;
+            @include transition-base(flex-basis);
+
+            .zone-saisie {
+                width: 60%;
+                opacity: 1;
+                @include transition-base;
+            }
+        }
+    }
+
+    &[ouvert="false"] {
+        @include tablette {
+            flex: 0 1 5%;
+            @include transition-base(flex-basis);
+
+            .zone-saisie {
+                width: 0;
+                opacity: 0;
+                @include transition-base;
+            }
         }
     }
 }

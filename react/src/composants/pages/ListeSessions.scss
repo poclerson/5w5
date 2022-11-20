@@ -12,7 +12,6 @@
     }
 
     @include ordinateur {
-        @include padding-auto;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -54,6 +53,14 @@
             transform-style: preserve-3d;
 
             .session-titre {
+                @include hover-bordures-cotes;
+                width: min-content;
+
+                .sous-titre {
+                    line-break: strict;
+                    white-space: nowrap;
+                }
+                
                 &[ouvert="true"] {
                     display: none;
                 }

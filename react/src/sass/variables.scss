@@ -503,8 +503,9 @@ $theme-enseignant: (
 
     fond: ()
 );
+
 //Style et grosseur du pied des élements dans le pied de page
-$theme-PiedDePage: (
+$theme-pied-page: (
     titre: (
         couleur: map-get($couleurs, clair),
         poids: 900,
@@ -542,6 +543,4 @@ $theme-PiedDePage: (
     fond: (
         couleur-primaire: map-get($couleurs, dark)
     ),
-
-    
 );
