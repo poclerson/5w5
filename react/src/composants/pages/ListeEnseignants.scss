@@ -10,18 +10,6 @@
     overflow-y: scroll;
     overflow-x: hidden;
 
-<<<<<<< HEAD
-    .titre {
-        @include gerer-ouverture(block)
-    }
-
-    .liste {
-        display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
-        gap: 10%;
-        @include pleine-taille;
-=======
     & > .titre {padding-left: $taille-gouttieres;}
 
     @include ordinateur {
@@ -30,7 +18,6 @@
 
     &[enseignant-ouvert="false"] {
         .titre {display: block;}
->>>>>>> 443a262d99e3343c74e821c178b27a53d9222583
 
         // Quand la liste est ouverte, on montre tout
         .liste {

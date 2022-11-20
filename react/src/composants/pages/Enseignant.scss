@@ -1,9 +1,6 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/variables.scss';
-<<<<<<< HEAD
-=======
 @import '../../sass/animations.scss';
->>>>>>> 443a262d99e3343c74e821c178b27a53d9222583
 
 /*
     Les enseignants ont deux états, ouvert et fermé
@@ -39,19 +36,6 @@ $couleurs-domaines-modifiees: (
 );
 
 .Enseignant {
-<<<<<<< HEAD
-    $classes-couleur-domaine: (
-        conteneur-photo: background-color,
-        texte: background-color
-    );
-
-    @include couleurs-domaines($classes-couleur-domaine);
-
-    // Lorsque fermé, on ne montre que la miniature en cachant le contenu
-    &.ferme {
-        flex-basis: 22.5%;
-        margin-bottom: 2.5%;
-=======
     @include themer($theme-enseignant);
 
     @include couleurs-domaines($classes-couleur-domaine);
@@ -61,7 +45,6 @@ $couleurs-domaines-modifiees: (
     );
 
     @include couleurs-domaines($classes-couleur-domaine-ferme);
->>>>>>> 443a262d99e3343c74e821c178b27a53d9222583
 
     
 
@@ -116,13 +99,7 @@ $couleurs-domaines-modifiees: (
         .contenu {
             display: flex;
             flex-direction: column;
-<<<<<<< HEAD
-            align-items: center;
-            gap: 20px;
-            @include pleine-taille;
-=======
             gap: 5%;
->>>>>>> 443a262d99e3343c74e821c178b27a53d9222583
 
             .retour {
                 position: absolute;
@@ -140,10 +117,7 @@ $couleurs-domaines-modifiees: (
                 margin-right: 5vw;
 
                 .fond-photo {
-<<<<<<< HEAD
-=======
                     aspect-ratio: 1;
->>>>>>> 443a262d99e3343c74e821c178b27a53d9222583
                     background-color: map-get($couleurs, clair);
                     border-radius: 50%;
                     display: flex;

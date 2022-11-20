@@ -22,19 +22,6 @@ export default function ListeEnseignants({id}) {
 
     return(
         enseignants != null ?
-<<<<<<< HEAD
-            <section className="ListeEnseignants">    
-                <h1 className={"titre " + listeOuverte}>nos enseignants.</h1>
-
-                <ul className={"liste " + listeOuverte}>
-                    {enseignants.map(enseignant => 
-                        <Enseignant 
-                            {... enseignant.acf}
-                            key={enseignant.id} 
-                            gestionClicListe={gestionClicListe}
-                        />
-                    )}
-=======
             <section className="ListeEnseignants" enseignant-ouvert={verifierOuvertureParent()} >
                 {titre}
                 <ul className="liste">
@@ -52,7 +39,6 @@ export default function ListeEnseignants({id}) {
                         }
                         ) 
                     }
->>>>>>> 443a262d99e3343c74e821c178b27a53d9222583
                 </ul>
                 <FlecheNav gestionClic={surClicSuivant} texte={true} classesAdditionnelles="suivant" />
             </section>  
