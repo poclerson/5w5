@@ -7,7 +7,6 @@
     left: 0;
     z-index: 10;
     height: 100%;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -65,10 +64,11 @@
         width: 95vw;
         box-sizing: border-box;
         padding: 10vw;
-        animation: menu 1s ease-in-out 0s 1 normal both;
+        animation: menu 0.5s ease-in-out 0s 1 normal both;
         border-radius: 0 70px 70px 0;
 
         @include tablette {
+            animation: menu 0.5s ease-in-out 0s 1 normal both;
             flex-direction: row;
             @include themer($theme-menu-tablette);
             width: 100vw;
@@ -104,7 +104,7 @@
         display: flex;
         position: relative;
         border-radius: 0 70px 70px 0;
-
+        animation: menu 0.5s ease-in-out 0s 1 normal both;
         padding: 5%;
         flex-direction: column;
         gap: 10%;
@@ -122,5 +122,4 @@
 		opacity: 1;
 		transform: translateX(0);
 	}
-    
 }

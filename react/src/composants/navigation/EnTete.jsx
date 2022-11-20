@@ -38,6 +38,8 @@ export default function EnTete({enteteWP}) {
     return (
         <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
             <BoutonBurger gererClic={surClicBurger} ouvert={verifierOuvertureBurger()} />
+           <label for="input">
+            <input type="checkbox" id="input" />
             <div className="contenu" ouvert={verifierOuvertureBurger()}>
                 <SiteLogo url={enteteWP.siteLogoUrl} />
                 <Navigation 
@@ -53,6 +55,7 @@ export default function EnTete({enteteWP}) {
                     refZoneSaisie={refZoneSaisie}
                 />
             </div>
+            </label>
             <ul className="resultats-recherche">
                 {resultatsRecherche != null &&
                     resultatsRecherche.length > 0 ?
