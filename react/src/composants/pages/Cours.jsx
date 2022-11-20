@@ -3,19 +3,16 @@ import './Cours.scss';
 import VisionneurModele from '../modules/VisionneurModele';
 
 export default function Cours({titre, description, modele, id, index, ouvert}) {
+
     return(
         <li className="Cours" id={id} index={index} ouvert={ouvert}>
             <div className="carte">
             <div className="modele">
                 {modele != undefined && modele != false && 
-                    <>
-                        <VisionneurModele 
-                            cheminModele={modele}
-                            echelle={.15}
-                            position={[0, 0, 3]}
-                            rotation={[0, 5.7, 0]}
-                        />
-                    </>
+                    <VisionneurModele 
+                        cheminModele={modele}
+                        echelle={.4}
+                    />
                 }
                 </div>
                 <h4 className="titre">{titre}</h4>

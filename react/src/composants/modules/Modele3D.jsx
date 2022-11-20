@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useLoader, useFrame } from "@react-three/fiber";
 import useScene from '../../hooks/useScene';
 
 const Modele3D = ({ 

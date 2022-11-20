@@ -58,13 +58,12 @@
         display: flex;
         flex-direction: column;
         position: relative;
-
         height: 100%;
 
         @include carte;
         @include fond-flou;
         @include themer($theme-cours);
-        transition: transform ease-in-out .1s;
+        transition: transform ease-in-out .3s;
         padding: 15px;
 
         .modele {
@@ -89,6 +88,7 @@
         }
 
         .description {
+            @include cacher-barre-defilement;
             flex: 0 1 80%;
             overflow-x: hidden;
             overflow-y: scroll;
