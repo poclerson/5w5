@@ -15,24 +15,18 @@ export default function SessionRonds({surClic, quantite, sessions, rotation}) {
         petit: {
             rayonRond: 150,
             rayonCarousel: 500,
-            decalageGauche: 80,
-            decalageHaut: 2900,
             decalageAngle: 0
         },
 
         moyen: {
             rayonRond: 175,
             rayonCarousel: 650,
-            decalageGauche: 125,
-            decalageHaut: 2050,
             decalageAngle: 0
         },
 
         grand: {
             rayonRond: 200,
             rayonCarousel: 700,
-            decalageGauche: -600,
-            decalageHaut: 1350,
             decalageAngle: 90
         }
     }
@@ -44,8 +38,6 @@ export default function SessionRonds({surClic, quantite, sessions, rotation}) {
         return {
             top: carousel.rayonCarousel + -carousel.rayonCarousel * Math.cos((360 / quantite / 180) * (index) * Math.PI) + 'px',
             left: carousel.rayonCarousel + carousel.rayonCarousel * Math.sin((360 / quantite / 180) * (index) * Math.PI) + 'px',
-            width: carousel.rayonRond * 2,
-            height: carousel.rayonRond * 2,
             transform: `rotate(${-rotation - carousel.decalageAngle}deg)`,
         }
     }

@@ -1,16 +1,16 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useLoader, useFrame } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import useScene from '../../hooks/useScene';
 
 const Modele3D = ({ 
-    chemin, 
+    chemin = "", 
     echelle = 1, 
     position = [0, 0, 0],
     rotation = [0, 0, 0]
 }) => {
     const ref = useRef();
-    const gltf = useLoader(GLTFLoader, chemin);
     const [estHover, hover] = useState(false);
+    const scene = useScene(chemin)
 
     // useFrame(() => {
     //     ref.current.rotation.y += 0.02;
@@ -18,7 +18,7 @@ const Modele3D = ({
     return (
         <primitive
             ref={ref}
-            object={gltf.scene}
+            object={scene}
             position={position}
             rotation={rotation}
             scale={echelle}

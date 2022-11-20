@@ -1,7 +1,7 @@
 import './EnTete.scss';
 
 import ContexteDonneesSite from '../../ContexteDonneesSite';
-import {useContext, useState} from 'react';
+import {useContext, useState, useRef} from 'react';
 import useOuverture from '../../hooks/useOuverture';
 import * as wp from '../../wp-rest-api';
 
@@ -10,10 +10,10 @@ import BoutonBurger from '../modules/BoutonBurger';
 import SiteLogo from '../modules/SiteLogo';
 import Recherche from '../modules/Recherche';
 import ResultatRecherche from '../modules/ResultatRecherche';
-import Chargement from '../modules/Chargement';
-
 
 export default function EnTete({enteteWP}) {
+
+    const {cours, enseignants, projets} = useContext(ContexteDonneesSite);
 
     const [surClicBurger, verifierOuvertureBurger] = useOuverture();
 
@@ -21,11 +21,19 @@ export default function EnTete({enteteWP}) {
 
     const [resultatsRecherche, setResultatsRecherche] = useState(null);
 
+    const [saisie, setSaisie] = useState("");
+
+    const refZoneSaisie = useRef();
+
     const gestionResultatsRecherche = (resultats) => {
         setResultatsRecherche(resultats);
     }
 
-    const {cours, enseignants, projets} = useContext(ContexteDonneesSite);
+    const gestionClicRecherche = () => {
+        surClicRecherche();
+        // Il faut attendre que la zone se soit ouverte
+        setTimeout(() => refZoneSaisie.current.focus(), 1)
+    }
 
     return (
         <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
@@ -34,21 +42,25 @@ export default function EnTete({enteteWP}) {
                 <SiteLogo url={enteteWP.siteLogoUrl} />
                 <Navigation 
                     pages={enteteWP.headerMenuItems} 
-                    surClic={() => surClicRecherche} 
+                    surClic={() => gestionClicRecherche} 
                 />
                 <Recherche 
                     gestionResultats={gestionResultatsRecherche} 
                     verifierOuverture={verifierOuvertureRecherche}
-                    surClic={surClicRecherche} 
+                    surClic={gestionClicRecherche}
+                    saisie={saisie}
+                    setSaisie={setSaisie}
+                    refZoneSaisie={refZoneSaisie}
                 />
             </div>
             <ul className="resultats-recherche">
-                {resultatsRecherche != null ?
+                {resultatsRecherche != null &&
+                    resultatsRecherche.length > 0 ?
                     resultatsRecherche.map(resultat => 
                         <ResultatRecherche 
                             key={resultat.id} 
                             resultat={resultat} 
-                            surClic={surClicRecherche} 
+                            surClic={() => {surClicRecherche(); surClicBurger()}} 
                             article={wp.obtenirTypeArticle(
                                 resultat.id,
                                 // Étaler les valeurs dans lesquelles chercher l'article
@@ -59,7 +71,16 @@ export default function EnTete({enteteWP}) {
                                 ]
                             )}
                         />
-                    ) : <Chargement />
+                    ) 
+                    
+                    : <li className="ResultatRecherche">
+                        <h6 className="titre">
+                            {saisie.length > 0 ? 
+                                'Aucun article ne correspond à votre recherche.' :
+                                'Écrivez pour commencer à chercher.'
+                            }
+                        </h6>
+                    </li>
                 }
             </ul>
         </header>

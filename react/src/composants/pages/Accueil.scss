@@ -17,7 +17,8 @@
         overflow-x: visible !important; // Override
 
         .marquee {
-            .titre {
+            span {
+                @include couleurs-aleatoires(color, 15);
                 font-size: 1000%;
                 @include desactiver-margin-block;
 
@@ -35,4 +36,8 @@
     }
 
     @include tablette {justify-content: flex-end;}
+
+    ::marker {
+        color: transparent
+    }
 }

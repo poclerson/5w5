@@ -99,16 +99,16 @@ $couleurs-domaines-modifiees: (
         .contenu {
             display: flex;
             flex-direction: column;
-            // align-items: center;
             gap: 5%;
 
-            .retour-liste {
-                align-self: flex-start;
-                flex: 0 0 2%;
+            .retour {
+                position: absolute;
+                left: -5%;
             }
 
             // Photo de l'enseignant (mobile et tablette)
             .conteneur-photo {
+                height: 30%;
                 flex: 0 0 30%;
                 @include bulle;
                 padding: 15px;
@@ -120,6 +120,7 @@ $couleurs-domaines-modifiees: (
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-end;
+                    align-items: center;
                     overflow-x: clip; // fonctionne sur Firefox seulement
 
                     // Image
@@ -130,6 +131,10 @@ $couleurs-domaines-modifiees: (
                     }
                 }
 
+                @include tablette {
+                    height: unset;
+                }
+
                 // & > *:not(.fond-photo) {display: none}
 
                 // Faire disparaitre la photo du contenu sur ordinateur puisqu'on utilise la miniature
@@ -138,7 +143,7 @@ $couleurs-domaines-modifiees: (
 
             // Section de texte avec l'image de l'enseignant
             .texte {
-                flex: 0 1 80%;
+                flex: 0 0 61%;
                 box-sizing: border-box;
                 padding: 5%;
                 border-radius: 30px 30px 0 0;
@@ -148,45 +153,57 @@ $couleurs-domaines-modifiees: (
 
                 .conteneur-description {
                     flex-grow: 1;
-                    padding: 10%;
+                    padding: 7.5%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     background-color: map-get($couleurs, clair);
                     border-radius: 30px;
 
-                    .description {color: map-get($couleurs, sombre)}
+                    .description {
+                        color: map-get($couleurs, sombre);
+                        max-height: 30vh;
+                        overflow-y: auto;
+                    }
 
                     @include tablette {
                         background-color: transparent;
                         .description {color: map-get($couleurs, clair);}
                         padding: 0;
                     }
+
+                    @include ordinateur {
+                        flex-grow: unset;
+                        height: 30%;
+                        flex: 1 0 80%;
+                    }
                 }
 
-                .etiquette-description {display: none;}
+                [class^="etiquette-"]{
+                    display: none;
+                }
 
                 @include tablette {
                     // Tous les éléments qui ne sont pas des étiquettes
-                    *:not([class^="etiquette-"]) {margin-left: 5%;}
+                    *:not([class^="etiquette-"]) {margin-left: 2.5%;}
 
                     // Annuler le style donné par @couleurs-domaines à partir de tablettes
                     & > * {color: map-get($couleurs, clair)}
 
                     height: unset;
 
-                    .etiquette-description {display: block;}
+                    [class^="etiquette-"]{
+                        display: block;
+                    }
                 }
+
+                @include ordinateur {flex: 1 0 100%;}
             }
 
             @include tablette {
                 flex-direction: row;
                 align-items: flex-start; // Positionner en-haut de la page
-                padding-top: 10%; // Sinon la tête des profs dépasse
-
-                .retour-liste {
-                    position: absolute;
-                }
+                padding-top: 2.5%; // Sinon la tête des profs dépasse
 
                 .texte {
                     border-radius: 0;
@@ -200,13 +217,9 @@ $couleurs-domaines-modifiees: (
                 align-items: center;
                 justify-content: center;
 
-                flex: 0 2 60%;
-                height: 100%;
+                flex: 1 0 60%;
+                height: 60vh;
                 padding: unset;
-
-                .retour-liste {
-                    left: -10%;
-                }
             }
         }
 
@@ -216,24 +229,36 @@ $couleurs-domaines-modifiees: (
             // Ajuste la miniature de l'enseignant ouvert (sur ordinateur, un enseignant ouvert affiche sa miniature et son contenu)
             @include ordinateur {
                 display: flex;
-                flex: 2 0 40%;
+                flex: 0 1 40%;
             }
 
         
         }
 
-        & ~ .Enseignant[ouvert="false"] {
-            display: none !important;
+        // & ~ .Enseignant[ouvert="false"] {
+        //     display: none !important;
+        // }
+
+        @mixin redimensionner-enseignants() {
+            flex: 1 20%;
+            transform: scale(0.5);
         }
 
         @include ordinateur {
             @include couleurs-domaines($classes-couleur-domaine-ferme);
-            flex: 0 0 70%;
+            flex: 0 1 80%;
 
             // Sélectionner l'enseignant juste après l'enseignant ouvert
+            
+
             & + .Enseignant {
-                flex: 0 0 30%;
-                transform: scale(0.75);
+                @include redimensionner-enseignants;
+
+                @include ordinateur-large {
+                    & + .Enseignant {
+                        @include redimensionner-enseignants;
+                    }
+                }
             }
         }
 
@@ -253,19 +278,19 @@ $couleurs-domaines-modifiees: (
 
         .miniature {
             overflow: hidden;
-            *:not(.photo) {display: none;}
+            & > *:not(.photo) {display: none;}
     
             // Positionnement d'une carte
             @include ordinateur {
                 @include carte;
-                aspect-ratio: 1 / 1.75;
+                aspect-ratio: 1 / 1.5;
                 padding: 0;
 
                 position: relative;
                 overflow: hidden;
 
                 .titre {
-                    max-width: 40%;
+                    max-width: 70%;
                     position: static;
                     margin-left: 5%;
                 }
@@ -305,10 +330,9 @@ $couleurs-domaines-modifiees: (
         }
 
         .contenu {
+            align-items: center;
+            @include tablette {align-items: flex-start;}
             .conteneur-photo {
-                // Empêcher de prendre toute la largeur
-                margin: 0 20%;
-
                 @include tablette {margin: unset;}
 
                 .conteneur-domaine,
@@ -318,6 +342,9 @@ $couleurs-domaines-modifiees: (
                 }
             }
         }
-    }
 
+        @include ordinateur-large {
+            gap: 5%;
+        }
+    }
 }
