@@ -65,7 +65,7 @@
         width: 95vw;
         box-sizing: border-box;
         padding: 10vw;
-        transition: all 0.3s 0s ease-in-out, all 0.5s 0s ease;
+        animation: menu 1s ease-in-out 0s 1 normal both;
         border-radius: 0 70px 70px 0;
 
         @include tablette {
@@ -111,4 +111,16 @@
         overflow-y: scroll; // Permettre le défilement des résultats s'il y en a trop
         max-height: 75vh;
     }
+}
+@keyframes menu {
+	0% {
+		opacity: 0;
+		transform: translateX(-250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+    
 }

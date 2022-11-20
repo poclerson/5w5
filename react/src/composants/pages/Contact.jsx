@@ -21,7 +21,6 @@ export default function Contact({id}) {
         degrades != null ?
         <section className="Contact" style={{backgroundImage:`url(${degrades[2].acf.degrade})`}}>
             <article className='boite-principale'>
-
                 {titre}
                 <article className='contenu'>
                     <div className='images'>

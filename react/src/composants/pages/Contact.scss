@@ -31,7 +31,7 @@
             .images{
                 display: none;
                 flex: 1 0 60%;
-                gap: 5%;
+                gap: 2%;
     
                 &>*{
                     background-color: beige;
@@ -41,7 +41,7 @@
                     
                     @include tablette{
                         &:nth-child(2){
-                            grid-row: span 2;
+                            grid-row: span 3;
                         }
                     }
                 }
