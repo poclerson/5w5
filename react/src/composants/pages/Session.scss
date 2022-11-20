@@ -1,9 +1,14 @@
-@import '../../sass//mixins.scss';
+@import '../../sass/mixins.scss';
+@import '../../sass/animations.scss';
 
 .Session {
     width: 100%;
     @include gerer-ouverture(flex);
     box-sizing: border-box;
+
+    &[ouvert="true"] {
+        animation: fondu-vers-prochain-partiel .5s;
+    }
 
     .liste-cours {
         // Prendre toute la place
@@ -16,13 +21,18 @@
         align-items: center;
         scroll-snap-type: x mandatory;
         overflow-x: scroll;
-        overflow-y: hidden;
+        overflow-y: visible;
         scroll-behavior: smooth;
         gap: 40vw;
         scroll-padding-left: 25vw;
 
+        @include petit-mobile {
+            scroll-padding-left: 17.5vw;
+        }
+
         @include tablette {
-            gap: 15vw;
+            gap: 20vw;
+            scroll-padding-left: 12.5vw;
         }
 
         @include ordinateur {

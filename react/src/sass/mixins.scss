@@ -157,6 +157,18 @@
     }
 }
 
+// Attribue des couleurs aléatoires de domaine à une propriété donnée aux enfants
+@mixin couleurs-aleatoires($propriete, $nombre-enfants) {
+    $nombre-couleurs: length(map-get($couleurs, domaines));
+    $couleurs: map-values(map-get($couleurs, domaines));
+
+    @for $element from 1 through $nombre-enfants {
+        &:nth-of-type(#{$element}) {
+            #{$propriete}: nth($couleurs, random(length($couleurs)));
+        }
+    }
+}
+
 
 
 
@@ -265,6 +277,9 @@
     display: flex;
     box-sizing: border-box;
 
+    // Padding minimal
+    padding: 40px 0;
+
     @if $ajuster-contenu {
         padding: map-get($decalage-pages, mobile) 0;
     }
@@ -300,6 +315,11 @@
 // ===== MIXINS DE REQUÊTES MÉDIAS =====
 
 
+@mixin petit-mobile {
+    @media screen and (max-width: map-get($largeurs-ecran, mobile)) {
+        @content;
+    }
+}
 
 @mixin mobile {
     @media screen and (min-width: map-get($largeurs-ecran, mobile)) {
@@ -339,5 +359,44 @@
 @mixin selection-texte() {
     h1, h2, h3, h4, h5, h6, p, a {
         @content;
+    }
+}
+
+// Sélectionne le premier et le dernier enfant pour leur appliquer un padding gauche et droit, respectivement
+@mixin premier-dernier($propriete, $valeur, $valeur-2: -1, $axe: 'h') {
+    @if $axe == 'h' {
+        &:first-child {
+            #{$propriete}-left: $valeur;
+        }
+    
+        @if $valeur-2 >= 0 {
+            &:last-child {
+                #{$propriete}-right: $valeur-2;
+            }
+        }
+    
+        @else {
+            &:last-child {
+                #{$propriete}-right: $valeur;
+            }
+        }
+    }
+
+    @else if $axe == 'v' {
+        &:first-child {
+            #{$propriete}-top: $valeur;
+        }
+    
+        @if $valeur-2 >= 0 {
+            &:last-child {
+                #{$propriete}-bottom: $valeur-2;
+            }
+        }
+    
+        @else {
+            &:last-child {
+                #{$propriete}-bottom: $valeur;
+            }
+        }
     }
 }

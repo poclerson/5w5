@@ -1,15 +1,17 @@
 /* Dès que l'utilisateur clique sur la loupe de recherche, prépare le système de recherche et prepare à prendre ce qui est écrit comme valeur */
 import './Recherche.scss';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import * as wp from '../../wp-rest-api';
-import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 
-
-
-export default function Rechercher({gestionResultats, verifierOuverture, surClic}) { 
-    const [saisie, setSaisie] = useState('');
-
+export default function Rechercher({
+    gestionResultats, 
+    verifierOuverture, 
+    surClic, 
+    saisie, 
+    setSaisie, 
+    refZoneSaisie
+}) { 
     const gestionSaisie = e => {
         setSaisie(e.target.value);
     }
@@ -36,10 +38,13 @@ export default function Rechercher({gestionResultats, verifierOuverture, surClic
     return(
         <div className="Recherche" ouvert={verifierOuverture()}>
             <SearchIcon className="Icone icone-recherche" onClick={surClic} />
-            <TextField
+            <input 
+                ref={refZoneSaisie}
+                type="text"
                 onChange={gestionSaisie}
                 className="zone-saisie"
             />
+
         </div>
     )
 }

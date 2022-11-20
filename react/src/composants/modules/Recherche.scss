@@ -5,22 +5,22 @@
 .Recherche {
     display: flex;
     align-items: center;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+    gap: 2.5%;
 
-    .zone-saisie {
-        * {
-            border: none;
-        }
-
-        border-bottom: 2px solid map-get($couleurs, clair);
+    @include tablette {
+        margin: 0 2.5%;
+        flex: 0 2 5%;
     }
 
     .icone-recherche {
         transform: scaleX(-1); // Tourner l'icône
     }
 
-    @include tablette {
-        flex: 0 2 5%;
+    .zone-saisie {
+        border-bottom: 2px solid map-get($couleurs, clair);
+
+        &:focus {
+            outline: none;
+        }
     }
 }
