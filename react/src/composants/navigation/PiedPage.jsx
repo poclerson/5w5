@@ -12,7 +12,8 @@ export default function PiedPage({enteteWP}) {
     const {
         nousJoindre,
         inscription,
-        reseauxSociaux
+        wpBlockSocialLinks,
+
     } = useStructure('piedpage', true);
 
     return(
@@ -23,12 +24,10 @@ export default function PiedPage({enteteWP}) {
                     <SiteLogo url={enteteWP.siteLogoUrl} />
                 </div>
                 {nousJoindre}
-                {reseauxSociaux}
-                {inscription}
+                <u>{inscription}</u>
+                {wpBlockSocialLinks}
             </div>
         </footer>
-
-        
     )
 
     

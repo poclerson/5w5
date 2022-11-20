@@ -32,6 +32,7 @@ export default function Contact({id}) {
                     <div className='informations'>
                         {titreDescription}
                         {description}
+                        {wpBlockSocialLinks}
                     </div>
                 </article>
 
