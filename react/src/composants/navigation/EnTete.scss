@@ -6,7 +6,7 @@
     top: 0;
     left: 0;
     z-index: 10;
-    height: 100%;
+    height: 80px;
 
     display: flex;
     flex-direction: column;
@@ -16,16 +16,17 @@
     &[ouvert="false"] {
         @include tablette {
             // Empêcher de prendre tout la place quand fermé
-            height: unset;
+            height: 80px;
         }
 
         .resultats-recherche {
             transform: scaleY(0);
-            display: none;
+            opacity: 0;
         }
     }
 
     &[ouvert="true"] {
+        height: unset;
         @include tablette {
             .contenu {
                 .Navigation {
@@ -42,6 +43,15 @@
 
     .BoutonBurger {
         @include tablette {display: none;}
+    }
+
+    .vagues {
+        width: 100vw;
+        height: 100%;
+
+        @include tablette {
+            display: none;
+        }
     }
 
     .contenu {
@@ -86,10 +96,14 @@
     }
 
     .resultats-recherche {
+        // Animation
+        position: absolute; // Empêcher de rentrer dans le flow de l'entête quand elle est fermée
         transform-origin: top center;
         transform: scaleY(1);
-        @include transition-base(transform);
+        @include transition-base;
+        opacity: 1;
         
+        // 
         width: 95vw;
         max-height: 75vh;
         box-sizing: border-box;

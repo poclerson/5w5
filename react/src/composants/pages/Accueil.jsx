@@ -12,14 +12,12 @@ export default function Accueil({id}) {
     const {titres, BACKGROUND} = useStructure(id);
 
     return(
-        <>
-            {titres && BACKGROUND &&
-                <section className="Accueil" style={{backgroundImage: BACKGROUND}}>
-                        <Marquee speed={tablette ? 300 : 20} gradient={false} pauseOnClick={true}>
-                            {titres.props.children}
-                        </Marquee>
-                </section>
-            }
-        </>
+        titres && BACKGROUND &&
+            <section className="Accueil" style={{backgroundImage: BACKGROUND}}>
+                    <Marquee speed={tablette ? 300 : 20} gradient={false} pauseOnClick={true}>
+                        {titres.props.children}
+                    </Marquee>
+            </section>
+            
     )
 }
