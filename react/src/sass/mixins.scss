@@ -361,3 +361,42 @@
         @content;
     }
 }
+
+// Sélectionne le premier et le dernier enfant pour leur appliquer un padding gauche et droit, respectivement
+@mixin premier-dernier($propriete, $valeur, $valeur-2: -1, $axe: 'h') {
+    @if $axe == 'h' {
+        &:first-child {
+            #{$propriete}-left: $valeur;
+        }
+    
+        @if $valeur-2 >= 0 {
+            &:last-child {
+                #{$propriete}-right: $valeur-2;
+            }
+        }
+    
+        @else {
+            &:last-child {
+                #{$propriete}-right: $valeur;
+            }
+        }
+    }
+
+    @else if $axe == 'v' {
+        &:first-child {
+            #{$propriete}-top: $valeur;
+        }
+    
+        @if $valeur-2 >= 0 {
+            &:last-child {
+                #{$propriete}-bottom: $valeur-2;
+            }
+        }
+    
+        @else {
+            &:last-child {
+                #{$propriete}-bottom: $valeur;
+            }
+        }
+    }
+}
