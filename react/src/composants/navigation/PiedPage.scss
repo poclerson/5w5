@@ -1,6 +1,6 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/variables.scss';
-
+//FOOTER
 .PiedPage {
     width: 100%;
     display: none;
@@ -17,18 +17,20 @@
     .contenu {
         width: 100%;
         @include themer($theme-PiedDePage);
-        
-
         // Ajouter les styles des éléments du footer ici
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
-        padding-bottom: 5%; 
+        justify-content: space-around center;
+        gap: 3%; 
+        margin-right: 10%;
     }
     
     .nous-joindre{
         display: flex;
         flex-direction: column;
+        h6{
+            size: 20px;
+        }
     }
 
 
@@ -55,6 +57,7 @@
 
         & > * {
             flex: 1 1 25%;
+            
         }
     }
 

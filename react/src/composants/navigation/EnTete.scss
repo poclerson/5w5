@@ -104,13 +104,16 @@
         display: flex;
         position: relative;
         border-radius: 0 70px 70px 0;
-        animation: menu 0.5s ease-in-out 0s 1 normal both;
+        
         padding: 5%;
         flex-direction: column;
         gap: 10%;
         overflow-y: scroll; // Permettre le défilement des résultats s'il y en a trop
         max-height: 75vh;
     }
+}
+input{
+    display: none;
 }
 @keyframes menu {
 	0% {

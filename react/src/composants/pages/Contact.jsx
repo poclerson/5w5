@@ -15,7 +15,8 @@ export default function Contact({id}) {
         description,
         titreInscription,
         wpBlockImageSizeMedium,
-        wpBlockWebfactoryMap
+        wpBlockWebfactoryMap,
+        wpBlockSocialLinks
     } = useStructure(id);
     return (
         degrades != null ?
