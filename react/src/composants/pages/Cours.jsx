@@ -11,9 +11,9 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
                     <>
                         <VisionneurModele 
                             cheminModele={modele}
-                            echelle={.5}
+                            echelle={.15}
                             position={[0, 0, 3]}
-                            rotation={[0, .5, 0]}
+                            rotation={[0, 5.7, 0]}
                         />
                     </>
                 }

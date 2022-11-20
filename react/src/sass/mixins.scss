@@ -18,7 +18,6 @@
                     margin-block-end: map-get($proprietes, taille) / 4;
 
                     // Ajouter les propriétés ajoutées dans variables.scss ici
-                    // $proprietes représente toutes les propriétés présentes (présentement, taille et hauteur-ligne)
                 }
             }
         }
@@ -47,6 +46,10 @@
 // Stylise plusieurs classe/balises prédéterminés d'après une map de thème
 @mixin themer($theme) {
     // Styles de texte
+    @include selection-texte {
+        @include texte-general($theme, "texte");
+    }
+
     .titre {
         @include texte-general($theme, "titre");
     }
@@ -59,7 +62,7 @@
         color: map-deep-get($theme, "icone", "couleur");
     }
 
-    p, input {
+    input {
         @include texte-general($theme, "texte");
     }
 
@@ -142,7 +145,8 @@
             }
 
             @else {
-                // L'élément original doit avoir une classe correspondant aux différents domaines (voir Enseignant.scss pour exemple)
+                // L'élément original doit avoir une classe correspondant aux différents domaines
+                // (voir Enseignant.scss pour exemple)
                 &.#{$domaine} {
 
                     // Sélection de la classe enfant

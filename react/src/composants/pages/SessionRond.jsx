@@ -5,13 +5,7 @@ export default function SessionRond({index, session, placement, surClic}) {
     return (
         <li className="SessionRond" style={placement}>
             <div className="destination"></div>
-            <h2 
-                className="titre" 
-                // onAnimationEnd={() => setTransition(0)} 
-                // transition={transition}
-            >
-                    {session.charAt(7)}
-            </h2>
+            <h2 className="titre">{session.charAt(7)}</h2>
             <FlecheNav gestionClic={() => surClic(index)} texte={false} />
         </li>
     )
