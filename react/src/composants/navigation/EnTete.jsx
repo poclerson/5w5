@@ -1,43 +1,86 @@
 import './EnTete.scss';
 
-import {useState} from 'react';
+import ContexteDonneesSite from '../../ContexteDonneesSite';
+import {useContext, useState, useRef} from 'react';
+import useOuverture from '../../hooks/useOuverture';
+import * as wp from '../../wp-rest-api';
 
 import Navigation from './Navigation';
 import BoutonBurger from '../modules/BoutonBurger';
 import SiteLogo from '../modules/SiteLogo';
 import Recherche from '../modules/Recherche';
-import Chargement from '../modules/Chargement';
+import ResultatRecherche from '../modules/ResultatRecherche';
 
 export default function EnTete({enteteWP}) {
-    const [ouverture, setOuverture] = useState("ferme");
+
+    const {cours, enseignants, projets} = useContext(ContexteDonneesSite);
+
+    const [surClicBurger, verifierOuvertureBurger] = useOuverture();
+
+    const [surClicRecherche, verifierOuvertureRecherche] = useOuverture();
 
     const [resultatsRecherche, setResultatsRecherche] = useState(null);
+
+    const [saisie, setSaisie] = useState("");
+
+    const refZoneSaisie = useRef();
 
     const gestionResultatsRecherche = (resultats) => {
         setResultatsRecherche(resultats);
     }
 
-    const gererOuverture = () => setOuverture(ouverture == "ferme" ? "ouvert" : "ferme");
+    const gestionClicRecherche = () => {
+        surClicRecherche();
+        // Il faut attendre que la zone se soit ouverte
+        setTimeout(() => refZoneSaisie.current.focus(), 1)
+    }
 
     return (
-        <header className="EnTete">
-            <BoutonBurger gererClic={gererOuverture} />
-            <div className={"contenu " + ouverture}>
-                <SiteLogo url={enteteWP.siteLogoUrl} taille={"p"} />
-                <Navigation pages={enteteWP.headerMenuItems} gererClic={gererOuverture} />
-                <Recherche gestionResultats={gestionResultatsRecherche} />
+        <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
+            <BoutonBurger gererClic={surClicBurger} ouvert={verifierOuvertureBurger()} />
+            <div className="contenu" ouvert={verifierOuvertureBurger()}>
+                <SiteLogo url={enteteWP.siteLogoUrl} />
+                <Navigation 
+                    pages={enteteWP.headerMenuItems} 
+                    surClic={() => gestionClicRecherche} 
+                />
+                <Recherche 
+                    gestionResultats={gestionResultatsRecherche} 
+                    verifierOuverture={verifierOuvertureRecherche}
+                    surClic={gestionClicRecherche}
+                    saisie={saisie}
+                    setSaisie={setSaisie}
+                    refZoneSaisie={refZoneSaisie}
+                />
             </div>
             <ul className="resultats-recherche">
-                {resultatsRecherche != null ?
+                {resultatsRecherche != null &&
+                    resultatsRecherche.length > 0 ?
                     resultatsRecherche.map(resultat => 
-                        <li className="resultat">
-                            <a href={resultat.permalink} className="lien">
-                                <p className="titre">{resultat.title}</p>
-                            </a>
-                        </li>
+                        <ResultatRecherche 
+                            key={resultat.id} 
+                            resultat={resultat} 
+                            surClic={() => {surClicRecherche(); surClicBurger()}} 
+                            article={wp.obtenirTypeArticle(
+                                resultat.id,
+                                // Étaler les valeurs dans lesquelles chercher l'article
+                                [
+                                    ...Object.values(cours), 
+                                    ...Object.values(enseignants), 
+                                    ...Object.values(projets)
+                                ]
+                            )}
+                        />
                     ) 
-                    :
-                    <Chargement />
+                    
+                    : <li className="ResultatRecherche">
+                        <h6 className="titre">
+                            {saisie.length > 0 ? 
+                                'Aucun article ne correspond à votre recherche.' :
+                                'Écrivez pour commencer à chercher.'
+                            }
+                        </h6>
+                    </li>
                 }
             </ul>
         </header>

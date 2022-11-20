@@ -1,33 +1,50 @@
 import './Enseignant.scss';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import {useState} from 'react';
+import FlecheNav from '../modules/FlecheNav';
 
-export default function Enseignant({nom, description, photo, domaine, gestionClicListe}) {
-    const [ouverture, setOuverture] = useState('ferme');
-
-    const gestionClic = () => {
-        gestionClicListe();
-        setOuverture(ouverture == 'ouvert' ? 'ferme' : 'ouvert');
-    }
-
+export default function Enseignant({nom, description, photo, domaine, surClic, index, verifierOuverture, id}) {
     return(
-        <li className={`Enseignant ${ouverture} ${domaine}`}>
-            <div className="miniature" onClick={gestionClic}>
-                <h3 className="titre">{nom}</h3>
-                <img className="photo" src={photo} alt={"Photo de " + nom} />
-                <p className="domaine">{domaine}</p>
+        <li className={`Enseignant ${domaine}`} id={id} index={index} ouvert={verifierOuverture(index)}>
+
+            {/* Prévisualisation (image du prof) */}
+            <div className="miniature" onClick={() => surClic(index)}>
+                <h2 className="titre">{nom.toUpperCase()}</h2>
+                <img className="photo" src={typeof photo != 'boolean' ? photo : undefined} alt={"Photo de " + nom} />
+                <span className="conteneur-domaine">
+                    <h2 className="domaine">{domaine.toUpperCase()}</h2>
+                </span>
             </div>
-            <div className={"contenu " + ouverture}>
-                <ArrowBackIosIcon className="Icone" onClick={gestionClic} />
+
+            {/* Contenu de l'enseignant en contexte */}
+            <div className="contenu">
+                <FlecheNav 
+                    className="retour-liste" 
+                    gestionClic={() => surClic(-1)} 
+                    direction="precedent"
+                    classesAdditionnelles="retour"
+                />
                 <div className={"conteneur-photo " + domaine}>
+                    <h2 className="titre">{nom.toUpperCase()}</h2>
                     <div className="fond-photo">
-                        <img className="photo" src={photo} alt={"Photo de " + nom} />
+                        <img className="photo" src={typeof photo != 'boolean' ? photo : undefined} alt={"Photo de " + nom} />
                     </div>
+                    <span className="conteneur-domaine">
+                        <p className="domaine">{domaine.toUpperCase()}</p>
+                    </span>
                 </div>
+
+                {/* Boite de texte */}
                 <article className="texte">
-                    <h3 className="titre">{nom}</h3>
-                    <h4 className="domaine">{domaine}</h4>
-                    <p className="desc">{description}</p>
+                    <h5 className="etiquette-titre">nom</h5>
+                    <h2 className="titre">{nom}</h2>
+                    <h5 className="etiquette-domaine">spécialité</h5>
+                    <h3 className="domaine sous-titre">{domaine}</h3>
+                    <h5 className="etiquette-description">biographie</h5>
+                    <div className="conteneur-description">
+                        <p className="description">
+                            {description}
+                            {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates minima rem cum voluptatem eligendi, placeat harum quas fuga nemo doloremque saepe, quo, deserunt sequi. Aut voluptatem ullam et distinctio debitis? */}
+                            </p>
+                    </div>
                 </article>
             </div>
         </li>

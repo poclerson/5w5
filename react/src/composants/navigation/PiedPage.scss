@@ -1,9 +1,51 @@
 @import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
 
 .PiedPage {
+    width: 100%;
     display: none;
+    background-color: transparent;
+    flex-direction: column;
+    position: relative;
 
-    @include tablette {
+    .vague {
+        position: absolute;
+        bottom: 100%;
+        width: 100%;
+    }
+
+    .contenu {
+        width: 100%;
+        @include themer($theme-pied-page);
+        
+        // Ajouter les styles des éléments du footer ici
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0 10%;
+        padding-bottom: 5%;
+        gap: 5%;
+        box-sizing: border-box;
+
+        & > * {
+            display: flex;
+            flex-direction: column;
+        }
+
+        // Toutes les sections de texte
+        & > *:not(.logo) {
+            flex: 1 0 28%;
+        }
+
+        .logo {
+            flex: 0 0 15%;
+        }
+    }
+
+    @include ordinateur {
         display: flex;
     }
 }
+
+
+

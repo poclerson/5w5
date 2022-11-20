@@ -1,29 +1,72 @@
-@import '../../sass//mixins.scss';
+@import '../../sass/mixins.scss';
+@import '../../sass/animations.scss';
 
 .Session {
-    @include pleine-taille;
-
+    width: 100%;
     @include gerer-ouverture(flex);
+    box-sizing: border-box;
+
+    &[ouvert="true"] {
+        animation: fondu-vers-prochain-partiel .5s;
+    }
 
     .liste-cours {
-        @include pleine-taille;
+        // Prendre toute la place
+        flex: 1 0 100%;
         @include cacher-barre-defilement;
+        @include padding-auto;
+        box-sizing: border-box;
 
         display: flex;
         align-items: center;
-        gap: 40vw;
-        overflow-x: scroll;
         scroll-snap-type: x mandatory;
+        overflow-y: visible;
+        overflow-x: scroll;
         scroll-behavior: smooth;
-        scroll-padding: 10vw;
+        gap: 40vw;
+        scroll-padding-left: 25vw;
+
+        @include petit-mobile {
+            scroll-padding-left: 17.5vw;
+        }
 
         @include tablette {
             gap: 20vw;
+            scroll-padding-left: 12.5vw;
         }
 
         @include ordinateur {
+            @include padding-auto;
+            height: 80vh;
             gap: 10vw;
-            padding: unset;
+            scroll-padding-left: 35vw;
+        }
+
+        @include ordinateur-large {
+            gap: 5vw;
+        }
+    }
+
+    .degrade {
+        display: none;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        top: 0;
+        left: 91vw; // right: 0 ne marche pas for some reason
+        width: 10%;
+        height: 100%;
+        z-index: 2;
+
+        background: linear-gradient(90deg, transparent 0%, map-get($couleurs, sombre) 100%);
+
+        @include ordinateur {
+            display: flex;
+        }
+
+        .Icone {
+            color: map-get($couleurs, clair);
         }
     }
 }

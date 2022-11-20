@@ -3,10 +3,7 @@
 
 .ListeCours {
     @include themer($theme-liste-session);
-
-    background-color: gray;
-
-    display: flex;
+    @include page(false, false);
     flex-direction: column;
     justify-content: space-between;
 }

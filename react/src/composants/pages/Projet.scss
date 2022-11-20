@@ -1,0 +1,129 @@
+@import '../../sass/mixins.scss';
+@import '../../sass/animations.scss';
+
+.Projet {
+    transition: .7s ease;
+    &:hover{
+        transform: scale(1.1);
+        transform: scale(1.1);
+        transform: scale(1.1);
+    }
+    &[ouvert="false"] {
+        //  Les projets prennent deux rangées de hauteur
+        grid-row: span 2;
+
+        @include tablette {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        .miniature {
+            .information {
+                display: none;
+                position: absolute;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .image-presentation {
+                object-fit: cover;
+            }
+        }
+
+        .contenu {
+            display: none;
+        }
+    }
+
+    &[ouvert="true"] {
+        animation: fondu-vers-prochain .5s ease-in-out;
+        @include pleine-taille;
+
+        .miniature {
+            display: none;
+        }
+
+        .contenu {
+            display: flex;
+            flex-direction: column;
+            gap: 5%;
+            height: 100%;
+
+            @include ordinateur {
+                flex-direction: row;
+            }
+
+            .FlecheNav {
+                align-self: flex-start;
+                position: static;
+
+                padding-left: 10%;
+                @include ordinateur {padding: unset;}
+            }
+
+            .texte-conteneur {
+                padding-left: 10%;
+                padding-right: 10%;
+
+                display: flex;
+                flex: 1 0 25%;
+
+                @include tablette {flex: 0 1 60%}
+
+                @include ordinateur {
+                    padding: unset;
+                    flex: 0 1 40%;
+                }
+            }
+
+            .images {
+                display: flex;
+                gap: 5%;
+                flex: 0 1 60%;
+                margin-bottom: 10%;
+                overflow-x: scroll;
+                scroll-snap-type: x mandatory;
+                scroll-padding-left: 10%;
+                @include cacher-barre-defilement;
+
+                @include tablette {
+                    flex: 1 0 60%
+                }
+
+                @include ordinateur {
+                    flex: 1 0 55%;
+
+                    display: grid;
+                    grid-template-rows: repeat(2, 30vh);
+                    grid-template-columns: 1fr 1fr;
+                    gap: 5%;
+
+                    overflow: visible;
+                }
+
+                img {
+                    width: 80%;
+                    scroll-snap-align: start;
+
+                    @include premier-dernier(margin, 5%);
+
+                    object-fit: cover;
+                    border-radius: 20px;
+
+                    @include tablette {
+                        flex: 1 0 80vw;
+                    }
+
+                    @include ordinateur {
+                        @include pleine-taille;
+                        width: 80%;
+
+                        &:first-child {margin: 0;}
+                        &:nth-child(2) {grid-row: span 2}
+                    }
+                }
+            }
+        }
+    }
+}

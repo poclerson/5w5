@@ -1,0 +1,9 @@
+@import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
+
+.Page {
+    @include themer($theme-base);
+    @include page(false, false);
+
+    flex-direction: column;
+}

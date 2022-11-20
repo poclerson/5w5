@@ -1,0 +1,35 @@
+@import '../../sass/mixins.scss';
+
+.SessionRonds {
+    flex: 0;
+
+    position: absolute;
+    left: 0; 
+    top: 0;
+
+    transform: translateZ(1px);
+
+    // Sinon on ne peut pas scroll
+    @include ordinateur {
+        width: unset;
+        height: unset;
+    }
+
+    .carousel {
+        transform-style: preserve-3d;
+        transform-origin: 49% 49%; // Pour une raison obscure c'est + centré à 49%
+        position: absolute; 
+        transition: transform .5s;
+        left: -550px;
+        top: 65vh;
+
+        @include tablette {
+            left: -700px;
+        }
+
+        @include ordinateur {
+            left: -1550px;
+            top: -275px;
+        }
+    }
+}

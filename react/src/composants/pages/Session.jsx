@@ -1,64 +1,95 @@
 import './Session.scss';
 
-import {useState, useEffect, useRef} from 'react';
-import useDefilmentInfini from '../../hooks/useDefilementInfini';
-import * as boites from '../../boites';
+import {useRef, useState, useEffect} from 'react';
+import medias from '../../medias';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import useDefilementInfini from '../../hooks/useDefilementInfini';
 
 import Cours from './Cours';
+import FlecheNav from '../modules/FlecheNav';
 
-export default function Session({cours, enseignants, session}) {
-    const [ouvertures, setOuvertures] = useState(cours.map(() => 'ferme'));
+export default function Session({
+    cours, 
+    session, 
+    index, 
+    verifierOuverture, 
+    refTitres, 
+    refListeCoursSessionOuverte,
+    defilerVersCours
+}) {
+    const refListeCours = useRef();
+    const [indexPlusAGauche, setIndexPlusAGauche] = useState(0);
 
-    const sessionRef = useRef(null);
-    const coursRef = useRef(null);
-    const [estArrive, setEstArrive] = useDefilmentInfini(ajouterDonnees, sessionRef);
+    const [enfants, setEnfants] = useState([]);
+
+    const tablette = useMediaQuery(medias.tablette);
+    const ordinateur = useMediaQuery(medias.ordinateur);
+    const ordinateurLarge = useMediaQuery(medias.ordinateurLarge);
+
     const [coursInfinis, setCoursInfinis] = useState(cours);
 
-    const gestionDefilement = () => {
-        Array.from(sessionRef.current.children).forEach((enfant, index) => {
-            if (enfant.getBoundingClientRect().x > 0 && enfant.getBoundingClientRect().x < window.innerWidth / 2) {
-                setOuvertures(boites.ouvrir(index, coursInfinis.map(() => 'ferme')));
-                return;
-            }
-        })
+    const [setEstArrive, setDonneesAjoutees] = useDefilementInfini(
+        refListeCoursSessionOuverte, 
+        () => {
+            setCoursInfinis([...coursInfinis, ...cours]);
+            // Activer le useEffect
+            setEstArrive(false);
+            setDonneesAjoutees(true);
+        },
+        () => { 
+            setEnfants(Array.from(refListeCoursSessionOuverte.current.children))
+            setDonneesAjoutees(false)
+        }
+    )
+
+    const surClicFleche = () => {
+        const prochainCours = enfants[indexPlusAGauche + 1];
+        defilerVersCours(prochainCours)
     }
 
-    function ajouterDonnees() {
-        setCoursInfinis([...coursInfinis, ...cours])
-        setEstArrive(false);
+    const surDefilement = () => {
+        setIndexPlusAGauche(enfants.indexOf(enfants.obtenirElementPlusAGauche(
+            ordinateurLarge ? 
+                refTitres.current.offsetWidth / 1.5 :
+            ordinateur ? 
+                refTitres.current.offsetWidth / 2 : 
+            tablette ? 
+                -50 : 
+                -25
+        )));
     }
 
     useEffect(() => {
-        setOuvertures(boites.ouvrir(0, coursInfinis.map(() => 'ferme')))
-    }, [])
-
-    useEffect(() => {
-        setOuvertures(boites.ouvrir(boites.obtenirOuverte(ouvertures), coursInfinis.map(() => 'ferme')))
-    }, [coursInfinis])
+        if (refListeCoursSessionOuverte != false)
+        setEnfants(Array.from(refListeCoursSessionOuverte.current.children))
+    }, [refListeCoursSessionOuverte])
 
     return (
-        <article className={"Session " + session}>
-            <ul className="liste-cours" onScroll={gestionDefilement} ref={sessionRef} >
-                {coursInfinis.map((cours, index) => 
-                    <Cours 
-                        key={cours.acf.titre + index}
-                        {... cours.acf}
-                        tousEnseignants={enseignants}
-                        id={"cours" + index}
-                        ouverture={ouvertures[index]}
-                        innerRef={coursRef}
-                    />
+        <article 
+            className="Session" 
+            id={session} 
+            index={index}
+            ouvert={verifierOuverture(index)} 
+            onScroll={surDefilement}
+        >
+            <ul 
+                className="liste-cours" 
+                ref={refListeCoursSessionOuverte != false ? refListeCoursSessionOuverte : refListeCours} 
+                onScroll={surDefilement}
+            >
+                {coursInfinis.map((_cours, index) => 
+                    { return <Cours 
+                        ouvert={index == indexPlusAGauche ? 'true' : 'false'}
+                        key={_cours.id + "" + index}
+                        id={_cours.id}
+                        index={index}
+                        {..._cours.acf}
+                    />}
                 )}
             </ul>
-            {/* {sessionRef.current != null ?
-                <BarreDefilement largeurTotale={largeurDefilement} elementScroll={sessionRef.current} />
-                :
-                <Chargement />
-            } */}
-            {/* <a href={"#cours" + (ouvertures.indexOf("ouvert"))} className="prochain-cours" onClick={() => setOuvertures(boites.ouvrir(ouvertures.indexOf("ouvert") + 1, cours.map(() => "ferme")))}>
-                <ArrowForwardIosIcon className="Icone"  />
-            </a> */}
-            {/* <FlecheCarousel gestionClic={gestionClicFleche} /> */}
+            <div className="degrade">
+                <FlecheNav gestionClic={surClicFleche} texte={false}/>
+            </div>  
         </article>
     )
 }

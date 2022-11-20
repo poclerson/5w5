@@ -1,15 +1,17 @@
 @import './mixins.scss';
 @import './variables.scss';
-
+//Importation des polices de charactères pour le mettre dans les variables polices 
 html {
-    font-family: Helvetica;
+    font-family: 'Lalezar', cursive;
     @include texte-dynamique($tailles-textes);
 }
 
-h6 { 
-    font-weight: bold;
+h1, h2, h3, h4, h5 {
+    font-family: map-get($polices, titre);
+    color: #F3F3EA;
+}
 
-    a {
-        font-weight: bold;
-    }
+h6, p {
+    font-family: map-get($polices, texte);
+    letter-spacing: 0;
 }

@@ -9,20 +9,15 @@
 
 // Transforme une map de textes et génère des media queries
 @mixin texte-dynamique($selecteurs) {
-    @each $selecteur, $tailles-dynamiques in $selecteurs {
-        @each $taille-ecran, $taille-texte in $tailles-dynamiques {
-            // Attribuer 
-            @if $taille-ecran == null {
-                font-size: $taille-texte;
-            }
-    
-            @else {
-                @media screen and (min-width: $taille-ecran) {
-                    #{$selecteur} {
-                        font-size: $taille-texte;
-                        margin-block-start: $taille-texte / 2;
-                        margin-block-end: $taille-texte / 2;
-                    }
+    @each $selecteur, $tailles-ecran in $selecteurs {
+        @each $taille-ecran, $proprietes in $tailles-ecran {
+            @media screen and (min-width: $taille-ecran) {
+                #{$selecteur} {
+                    font-size: map-get($proprietes, taille);
+                    margin-block-start: map-get($proprietes, taille) / 4;
+                    margin-block-end: map-get($proprietes, taille) / 4;
+
+                    // Ajouter les propriétés ajoutées dans variables.scss ici
                 }
             }
         }
@@ -51,6 +46,10 @@
 // Stylise plusieurs classe/balises prédéterminés d'après une map de thème
 @mixin themer($theme) {
     // Styles de texte
+    @include selection-texte {
+        @include texte-general($theme, "texte");
+    }
+
     .titre {
         @include texte-general($theme, "titre");
     }
@@ -63,7 +62,7 @@
         color: map-deep-get($theme, "icone", "couleur");
     }
 
-    p {
+    input {
         @include texte-general($theme, "texte");
     }
 
@@ -98,6 +97,7 @@
         background-size: 100% 100%;
         background-repeat: no-repeat;
         opacity: 0;
+        z-index: -1;
         @content;
     }
 
@@ -117,13 +117,27 @@
     de l'élément principal à des propriétés CSS (color, background-color, etc)
 
     Si on passe une clé se nommant 'soi' dans $classes-proprietes-map, la propriété sera appliquée à l'élément lui-même
+
+
+    Si $nouvelles-couleurs-selon-domaines est attribuée, à la place d'utiliser les couleurs de domaines normales
+    on utilise ses couleurs qu'on réattribue par rapport à chaque domaine
 */
-@mixin couleurs-domaines($classes-proprietes-map) {
+@mixin couleurs-domaines($classes-proprietes-map, $nouvelles-couleurs-selon-domaines: ()) {
+    $map-couleurs-domaines: null;
+
     // Itérer chaque classe enfant/propriété dans la map reçue
     @each $classe, $propriete in $classes-proprietes-map {
 
+        @if length($nouvelles-couleurs-selon-domaines) > 0 {
+            $map-couleurs-domaines: $nouvelles-couleurs-selon-domaines;
+        }
+
+        @else {
+            $map-couleurs-domaines: map-get($couleurs, domaines);
+        }
+
         // Itérer chaque couleur disponible dans les domaines
-        @each $domaine, $couleur in map-get($couleurs, domaines) {
+        @each $domaine, $couleur in $map-couleurs-domaines {
             @if ($classe == 'soi') {
                 &.#{$domaine} {
                     #{$propriete}: $couleur;
@@ -131,7 +145,8 @@
             }
 
             @else {
-                // L'élément original doit avoir une classe correspondant aux différents domaines (voir Enseignant.scss pour exemple)
+                // L'élément original doit avoir une classe correspondant aux différents domaines
+                // (voir Enseignant.scss pour exemple)
                 &.#{$domaine} {
 
                     // Sélection de la classe enfant
@@ -146,6 +161,40 @@
     }
 }
 
+// Attribue des couleurs aléatoires de domaine à une propriété donnée aux enfants
+@mixin couleurs-aleatoires($propriete, $nombre-enfants) {
+    $nombre-couleurs: length(map-get($couleurs, domaines));
+    $couleurs: map-values(map-get($couleurs, domaines));
+
+    @for $element from 1 through $nombre-enfants {
+        &:nth-of-type(#{$element}) {
+            #{$propriete}: nth($couleurs, random(length($couleurs)));
+        }
+    }
+}
+
+
+
+// ===== MIXINS DE HOVER & TRANSITIONS =====
+@mixin hover-bordures-cotes {
+    transition: border 0.35s ease;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    padding: 0 11.2px;
+    cursor: pointer;
+
+    &:hover {
+        transition: border 0.35s ease;
+        border-left: 3px solid map-get($couleurs, clair);
+        border-right: 3px solid map-get($couleurs, clair);
+    }
+}
+
+@mixin transition-base($propriete: all, $courbe: cubic-bezier(.99,-0.01,.65,.73), $duree: .5s) {
+    transition: $propriete $courbe $duree;
+}
+
+
 
 
 // ===== MIXINS RANDOMS =====
@@ -155,11 +204,13 @@
 // Gère l'ouverture de différentes boites d'après des classes
 // Insérer dans la boite à ouvrir/fermer
 @mixin gerer-ouverture($valeur-quand-ouvert) {
-    &.ouvert {
+    &.ouvert,
+    &[ouvert="true"] {
         display: $valeur-quand-ouvert;
     }
 
-    &.ferme {
+    &.ferme,
+    &[ouvert="false"] {
         display: none;
     }
 }
@@ -181,14 +232,33 @@
 
 // Crée un flou gaussien pour flouter le fond
 @mixin fond-flou() {
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(10px);
 }
 
 @mixin rond($taille) {
     content: "";
     border-radius: 50%;
     width: $taille;
-    height: $taille;
+    aspect-ratio: 1;
+}
+
+@mixin etiquette() {
+    background: rgba(0, 0, 0, 0.377);
+    border-radius: 20px;
+    padding: 5%;
+}
+
+@mixin padding-auto() {
+    padding-top: map-get($decalage-pages, mobile);
+    padding-bottom: map-get($decalage-pages, mobile);
+    @include tablette {
+        padding-top: calc(map-get($decalage-pages, tablette) / 2);
+        padding-bottom: calc(map-get($decalage-pages, tablette) / 2);
+    }
+    @include ordinateur {
+        padding-top: calc(map-get($decalage-pages, ordinateur) / 2);
+        padding-bottom: calc(map-get($decalage-pages, ordinateur) / 2);
+    }
 }
 
 
@@ -202,37 +272,88 @@
     aspect-ratio: 1;
     border-radius: 50% 50% 10px 50%;
 
-    img {
-        width: 100%;
-        height: 100%;
-    }
+    // img {
+    //     @include pleine-taille;
+    // }
 }
 
 @mixin carte() {
     border-radius: 20px;
 
-    $padding-v: 5vh;
-    $padding-h: 5vw;
-
-    @include tablette {
-        $padding-h: 2.5vh;
-        $padding-v: 2.5vw;
-    }
-
-    padding-top: $padding-v;
-    padding-bottom: $padding-v;
-    padding-left: $padding-h;
-    padding-right: $padding-h;
+    padding: 30px;
 }
 
+@mixin bordures-coins-diagonales($taille, $couleur) {
+    background:
+        // Gauche
+        linear-gradient($couleur $taille, transparent 0 calc(100% - $taille)) 0 0 / 4px 100%,
+        // Droite
+        linear-gradient(transparent 0 calc(100% - $taille), $couleur 0) 100% 0 / 4px 100%,
+        // Haut
+        linear-gradient(to right, $couleur $taille, transparent 0 calc(100% - $taille)) 0 0 / 100% 4px,
+        // Bas
+        linear-gradient(to right, transparent 0 calc(100% - $taille), $couleur 0) 0 100% / 100% 4px
+    ;
+    background-repeat: no-repeat;
+}
+
+@mixin page($ajuster-contenu: false, $padding-bottom: true) {
+    @include pleine-taille;
+    display: flex;
+    box-sizing: border-box;
+
+    // Padding minimal
+    padding: 40px 0;
+
+    @if $ajuster-contenu {
+        padding: map-get($decalage-pages, mobile) 0;
+    }
+
+    @include tablette {
+        padding: map-get($decalage-pages, tablette) 0;
+
+        @if $ajuster-contenu {
+            padding: map-get($decalage-pages, tablette) * 1.5 0;
+        }
+    }
+
+    @include ordinateur {
+        height: unset;
+        min-height: 130vh;
+        padding: map-get($decalage-pages, ordinateur) 0;
+
+        & > .titre {
+            padding-left: 10%;
+        }
+
+        @if $ajuster-contenu {
+            padding: map-get($decalage-pages, ordinateur) * 1.5 0;
+        }
+    }
+
+    @if $padding-bottom == false {
+        padding-bottom: 0 !important;
+    }
+}
 
 
 // ===== MIXINS DE REQUÊTES MÉDIAS =====
 
 
+@mixin petit-mobile {
+    @media screen and (max-width: map-get($largeurs-ecran, mobile)) {
+        @content;
+    }
+}
 
 @mixin mobile {
     @media screen and (min-width: map-get($largeurs-ecran, mobile)) {
+        @content;
+    }
+}
+
+@mixin max-mobile {
+    @media screen and (max-width: map-get($largeurs-ecran, tablette)) {
         @content;
     }
 }
@@ -252,5 +373,55 @@
 @mixin ordinateur-large {
     @media screen and (min-width: map-get($largeurs-ecran, ordinateur-large)) {
         @content;
+    }
+}
+
+
+// ===== MIXINS DE SÉLECTION =====
+
+
+
+@mixin selection-texte() {
+    h1, h2, h3, h4, h5, h6, p, a {
+        @content;
+    }
+}
+
+// Sélectionne le premier et le dernier enfant pour leur appliquer un padding gauche et droit, respectivement
+@mixin premier-dernier($propriete, $valeur, $valeur-2: -1, $axe: 'h') {
+    @if $axe == 'h' {
+        &:first-child {
+            #{$propriete}-left: $valeur;
+        }
+    
+        @if $valeur-2 >= 0 {
+            &:last-child {
+                #{$propriete}-right: $valeur-2;
+            }
+        }
+    
+        @else {
+            &:last-child {
+                #{$propriete}-right: $valeur;
+            }
+        }
+    }
+
+    @else if $axe == 'v' {
+        &:first-child {
+            #{$propriete}-top: $valeur;
+        }
+    
+        @if $valeur-2 >= 0 {
+            &:last-child {
+                #{$propriete}-bottom: $valeur-2;
+            }
+        }
+    
+        @else {
+            &:last-child {
+                #{$propriete}-bottom: $valeur;
+            }
+        }
     }
 }

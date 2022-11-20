@@ -1,23 +1,19 @@
 @import 'sass/mixins.scss';
 @import 'sass/variables.scss';
+@import 'sass/animations.scss';
 
 .App {
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow: hidden;
     position: relative;
     width: 100vw;
     height: 100vh;
 
-    // Toutes les pages
-    & > *:not(.EnTete, .PiedPage) {
-        @include pleine-taille;
-        width: unset;
-        min-width: 100vw;
-        height: 100vh;
-        box-sizing: content-box;
+    @include ordinateur {
+        height: unset;
+        min-height: 100vh;
+    }
 
-        @include tablette {
-            margin-top: map-get($hauteur-header, tablette);
-        }
+    & > * {
+        animation: fondu-entrant ease-in-out .5s;
     }
 }

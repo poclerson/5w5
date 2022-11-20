@@ -1,34 +1,26 @@
 @import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
 
 .Navigation {
     display: flex;
     flex-direction: column;
 
+    // Animation de l'ouverture de la recherhce
+    transform-origin: left center;
+    transition: all cubic-bezier(.99,-0.01,.65,.73) .5s;
+    transform: scaleX(1);
+    width: 100%;
+
     .titre-page {
-        border: 1px solid transparent;
         display: block;
-        padding-left: 5vw;
-        padding-right: 5vw;
-        padding-top: 1vw;
-        padding-bottom: 1vw;
-
-        border-radius: 5px;
-        border-bottom-right-radius: 25px;
-
-        &:hover {
-            border: 1px solid black;
-        }
+        white-space: nowrap;
+        
+        @include hover-bordures-cotes;
     }
 
     @include tablette {
-        width: 100%;
+        flex: 1 0 50%;
         flex-direction: row;
         justify-content: space-around;
-
-        .titre-page {
-            padding: 0;
-            padding-left: 2.5vw;
-            padding-right: 2.5vw;
-        }
     }
 }

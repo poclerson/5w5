@@ -1,9 +1,19 @@
 # 5W5 - Projet web en équipe
 
 ## À propos de ce projet
-5W5 est le sigle du cours dans lequel nous réalisons un projet de site web en équipe. Ce site web a pour but de réinventer le [site du département de technique d'intégration multimédia du collège de Maisonneuve](https://tim.cmaisonneuve.qc.ca "Site du TIM de Maisonneuve"). Le projet sera hébergé sur [SiteGround](https://timm175.sg-host.com)
+5W5 est le sigle du cours dans lequel nous réalisons un projet de site web en équipe. Ce site web a pour but de réinventer le [site du département de technique d'intégration multimédia du collège de Maisonneuve](https://tim.cmaisonneuve.qc.ca "Site du TIM de Maisonneuve"). Le projet sera hébergé sur [SiteGround](https://timm175.sg-host.com).
 
 Ce futur site intégrera une série de fonctionnalités que vous pouvez trouver [ici](https://docs.google.com/document/d/1D4bE8vse2LIgAGoIxamZ4GdOM0OoINQqfrwDZHfakTQ/edit "Liste des fonctionnalités à intégrer dans le site").
+
+## Avancement
+### Sprint 0
+Lors de ce sprint, nous avons simplement conceptualisé notre projet et recherché des inspirations.
+
+### Sprint 1
+C'est durant ce sprint que nous avons concrétisé nos idées ainsi que débuté la programmation (principalement back-end) de celui-ci
+
+### Sprint 2
+La majorité des styles ont été réalisés lors de ce sprint. Bien qu'ils ne soient pas encore terminés, les pages sont toutes fonctionnelles et le site pourrait être utilisé. Il manque cependant beaucoup de peauffinement et d'animations pour qu'on sente qu'il s'agisse d'un vrai site web.
 
 ## Technologies utilisées
 Notre site utilisera le concept de "Headless CMS", qui utilise un CMS, comme Wordpress dans notre cas, en tant que back end et utilise un autre framework en tant que front end. Nous utiliserons aussi node-sass afin de styliser nos pages.
@@ -31,3 +41,6 @@ Ce projet est organisé en suivant la méthodologie Agile Scrum
 - [Sara Hébert](https://github.com/baaguette) (intégration et création de médias, programmation front end)
 - [Ngoc Quynh Pham](https://github.com/nquynhp) (scrum master, création de médias, programmation front end)
 - [Yeeun Kim](https://github.com/yexxun) (design, création de médias)
+
+## Design
+Vous pouvez trouver une maquette de notre site web [ici](https://www.figma.com/file/HoeP24F8g6Mmb4m9WiWepB/web?node-id=0%3A1)

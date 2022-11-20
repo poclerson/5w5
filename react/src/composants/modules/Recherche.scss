@@ -1,11 +1,55 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/variables.scss';
 
+// Barre de recherche présente dans EnTete
 .Recherche {
-    @include themer($theme-menu-mobile);
+    transition: flex-basis cubic-bezier(.99,-0.01,.65,.73) .5s;
+    display: flex;
+    align-items: center;
+    gap: 2.5%;
+
+    @include tablette {
+        margin: 0 2.5%;
+        flex: 0 2 5%;
+    }
+
+    .icone-recherche {
+        transform: scaleX(-1); // Tourner l'icône
+        cursor: pointer;
+        @include hover-bordures-cotes;
+    }
+
     .zone-saisie {
-        input {
-            color: white;
+        border-bottom: 2px solid map-get($couleurs, clair);
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &[ouvert="true"] {
+        @include tablette {
+            flex: 0 0 100%;
+            @include transition-base(flex-basis);
+
+            .zone-saisie {
+                width: 60%;
+                opacity: 1;
+                @include transition-base;
+            }
+        }
+    }
+
+    &[ouvert="false"] {
+        @include tablette {
+            flex: 0 1 5%;
+            @include transition-base(flex-basis);
+
+            .zone-saisie {
+                width: 0;
+                opacity: 0;
+                @include transition-base;
+            }
         }
     }
 }

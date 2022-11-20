@@ -1,0 +1,106 @@
+@import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
+@import '../../sass/fonctions.scss';
+
+.ListeProjets {
+    overflow-y: scroll;
+    @include cacher-barre-defilement;
+    @include page(true);
+
+    @include tablette {
+        overflow-y: visible;
+        overflow-x: scroll;
+    }
+
+    .titre {
+        @include tablette {grid-column: span 2};
+
+        // Obligé, sinon on doit briser la ligne du titre à un endroit bizarre avec line-break: anywhere
+        @media screen and (max-width: 520px) {
+            font-size: 10vw;
+        }
+    }
+
+    &[item-ouvert="false"] {
+        .liste {
+            display: grid;
+            height: max-content;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 15%;
+            grid-auto-flow: row dense; // Permettre aux éléments de prendre de la place quand il y en a
+            gap: 5vw;
+            padding: 0 5%;
+
+            @include tablette {
+                grid-auto-columns: 30vw;
+                grid-template-rows: repeat(2, 1fr);
+                grid-auto-flow: column dense;
+
+                grid-auto-rows: unset;
+                grid-template-columns: unset;
+                @include padding-auto;
+                height: 60vh;
+            }
+
+            @include ordinateur {
+                grid-auto-columns: 15vw;
+                height: 60vh;
+            }
+
+            .Projet, .photo-environnement {
+                position: relative;
+                display: flex;
+                border-radius: 20px;
+                overflow: hidden;
+
+                &.photo-environnement {
+                    // Transition pour animation hover photo-emvironnement
+                    transition: .7s ease;
+                    // Animation de hover photo-environnement
+                    &:hover{
+                        transform: scale(1.1);
+                        transform: scale(1.1);
+                        transform: scale(1.1);
+                    }
+                    // Largeur de 1
+                    grid-column: span 1;
+                    
+                    // Les photos d'environnement ne prennent qu'une seule rangée de hauteur
+                    grid-row: span 1;
+                }
+
+                .miniature {
+                    overflow: hidden;
+                    @include pleine-taille;
+                    img {
+                        object-fit: cover;
+                        @include pleine-taille;
+                    }
+                }
+            }
+        }
+    }
+
+    &[item-ouvert="true"] {
+        .liste {
+            display: block;
+
+            @include tablette {
+                margin-top: 0;
+            }
+
+            @include ordinateur {
+                padding: 0 5%;
+                height: unset;
+            }
+
+            // Cacher les éléments fermés
+            & > *:not([ouvert="true"]) {display: none;}
+        }
+            
+    }
+
+    @include ordinateur {
+        padding-bottom: 10%;
+    }
+}

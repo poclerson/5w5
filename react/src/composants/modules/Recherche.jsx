@@ -1,22 +1,27 @@
+/* Dès que l'utilisateur clique sur la loupe de recherche, prépare le système de recherche et prepare à prendre ce qui est écrit comme valeur */
 import './Recherche.scss';
-
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import * as wp from '../../wp-rest-api';
+import SearchIcon from '@mui/icons-material/Search';
 
-import TextField from '@mui/material/TextField';
-import Chargement from './Chargement';
-
-export default function Rechercher({gestionResultats}) { 
-    const [saisie, setSaisie] = useState('');
-
+export default function Rechercher({
+    gestionResultats, 
+    verifierOuverture, 
+    surClic, 
+    saisie, 
+    setSaisie, 
+    refZoneSaisie
+}) { 
     const gestionSaisie = e => {
         setSaisie(e.target.value);
     }
 
+    // Ne peut pas utiliser useObtenir parce qu'il doit appeler gestionResultats
     useEffect(() => {
         async function obtenirArticles() {
-            const reponse = await fetch(wp.traiterRequete('/search', 'bre', "&content=true&search=" + saisie));
-            console.log(wp.traiterRequete('/search', 'bre', "&content=true&search=" + saisie), saisie)
+            const reponse = await fetch(
+                wp.traiterRequete('/search', 'bre', "&content=true&search=" + saisie)
+            );
 
             if(!reponse.ok)
                 return;
@@ -29,15 +34,17 @@ export default function Rechercher({gestionResultats}) {
         obtenirArticles();
     }, [saisie]);
 
-
     // Appeler la fonction de recherche chaque fois qu'on écrit un caractère
     return(
-        <div className="Recherche">
-            <TextField
-                placeholder="Recherche..."
+        <div className="Recherche" ouvert={verifierOuverture()}>
+            <SearchIcon className="Icone icone-recherche" onClick={surClic} />
+            <input 
+                ref={refZoneSaisie}
+                type="text"
                 onChange={gestionSaisie}
                 className="zone-saisie"
             />
+
         </div>
     )
 }

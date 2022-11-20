@@ -1,8 +1,16 @@
 @import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
 
 .ListeEnseignants {
-    margin-top: 10vh;
+    @include page(true);
+    flex-direction: column;
+    $taille-gouttieres: 10%;
+    position: relative;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
+<<<<<<< HEAD
     .titre {
         @include gerer-ouverture(block)
     }
@@ -13,20 +21,113 @@
         flex-wrap: wrap;
         gap: 10%;
         @include pleine-taille;
+=======
+    & > .titre {padding-left: $taille-gouttieres;}
+
+    @include ordinateur {
+        @include page(false);
+    }
+
+    &[enseignant-ouvert="false"] {
+        .titre {display: block;}
+>>>>>>> 443a262d99e3343c74e821c178b27a53d9222583
 
         // Quand la liste est ouverte, on montre tout
-        &.ouvert {
+        .liste {
             visibility: visible;
-        }
 
-        // Quand elle est fermée (donc, qu'un enseignant a été ouvert)...
-        &.ferme {
-            visibility: hidden;
+            @include ordinateur {
+                // overflow-x: scroll;
+                overflow-y: hidden;
+            }
 
-            // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
-            .Enseignant.ferme {
+            & ~ .retour {
                 display: none;
             }
         }
+    }
+
+    &[enseignant-ouvert="true"] {
+        overflow-y: hidden;
+        padding-bottom: 0;
+        & > .titre {display: none;}
+
+        // Quand elle est fermée (donc, qu'un enseignant a été ouvert)...
+        .liste {
+            display: flex;
+            visibility: hidden;
+
+            // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
+            .Enseignant[ouvert="false"] {
+                display: none;
+            }
+
+            @include ordinateur {
+                @include padding-auto;
+                // Empêcher les cartes de prendre trop de place
+                visibility: visible;
+                padding: 0 $taille-gouttieres;
+                overflow-x: hidden;
+                gap: 0;
+
+                // Réduire les paddings pour gagner de l'espace
+                padding-left: 7.5%;
+                padding-right: 2.5%;
+
+                // Afficher le prochain enseignant
+                .Enseignant[ouvert="true"] {
+                    & {
+                        & + .Enseignant {
+                            display: flex;
+
+                            @include ordinateur-large {
+                                & + .Enseignant {
+                                    display: flex;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .retour {
+            // N'afficher que la flèche sur ordi + quand un enseignant est ouvert
+            display: flex;
+        }
+
+        .suivant {
+            @include ordinateur {display: flex}
+        }
+    }
+
+    .liste {
+        height: 100%;
+        padding: 0 5%;
+        display: grid;
+        box-sizing: border-box;
+
+        @include cacher-barre-defilement;
+
+        // Deux colonnes
+        grid-template-columns: repeat(2, 1fr);
+        gap: $taille-gouttieres;
+
+        @include tablette {
+            // Trois colonnes
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include ordinateur {
+            display: flex;
+            @include padding-auto;
+        }
+    }
+
+    .suivant {
+        right: 2.5%;
+        top: 700px;
+        position: absolute;
+        display: none;
     }
 }

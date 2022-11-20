@@ -1,14 +1,31 @@
 @import '../../sass/variables.scss';
 @import '../../sass/fonctions.scss';
 
+// Bouton burger gérant l'ouverture et la fermeture d'une section
 .BoutonBurger {
     padding-right: 2.5vw;
     padding-bottom: 2.5vw;
     position: fixed;
     background-color: map-deep-get($theme-menu-mobile, fond, couleur-secondaire);
     border-bottom-right-radius: 50%;
+    z-index: 100; // Doit TOUJOURS être par-dessus tout
 
-    .Icone {
+    // Icône des trois lignes
+    .Icone, .Fermeture {
         font-size: 10vw;
     }
 }
+
+.MuiSvgIcon-root MuiSvgIcon-fontSizeMedium:active {
+    font-size: 15vw;
+    transition: all 0.3s 0s ease-in-out, all 0.5s 0s ease;
+}
+
+
+.on {
+    visibility: visible;
+}
+.off {
+    visibility: hidden;
+}
+

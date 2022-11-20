@@ -1,3 +1,7 @@
+// -
+// Définition de la taille des écrans pour un site web réactif. 
+// -
+
 $largeurs-ecran: (
     base: 0px,
     mobile: 360px,
@@ -6,55 +10,238 @@ $largeurs-ecran: (
     ordinateur-large: 1440px
 );
 
-$hauteur-header: (
-    base: 50vh,
-    mobile: 65vh,
-    tablette: 10vh
+$polices: (
+    titre: 'Lalezar',
+    texte: 'Mukta',
+        
+        // $stylesPersonnalise: (
+            
+        // )
+
+);
+
+/*
+    Tailles de police et leur style
+    taille d'écran (en min-width) : taille de texte
+*/
+
+$decalage-pages: (
+    mobile: 80px,
+    tablette: 80px,
+    ordinateur: 120px
 );
 
 /*
     Tailles de police
-    taille d'écran (en min-width) : taille de texte
+    On peut ajouter d'autres propriétés pour chaque taille d'écran/sélecteur
+    Il suffit de les intégrer dans mixins.scss par la suite
 */
 $tailles-textes: (
+    // Nom d'une page et chiffre dans la page de cours
     h1: (
-        0px: 32px,
-        360px: 48px,
-        640px: 56px,
-        1024px: 72px,
-        1440px: 96px
+        0px: (
+            taille: 40px,
+            hauteur-ligne: 12px
+        ),
+
+        360px:(
+            taille: 50px,
+            hauteur-ligne: 12px
+        ),
+
+        640px:(
+            taille: 65px,
+            hauteur-ligne: 12px
+        ),
+
+        1024px:(
+            taille: 60px,
+            hauteur-ligne: 12px
+        ),
+
+        1440px:(
+            taille: 65px,
+            hauteur-ligne: 12px
+        ),
+
     ),
 
+    // Nom d'un article
     h2: (
-        0px: 32px,
-        360px: 96px,
-        640px: 56px,
-        1024px: 72px,
-        1440px: 96px
+        0px:(
+            taille: 25px,
+            hauteur-ligne: 12px
+        ),
+
+        360px:(
+            taille: 35px,
+            hauteur-ligne: 12px
+        ),
+
+        640px:(
+            taille: 45px,
+            hauteur-ligne: 12px
+        ),
+
+        1024px:(
+            taille: 40px,
+            hauteur-ligne: 12px
+        ),
+
+        1440px:(
+            taille: 40px,
+            hauteur-ligne: 12px
+        ),
     ),
 
+    
+    // Sous-titre d'une section d'un élément en contexte
     h3: (
-        0px: 24px,
-        360px: 30px,
-        640px: 36px,
-        1024px: 40px,
-        1440px: 48px
+        0px:(
+            taille: 20px,
+            hauteur-ligne: 12px
+        ),
+
+        360px:(
+            taille: 30px,
+            hauteur-ligne: 12px
+        ),
+
+        640px:(
+            taille: 35px,
+            hauteur-ligne: 12px
+        ),
+
+        1024px:(
+            taille: 35px,
+            hauteur-ligne: 12px
+        ),
+
+        1440px:(
+            taille: 38px,
+            hauteur-ligne: 12px
+        ),
+    ),
+    // Titre des cours dans la page cours
+    h4: (
+        0px:(
+            taille: 32px,
+            hauteur-ligne: 12px
+        ),
+
+        360px:(
+            taille: 35px,
+            hauteur-ligne: 12px
+        ),
+
+        640px:(
+            taille: 25px,
+            hauteur-ligne: 12px
+        ),
+
+        1024px:(
+            taille: 28px,
+            hauteur-ligne: 12px
+        ),
+
+        1440px:(
+            taille: 28px,
+            hauteur-ligne: 12px
+        ),
     ),
 
+    /** ‘spécialité’, la spécialisation de l'enseignant et ‘biographie’ */
+    h5: (
+        0px:(
+            taille: 15px,
+            hauteur-ligne: 12px
+        ),
+    
+        360px:(
+            taille: 16px,
+            hauteur-ligne: 12px
+        ),
+    
+        640px:(
+            taille: 25px,
+            hauteur-ligne: 12px
+        ),
+    
+        1024px:(
+            taille: 20px,
+            hauteur-ligne: 12px
+        ),
+    
+        1440px:(
+            taille: 25px,
+            hauteur-ligne: 12px
+        ),
+    ),
+
+    // Éléments de navigation de l'entête
     h6: (
-        0px: 20px,
-        360px: 24px,
-        640px: 20px,
-        1024px: 24px,
-        1440px: 32px
+        0px:(
+            taille: 23px,
+            hauteur-ligne: 12px
+        ),
+
+        360px:(
+            taille: 25px,
+            hauteur-ligne: 12px
+        ),
+
+        640px:(
+            taille: 18px,
+            hauteur-ligne: 12px
+        ),
+
+        1024px:(
+            taille: 25px,
+            hauteur-ligne: 12px
+        ),
+
+        1440px:(
+            taille: 28px,
+            hauteur-ligne: 12px
+        ),
+    ),
+
+
+    // Texte courant
+    p: (
+        0px:(
+            taille: 13px,
+            hauteur-ligne: 12px
+        ),
+
+        360px:(
+            taille: 14px,
+            hauteur-ligne: 12px
+        ),
+
+        640px:(
+            taille: 12px,
+            hauteur-ligne: 12px
+        ),
+
+        1024px:(
+            taille: 14px,
+            hauteur-ligne: 12px
+        ),
+
+        1440px:(
+            taille: 15px,
+            hauteur-ligne: 12px
+        ),
     )
 );
-
+//Definition des couleurs dans le site web
 $couleurs: (
     clair: #f3f3ea,
     clair-transparent: #f3f3ea3a,
     sombre: #0f0f0f,
     sombre-transparent: #0f0f0f6c,
+    dark: #444444,
 
     domaines: (
         design: #da3e66,
@@ -111,30 +298,34 @@ $theme-base: (
     ),
 );
 
-// Entête et autres menus flottants
+// Entête et autres menus flottants pour mobile
 $theme-menu-mobile: (
     titre: (
-        couleur: map-get($couleurs, sombre),
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),
 
     sous-titre: (),
 
-    texte: (),
+    texte: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
 
     icone: (
         couleur: map-get($couleurs, clair),
     ),
 
     lien: (
-        couleur: map-get($couleurs, sombre),
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),
 
     lien-hover: (
-        couleur: map-get($couleurs, sombre),
+        couleur: map-get($couleurs, clair),
         poids: 900,
         style: normal
     ),
@@ -145,6 +336,45 @@ $theme-menu-mobile: (
     )
 );
 
+// Entête et autres menus flottants pour mobile
+$theme-resultats-recherche: (
+    titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (),
+
+    texte: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    icone: (
+        couleur: map-get($couleurs, clair),
+    ),
+
+    lien: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    lien-hover: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+    
+    fond: (
+        couleur-primaire: map-get($couleurs, sombre-transparent),
+        couleur-secondaire: map-get($couleurs, sombre)
+    )
+);
+
+//Style general pour la version tablette
 $theme-menu-tablette: (
     titre: (
         couleur: map-get($couleurs, clair),
@@ -177,7 +407,7 @@ $theme-menu-tablette: (
     )
 );
 
-// Liste des sessions
+// Style pour les elements dans la section/menu de la selection des session dans la page cours
 $theme-liste-session: (
     titre: (
         couleur: map-get($couleurs, sombre),
@@ -204,7 +434,7 @@ $theme-liste-session: (
     fond: ()
 );
 
-// Chaque cours
+// Styles pour les elements dans la page des cours
 $theme-cours: (
     titre: (
         couleur: map-get($couleurs, clair),
@@ -243,4 +473,74 @@ $theme-cours: (
     fond: (
         couleur-primaire: map-get($couleurs, clair-transparent)
     )
+);
+
+// Style pour les elements dans la page des enseignants
+$theme-enseignant: (
+    titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 700,
+        style: normal
+    ),
+
+    texte: (
+        couleur: map-get($couleurs, sombre),
+        poids: 300,
+        style: normal
+    ),
+
+    icone: (),
+
+    lien: (),
+
+    lien-hover: (),
+
+    fond: ()
+);
+
+//Style et grosseur du pied des élements dans le pied de page
+$theme-pied-page: (
+    titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 700,
+        style: normal
+    ),
+
+    texte: (
+        couleur: map-get($couleurs, clair),
+        poids: 300,
+        style: normal
+    ),
+
+    icone: (
+        couleur: map-get($couleurs, clair),
+    ),
+
+    lien: (
+        couleur: map-get($couleurs, clair),
+        poids: 300,
+        style: normal
+    ),
+
+    lien-hover: (
+        couleur: map-get($couleurs, clair),
+        poids: 300,
+        style: normal
+    ),
+
+    fond: (
+        couleur-primaire: map-get($couleurs, dark)
+    ),
 );

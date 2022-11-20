@@ -1,6 +1,43 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/variables.scss';
-
+@import '../../sass/animations.scss';
+// Page d'accueil, import des animations, variables (qui contient la couleur et la majorité des elements) et les mixins
 .Accueil {
+    @include page;
+    position: relative;
 
+    .marquee-container {
+        position: absolute;
+        transform:  rotate(-90deg);
+
+        // bottom right permet de mieux positionner relativement au côté droit de l'écran
+        transform-origin: bottom right;
+        right: 0;
+        bottom: 30vh;
+        overflow-x: visible !important; // Override
+
+        .marquee {
+            span {
+                @include couleurs-aleatoires(color, 15);
+                font-size: 1000%;
+                @include desactiver-margin-block;
+
+                @include tablette {font-size: 2000%;}
+                @include ordinateur {font-size: 4000%;}
+            }
+
+            @include tablette {align-items: flex-end;}
+        }
+
+        @include tablette {
+            position: static;
+            transform: unset;
+        }
+    }
+
+    @include tablette {justify-content: flex-end;}
+
+    ::marker {
+        color: transparent
+    }
 }
