@@ -19,7 +19,10 @@
             height: unset;
         }
 
-        .resultats-recherche {transform: scaleY(0);}
+        .resultats-recherche {
+            transform: scaleY(0);
+            display: none;
+        }
     }
 
     &[ouvert="true"] {
@@ -88,18 +91,18 @@
         @include transition-base(transform);
         
         width: 95vw;
+        max-height: 75vh;
         box-sizing: border-box;
+
         @include themer($theme-resultats-recherche);
         backdrop-filter: blur(15px);
+        border-radius: 0 70px 70px 0;
         
         display: flex;
         position: relative;
-        border-radius: 0 70px 70px 0;
-
         padding: 5%;
         flex-direction: column;
         gap: 10%;
         overflow-y: scroll; // Permettre le défilement des résultats s'il y en a trop
-        max-height: 75vh;
     }
 }
