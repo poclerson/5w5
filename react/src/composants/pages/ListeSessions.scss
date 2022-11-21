@@ -35,7 +35,15 @@
         @include ordinateur {display: flex;}
         display: none;
         padding: 0 5%;
-        background: linear-gradient(90deg, map-get($couleurs, sombre) 35%, transparent 100%);
+        
+        .degrade {
+            background: linear-gradient(90deg, map-get($couleurs, sombre) 35%, transparent 100%);
+            position: absolute;
+            top: -100vh;
+            left: 0;
+            width: 25vw;
+            height: 300vh;
+        }
 
         // Avancer par-dessus la session
         transform: translateZ(1px);
