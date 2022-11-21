@@ -1,0 +1,25 @@
+@import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
+
+.DegradeSuivant {
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 0;
+    left: 91vw; // right: 0 ne marche pas for some reason
+    width: 10%;
+    height: 100%;
+    z-index: 2;
+
+    background: linear-gradient(90deg, transparent 0%, map-get($couleurs, sombre) 100%);
+
+    @include ordinateur {
+        display: flex;
+    }
+
+    .FlecheNav {
+        color: map-get($couleurs, clair);
+    }
+}
