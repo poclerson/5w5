@@ -30,18 +30,19 @@
     
             .images{
                 display: none;
-                flex: 1 0 60%;
-                gap: 2%;
+                flex: 1 0 50%;
+                gap: 5%;
+                width: 100%;
     
                 &>*{
                     background-color: beige;
-                    width: 80%;
+                    width: 180%;
                     content: "";
                     
                     
                     @include tablette{
                         &:nth-child(2){
-                            grid-row: span 3;
+                            grid-row: span 2;
                         }
                     }
                 }
@@ -57,7 +58,7 @@
     
             /*'Description et le texte'*/
             .informations{
-                flex: 2 1 35%;
+                flex: 2 1 50%;
     
                 p{
                     width: 100%;

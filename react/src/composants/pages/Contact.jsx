@@ -25,9 +25,7 @@ export default function Contact({id}) {
                 {titre}
                 <article className='contenu'>
                     <div className='images'>
-                        <div className='image1'>{wpBlockImageSizeMedium}</div>
                         <div className='wpBlockWebfactoryMap'>{wpBlockWebfactoryMap}</div>
-                        <div className='image3'>{wpBlockImageSizeMedium}</div>
                     </div>
                     <div className='informations'>
                         {titreDescription}
