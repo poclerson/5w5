@@ -16,7 +16,7 @@
         @include page(false);
     }
 
-    &[enseignant-ouvert="false"] {
+    &[item-ouvert="false"] {
         .titre {display: block;}
 
         // Quand la liste est ouverte, on montre tout
@@ -24,7 +24,6 @@
             visibility: visible;
 
             @include ordinateur {
-                // overflow-x: scroll;
                 overflow-y: hidden;
             }
 
@@ -34,7 +33,7 @@
         }
     }
 
-    &[enseignant-ouvert="true"] {
+    &[item-ouvert="true"] {
         overflow-y: hidden;
         padding-bottom: 0;
         & > .titre {display: none;}
@@ -90,7 +89,7 @@
 
     .liste {
         height: 100%;
-        padding: 0 5%;
+        padding: 0 7.5%;
         display: grid;
         box-sizing: border-box;
 

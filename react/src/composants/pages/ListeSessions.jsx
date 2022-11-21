@@ -13,12 +13,10 @@ export default function ListeSessions({sessions, cours, pageRef}) {
     const tailleOrdinateur = useMediaQuery(medias.ordinateur);
 
     // Gestion de l'ouverture de chaque session
-    const {surClic, surClicSuivant, verifierOuverture} = useOuvertures(sessions, 0);
+    const {surClic, surClicSuivant, verifierOuverture, verifierOuvertureParent} = useOuvertures(sessions, 0);
 
     // État de rotation du carousel rond des titres de session
     const [rotation, setRotation] = useState(0);
-
-    const [transition, setTransition] = useState(false);
 
     const refTitres = useRef(null);
 
@@ -49,6 +47,9 @@ export default function ListeSessions({sessions, cours, pageRef}) {
     }
 
     useOuvrirSelonId(
+        // Ne pas utiliser ouvrir(), on veut plutôt envoyer des callbacks personnalisés
+        // puisque la page des cours a une structure différente par rapport aux
+        // autres pages d'information
         undefined,  
         [
             article => {
@@ -100,7 +101,7 @@ export default function ListeSessions({sessions, cours, pageRef}) {
             </div>
 
             {/* La session ouverte */}
-            <ul className="liste">
+            <ul className="liste" item-ouvert={verifierOuvertureParent()}>
                 {
                     sessions.map((session, index) => 
                         <Session 

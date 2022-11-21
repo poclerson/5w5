@@ -6,23 +6,24 @@
     top: 0;
     left: 0;
     z-index: 10;
-    height: 100%;
+    // Restreindre la hauteur normale
+    height: 80px;
+    @include transition-base(height);
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     gap: 5vh;
 
     &[ouvert="false"] {
-        @include tablette {
-            // Empêcher de prendre tout la place quand fermé
-            height: unset;
+        .resultats-recherche {
+            transform: scaleY(0);
         }
-
-        .resultats-recherche {transform: scaleY(0);}
     }
 
     &[ouvert="true"] {
+        // Permettre de prendre autant d'espace que désiré
+        height: 100%;
+
         @include tablette {
             .contenu {
                 .Navigation {
@@ -41,9 +42,18 @@
         @include tablette {display: none;}
     }
 
+    .vagues {
+        width: 100vw;
+        height: max-content;
+
+        @include tablette {
+            display: none;
+        }
+    }
+
     .contenu {
         @include themer($theme-menu-mobile);
-        @include fond-flou;
+        backdrop-filter: blur(15px);
 
         @include gerer-ouverture(flex);
         flex-direction: column;
@@ -51,6 +61,7 @@
         width: 95vw;
         box-sizing: border-box;
         padding: 10vw;
+        gap: 5%;
 
         border-radius: 0 70px 70px 0;
 
@@ -83,23 +94,30 @@
     }
 
     .resultats-recherche {
+        // Animation
+        position: absolute; // Empêcher de rentrer dans le flow de l'entête quand elle est fermée
         transform-origin: top center;
         transform: scaleY(1);
-        @include transition-base(transform);
+        @include transition-base;
         
+        // Placement
         width: 95vw;
+        max-height: 75vh;
         box-sizing: border-box;
+
+        // Décorations
         @include themer($theme-resultats-recherche);
         backdrop-filter: blur(15px);
+        border-radius: 0 70px 70px 0;
         
+        // Flex
         display: flex;
         position: relative;
-        border-radius: 0 70px 70px 0;
-
         padding: 5%;
         flex-direction: column;
         gap: 10%;
         overflow-y: scroll; // Permettre le défilement des résultats s'il y en a trop
-        max-height: 75vh;
+        justify-self: flex-end;
+        
     }
 }
