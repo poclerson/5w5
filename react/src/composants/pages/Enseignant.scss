@@ -49,7 +49,8 @@ $couleurs-domaines-modifiees: (
     
 
     &:hover{
-        
+        size: 10%;
+        transition: all 0.9s 0s ease;
     }
 
 
@@ -296,6 +297,7 @@ $couleurs-domaines-modifiees: (
     // Général, peu importe l'état. Override les règles de priorité
     &[ouvert="true"],
     &[ouvert="false"] {
+        transition: left ease-in-out .08s;
         flex-direction: row-reverse; // Afficher le contenu à gauche
         gap: 10%;
 

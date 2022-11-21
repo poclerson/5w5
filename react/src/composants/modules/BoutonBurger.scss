@@ -7,7 +7,7 @@
     padding-bottom: 2.5vw;
     position: fixed;
     background-color: map-deep-get($theme-menu-mobile, fond, couleur-secondaire);
-    border-bottom-right-radius: 50%;
+    border-bottom-right-radius: 40%;
     z-index: 100; // Doit TOUJOURS être par-dessus tout
 
     // Icône des trois lignes
@@ -16,9 +16,9 @@
     }
 }
 
-.MuiSvgIcon-root MuiSvgIcon-fontSizeMedium:active {
-    font-size: 15vw;
-    transition: all 0.3s 0s ease-in-out, all 0.5s 0s ease;
+.MuiSvgIcon-root{
+    font-size: 10%;
+    animation: x 1s linear 0s 1 reverse both;
 }
 
 
@@ -28,4 +28,14 @@
 .off {
     visibility: hidden;
 }
+@keyframes x {
+	0% {
+		transform: rotate(0);
+        opacity: 75%;
+	}
 
+	100% {
+		transform: rotate(360deg);
+        opacity: 100%;
+	}
+}

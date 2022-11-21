@@ -30,12 +30,13 @@
     
             .images{
                 display: none;
-                flex: 1 0 60%;
+                flex: 1 0 50%;
                 gap: 5%;
+                width: 100%;
     
                 &>*{
                     background-color: beige;
-                    width: 80%;
+                    width: 180%;
                     content: "";
                     
                     
@@ -57,7 +58,7 @@
     
             /*'Description et le texte'*/
             .informations{
-                flex: 2 1 35%;
+                flex: 2 1 50%;
     
                 p{
                     width: 100%;

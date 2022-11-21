@@ -15,6 +15,15 @@
     gap: 5vh;
 
     &[ouvert="false"] {
+        @include tablette {
+            // Empêcher de prendre tout la place quand fermé
+            height: unset;
+            
+            .contenu {
+                .Recherche {
+                    animation: menu 0.5s linear 0s 1 normal both;
+                }
+            }
         .resultats-recherche {
             transform: scaleY(0);
         }
@@ -26,6 +35,10 @@
 
         @include tablette {
             .contenu {
+                .Recherche {
+                    flex-direction: row-reverse;
+                }
+   
                 .Navigation {
                     @include transition-base;
                     transform: scaleX(0);
@@ -34,6 +47,14 @@
                 }
             }
         }
+    }
+    svg{
+        position: absolute;
+        margin-left: 10%;
+        z-index: 10;
+    }
+    svg:hover{
+        animation: svg 2s ease 0s 1 normal forwards;
     }
 
     @include tablette {justify-content: unset;}
@@ -56,8 +77,9 @@
         backdrop-filter: blur(15px);
 
         @include gerer-ouverture(flex);
-        flex-direction: column;
 
+        flex-direction: column;
+        height: 50vh;
         width: 95vw;
         box-sizing: border-box;
         padding: 10vw;
@@ -66,6 +88,7 @@
         border-radius: 0 70px 70px 0;
 
         @include tablette {
+            animation: menu 0.5s linear 0s 1 normal both;
             flex-direction: row;
             @include themer($theme-menu-tablette);
             width: 100vw;
@@ -103,6 +126,7 @@
         // Placement
         width: 95vw;
         max-height: 75vh;
+
         box-sizing: border-box;
 
         // Décorations
@@ -113,11 +137,54 @@
         // Flex
         display: flex;
         position: relative;
+
         padding: 5%;
         flex-direction: column;
         gap: 10%;
         overflow-y: scroll; // Permettre le défilement des résultats s'il y en a trop
         justify-self: flex-end;
-        
     }
+}
+
+@keyframes menu {
+	0% {
+		opacity: 0;
+		transform: translateX(-250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes svg {
+	0%,
+	100% {
+		transform: rotate(0deg);
+		transform-origin: 50% 50%;
+	}
+
+	10% {
+		transform: rotate(8deg);
+	}
+
+	20%,
+	40%,
+	60% {
+		transform: rotate(-10deg);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: rotate(10deg);
+	}
+
+	80% {
+		transform: rotate(-8deg);
+	}
+
+	90% {
+		transform: rotate(8deg);
+	}
 }
