@@ -63,7 +63,6 @@ export default function EnTete({enteteWP}) {
                     refZoneSaisie={refZoneSaisie}
                 />
             </div>
-
             <ul className="resultats-recherche">
                 {resultatsRecherche != null &&
                     resultatsRecherche.length > 0 ?
