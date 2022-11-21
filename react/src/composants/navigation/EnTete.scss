@@ -45,6 +45,7 @@
     .vagues {
         width: 100vw;
         height: max-content;
+        background: linear-gradient(to bottom, map-get($couleurs, sombre) 50%, transparent);
 
         @include tablette {
             display: none;

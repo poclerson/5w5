@@ -34,15 +34,23 @@ export default function EnTete({enteteWP}) {
 
     const gestionClicRecherche = () => {
         surClicRecherche();
-        focuserZoneSaisie();
+        // focuserZoneSaisie();
     }
 
-    const focuserZoneSaisie = () => {
-        // Il faut attendre que la zone se soit ouverte
-        if (document.activeElement != refZoneSaisie.current) {
-            setTimeout(() => refZoneSaisie.current.focus(), 1)
-        }
-    }
+    // const focuserZoneSaisie = () => {
+    //     console.log("allo")
+    //     // Il faut attendre que la zone se soit ouverte
+    //     // console.log(window.getComputedStyle(document.querySelector('.' + refZoneSaisie.current.className), ':focus'))
+    //     console.log(document.activeElement)
+    //     setTimeout(() => {
+    //         if (document.activeElement != refZoneSaisie.current) {
+    //             setTimeout(() => {
+    //                 if (document.activeElement != refZoneSaisie.current)
+    //                     refZoneSaisie.current.focus();
+    //             }, 2)
+    //         }
+    //     }, 10)
+    // }
 
     return (
         <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
@@ -52,7 +60,7 @@ export default function EnTete({enteteWP}) {
                 <SiteLogo url={enteteWP.siteLogoUrl} />
                 <Navigation 
                     pages={enteteWP.headerMenuItems} 
-                    surClic={() => gestionClicRecherche} 
+                    surClic={() => {gestionClicRecherche(); surClicBurger()}} 
                 />
                 <Recherche 
                     gestionResultats={gestionResultatsRecherche} 

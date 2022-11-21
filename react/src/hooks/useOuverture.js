@@ -16,9 +16,5 @@ export default function useOuverture(ouvertureInitiale = 'false') {
         return ouverture;
     }
 
-    const fermer = () => {
-        setOuverture('false')
-    }
-
-    return [surClic, verifierOuverture, fermer]
+    return [surClic, verifierOuverture]
 }
