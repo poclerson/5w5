@@ -48,6 +48,7 @@
             }
 
             .Projet, .photo-environnement {
+                @include proprietes-aleatoires('couleur', background); 
                 position: relative;
                 display: flex;
                 border-radius: 20px;
@@ -58,8 +59,6 @@
                     transition: .7s ease;
                     // Animation de hover photo-environnement
                     &:hover{
-                        transform: scale(1.1);
-                        transform: scale(1.1);
                         transform: scale(1.1);
                     }
                     // Largeur de 1
@@ -72,9 +71,16 @@
                 .miniature {
                     overflow: hidden;
                     @include pleine-taille;
-                    img {
-                        object-fit: cover;
+
+                    .image-presentation-conteneur {
+                        position: relative;
                         @include pleine-taille;
+
+                        .image-presentation {
+                            object-fit: cover;
+                            opacity: .5;
+                            @include pleine-taille;
+                        }
                     }
                 }
             }

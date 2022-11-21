@@ -42,7 +42,9 @@ export default function ListeProjets({id}) {
             else {
                 return <li key={projet.id} className="photo-environnement">
                     <div className="miniature">
-                        <img src={projet.acf.photo} alt="" className="image-presentation"/>
+                        <div className="image-presentation-conteneur">
+                            <img src={projet.acf.photo} alt="" className="image-presentation"/>
+                        </div>
                     </div>
                 </li>
             }

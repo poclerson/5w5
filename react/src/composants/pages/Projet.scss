@@ -7,8 +7,6 @@
     &[ouvert="false"] {
         &:hover{
             transform: scale(1.1);
-            transform: scale(1.1);
-            transform: scale(1.1);
         }
 
         //  Les projets prennent deux rangées de hauteur
@@ -28,8 +26,11 @@
                 align-items: center;
             }
 
-            .image-presentation {
-                object-fit: cover;
+            .image-presentation-conteneur {
+                .image-presentation {
+                    object-fit: cover;
+                    opacity: .5;
+                }
             }
         }
 
