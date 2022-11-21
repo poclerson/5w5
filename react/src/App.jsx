@@ -64,7 +64,7 @@ export default function App() {
                             return <Route 
                                 key={"page" + page.pageID}
                                 path={page.pageSlug}
-                                element={<Composant id={page.pageID} />}
+                                element={<Composant id={page.pageID} key={Math.random(0, 1000)} />}
                             />
                         })}
                     </Routes> 

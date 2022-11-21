@@ -8,8 +8,8 @@ import {useState} from 'react';
 export default function useOuverture(donnees, ouvertureInitiale = -1) {
     const [indexOuvert, setIndexOuvert] = useState(ouvertureInitiale);
 
-    const verifierOuvertureParent = () => {
-        return indexOuvert != -1 ? "true" : "false"
+    const verifierOuvertureParent = (index = indexOuvert) => {
+        return index != -1 ? "true" : "false"
     }
 
     /**
@@ -19,6 +19,7 @@ export default function useOuverture(donnees, ouvertureInitiale = -1) {
      */
     const surClic = (index, callback) => {
         if (callback != undefined) callback()
+
         setIndexOuvert(index);
     }
 

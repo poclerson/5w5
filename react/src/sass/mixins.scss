@@ -176,7 +176,7 @@
 // ===== MIXINS DE HOVER & TRANSITIONS =====
 
 
-
+// Transition pour le texte qui met des bordures sur le côté sur hover
 @mixin hover-bordures-cotes {
     transition: border 0.35s ease;
     border-left: 3px solid transparent;
@@ -191,6 +191,7 @@
     }
 }
 
+// Raccourci pour une transition de base
 @mixin transition-base($propriete: all, $courbe: cubic-bezier(.99,-0.01,.65,.73), $duree: .5s) {
     transition: $propriete $courbe $duree;
 }
@@ -230,6 +231,7 @@
     scrollbar-width: none;
 }
 
+// Fait un rond d'après une taille
 @mixin rond($taille) {
     content: "";
     border-radius: 50%;

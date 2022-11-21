@@ -18,8 +18,6 @@ export default function ListeSessions({sessions, cours, pageRef}) {
     // État de rotation du carousel rond des titres de session
     const [rotation, setRotation] = useState(0);
 
-    const [transition, setTransition] = useState(false);
-
     const refTitres = useRef(null);
 
     // Référence vers une seule session, celle qui est ouverte
@@ -49,6 +47,9 @@ export default function ListeSessions({sessions, cours, pageRef}) {
     }
 
     useOuvrirSelonId(
+        // Ne pas utiliser ouvrir(), on veut plutôt envoyer des callbacks personnalisés
+        // puisque la page des cours a une structure différente par rapport aux
+        // autres pages d'information
         undefined,  
         [
             article => {

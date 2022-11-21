@@ -18,7 +18,9 @@ export default function ListeEnseignants({id}) {
         surClic, 
         surClicSuivant, 
         verifierOuvertureParent, 
-        verifierOuverture
+        verifierOuverture,
+        indexOuvert,
+        ouvertureParent
     } = useOuvertures(enseignants)
 
     const {titre} = useStructure(id);
