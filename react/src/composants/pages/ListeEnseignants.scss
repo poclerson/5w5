@@ -8,28 +8,34 @@
     position: relative;
     box-sizing: border-box;
     overflow-y: scroll;
+    overflow-x: hidden;
 
     & > .titre {padding-left: $taille-gouttieres;}
 
     @include ordinateur {
-        overflow-y: scroll;
         @include page(false);
     }
 
-    &[enseignant-ouvert="false"] {
+    &[item-ouvert="false"] {
         .titre {display: block;}
 
         // Quand la liste est ouverte, on montre tout
         .liste {
             visibility: visible;
 
-            & ~ .Suivant {
+            @include ordinateur {
+                overflow-y: hidden;
+            }
+
+            & ~ .retour {
+                transition: left ease-in-out .08s;
                 display: none;
             }
         }
     }
 
-    &[enseignant-ouvert="true"] {
+    &[item-ouvert="true"] {
+        overflow-y: hidden;
         padding-bottom: 0;
         & > .titre {display: none;}
 
@@ -37,10 +43,14 @@
         .liste {
             display: flex;
             visibility: hidden;
+            transition: left ease-in-out .08s;
+
 
             // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
             .Enseignant[ouvert="false"] {
                 display: none;
+                transition: left ease-in-out .08s;
+
             }
 
             @include ordinateur {
@@ -49,19 +59,51 @@
                 visibility: visible;
                 padding: 0 $taille-gouttieres;
                 overflow-x: hidden;
-                gap: 5%;
+                gap: 0;
 
+                // Réduire les paddings pour gagner de l'espace
+                padding-left: 7.5%;
+                padding-right: 2.5%;
 
+                // Afficher le prochain enseignant
                 .Enseignant[ouvert="true"] {
-                    &, & + * {display: flex;}
+                    & {
+                        & + .Enseignant {
+                            display: flex;
+                            transition: left ease-in-out .08s;
+
+
+                            @include ordinateur-large {
+                                & + .Enseignant {
+                                    display: flex;
+                                    transition: left ease-in-out .08s;
+
+                                }
+                            }
+                        }
+                    }
                 }
             }
+        }
+
+        .retour {
+            // N'afficher que la flèche sur ordi + quand un enseignant est ouvert
+            display: flex;
+            transition: left ease-in-out .08s;
+            animation: fondu-vers-prochain 2s linear 0s 1 normal forwards;
+
+        }
+
+        .suivant {
+            @include ordinateur {display: flex}
+            transition: left ease-in-out .08s;
+            animation: fondu-vers-prochain 2s linear 0s 1 normal forwards;
         }
     }
 
     .liste {
         height: 100%;
-        padding: 0 5%;
+        padding: 0 7.5%;
         display: grid;
         box-sizing: border-box;
 
@@ -78,16 +120,15 @@
 
         @include ordinateur {
             display: flex;
-            overflow: auto;
             @include padding-auto;
         }
     }
 
-    .Suivant {
-        display: none;
+    .suivant {
         right: 2.5%;
         top: 700px;
-
-        @include ordinateur {display: flex;}
+        position: absolute;
+        display: none;
+        
     }
 }

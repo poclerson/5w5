@@ -1,6 +1,5 @@
 import './Enseignant.scss';
-
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import FlecheNav from '../modules/FlecheNav';
 
 export default function Enseignant({nom, description, photo, domaine, surClic, index, verifierOuverture, id}) {
     return(
@@ -17,7 +16,12 @@ export default function Enseignant({nom, description, photo, domaine, surClic, i
 
             {/* Contenu de l'enseignant en contexte */}
             <div className="contenu">
-                <ArrowBackIosIcon className="Icone retour-liste" onClick={() => surClic(-1)} />
+                <FlecheNav 
+                    className="retour-liste" 
+                    gestionClic={() => surClic(-1)} 
+                    direction="precedent"
+                    classesAdditionnelles="retour"
+                />
                 <div className={"conteneur-photo " + domaine}>
                     <h2 className="titre">{nom.toUpperCase()}</h2>
                     <div className="fond-photo">
@@ -37,9 +41,8 @@ export default function Enseignant({nom, description, photo, domaine, surClic, i
                     <h5 className="etiquette-description">biographie</h5>
                     <div className="conteneur-description">
                         <p className="description">
-                            {/* {description} */}
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere dolorem temporibus eos reprehenderit veritatis culpa error dolor cupiditate officia qui, totam, consequatur esse ipsam fugiat sapiente architecto distinctio. Esse, sequi!
-                        </p>
+                            {description}
+                            </p>
                     </div>
                 </article>
             </div>

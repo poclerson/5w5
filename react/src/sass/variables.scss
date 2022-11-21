@@ -13,6 +13,16 @@ $largeurs-ecran: (
 $polices: (
     titre: 'Lalezar',
     texte: 'Mukta',
+    
+    styles: (
+        'Fredoka One',
+        'Modak',
+        'Montserrat',
+        'Rammetto One',
+        'Stalinist One',
+        'Taviraj',
+        'Titan One'
+    )
 );
 
 /*
@@ -21,7 +31,7 @@ $polices: (
 */
 
 $decalage-pages: (
-    mobile: 80px,
+    mobile: 100px,
     tablette: 80px,
     ordinateur: 120px
 );
@@ -50,12 +60,12 @@ $tailles-textes: (
         ),
 
         1024px:(
-            taille: 75px,
+            taille: 60px,
             hauteur-ligne: 12px
         ),
 
         1440px:(
-            taille: 96px,
+            taille: 65px,
             hauteur-ligne: 12px
         ),
 
@@ -79,12 +89,12 @@ $tailles-textes: (
         ),
 
         1024px:(
-            taille: 45px,
+            taille: 40px,
             hauteur-ligne: 12px
         ),
 
         1440px:(
-            taille: 50px,
+            taille: 40px,
             hauteur-ligne: 12px
         ),
     ),
@@ -113,7 +123,7 @@ $tailles-textes: (
         ),
 
         1440px:(
-            taille: 40px,
+            taille: 38px,
             hauteur-ligne: 12px
         ),
     ),
@@ -140,7 +150,7 @@ $tailles-textes: (
         ),
 
         1440px:(
-            taille: 30px,
+            taille: 28px,
             hauteur-ligne: 12px
         ),
     ),
@@ -163,12 +173,12 @@ $tailles-textes: (
         ),
     
         1024px:(
-            taille: 25px,
+            taille: 20px,
             hauteur-ligne: 12px
         ),
     
         1440px:(
-            taille: 32px,
+            taille: 25px,
             hauteur-ligne: 12px
         ),
     ),
@@ -196,7 +206,7 @@ $tailles-textes: (
         ),
 
         1440px:(
-            taille: 30px,
+            taille: 28px,
             hauteur-ligne: 12px
         ),
     ),
@@ -210,22 +220,22 @@ $tailles-textes: (
         ),
 
         360px:(
-            taille: 15px,
+            taille: 14px,
             hauteur-ligne: 12px
         ),
 
         640px:(
-            taille: 18px,
+            taille: 12px,
             hauteur-ligne: 12px
         ),
 
         1024px:(
-            taille: 20px,
+            taille: 14px,
             hauteur-ligne: 12px
         ),
 
         1440px:(
-            taille: 20px,
+            taille: 15px,
             hauteur-ligne: 12px
         ),
     )
@@ -236,7 +246,7 @@ $couleurs: (
     clair-transparent: #f3f3ea3a,
     sombre: #0f0f0f,
     sombre-transparent: #0f0f0f6c,
-    dark: #444444,
+    dark: #0f0f0f,
 
     domaines: (
         design: #da3e66,
@@ -330,6 +340,45 @@ $theme-menu-mobile: (
         couleur-secondaire: map-get($couleurs, sombre)
     )
 );
+
+// Entête et autres menus flottants pour mobile
+$theme-resultats-recherche: (
+    titre: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    sous-titre: (),
+
+    texte: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    icone: (
+        couleur: map-get($couleurs, clair),
+    ),
+
+    lien: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+
+    lien-hover: (
+        couleur: map-get($couleurs, clair),
+        poids: 900,
+        style: normal
+    ),
+    
+    fond: (
+        couleur-primaire: map-get($couleurs, sombre-transparent),
+        couleur-secondaire: map-get($couleurs, sombre)
+    )
+);
+
 //Style general pour la version tablette
 $theme-menu-tablette: (
     titre: (
@@ -459,8 +508,9 @@ $theme-enseignant: (
 
     fond: ()
 );
+
 //Style et grosseur du pied des élements dans le pied de page
-$theme-PiedDePage: (
+$theme-pied-page: (
     titre: (
         couleur: map-get($couleurs, clair),
         poids: 900,
@@ -498,6 +548,4 @@ $theme-PiedDePage: (
     fond: (
         couleur-primaire: map-get($couleurs, dark)
     ),
-
-    
 );

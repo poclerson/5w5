@@ -5,36 +5,49 @@
 .Cours {
     // Un cours prend presque tout l'écran sur mobile
     flex: 0 0 50vw;
-    aspect-ratio: 1 / 1.5;
+    aspect-ratio: 1 / 1.325;
     scroll-snap-align: start;
-    &:first-child {margin-left: 20vw}
-    &:last-child {margin-right: 20vw;}
+    @include premier-dernier(margin, 25vw);
     position: relative;
+    backdrop-filter: blur(30px);
 
     &[ouvert="true"] {
-        .carte{transform: scale(1.25)};
+        .carte, .rond{transform: scale(1.1)};
         transition: transform ease-in-out .1s;
+
+        .rond {
+            transition: left ease-in-out .08s;
+            left: calc(-15% * 1.82);
+        }
+
+        @include tablette {
+            .carte {transform: scale(1.25);}
+        }
+    }
+
+    // Sinon le cours devient trop petit
+    @include petit-mobile {
+        aspect-ratio: 1 / 1.5;
+        flex-basis: 65vw;
     }
 
     @include tablette {
-        flex: 0 0 25vw;
+        flex-basis: 30vw;
+        max-width: 225px;
 
         margin: 10% 0;
-        &:first-child {margin-left: 10%;}
-        &:last-child {margin-right: 20%;}
+        @include premier-dernier(margin, 10vw, 20vw);
 
         transition: transform .25s ease-in-out;
     }
 
     @include ordinateur {
+        aspect-ratio: 1 / 1.5;
         // Afficher trois cours ou plus sur grands écrans
-        flex: 0 0 15vw;
+        flex-basis: 20vw;
         margin: 0;
-        // Limiter leur expansion
-        max-height: 60vh; 
 
-        &:first-child{margin-left: 35vw;}
-        &:last-child{margin-right: 10vw;}
+        @include premier-dernier(margin, 35vw, 10vw);
     }
 
     // Une carte de cours
@@ -42,13 +55,13 @@
         display: flex;
         flex-direction: column;
         position: relative;
-
-        @include pleine-taille;
+        height: 100%;
 
         @include carte;
-        @include fond-flou;
+        backdrop-filter: blur(30px);
         @include themer($theme-cours);
-        transition: transform ease-in-out .1s;
+        transition: transform ease-in-out .3s;
+        padding: 15px;
 
         .modele {
             position: absolute;
@@ -67,18 +80,29 @@
             }
         }
 
-        // Rond décoratif sous la carte
-        .rond {
-            $taille: 30%;
-
-            position: absolute;
-            left: - $taille / 2;
-            bottom: 20%;
-
-            @include rond($taille);
-
-            background-color: red; // placeholder
-            z-index: -3;
+        .titre {
+            flex: 1 0 20%;
         }
+
+        .description {
+            @include cacher-barre-defilement;
+            flex: 0 1 80%;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+    }
+
+    // Rond décoratif sous la carte
+    .rond {
+        $taille: 30%;
+        z-index: -3;
+
+        position: absolute;
+        left: - $taille / 2;
+        bottom: 20%;
+
+        @include rond($taille);
+
+        background-color: map-get($couleurs, clair);
     }
 }

@@ -1,6 +1,6 @@
 import './Projet.scss';
 
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import FlecheNav from '../modules/FlecheNav';
 
 export default function Projet({
     nom,
@@ -23,15 +23,17 @@ export default function Projet({
                     <h3 className="sous-titre">{createurs}</h3>
                     <button className="details">Voir en détails</button>
                 </div>
-                <img 
-                    className="image-presentation" 
-                    src={image_presentation} 
-                    alt={`Image du projet ${nom} par ${createurs}`} 
-                />
+                <div className="image-presentation-conteneur">
+                    <img 
+                        className="image-presentation" 
+                        src={image_presentation} 
+                        alt={`Image du projet ${nom} par ${createurs}`} 
+                    />
+                </div>
             </div>
             <div className="contenu">
+                <FlecheNav gestionClic={() => surClic(-1)} direction='precedent' />
                 <div className="texte-conteneur">
-                    <ArrowBackIosIcon className="Icone retour-liste" onClick={() => surClic(-1)} />
                     <div className="texte">
                         <h2 className="titre">
                             <a href={lien} className="lien-titre">{nom}</a>

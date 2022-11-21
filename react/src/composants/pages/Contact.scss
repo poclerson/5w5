@@ -3,69 +3,72 @@
 @import '../../sass/fonctions.scss';
 //Importation des variables, mixins et fonctions pour après mettre les elements dans un ordre et style defini sans le font d'écran de base
 .Contact {
-display: flex;
-flex-direction: column;
-background-repeat: no-repeat;
-background-position: 100% 50%;
-background-size: cover;
-overflow-x: hidden;
-@include pleine-taille;
-padding-left: 5%;
-padding-right: 5%;
-box-sizing: border-box;
-
-.contenu{
-    // display: flex;
-
-    @include tablette{
-        display: flex;
-    }
-
-    .images{
-        display: none;
-        flex: 1 0 60%;
-        gap: 5%;
-
-        &>*{
-            background-color: beige;
-            width: 80%;
-            content: "";
-            
-            
-            @include tablette{
-                &:nth-child(2){
-                    grid-row: span 2;
-                }
-            }
-        }
-
-        grid-template-rows: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
-
-        
-        @include tablette{
-            display: grid;
-        }
-    }
-
-    /*'Description et le texte'*/
-    .informations{
-        flex: 2 1 35%;
-
-        p{
-            width: 100%;
-            text-align: justify;
-            line-break: anywhere;
-        }
-    }
-    
-}
-
-.boite-principale{
-    margin-top: 15%;
     display: flex;
     flex-direction: column;
-}
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+    background-size: cover;
+    overflow-x: hidden;
+    @include pleine-taille;
+    box-sizing: border-box;
+    @include page;
+
+    @include ordinateur {
+        padding-bottom: 10vh;
+    }
+
+    .boite-principale{
+        @include padding-auto;
+        display: flex;
+        flex-direction: column;
+        padding: 0 10%;
+
+        .contenu{
+            @include tablette{
+                display: flex;
+            }
+    
+            .images{
+                display: none;
+                flex: 1 0 50%;
+                gap: 5%;
+                width: 100%;
+    
+                &>*{
+                    background-color: beige;
+                    width: 180%;
+                    content: "";
+                    
+                    
+                    @include tablette{
+                        &:nth-child(2){
+                            grid-row: span 2;
+                        }
+                    }
+                }
+    
+                grid-template-rows: 1fr 1fr;
+                grid-template-columns: 1fr 1fr;
+    
+                
+                @include tablette{
+                    display: grid;
+                }
+            }
+    
+            /*'Description et le texte'*/
+            .informations{
+                flex: 2 1 50%;
+    
+                p{
+                    width: 100%;
+                    text-align: justify;
+                    line-break: anywhere;
+                }
+            }
+            
+        }
+    }
 
     /*'Inscription et son icône'*/
         .inscription {

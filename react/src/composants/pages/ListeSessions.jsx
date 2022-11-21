@@ -9,13 +9,11 @@ import medias from '../../medias';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import useOuvrirSelonId from '../../hooks/useOuvrirSelonId';
 
-import * as u from '../../utilitaires';
-
 export default function ListeSessions({sessions, cours, pageRef}) {
     const tailleOrdinateur = useMediaQuery(medias.ordinateur);
 
     // Gestion de l'ouverture de chaque session
-    const {surClic, surClicSuivant, verifierOuverture} = useOuvertures(sessions, 0);
+    const {surClic, surClicSuivant, verifierOuverture, verifierOuvertureParent} = useOuvertures(sessions, 0);
 
     // État de rotation du carousel rond des titres de session
     const [rotation, setRotation] = useState(0);
@@ -43,31 +41,45 @@ export default function ListeSessions({sessions, cours, pageRef}) {
     // Défile vers un cours en tenant en compte les titres de session
     const defilerVersCours = cours => {
         if (cours) {
-            console.log(cours) 
             refListeCoursSessionOuverte.current.scrollLeft = 
-            cours.offsetLeft - refTitres.current.offsetWidth;
+            cours.offsetLeft - refTitres.current.offsetWidth; 
         }
     }
 
-    useOuvrirSelonId(undefined, article => {
-        // Sélectionner plusieurs éléments (session + titre de session)
-        document.querySelectorAll('#' + article.articleWP.acf.session).forEach(
-            element => {
-                const indexSession = element.getAttribute('index')
+    useOuvrirSelonId(
+        // Ne pas utiliser ouvrir(), on veut plutôt envoyer des callbacks personnalisés
+        // puisque la page des cours a une structure différente par rapport aux
+        // autres pages d'information
+        undefined,  
+        [
+            article => {
+                // Sélectionner plusieurs éléments (session + titre de session)
+                document.querySelectorAll('#' + article.articleWP.acf.session).forEach(
+                    element => {
+                        // On doit parser, sinon indexSession est un string 
+                        // et ça crée des problèmes pour l'addition d'indexes
+                        const indexSession = parseInt(element.getAttribute('index'));
 
-                // Ouvrir les deux (et changer la rotation des titres)
-                surClic(
-                    indexSession,
-                    tailleOrdinateur ? 
-                        () => {setRotation(-(360 * indexSession / sessions.length))} :
-                        () => {setRotation(rotation - (360 / sessions.length))}
+                        // Ouvrir les deux (et changer la rotation des titres)
+                        surClic(
+                            indexSession,
+                            () => {setRotation(-(360 * indexSession / sessions.length))} 
+                        )
+                    }
                 )
-
-                const cours = document.getElementById(article.articleWP.id)
-                defilerVersCours(cours)
+            },
+            article => {
+                // setTimeout permet d'attendre que la première fonction s'excéute.
+                // Sinon, on essaie de défiler vers le cours avant que la page soit chargée
+                setTimeout(
+                    () => {
+                        const cours = document.getElementById(article.articleWP.id);
+                        defilerVersCours(cours);
+                    }, 1
+                )
             }
-        )
-    })
+        ]
+    )
 
     return (
         <div className="ListeSessions">
@@ -82,14 +94,14 @@ export default function ListeSessions({sessions, cours, pageRef}) {
                             index={index}
                             onClick={() => surClicSession(index)}
                         >
-                            <h3 className="sous-titre">{u.inserer(session, 7, " ")}</h3>
+                            <h3 className="sous-titre">{session.inserer(" ", 7)}</h3>
                         </li>
                     )}
                 </ol>
             </div>
 
             {/* La session ouverte */}
-            <ul className="liste">
+            <ul className="liste" item-ouvert={verifierOuvertureParent()}>
                 {
                     sessions.map((session, index) => 
                         <Session 

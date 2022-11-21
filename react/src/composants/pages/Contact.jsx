@@ -15,23 +15,22 @@ export default function Contact({id}) {
         description,
         titreInscription,
         wpBlockImageSizeMedium,
-        wpBlockWebfactoryMap
+        wpBlockWebfactoryMap,
+        wpBlockSocialLinks
     } = useStructure(id);
     return (
         degrades != null ?
         <section className="Contact" style={{backgroundImage:`url(${degrades[2].acf.degrade})`}}>
             <article className='boite-principale'>
-
                 {titre}
                 <article className='contenu'>
                     <div className='images'>
-                        <div className='image1'>{wpBlockImageSizeMedium}</div>
                         <div className='wpBlockWebfactoryMap'>{wpBlockWebfactoryMap}</div>
-                        <div className='image3'>{wpBlockImageSizeMedium}</div>
                     </div>
                     <div className='informations'>
                         {titreDescription}
                         {description}
+                        {wpBlockSocialLinks}
                     </div>
                 </article>
 

@@ -5,10 +5,11 @@
 .Accueil {
     @include page;
     position: relative;
+    background-size: cover;
 
     .marquee-container {
         position: absolute;
-        transform:  rotate(-90deg);
+        transform: rotate(-90deg);
 
         // bottom right permet de mieux positionner relativement au côté droit de l'écran
         transform-origin: bottom right;
@@ -17,10 +18,13 @@
         overflow-x: visible !important; // Override
 
         .marquee {
-            .titre {
+            span {
                 font-size: 1000%;
+                @include proprietes-aleatoires(
+                    map-values(map-get($couleurs, domaines)), color, 15
+                );
+                @include proprietes-aleatoires(map-get($polices, styles), font-family, 15);
                 @include desactiver-margin-block;
-
                 @include tablette {font-size: 2000%;}
                 @include ordinateur {font-size: 4000%;}
             }
@@ -35,4 +39,8 @@
     }
 
     @include tablette {justify-content: flex-end;}
+
+    ::marker {
+        color: transparent
+    }
 }

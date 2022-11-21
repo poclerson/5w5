@@ -6,10 +6,8 @@
 .ListeSessions {
     box-sizing: border-box;
     position: relative;
-    height: 100%;
 
     @include tablette {
-        @include padding-auto;
         height: unset;
     }
 
@@ -23,7 +21,7 @@
     .liste {
         display: flex;
         width: 100vw;
-        height: 80%;
+        height: 100%;
     }
 
     // Reculer
@@ -55,6 +53,14 @@
             transform-style: preserve-3d;
 
             .session-titre {
+                @include hover-bordures-cotes;
+                width: min-content;
+
+                .sous-titre {
+                    line-break: strict;
+                    white-space: nowrap;
+                }
+                
                 &[ouvert="true"] {
                     display: none;
                 }

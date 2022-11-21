@@ -49,6 +49,10 @@ export default function App() {
         
     return (
         <div className="App">
+            <div className="thermometre">
+                <div className="boule"></div>
+                <div className="barre"></div>
+            </div>
             {hcms != null && donneesSite != null ?
                 <ContexteDonneesSite.Provider value={donneesSite}>
                     <EnTete enteteWP={hcms.data.header} />
@@ -60,7 +64,7 @@ export default function App() {
                             return <Route 
                                 key={"page" + page.pageID}
                                 path={page.pageSlug}
-                                element={<Composant id={page.pageID} />}
+                                element={<Composant id={page.pageID} key={Math.random(0, 1000)} />}
                             />
                         })}
                     </Routes> 

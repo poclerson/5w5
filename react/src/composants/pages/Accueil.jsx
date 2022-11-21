@@ -9,17 +9,15 @@ import medias from '../../medias';
 export default function Accueil({id}) {
     const tablette = useMediaQuery(medias.tablette);
 
-    const {titres} = useStructure(id);
+    const {titres, BACKGROUND} = useStructure(id);
 
     return(
-        <section className="Accueil">
-
-            {titres && 
-                <Marquee speed={tablette ? 300 : 20} gradient={false} pauseOnClick={true}>
-                    {titres.props.children}
-                </Marquee>
-            }
-
-        </section>
+        titres && BACKGROUND &&
+            <section className="Accueil" style={{backgroundImage: BACKGROUND}}>
+                    <Marquee speed={tablette ? 300 : 20} gradient={false} pauseOnClick={true}>
+                        {titres.props.children}
+                    </Marquee>
+            </section>
+            
     )
 }

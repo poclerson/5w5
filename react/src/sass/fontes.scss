@@ -6,7 +6,7 @@ html {
     @include texte-dynamique($tailles-textes);
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
     font-family: map-get($polices, titre);
     color: #F3F3EA;
 }

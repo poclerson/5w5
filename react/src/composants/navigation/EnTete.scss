@@ -6,46 +6,55 @@
     top: 0;
     left: 0;
     z-index: 10;
+    // Restreindre la hauteur normale
+    height: 80px;
+    @include transition-base(height);
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    @include pleine-taille;
+    gap: 5vh;
 
     &[ouvert="false"] {
         @include tablette {
             // Empêcher de prendre tout la place quand fermé
             height: unset;
-        }
-
-        .resultats-recherche {display: none;}
-
-        @include tablette {
+            
             .contenu {
                 .Recherche {
-                    .zone-saisie {display: none;}
-                }
-    
-                .Navigation {
-                    display: flex;
+                    animation: menu 0.5s linear 0s 1 normal both;
                 }
             }
+        .resultats-recherche {
+            transform: scaleY(0);
         }
     }
 
     &[ouvert="true"] {
+        // Permettre de prendre autant d'espace que désiré
+        height: 100%;
+
         @include tablette {
             .contenu {
                 .Recherche {
-                    flex-basis: 100%;
-                    .zone-saisie {display: flex; width: 100%;}
+                    flex-direction: row-reverse;
                 }
-    
+   
                 .Navigation {
-                    display: none;
+                    @include transition-base;
+                    transform: scaleX(0);
+                    width: 0;
+                    flex: 0 0 0;
                 }
             }
         }
+    }
+    svg{
+        position: absolute;
+        margin-left: 10%;
+        z-index: 10;
+    }
+    svg:hover{
+        animation: svg 2s ease 0s 1 normal forwards;
     }
 
     @include tablette {justify-content: unset;}
@@ -54,20 +63,32 @@
         @include tablette {display: none;}
     }
 
+    .vagues {
+        width: 100vw;
+        height: max-content;
+
+        @include tablette {
+            display: none;
+        }
+    }
+
     .contenu {
         @include themer($theme-menu-mobile);
-        @include fond-flou;
+        backdrop-filter: blur(15px);
 
         @include gerer-ouverture(flex);
-        flex-direction: column;
 
+        flex-direction: column;
+        height: 50vh;
         width: 95vw;
         box-sizing: border-box;
         padding: 10vw;
+        gap: 5%;
 
         border-radius: 0 70px 70px 0;
 
         @include tablette {
+            animation: menu 0.5s linear 0s 1 normal both;
             flex-direction: row;
             @include themer($theme-menu-tablette);
             width: 100vw;
@@ -96,13 +117,74 @@
     }
 
     .resultats-recherche {
-        @include themer($theme-base);
-        background-color: transparent !important;
+        // Animation
+        position: absolute; // Empêcher de rentrer dans le flow de l'entête quand elle est fermée
+        transform-origin: top center;
+        transform: scaleY(1);
+        @include transition-base;
+        
+        // Placement
+        width: 95vw;
+        max-height: 75vh;
+
+        box-sizing: border-box;
+
+        // Décorations
+        @include themer($theme-resultats-recherche);
+        backdrop-filter: blur(15px);
+        border-radius: 0 70px 70px 0;
+        
+        // Flex
         display: flex;
+        position: relative;
 
         padding: 5%;
         flex-direction: column;
         gap: 10%;
         overflow-y: scroll; // Permettre le défilement des résultats s'il y en a trop
+        justify-self: flex-end;
     }
+}
+
+@keyframes menu {
+	0% {
+		opacity: 0;
+		transform: translateX(-250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes svg {
+	0%,
+	100% {
+		transform: rotate(0deg);
+		transform-origin: 50% 50%;
+	}
+
+	10% {
+		transform: rotate(8deg);
+	}
+
+	20%,
+	40%,
+	60% {
+		transform: rotate(-10deg);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: rotate(10deg);
+	}
+
+	80% {
+		transform: rotate(-8deg);
+	}
+
+	90% {
+		transform: rotate(8deg);
+	}
 }

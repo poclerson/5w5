@@ -5,22 +5,18 @@
     display: flex;
     flex-direction: column;
 
-    .titre-page {
-        border: 1px solid transparent; // Ne pas déplacer lors du hover
-        display: block;
-        transition: all 0.35s ease;
-        
-        // padding: 5vw 1vw;
-        padding: 0 11.2px;
-        //border-radius: 5px;
-       // border-bottom-right-radius: 25px;
-       
+    // Animation de l'ouverture de la recherhce
+    transform-origin: left center;
+    transition: all cubic-bezier(.99,-0.01,.65,.73) .5s;
+    transform: scaleX(1);
+    width: 100%;
 
-        &:hover {
-            //border: 1px solid map-get($couleurs, clair);
-           border-left: 3px solid map-get($couleurs, clair);
-           border-right: 3px solid map-get($couleurs, clair);
-        }
+    .titre-page {
+        display: block;
+        width: min-content;
+        white-space: nowrap;
+        
+        @include hover-bordures-cotes;
     }
 
     @include tablette {

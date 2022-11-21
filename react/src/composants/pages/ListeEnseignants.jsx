@@ -9,12 +9,19 @@ import {useContext, useLayoutEffect} from 'react';
 
 import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
-import Suivant from '../modules/Suivant';
+import FlecheNav from '../modules/FlecheNav';
 
 export default function ListeEnseignants({id}) {
     const {enseignants} = useContext(ContexteDonneesSite);
 
-    const {surClic, surClicSuivant, verifierOuvertureParent, verifierOuverture} = useOuvertures(enseignants)
+    const {
+        surClic, 
+        surClicSuivant, 
+        verifierOuvertureParent, 
+        verifierOuverture,
+        indexOuvert,
+        ouvertureParent
+    } = useOuvertures(enseignants)
 
     const {titre} = useStructure(id);
 
@@ -22,9 +29,12 @@ export default function ListeEnseignants({id}) {
 
     return(
         enseignants != null ?
-            <section className="ListeEnseignants" enseignant-ouvert={verifierOuvertureParent()} >
+            <section 
+                className="ListeEnseignants" 
+                item-ouvert={verifierOuvertureParent()} 
+            >
                 {titre}
-                <ul className="liste">
+                <ul className="liste" item-ouvert={verifierOuvertureParent()}>
                     {
                         enseignants.map((enseignant, index) => {
                             return <Enseignant 
@@ -40,7 +50,7 @@ export default function ListeEnseignants({id}) {
                         ) 
                     }
                 </ul>
-                <Suivant gestionClic={surClicSuivant} />
+                <FlecheNav gestionClic={surClicSuivant} texte={true} classesAdditionnelles="suivant" />
             </section>  
         : <Chargement />
     );
