@@ -14,7 +14,12 @@ import FlecheNav from '../modules/FlecheNav';
 export default function ListeEnseignants({id}) {
     const {enseignants} = useContext(ContexteDonneesSite);
 
-    const {surClic, surClicSuivant, verifierOuvertureParent, verifierOuverture} = useOuvertures(enseignants)
+    const {
+        surClic, 
+        surClicSuivant, 
+        verifierOuvertureParent, 
+        verifierOuverture
+    } = useOuvertures(enseignants)
 
     const {titre} = useStructure(id);
 
@@ -22,7 +27,10 @@ export default function ListeEnseignants({id}) {
 
     return(
         enseignants != null ?
-            <section className="ListeEnseignants" enseignant-ouvert={verifierOuvertureParent()} >
+            <section 
+                className="ListeEnseignants" 
+                enseignant-ouvert={verifierOuvertureParent()} 
+            >
                 {titre}
                 <ul className="liste">
                     {
