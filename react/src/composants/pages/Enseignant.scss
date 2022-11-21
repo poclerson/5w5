@@ -146,6 +146,18 @@ $couleurs-domaines-modifiees: (
                 display: flex;
                 flex-direction: column;
 
+                .domaine{
+                    display: flex;
+                    border: groove 10px blue;
+                    padding: 5px 6px 5px 9px ;
+                    border-radius: 30px;
+                    //background-color: rgb(45, 45, 45);
+                    width: min-content;
+                    
+                
+                }
+
+
                 .conteneur-description {
                     flex-grow: 1;
                     padding: 10%;
@@ -157,6 +169,7 @@ $couleurs-domaines-modifiees: (
 
                     .description {color: map-get($couleurs, sombre)}
 
+                  
                     @include tablette {
                         background-color: transparent;
                         .description {color: map-get($couleurs, clair);}
