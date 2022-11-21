@@ -36,7 +36,7 @@ export default function Contact({id}) {
 
 
                 <div className='inscription'>
-                    {titreInscription}
+                     {titreInscription}
                     <ArrowForwardIosIcon className='Icone'/>
                 </div>
             </article>
