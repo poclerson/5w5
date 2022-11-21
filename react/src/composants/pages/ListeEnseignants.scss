@@ -25,10 +25,12 @@
 
             @include ordinateur {
                 // overflow-x: scroll;
+                transition: left ease-in-out .08s;
                 overflow-y: hidden;
             }
 
             & ~ .retour {
+                transition: left ease-in-out .08s;
                 display: none;
             }
         }
@@ -43,10 +45,14 @@
         .liste {
             display: flex;
             visibility: hidden;
+            transition: left ease-in-out .08s;
+
 
             // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
             .Enseignant[ouvert="false"] {
                 display: none;
+                transition: left ease-in-out .08s;
+
             }
 
             @include ordinateur {
@@ -66,10 +72,14 @@
                     & {
                         & + .Enseignant {
                             display: flex;
+                            transition: left ease-in-out .08s;
+
 
                             @include ordinateur-large {
                                 & + .Enseignant {
                                     display: flex;
+                                    transition: left ease-in-out .08s;
+
                                 }
                             }
                         }
@@ -81,10 +91,15 @@
         .retour {
             // N'afficher que la flèche sur ordi + quand un enseignant est ouvert
             display: flex;
+            transition: left ease-in-out .08s;
+            animation: fondu-vers-prochain 2s linear 0s 1 normal forwards;
+
         }
 
         .suivant {
             @include ordinateur {display: flex}
+            transition: left ease-in-out .08s;
+            animation: fondu-vers-prochain 2s linear 0s 1 normal forwards;
         }
     }
 
@@ -116,5 +131,6 @@
         top: 700px;
         position: absolute;
         display: none;
+        
     }
 }
