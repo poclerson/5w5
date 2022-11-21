@@ -5,8 +5,8 @@ import Modele3D from "./Modele3D";
 const VisionneurModele = ({ cheminModele, echelle, position, rotation }) => {
     return (
         <Canvas style={{width: '100%', height: '100%', overflow: 'visible'}}>
-            <ambientLight intensity={.05} />
-            <spotLight position={[1, 10, 1]} rotation={[0, 0, 0]} intensity={3} power={2} />
+            <ambientLight intensity={1} />
+            <pointLight intensity={1.5} position={[0, 0, 30]} />
             <Suspense fallback={null}>
                 <Modele3D 
                     chemin={cheminModele} 

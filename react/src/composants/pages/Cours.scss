@@ -25,6 +25,7 @@
         }
     }
 
+    // Sinon le cours devient trop petit
     @include petit-mobile {
         aspect-ratio: 1 / 1.5;
         flex-basis: 65vw;
@@ -49,22 +50,17 @@
         @include premier-dernier(margin, 35vw, 10vw);
     }
 
-    @include ordinateur-large {
-        
-    }
-
     // Une carte de cours
     .carte {
         display: flex;
         flex-direction: column;
         position: relative;
-
         height: 100%;
 
         @include carte;
-        @include fond-flou;
+        backdrop-filter: blur(30px);
         @include themer($theme-cours);
-        transition: transform ease-in-out .1s;
+        transition: transform ease-in-out .3s;
         padding: 15px;
 
         .modele {
@@ -89,6 +85,7 @@
         }
 
         .description {
+            @include cacher-barre-defilement;
             flex: 0 1 80%;
             overflow-x: hidden;
             overflow-y: scroll;

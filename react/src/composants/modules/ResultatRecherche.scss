@@ -1,3 +1,9 @@
-.ResultatRecheche {
+@import '../../sass/mixins.scss';
 
+.ResultatRecherche {
+    width: min-content;
+    .titre {
+        white-space: nowrap;
+        @include hover-bordures-cotes;
+    }
 }

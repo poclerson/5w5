@@ -1,13 +1,14 @@
 @import '../../sass/mixins.scss';
+@import '../../sass/animations.scss';
 
 .Projet {
     transition: .7s ease;
-    &:hover{
-        transform: scale(1.1);
-        transform: scale(1.1);
-        transform: scale(1.1);
-    }
+
     &[ouvert="false"] {
+        &:hover{
+            transform: scale(1.1);
+        }
+
         //  Les projets prennent deux rangées de hauteur
         grid-row: span 2;
 
@@ -25,8 +26,11 @@
                 align-items: center;
             }
 
-            .image-presentation {
-                object-fit: cover;
+            .image-presentation-conteneur {
+                .image-presentation {
+                    object-fit: cover;
+                    opacity: .5;
+                }
             }
         }
 
@@ -36,6 +40,7 @@
     }
 
     &[ouvert="true"] {
+        animation: fondu-entrant .5s ease-in-out;
         @include pleine-taille;
 
         .miniature {

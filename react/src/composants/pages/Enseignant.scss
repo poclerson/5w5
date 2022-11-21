@@ -114,6 +114,9 @@ $couleurs-domaines-modifiees: (
                 @include bulle;
                 padding: 15px;
 
+                margin-left: 5vw;
+                margin-right: 5vw;
+
                 .fond-photo {
                     aspect-ratio: 1;
                     background-color: map-get($couleurs, clair);
@@ -221,6 +224,26 @@ $couleurs-domaines-modifiees: (
                 flex: 1 0 60%;
                 height: 60vh;
                 padding: unset;
+            }
+
+            .texte {
+                @include pleine-taille;
+
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                box-sizing: border-box;
+                padding-left: 7.5vw;
+                padding-right: 7.5vw;
+                border-radius: 20px 20px 0 0;
+
+                .desc {
+                    background-color: map-get($couleurs, clair);
+                    height: 100%;
+                    color: black;
+                    border-radius: 20px 20px 0 0;
+                    padding: 5vw;
+                }
             }
         }
 
