@@ -6,8 +6,8 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
     /* Positionnement des icônes 3D */
     const positionSelonCours = {
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/manetteLambert.glb': {
-            position: [0, 3, 1],
-            rotation: [0, 1, 2]
+            position: [0, 0, 2.5],
+            rotation: [0, 4.7, 0]
         },
         
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/methodologieRecherche.glb': {
