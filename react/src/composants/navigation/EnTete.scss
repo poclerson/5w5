@@ -6,7 +6,9 @@
     top: 0;
     left: 0;
     z-index: 10;
+    // Restreindre la hauteur normale
     height: 80px;
+    @include transition-base(height);
 
     display: flex;
     flex-direction: column;
@@ -14,19 +16,15 @@
     gap: 5vh;
 
     &[ouvert="false"] {
-        @include tablette {
-            // Empêcher de prendre tout la place quand fermé
-            height: 80px;
-        }
-
         .resultats-recherche {
             transform: scaleY(0);
-            opacity: 0;
         }
     }
 
     &[ouvert="true"] {
-        height: unset;
+        // Permettre de prendre autant d'espace que désiré
+        height: 100%;
+
         @include tablette {
             .contenu {
                 .Navigation {
@@ -101,17 +99,18 @@
         transform-origin: top center;
         transform: scaleY(1);
         @include transition-base;
-        opacity: 1;
         
-        // 
+        // Placement
         width: 95vw;
         max-height: 75vh;
         box-sizing: border-box;
 
+        // Décorations
         @include themer($theme-resultats-recherche);
         backdrop-filter: blur(15px);
         border-radius: 0 70px 70px 0;
         
+        // Flex
         display: flex;
         position: relative;
         padding: 5%;

@@ -29,10 +29,10 @@ export default function ListeEnseignants({id}) {
         enseignants != null ?
             <section 
                 className="ListeEnseignants" 
-                enseignant-ouvert={verifierOuvertureParent()} 
+                item-ouvert={verifierOuvertureParent()} 
             >
                 {titre}
-                <ul className="liste">
+                <ul className="liste" item-ouvert={verifierOuvertureParent()}>
                     {
                         enseignants.map((enseignant, index) => {
                             return <Enseignant 

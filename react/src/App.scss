@@ -16,4 +16,15 @@
     & > * {
         animation: fondu-entrant ease-in-out .5s;
     }
+
+    // Liste d'item fermée
+    & *[class^="list"][item-ouvert="false"] {
+        // Animer le passage de retour vers la page initiale
+        animation: fondu-entrant ease-in-out .5s;
+    }
+
+    // Item ouvert, exclure les cours puisqu'ils ne sont pas vraiment 'ouverts'
+    & *[ouvert="true"]:not(.Cours) {
+        animation: fondu-entrant ease-in-out .5s;
+    }
 }

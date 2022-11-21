@@ -52,7 +52,7 @@ export default function ListeProjets({id}) {
     return(
         projets != null && environnement != null ?
             <section className="ListeProjets" item-ouvert={verifierOuvertureParent()}>
-                <ul className="liste">
+                <ul className="liste" item-ouvert={verifierOuvertureParent()}>
                     {titre}
                     {rendreCases()}
                 </ul>

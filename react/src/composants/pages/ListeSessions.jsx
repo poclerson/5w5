@@ -13,7 +13,7 @@ export default function ListeSessions({sessions, cours, pageRef}) {
     const tailleOrdinateur = useMediaQuery(medias.ordinateur);
 
     // Gestion de l'ouverture de chaque session
-    const {surClic, surClicSuivant, verifierOuverture} = useOuvertures(sessions, 0);
+    const {surClic, surClicSuivant, verifierOuverture, verifierOuvertureParent} = useOuvertures(sessions, 0);
 
     // État de rotation du carousel rond des titres de session
     const [rotation, setRotation] = useState(0);
@@ -100,7 +100,7 @@ export default function ListeSessions({sessions, cours, pageRef}) {
             </div>
 
             {/* La session ouverte */}
-            <ul className="liste">
+            <ul className="liste" item-ouvert={verifierOuvertureParent()}>
                 {
                     sessions.map((session, index) => 
                         <Session 

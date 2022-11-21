@@ -31,7 +31,8 @@ export function obtenirTypeArticle(id, articlesRecherches) {
     const article = articlesRecherches.map(article => {
         if (article.id == id) {
             return {
-                type: article.permalink
+                // Exception pour les projets
+                type: article.permalink.replace('projets', 'galerie-etudiante')
                     // Retirer tout de l'URL afin de n'obtenir que le type d'article
                     .replace('https://timm175.sg-host.com/', '')
                     .replace('?', '')
