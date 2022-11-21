@@ -16,13 +16,13 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
         },
         
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/videoCamera.glb': {
-            position: [0, 3, 1],
-            rotation: [0, 1, 2]
+            position: [2, 1, 1],
+            rotation: [9, 2, 1]
         },
 
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/web1.glb': {
-            position: [0, 3, 1],
-            rotation: [0, 1, 2]
+            position: [-3, -0.2, 2],
+            rotation: [0, 4.75, -.05]
         },
 
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/3d-1.glb': {
