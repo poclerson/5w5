@@ -6,7 +6,7 @@ import useMediaQuery from '../../hooks/useMediaQuery';
 import useDefilementInfini from '../../hooks/useDefilementInfini';
 
 import Cours from './Cours';
-import FlecheNav from '../modules/FlecheNav';
+import DegradeSuivant from '../modules/DegradeSuivant';
 
 export default function Session({
     cours, 
@@ -87,9 +87,7 @@ export default function Session({
                     />}
                 )}
             </ul>
-            <div className="degrade">
-                <FlecheNav gestionClic={surClicFleche} texte={false}/>
-            </div>  
+            <DegradeSuivant surClicFleche={surClicFleche} />
         </article>
     )
 }
