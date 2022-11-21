@@ -18,8 +18,9 @@
 
         .marquee {
             span {
-                @include couleurs-aleatoires(color, 15);
                 font-size: 1000%;
+                @include proprietes-aleatoires('couleur', color, 15);
+                @include proprietes-aleatoires('fonte', font-family, 15);
                 @include desactiver-margin-block;
 
                 @include tablette {font-size: 2000%;}
