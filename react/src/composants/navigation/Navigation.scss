@@ -13,6 +13,7 @@
 
     .titre-page {
         display: block;
+        width: min-content;
         white-space: nowrap;
         
         @include hover-bordures-cotes;

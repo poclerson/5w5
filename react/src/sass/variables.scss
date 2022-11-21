@@ -13,11 +13,16 @@ $largeurs-ecran: (
 $polices: (
     titre: 'Lalezar',
     texte: 'Mukta',
-        
-        // $stylesPersonnalise: (
-            
-        // )
-
+    
+    styles: (
+        'Fredoka One',
+        'Modak',
+        'Montserrat',
+        'Rammetto One',
+        'Stalinist One',
+        'Taviraj',
+        'Titan One'
+    )
 );
 
 /*
@@ -26,7 +31,7 @@ $polices: (
 */
 
 $decalage-pages: (
-    mobile: 80px,
+    mobile: 100px,
     tablette: 80px,
     ordinateur: 120px
 );
@@ -241,7 +246,7 @@ $couleurs: (
     clair-transparent: #f3f3ea3a,
     sombre: #0f0f0f,
     sombre-transparent: #0f0f0f6c,
-    dark: #444444,
+    dark: #0f0f0f,
 
     domaines: (
         design: #da3e66,

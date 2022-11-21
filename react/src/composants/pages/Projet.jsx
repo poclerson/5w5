@@ -23,11 +23,13 @@ export default function Projet({
                     <h3 className="sous-titre">{createurs}</h3>
                     <button className="details">Voir en détails</button>
                 </div>
-                <img 
-                    className="image-presentation" 
-                    src={image_presentation} 
-                    alt={`Image du projet ${nom} par ${createurs}`} 
-                />
+                <div className="image-presentation-conteneur">
+                    <img 
+                        className="image-presentation" 
+                        src={image_presentation} 
+                        alt={`Image du projet ${nom} par ${createurs}`} 
+                    />
+                </div>
             </div>
             <div className="contenu">
                 <FlecheNav gestionClic={() => surClic(-1)} direction='precedent' />

@@ -42,7 +42,6 @@ export default function Enseignant({nom, description, photo, domaine, surClic, i
                     <div className="conteneur-description">
                         <p className="description">
                             {description}
-                            {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates minima rem cum voluptatem eligendi, placeat harum quas fuga nemo doloremque saepe, quo, deserunt sequi. Aut voluptatem ullam et distinctio debitis? */}
                             </p>
                     </div>
                 </article>
