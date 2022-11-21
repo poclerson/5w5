@@ -38,17 +38,26 @@
 
                 grid-auto-rows: unset;
                 grid-template-columns: unset;
+
+                // Empêcher de toucher le haut
                 @include padding-auto;
+
+                // Prend trop de place sinon
                 height: 60vh;
             }
 
             @include ordinateur {
                 grid-auto-columns: 15vw;
-                height: 60vh;
             }
 
             .Projet, .photo-environnement {
-                @include proprietes-aleatoires('couleur', background); 
+                @include proprietes-aleatoires(
+                    (
+                        map-deep-get($couleurs, 'domaines', 'jeu'),
+                        map-deep-get($couleurs, 'domaines', 'web'),
+                    ), 
+                    background
+                ); 
                 position: relative;
                 display: flex;
                 border-radius: 20px;

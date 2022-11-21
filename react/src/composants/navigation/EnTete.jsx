@@ -4,8 +4,6 @@ import ContexteDonneesSite from '../../ContexteDonneesSite';
 import {useContext, useState, useRef} from 'react';
 import useOuverture from '../../hooks/useOuverture';
 import useStructure from '../../hooks/useStructure';
-import useMediaQuery from '../../hooks/useMediaQuery';
-import medias from '../../medias'
 import * as wp from '../../wp-rest-api';
 
 import Navigation from './Navigation';
@@ -29,7 +27,6 @@ export default function EnTete({enteteWP}) {
     const refZoneSaisie = useRef();
 
     const {IMGHEADER} = useStructure('entete', true);
-    const mobile = useMediaQuery(medias.mobile);
 
     const gestionResultatsRecherche = (resultats) => {
         setResultatsRecherche(resultats);
@@ -37,15 +34,20 @@ export default function EnTete({enteteWP}) {
 
     const gestionClicRecherche = () => {
         surClicRecherche();
+        focuserZoneSaisie();
+    }
+
+    const focuserZoneSaisie = () => {
         // Il faut attendre que la zone se soit ouverte
-        setTimeout(() => refZoneSaisie.current.focus(), 1)
+        if (document.activeElement != refZoneSaisie.current) {
+            setTimeout(() => refZoneSaisie.current.focus(), 1)
+        }
     }
 
     return (
         <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
             <BoutonBurger gererClic={surClicBurger} ouvert={verifierOuvertureBurger()} />
-            <div className="vagues" style={{backgroundImage: IMGHEADER && IMGHEADER}}></div>
-            {/* <img className="vagues" src={IMGHEADER && IMGHEADER.replace('url(', '').replace(')', '')} alt=""/> */}
+            <img className="vagues" src={IMGHEADER && IMGHEADER.replace('url(', '').replace(')', '')} />
             <div className="contenu" ouvert={verifierOuvertureBurger()}>
                 <SiteLogo url={enteteWP.siteLogoUrl} />
                 <Navigation 

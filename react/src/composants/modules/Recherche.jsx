@@ -1,8 +1,14 @@
-/* Dès que l'utilisateur clique sur la loupe de recherche, prépare le système de recherche et prepare à prendre ce qui est écrit comme valeur */
+/* 
+    Dès que l'utilisateur clique sur la loupe de recherche, 
+    prépare le système de recherche et prepare à prendre
+    ce qui est écrit comme valeur 
+*/
 import './Recherche.scss';
 import {useEffect} from 'react';
 import * as wp from '../../wp-rest-api';
 import SearchIcon from '@mui/icons-material/Search';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import medias from '../../medias';
 
 export default function Rechercher({
     gestionResultats, 
@@ -12,6 +18,8 @@ export default function Rechercher({
     setSaisie, 
     refZoneSaisie
 }) { 
+    const tablette = useMediaQuery(medias.tablette, 'max');
+    
     const gestionSaisie = e => {
         setSaisie(e.target.value);
     }
@@ -42,6 +50,7 @@ export default function Rechercher({
                 ref={refZoneSaisie}
                 type="text"
                 onChange={gestionSaisie}
+                onFocus={() => {tablette && surClic()}}
                 className="zone-saisie"
             />
 

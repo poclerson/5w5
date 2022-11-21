@@ -12,7 +12,6 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     gap: 5vh;
 
     &[ouvert="false"] {
@@ -45,7 +44,7 @@
 
     .vagues {
         width: 100vw;
-        height: 100%;
+        height: max-content;
 
         @include tablette {
             display: none;
@@ -54,7 +53,7 @@
 
     .contenu {
         @include themer($theme-menu-mobile);
-        @include fond-flou;
+        backdrop-filter: blur(15px);
 
         @include gerer-ouverture(flex);
         flex-direction: column;
@@ -62,6 +61,7 @@
         width: 95vw;
         box-sizing: border-box;
         padding: 10vw;
+        gap: 5%;
 
         border-radius: 0 70px 70px 0;
 
@@ -117,5 +117,7 @@
         flex-direction: column;
         gap: 10%;
         overflow-y: scroll; // Permettre le défilement des résultats s'il y en a trop
+        justify-self: flex-end;
+        
     }
 }
