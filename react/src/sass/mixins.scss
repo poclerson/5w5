@@ -128,6 +128,7 @@
     // Itérer chaque classe enfant/propriété dans la map reçue
     @each $classe, $propriete in $classes-proprietes-map {
 
+        // Si on n'utilise pas les couleurs conventionnelles
         @if length($nouvelles-couleurs-selon-domaines) > 0 {
             $map-couleurs-domaines: $nouvelles-couleurs-selon-domaines;
         }
@@ -153,7 +154,18 @@
                     .#{$classe} {
 
                         // Application de la couleur à la propriété
-                        #{$propriete}: $couleur;
+                        
+                        // Si on passe plusieurs propriétés dans $propriete
+                        @if type-of($propriete) == 'list' {
+                            @each $_propriete in $propriete {
+                                // Elles doivent ABSOLUMENT avoir la priorité
+                                #{$_propriete}: $couleur !important;
+                            }
+                        }
+
+                        @else {
+                            #{$propriete}: $couleur;
+                        }
                     }
                 }
             }
@@ -191,7 +203,11 @@
 }
 
 // Raccourci pour une transition de base
-@mixin transition-base($propriete: all, $courbe: cubic-bezier(.99,-0.01,.65,.73), $duree: .5s) {
+@mixin transition-base(
+    $propriete: all, 
+    $courbe: cubic-bezier(.99,-0.01,.65,.73), 
+    $duree: .5s
+) {
     transition: $propriete $courbe $duree;
 }
 
@@ -203,13 +219,11 @@
 
 // Gère l'ouverture de différentes boites d'après des classes
 // Insérer dans la boite à ouvrir/fermer
-@mixin gerer-ouverture($valeur-quand-ouvert) {
-    &.ouvert,
+@mixin gerer-ouverture($valeur-quand-ouvert: flex) {
     &[ouvert="true"] {
         display: $valeur-quand-ouvert;
     }
 
-    &.ferme,
     &[ouvert="false"] {
         display: none;
     }
