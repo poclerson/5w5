@@ -11,7 +11,7 @@
     overflow-x: hidden;
     @include pleine-taille;
     box-sizing: border-box;
-    @include page;
+    @include page(true);
 
     @include ordinateur {
         padding-bottom: 10vh;
@@ -34,7 +34,7 @@
                 gap: 5%;
                 width: 100%;
     
-                &>*{
+                & > *{
                     background-color: beige;
                     width: 180%;
                     content: "";
@@ -60,10 +60,10 @@
             .informations{
                 flex: 2 1 50%;
     
-                p{
+                p {
                     width: 100%;
                     text-align: justify;
-                    line-break: anywhere;
+                    @include tablette {line-break: anywhere;}
                 }
             }
             
@@ -71,14 +71,14 @@
     }
 
     /*'Inscription et son icône'*/
-        .inscription {
-            display: flex;
-            align-items: center;
-            align-self: flex-end;
+    .inscription {
+        display: flex;
+        align-items: center;
+        align-self: flex-end;
 
-            .titre-inscription{
-                text-align: right;
-            }
+        .titre-inscription{
+            text-align: right;
         }
+    }
 }
 

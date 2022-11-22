@@ -165,7 +165,6 @@
 @mixin proprietes-aleatoires($valeurs, $propriete, $nombre-enfants: 100) {
     @for $element from 1 through $nombre-enfants {
         &:nth-of-type(#{$element}) {
-            @warn nth($valeurs, random(length($valeurs)));
             #{$propriete}: nth($valeurs, random(length($valeurs)));
         }
     }
@@ -420,5 +419,26 @@
                 #{$propriete}-bottom: $valeur;
             }
         }
+    }
+}
+
+@mixin frere-adjacent-recursif($selecteur: '*', $nombre-freres: 100) {
+    $frere-present: null;
+
+    & ~ #{$selecteur} {
+        $frere-present: &;
+    }
+
+    @for $frere from 1 through $nombre-freres {
+        #{$frere-present} {
+            @content;
+
+            @warn #{'slt'$frere-present};
+            #{$frere-present} ~ #{$selecteur} {
+                $frere-present: &;
+            }
+        }
+        // $frere-present: #{$frere-present} ~ #{$selecteur};
+        @warn #{'allo'$frere-present};
     }
 }

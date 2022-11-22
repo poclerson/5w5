@@ -43,17 +43,11 @@
         .liste {
             display: flex;
             visibility: hidden;
-            transition: left ease-in-out .08s;
-
-
-            // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
-            .Enseignant[ouvert="false"] {
-                display: none;
-                transition: left ease-in-out .08s;
-
-            }
 
             @include ordinateur {
+                // Mettre l'enseignant ouvert le plus collé au prochain enseignant possible
+                // pour la transition
+                justify-content: flex-end;
                 @include padding-auto;
                 // Empêcher les cartes de prendre trop de place
                 visibility: visible;
@@ -64,25 +58,6 @@
                 // Réduire les paddings pour gagner de l'espace
                 padding-left: 7.5%;
                 padding-right: 2.5%;
-
-                // Afficher le prochain enseignant
-                .Enseignant[ouvert="true"] {
-                    & {
-                        & + .Enseignant {
-                            display: flex;
-                            transition: left ease-in-out .08s;
-
-
-                            @include ordinateur-large {
-                                & + .Enseignant {
-                                    display: flex;
-                                    transition: left ease-in-out .08s;
-
-                                }
-                            }
-                        }
-                    }
-                }
             }
         }
 
@@ -129,6 +104,5 @@
         top: 700px;
         position: absolute;
         display: none;
-        
     }
 }

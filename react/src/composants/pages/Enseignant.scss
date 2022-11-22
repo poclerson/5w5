@@ -15,7 +15,8 @@
 $classes-couleur-domaine: (
     conteneur-photo: background-color,
     miniature: background-color,
-    texte: background-color
+    texte: background-color,
+    domaine: border-color
 );
 
 $classes-couleur-domaine-ferme: (
@@ -46,19 +47,25 @@ $couleurs-domaines-modifiees: (
 
     @include couleurs-domaines($classes-couleur-domaine-ferme);
 
-    
+    @include transition-base;
 
-    &:hover{
-        size: 10%;
-        transition: all 0.9s 0s ease;
+    @include ordinateur {
+        // Séparer la miniature du contenu le plus possible
+        // pour la transition
+        justify-content: space-between;
+        position: absolute;
+        max-height: 60vh;
     }
 
-
-
     // ===== FERMÉ =====
-
-
     &[ouvert="false"] {
+        display: none;
+
+        @include ordinateur {
+            display: flex;
+            // Positionner à droite de l'écran pour la transition
+            right: -40vw;
+        }
         .miniature {
             @include bulle;
             
@@ -78,20 +85,12 @@ $couleurs-domaines-modifiees: (
     
         // Cacher le contenu lorsqu'un enseignant est fermé
         .contenu {display: none;}
-
-       
     }
 
-    
-
-
     // ===== OUVERT =====
-
-
     &[ouvert="true"] {
         display: flex;
         justify-content: center;
-        position: relative;
         // Permettre de rendre la liste invisible tout en gardant l'enseignant ouvert visible
         visibility: visible;
         height: 100%;
@@ -140,9 +139,6 @@ $couleurs-domaines-modifiees: (
                 }
 
                 // & > *:not(.fond-photo) {display: none}
-
-                // Faire disparaitre la photo du contenu sur ordinateur puisqu'on utilise la miniature
-                @include ordinateur {display: none;}
             }
 
             // Section de texte avec l'image de l'enseignant
@@ -155,12 +151,11 @@ $couleurs-domaines-modifiees: (
                 display: flex;
                 flex-direction: column;
 
-                .domaine{
+                .domaine {
                     display: flex;
-                    border: groove 10px blue;
-                    padding: 5px 6px 5px 9px ;
+                    border: solid 5px;
+                    padding: 10px;
                     border-radius: 30px;
-                    //background-color: rgb(45, 45, 45);
                     width: min-content;
                 }
 
@@ -188,6 +183,7 @@ $couleurs-domaines-modifiees: (
                     }
 
                     @include ordinateur {
+                        align-items: flex-start;
                         flex-grow: unset;
                         height: 30%;
                         flex: 1 0 80%;
@@ -244,14 +240,15 @@ $couleurs-domaines-modifiees: (
                 flex-direction: column;
                 gap: 10px;
                 box-sizing: border-box;
-                padding-left: 7.5vw;
-                padding-right: 7.5vw;
-                border-radius: 20px 20px 0 0;
+                padding: 0 7.5vw;
+
+                @include ordinateur {
+                    padding: 5%;
+                }
 
                 .desc {
                     background-color: map-get($couleurs, clair);
                     height: 100%;
-                    color: black;
                     border-radius: 20px 20px 0 0;
                     padding: 5vw;
                 }
@@ -270,28 +267,48 @@ $couleurs-domaines-modifiees: (
         
         }
 
-        // & ~ .Enseignant[ouvert="false"] {
-        //     display: none !important;
-        // }
-
-        @mixin redimensionner-enseignants() {
-            flex: 1 20%;
-            transform: scale(0.5);
-        }
-
         @include ordinateur {
+            opacity: 1;
             @include couleurs-domaines($classes-couleur-domaine-ferme);
             flex: 0 1 80%;
+            width: 60vw;
+            right: 40vh;
+            transform: scale(1);
+            @include transition-base;
 
-            // Sélectionner l'enseignant juste après l'enseignant ouvert
-            
-
+            // Enseignant suivant
             & + .Enseignant {
-                @include redimensionner-enseignants;
+                display: flex;
+                right: 0;
+                @include transition-base;
+                width: 30vw;
+                flex: 0 1 80%;
+                transform: scale(0.5);
+                opacity: 1;
 
-                @include ordinateur-large {
-                    & + .Enseignant {
-                        @include redimensionner-enseignants;
+                .contenu {
+                    display: flex;
+                    position: absolute;
+                    transform: scale(0);
+                    @include transition-base;
+                }
+
+                // Troisième enseignant
+                & + .Enseignant {
+                    @include transition-base;
+                    opacity: 0;
+                    // display: flex;
+                    // position: absolute;
+                    // right: -500px;
+                    // @include transition-base;
+                    // transform: scale(.5);
+
+                    @include ordinateur-large {
+                        // Quatrième enseignant
+                        & + .Enseignant {
+                            display: flex;
+                            transform: scale(.5);
+                        }
                     }
                 }
             }
@@ -368,9 +385,18 @@ $couleurs-domaines-modifiees: (
         .contenu {
             align-items: center;
             @include tablette {align-items: flex-start;}
+
+            @include ordinateur {
+                // Permet la transition de l'enseignant suivant vers le présent
+                // position: absolute;
+                transform: scale(1);
+                @include transition-base;
+            }
             .conteneur-photo {
                 @include tablette {margin: unset;}
 
+                // Faire disparaitre la photo du contenu sur ordinateur puisqu'on utilise la miniature
+                @include ordinateur {display: none;}
                 .conteneur-domaine,
                 .titre {
                     display: none;
@@ -381,6 +407,16 @@ $couleurs-domaines-modifiees: (
 
         @include ordinateur-large {
             gap: 5%;
+        }
+    }
+
+    @include ordinateur {
+        // Enseignant précédent
+        &:has(+ .Enseignant[ouvert="true"]) {
+            display: flex;
+            @include transition-base;
+            right: 100vw;
+            opacity: 0;
         }
     }
 }
