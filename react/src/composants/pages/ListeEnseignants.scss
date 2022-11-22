@@ -2,7 +2,7 @@
 @import '../../sass/variables.scss';
 
 .ListeEnseignants {
-    @include page(true);
+    @include page(true, true);
     flex-direction: column;
     $taille-gouttieres: 10%;
     position: relative;
@@ -31,6 +31,20 @@
                 transition: left ease-in-out .08s;
                 display: none;
             }
+
+            & > * {
+                display: flex;
+                @include ordinateur {
+                    // Rétablir les styles par défaut lorsque la liste est fermée
+                    position: static;
+                    right: 0;
+                    opacity: 1;
+
+                    .miniature {
+                        flex: unset;
+                    }
+                }
+            }
         }
     }
 
@@ -58,6 +72,10 @@
                 // Réduire les paddings pour gagner de l'espace
                 padding-left: 7.5%;
                 padding-right: 2.5%;
+
+                & > * {
+                    // animation: fondu-entrant ease-in-out .5s;
+                }
             }
         }
 
