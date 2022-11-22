@@ -18,7 +18,7 @@ export default function Rechercher({
     setSaisie, 
     refZoneSaisie
 }) { 
-    const tablette = useMediaQuery(medias.tablette, 'max');
+    const tabletteMax = useMediaQuery(medias.tablette, 'max');
     
     const gestionSaisie = e => {
         setSaisie(e.target.value);
@@ -50,7 +50,7 @@ export default function Rechercher({
                 ref={refZoneSaisie}
                 type="text"
                 onChange={gestionSaisie}
-                onFocus={() => {tablette && surClic()}}
+                onFocus={() => {tabletteMax && verifierOuverture() == 'false' && surClic()}}
                 className="zone-saisie"
             />
 

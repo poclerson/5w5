@@ -26,22 +26,11 @@ export default function EnTete({enteteWP}) {
     const [saisie, setSaisie] = useState("");
     const refZoneSaisie = useRef();
 
+    // Vagues de l'entête mobile
     const {IMGHEADER} = useStructure('entete', true);
 
     const gestionResultatsRecherche = (resultats) => {
         setResultatsRecherche(resultats);
-    }
-
-    const gestionClicRecherche = () => {
-        surClicRecherche();
-        focuserZoneSaisie();
-    }
-
-    const focuserZoneSaisie = () => {
-        // Il faut attendre que la zone se soit ouverte
-        if (document.activeElement != refZoneSaisie.current) {
-            setTimeout(() => refZoneSaisie.current.focus(), 1)
-        }
     }
 
     return (
@@ -52,12 +41,12 @@ export default function EnTete({enteteWP}) {
                 <SiteLogo url={enteteWP.siteLogoUrl} />
                 <Navigation 
                     pages={enteteWP.headerMenuItems} 
-                    surClic={() => gestionClicRecherche} 
+                    surClic={surClicBurger} 
                 />
                 <Recherche 
                     gestionResultats={gestionResultatsRecherche} 
                     verifierOuverture={verifierOuvertureRecherche}
-                    surClic={gestionClicRecherche}
+                    surClic={surClicRecherche}
                     saisie={saisie}
                     setSaisie={setSaisie}
                     refZoneSaisie={refZoneSaisie}
