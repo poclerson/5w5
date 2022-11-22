@@ -11,8 +11,8 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
         },
         
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/methodologieRecherche.glb': {
-            position: [0, 3, 1],
-            rotation: [0, 1, 2]
+            position: [-3, -3, 1],
+            rotation: [-.1, 5, -.05]
         },
         
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/videoCamera.glb': {
@@ -31,8 +31,8 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
         },
 
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/designCours.glb': {
-            position: [0, 3, 1],
-            rotation: [0, 1, 2]
+            position: [-20, 0.7, 10],
+            rotation: [0, 2, 0]
         }
     };
 
