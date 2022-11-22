@@ -11,8 +11,8 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
         },
         
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/methodologieRecherche.glb': {
-            position: [-3, -3, 1],
-            rotation: [-.1, 5, -.05]
+            position: [-7, -2, -4],
+            rotation: [0, 4.7, -.04]
         },
         
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/camera-1.glb': {
