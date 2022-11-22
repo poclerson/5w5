@@ -26,31 +26,12 @@ export default function EnTete({enteteWP}) {
     const [saisie, setSaisie] = useState("");
     const refZoneSaisie = useRef();
 
+    // Vagues de l'entête mobile
     const {IMGHEADER} = useStructure('entete', true);
 
     const gestionResultatsRecherche = (resultats) => {
         setResultatsRecherche(resultats);
     }
-
-    const gestionClicRecherche = () => {
-        surClicRecherche();
-        // focuserZoneSaisie();
-    }
-
-    // const focuserZoneSaisie = () => {
-    //     console.log("allo")
-    //     // Il faut attendre que la zone se soit ouverte
-    //     // console.log(window.getComputedStyle(document.querySelector('.' + refZoneSaisie.current.className), ':focus'))
-    //     console.log(document.activeElement)
-    //     setTimeout(() => {
-    //         if (document.activeElement != refZoneSaisie.current) {
-    //             setTimeout(() => {
-    //                 if (document.activeElement != refZoneSaisie.current)
-    //                     refZoneSaisie.current.focus();
-    //             }, 2)
-    //         }
-    //     }, 10)
-    // }
 
     return (
         <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
@@ -60,12 +41,12 @@ export default function EnTete({enteteWP}) {
                 <SiteLogo url={enteteWP.siteLogoUrl} />
                 <Navigation 
                     pages={enteteWP.headerMenuItems} 
-                    surClic={() => {gestionClicRecherche(); surClicBurger()}} 
+                    surClic={surClicBurger} 
                 />
                 <Recherche 
                     gestionResultats={gestionResultatsRecherche} 
                     verifierOuverture={verifierOuvertureRecherche}
-                    surClic={gestionClicRecherche}
+                    surClic={surClicRecherche}
                     saisie={saisie}
                     setSaisie={setSaisie}
                     refZoneSaisie={refZoneSaisie}
