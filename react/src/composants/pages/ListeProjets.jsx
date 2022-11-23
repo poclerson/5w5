@@ -8,6 +8,7 @@ import ContexteDonneesSite from '../../ContexteDonneesSite';
 
 import Projet from './Projet';
 import Chargement from '../modules/Chargement';
+import Fond from '../modules/Fond';
 
 export default function ListeProjets({id}) {
     const {projets, environnement} = useContext(ContexteDonneesSite);
@@ -17,7 +18,7 @@ export default function ListeProjets({id}) {
         environnement: environnement
     });
 
-    const {titre} = useStructure(id);
+    const {titre, BACKGROUND} = useStructure(id);
 
     useOuvrirSelonId(surClic);
 
@@ -53,7 +54,11 @@ export default function ListeProjets({id}) {
 
     return(
         projets != null && environnement != null ?
-            <section className="ListeProjets" item-ouvert={verifierOuvertureParent()}>
+            <section 
+                className="ListeProjets" 
+                item-ouvert={verifierOuvertureParent()}
+            >
+                <Fond fond={{backgroundImage: BACKGROUND}} />
                 <ul className="liste" item-ouvert={verifierOuvertureParent()}>
                     {titre}
                     {rendreCases()}

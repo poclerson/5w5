@@ -43,5 +43,9 @@
         @include tablette {
             left: $decalage-tablette / 2;
         }
+
+        @include ordinateur {
+            display: none;
+        }
     }
 }

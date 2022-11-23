@@ -4,12 +4,12 @@ import ContexteDonneesSite from '../../ContexteDonneesSite';
 import useOuvertures from '../../hooks/useOuvertures';
 import useStructure from '../../hooks/useStructure';
 import useOuvrirSelonId from '../../hooks/useOuvrirSelonId';
-import {useLocation} from 'react-router-dom';
-import {useContext, useLayoutEffect} from 'react';
+import {useContext} from 'react';
 
 import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
 import FlecheNav from '../modules/FlecheNav';
+import Fond from '../modules/Fond';
 
 export default function ListeEnseignants({id}) {
     const {enseignants} = useContext(ContexteDonneesSite);
@@ -18,12 +18,10 @@ export default function ListeEnseignants({id}) {
         surClic, 
         surClicSuivant, 
         verifierOuvertureParent, 
-        verifierOuverture,
-        indexOuvert,
-        ouvertureParent
+        verifierOuverture
     } = useOuvertures(enseignants)
 
-    const {titre} = useStructure(id);
+    const {titre, BACKGROUND} = useStructure(id);
 
     useOuvrirSelonId(surClic)
 
@@ -51,6 +49,7 @@ export default function ListeEnseignants({id}) {
                     }
                 </ul>
                 <FlecheNav gestionClic={surClicSuivant} texte={true} classesAdditionnelles="suivant" />
+                <Fond fond={{backgroundImage: BACKGROUND}} />
             </section>  
         : <Chargement />
     );
