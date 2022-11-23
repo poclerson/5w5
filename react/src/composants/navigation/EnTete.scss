@@ -80,6 +80,7 @@
         @include transition-base($duree: .25s);
         backdrop-filter: blur(15px);
 
+        display: flex;
         flex-direction: column;
         height: 50vh;
         width: 95vw;
@@ -104,7 +105,10 @@
             &[ouvert="false"]{display: flex;}
         }
 
-        @include ordinateur {height: 120px;}
+        @include ordinateur {
+            min-height: 100px;
+            height: 100px;
+        }
 
         // Transition d'ouverture quand on clique sur le menu burger
         @include max-mobile {

@@ -41,9 +41,24 @@ $couleurs-domaines-modifiees: (
 );
 
 .Enseignant {
+    // @@@@@@@@@@@@@@@@@@@@@@ TEMPORAIRE @@@@@@@@@@@@@@@@@@@
+    @include ordinateur {
+        &.modelisation3d .titre {
+            color: map-get($couleurs, sombre);
+        }
+    }
     @include themer($theme-enseignant);
 
     @include couleurs-domaines($classes-couleur-domaine-ferme);
+
+    @include couleurs-domaines($classes-couleur-domaine);
+    
+    @include max-mobile {
+        @include couleurs-domaines(
+            $classes-couleur-domaine-contraste-texte,
+            $couleurs-domaines-modifiees
+        );
+    }
 
     @include transition-base;
 
@@ -149,6 +164,10 @@ $couleurs-domaines-modifiees: (
 
                 display: flex;
                 flex-direction: column;
+
+                @include tablette {
+                    height: 90%;
+                }
 
                 .domaine {
                     display: flex;
@@ -433,10 +452,4 @@ $couleurs-domaines-modifiees: (
             }
         }
     }
-
-    @include couleurs-domaines($classes-couleur-domaine);
-    @include couleurs-domaines(
-        $classes-couleur-domaine-contraste-texte,
-        $couleurs-domaines-modifiees
-    );
 }

@@ -97,6 +97,10 @@
             transition: left ease-in-out .08s;
             animation: fondu-vers-prochain 2s linear 0s 1 normal forwards;
         }
+
+        .DegradeSuivant {
+            transform: translateX(10vw);
+        }
     }
 
     .liste {
