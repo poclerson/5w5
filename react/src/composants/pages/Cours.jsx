@@ -6,18 +6,18 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
     /* Positionnement des icônes 3D */
     const positionSelonCours = {
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/manetteLambert.glb': {
-            position: [0, 3, 1],
-            rotation: [0, 1, 2]
+            position: [0, 0, 2.5],
+            rotation: [0, 4.7, 0]
         },
         
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/methodologieRecherche.glb': {
-            position: [0, 3, 1],
-            rotation: [0, 1, 2]
+            position: [-7, -2, -7],
+            rotation: [0, 4.7, -.04]
         },
         
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/videoCamera.glb': {
-            position: [2, 1, 1],
-            rotation: [9, 2, 1]
+        'https://timm175.sg-host.com/wp-content/uploads/2022/11/video_.glb': {
+            position: [0, 0.2, -5],
+            rotation: [0, 4.7, 0]
         },
 
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/web1.glb': {
@@ -26,13 +26,13 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
         },
 
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/3d-1.glb': {
-            position: [0, 3, 1],
-            rotation: [0, 1, 2]
+            position: [2.5, -.3, 1.9],
+            rotation: [0, 4.3, 0]
         },
 
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/designCours.glb': {
-            position: [0, 3, 1],
-            rotation: [0, 1, 2]
+            position: [-20, 0.7, 10],
+            rotation: [0, 2, 0]
         }
     };
 
