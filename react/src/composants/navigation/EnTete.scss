@@ -17,13 +17,15 @@
     @include tablette {width: 100%;}
 
     &[ouvert="false"] {
-        @include tablette {
-            .contenu {
+        .contenu {
+            @include tablette {
                 @include transition-base;
                 .Recherche {
                     animation: menu 0.5s linear 0s 1 normal both;
                 }
             }
+        }
+        @include tablette {
             .resultats-recherche {
                 transform: scaleY(0);
             }
@@ -33,8 +35,7 @@
 
     &[ouvert="true"] {
         // Permettre de prendre autant d'espace que désiré
-        height: 100%;
-
+        height: unset;
         @include tablette {
             .contenu {
                 gap: 0;
@@ -76,24 +77,25 @@
 
     .contenu {
         @include themer($theme-menu-mobile);
-        @include transition-base;
+        @include transition-base($duree: .25s);
         backdrop-filter: blur(15px);
 
-        @include gerer-ouverture(flex);
-
+        display: flex;
         flex-direction: column;
-        height: 50vh;
+        justify-content: space-between;
+        flex: 0 0 30%;
         width: 95vw;
         box-sizing: border-box;
         padding: 10vw;
-        gap: 5%;
 
         border-radius: 0 70px 70px 0;
 
         @include tablette {
+            flex: unset;
             animation: menu 0.5s linear 0s 1 normal both;
             flex-direction: row;
             align-items: center;
+            gap: 5%;
             @include themer($theme-menu-tablette);
             width: 100%;
             height: 80px;
@@ -105,15 +107,23 @@
             &[ouvert="false"]{display: flex;}
         }
 
-        @include ordinateur {height: 120px;}
+        @include ordinateur {
+            min-height: 100px;
+            height: 100px;
+        }
 
+        // Transition d'ouverture quand on clique sur le menu burger
         @include max-mobile {
-            &[ouvert="true"] ~ .resultats-recherche {
-                display: flex;
+            &[ouvert="true"] {
+                &, & ~ .resultats-recherche {
+                    transform: translateX(0);
+                }
             }
 
-            &[ouvert="false"] ~ .resultats-recherche {
-                display: none;
+            &[ouvert="false"] {
+                &, & ~ .resultats-recherche {
+                    transform: translateX(-100vw);
+                }
             }
         }
     }
@@ -123,11 +133,13 @@
         position: absolute; // Empêcher de rentrer dans le flow de l'entête quand elle est fermée
         transform-origin: top center;
         transform: scaleY(1);
-        @include transition-base;
+        @include transition-base($duree: .25s);
+        transition-delay: .1s;
         
         // Placement
         width: 95vw;
         max-height: 75vh;
+        flex: 1 1 12.5%;
 
         box-sizing: border-box;
 

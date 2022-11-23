@@ -1,6 +1,16 @@
 import * as u from './utilitaires';
 
 /**
+ * Restreint un chiffre dans une intervalle
+ * @param {Number} min Valeur minimale
+ * @param {Number} max Valeur maximale
+ * @returns {Number} Valeur contenue dans l'intervalle
+ */
+Number.prototype.intervalle = function(min, max) {
+    return Math.min(Math.max(this, min), max);
+}
+
+/**
  * Retire des mots d'un string
  * @param {int} nombreMotsAGarder nombre de mots à garder dans le string
  * @param {bool} commencerFin si on doit commencer à tronquer à partir de la fin ou du début
@@ -36,7 +46,7 @@ String.prototype.inserer = function(valeur, index) {
  * @param {int} decalage 
  * @returns {Element} Élément le plus à gauche
  */
-Array.prototype.obtenirElementPlusAGauche = function(decalage) {
+Array.prototype.obtenirElementPlusAGauche = function(decalage = 0) {
     return this.reduce((precedent, present) => {
         // Comparer la position en x de l'élément présent et du précédent
         return precedent.getBoundingClientRect().x < present.getBoundingClientRect().x && 
@@ -64,7 +74,7 @@ Array.prototype.pseudoMelanger = function() {
  * @param {int} decalage 
  * @returns {Element} Élément le plus à gauche
  */
-HTMLCollection.prototype.obtenirPlusAGauche = function(decalage) {
+HTMLCollection.prototype.obtenirPlusAGauche = function(decalage = 0) {
     return Array.some(this).reduce((precedent, present) => {
         // Comparer la position en x de l'élément présent et du précédent
         return precedent.getBoundingClientRect().x < present.getBoundingClientRect().x && 

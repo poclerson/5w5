@@ -73,8 +73,13 @@
                 padding-left: 7.5%;
                 padding-right: 2.5%;
 
-                & > * {
-                    // animation: fondu-entrant ease-in-out .5s;
+                // Annuler les styles de base
+                & > *[ouvert="false"] {
+                    @include ordinateur {
+                        &:hover {
+                            transform: scale(.5);
+                        }
+                    }
                 }
             }
         }
@@ -91,6 +96,10 @@
             @include ordinateur {display: flex}
             transition: left ease-in-out .08s;
             animation: fondu-vers-prochain 2s linear 0s 1 normal forwards;
+        }
+
+        .DegradeSuivant {
+            transform: translateX(10vw);
         }
     }
 

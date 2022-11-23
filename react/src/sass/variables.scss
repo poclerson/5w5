@@ -244,6 +244,8 @@ $tailles-textes: (
 $couleurs: (
     clair: #f3f3ea,
     clair-transparent: #f3f3ea3a,
+    moyen: #444,
+    moyen-transparent: rgba(68, 68, 68, 0.406),
     sombre: #0f0f0f,
     sombre-transparent: #0f0f0f6c,
     dark: #0f0f0f,
@@ -336,7 +338,7 @@ $theme-menu-mobile: (
     ),
     
     fond: (
-        couleur-primaire: map-get($couleurs, clair-transparent),
+        couleur-primaire: map-get($couleurs, moyen-transparent),
         couleur-secondaire: map-get($couleurs, sombre)
     )
 );
@@ -429,7 +431,7 @@ $theme-liste-session: (
     texte: (),
 
     icone: (
-        couleur: map-get($couleurs, clair-transparent),
+        couleur: map-get($couleurs, clair),
     ),
 
     lien: (),
