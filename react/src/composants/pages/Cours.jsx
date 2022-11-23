@@ -38,9 +38,7 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
 
     return(
         <li className="Cours" id={id} index={index} ouvert={ouvert}>
-            {console.log(positionSelonCours[modele])}
             <div className="carte">
-                {console.log(modele)}
             <div className="modele">
                 {modele != undefined && modele != false && 
                     <VisionneurModele 
@@ -54,7 +52,7 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
                 <h4 className="titre">{titre}</h4>
                 <p className="description">{description}</p>
             </div>
-            <div className="rond"></div>
+            {/* <div className="rond"></div> */}
         </li>
     )
 }
