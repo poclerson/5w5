@@ -64,11 +64,6 @@ $couleurs-domaines-modifiees: (
             // Positionner à droite de l'écran pour la transition
             right: -40vw;
             opacity: 0;
-
-            &:hover {
-                // Annuler le style de base
-                transform: scale(.5);
-            }
         }
 
         .miniature {

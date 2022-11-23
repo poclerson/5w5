@@ -73,8 +73,13 @@
                 padding-left: 7.5%;
                 padding-right: 2.5%;
 
-                & > * {
-                    // animation: fondu-entrant ease-in-out .5s;
+                // Annuler les styles de base
+                & > *[ouvert="false"] {
+                    @include ordinateur {
+                        &:hover {
+                            transform: scale(.5);
+                        }
+                    }
                 }
             }
         }
