@@ -35,10 +35,10 @@ export default function Contact({id}) {
                 </article>
 
 
-                <div className='inscription'>
+                {/* <div className='inscription'>
                      {titreInscription}
                     <ArrowForwardIosIcon className='Icone'/>
-                </div>
+                </div> */}
             </article>
         </section>
          : <Chargement />
