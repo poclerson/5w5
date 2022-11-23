@@ -2,7 +2,7 @@
 @import '../../sass/variables.scss';
 
 .ListeEnseignants {
-    @include page(true);
+    @include page(true, true);
     flex-direction: column;
     $taille-gouttieres: 10%;
     position: relative;
@@ -31,6 +31,20 @@
                 transition: left ease-in-out .08s;
                 display: none;
             }
+
+            & > * {
+                display: flex;
+                @include ordinateur {
+                    // Rétablir les styles par défaut lorsque la liste est fermée
+                    position: static;
+                    right: 0;
+                    opacity: 1;
+
+                    .miniature {
+                        flex: unset;
+                    }
+                }
+            }
         }
     }
 
@@ -43,17 +57,11 @@
         .liste {
             display: flex;
             visibility: hidden;
-            transition: left ease-in-out .08s;
-
-
-            // On cache tous les autres enseignants (qui sont donc fermés à ce moment)
-            .Enseignant[ouvert="false"] {
-                display: none;
-                transition: left ease-in-out .08s;
-
-            }
 
             @include ordinateur {
+                // Mettre l'enseignant ouvert le plus collé au prochain enseignant possible
+                // pour la transition
+                justify-content: flex-end;
                 @include padding-auto;
                 // Empêcher les cartes de prendre trop de place
                 visibility: visible;
@@ -65,23 +73,8 @@
                 padding-left: 7.5%;
                 padding-right: 2.5%;
 
-                // Afficher le prochain enseignant
-                .Enseignant[ouvert="true"] {
-                    & {
-                        & + .Enseignant {
-                            display: flex;
-                            transition: left ease-in-out .08s;
-
-
-                            @include ordinateur-large {
-                                & + .Enseignant {
-                                    display: flex;
-                                    transition: left ease-in-out .08s;
-
-                                }
-                            }
-                        }
-                    }
+                & > * {
+                    // animation: fondu-entrant ease-in-out .5s;
                 }
             }
         }
@@ -129,6 +122,5 @@
         top: 700px;
         position: absolute;
         display: none;
-        
     }
 }

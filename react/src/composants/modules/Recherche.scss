@@ -7,10 +7,12 @@
     display: flex;
     align-items: center;
     gap: 2.5%;
+    flex-direction: row-reverse;
+    justify-content: space-between;
 
     @include tablette {
         margin: 0 2.5%;
-        flex: 0 2 5%;
+        flex: 1 1 100%;
     }
 
     .icone-recherche {
@@ -29,11 +31,12 @@
 
     &[ouvert="true"] {
         @include tablette {
-            flex: 0 0 100%;
+            flex: 1 1 100%;
             @include transition-base(flex-basis);
 
             .zone-saisie {
-                width: 60%;
+                flex-basis: 100%;
+                width: 100%;
                 opacity: 1;
                 @include transition-base;
             }
@@ -46,6 +49,7 @@
             @include transition-base(flex-basis);
 
             .zone-saisie {
+                flex-basis: 0;
                 width: 0;
                 opacity: 0;
                 @include transition-base;
