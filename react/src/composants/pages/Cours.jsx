@@ -11,13 +11,13 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
         },
         
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/methodologieRecherche.glb': {
-            position: [-7, -2, -4],
+            position: [-7, -2, -7],
             rotation: [0, 4.7, -.04]
         },
         
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/camera-1.glb': {
-            position: [8, -5, 6],
-            rotation: [0, 2, 0.4]
+        'https://timm175.sg-host.com/wp-content/uploads/2022/11/video_.glb': {
+            position: [0, 0.2, -5],
+            rotation: [0, 4.7, 0]
         },
 
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/web1.glb': {
