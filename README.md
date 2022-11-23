@@ -16,7 +16,7 @@ C'est durant ce sprint que nous avons concrétisé nos idées ainsi que débuté
 La majorité des styles ont été réalisés lors de ce sprint. Bien qu'ils ne soient pas encore terminés, les pages sont toutes fonctionnelles et le site pourrait être utilisé. Il manque cependant beaucoup de peauffinement et d'animations pour qu'on sente qu'il s'agisse d'un vrai site web.
 
 ### Sprint 3 
-Les styles ont été peaufinés lors de ce sprint, et la grande majorité des animations ont été intégrées. La barre de recherche et la randomisation des styles de couleurs et polices de la page d'accueil. 
+Les styles ont été peaufinés lors de ce sprint, et la grande majorité des animations ont été intégrées. La barre de recherche et la randomisation des styles de couleurs et polices de la page d'accueil. Toutes les informations ont aussi été intégrées dans Wordpress, sauf les projets étudiants.
 
 ## Technologies utilisées et dépendances
 Notre site utilisera le concept de "Headless CMS", qui utilise un CMS, comme Wordpress dans notre cas, en tant que back end et utilise un autre framework en tant que front end. Nous utiliserons aussi node-sass afin de styliser nos pages.
