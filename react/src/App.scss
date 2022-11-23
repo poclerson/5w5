@@ -16,29 +16,4 @@
     & > * {
         animation: fondu-entrant ease-in-out .5s;
     }
-
-    // Liste d'item fermée
-    & *[class^="list"][item-ouvert="false"] {
-        // Animer le passage de retour vers la page initiale
-        animation: fondu-entrant ease-in-out .5s;
-    }
-
-    & > section {
-        // Items possiblement ouvrables (fermés)
-        & [ouvert="false"]:not(.Cours),
-        &[ouvert="false"]:not(.Cours) {
-            cursor: pointer;
-
-            &:hover {
-                transform: scale(1.1);
-                transition: transform .15s linear;
-            }
-        }
-
-        // Items possiblement ouvrables (ouverts)
-        & [ouvert="true"]:not(.Cours), 
-        &[ouvert="true"]:not(.Cours){
-            animation: fondu-entrant ease-in-out .5s;
-        }
-    }
 }
