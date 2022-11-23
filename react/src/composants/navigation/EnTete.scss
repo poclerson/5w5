@@ -35,7 +35,7 @@
 
     &[ouvert="true"] {
         // Permettre de prendre autant d'espace que désiré
-        height: 100%;
+        height: unset;
         @include tablette {
             .contenu {
                 gap: 0;
@@ -82,7 +82,8 @@
 
         display: flex;
         flex-direction: column;
-        height: 50vh;
+        justify-content: space-between;
+        flex: 0 0 30%;
         width: 95vw;
         box-sizing: border-box;
         padding: 10vw;
@@ -90,6 +91,7 @@
         border-radius: 0 70px 70px 0;
 
         @include tablette {
+            flex: unset;
             animation: menu 0.5s linear 0s 1 normal both;
             flex-direction: row;
             align-items: center;
@@ -137,7 +139,7 @@
         // Placement
         width: 95vw;
         max-height: 75vh;
-        min-height: 12.5vh;
+        flex: 1 1 12.5%;
 
         box-sizing: border-box;
 

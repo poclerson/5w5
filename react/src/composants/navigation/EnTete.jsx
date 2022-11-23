@@ -35,7 +35,7 @@ export default function EnTete({enteteWP}) {
 
     return (
         <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
-            <BoutonBurger gererClic={surClicBurger} ouvert={verifierOuvertureBurger()} />
+            <BoutonBurger gererClic={() => {surClicBurger(); surClicRecherche()}} ouvert={verifierOuvertureBurger()} />
             <img className="vagues" src={IMGHEADER && IMGHEADER.replace('url(', '').replace(')', '')} />
             <div className="contenu" ouvert={verifierOuvertureBurger()}>
                 <SiteLogo url={enteteWP.siteLogoUrl} />
