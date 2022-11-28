@@ -11,6 +11,7 @@ import BoutonBurger from '../modules/BoutonBurger';
 import SiteLogo from '../modules/SiteLogo';
 import Recherche from '../modules/Recherche';
 import ResultatRecherche from '../modules/ResultatRecherche';
+import Icone from '../modules/Icone';
 
 export default function EnTete({enteteWP}) {
     const {cours, enseignants, projets} = useContext(ContexteDonneesSite);
@@ -24,6 +25,7 @@ export default function EnTete({enteteWP}) {
     // Zone de recherche
     const [resultatsRecherche, setResultatsRecherche] = useState(null);
     const [saisie, setSaisie] = useState("");
+    const [ecrit, setEcrit] = useState('false');
     const refZoneSaisie = useRef();
 
     // Vagues de l'entête mobile
@@ -35,8 +37,14 @@ export default function EnTete({enteteWP}) {
 
     return (
         <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
-            <BoutonBurger gererClic={surClicBurger} ouvert={verifierOuvertureBurger()} />
-            <img className="vagues" src={IMGHEADER && IMGHEADER.replace('url(', '').replace(')', '')} />
+            <BoutonBurger gererClic={() => {surClicBurger(); surClicRecherche()}} ouvert={verifierOuvertureBurger()} />
+            <img 
+                className="vagues" 
+                src={IMGHEADER && IMGHEADER.replace('url(', '').replace(')', '')} 
+            />
+            <div ouvert={ecrit} className="fermeur-recherche" onClick={() => setEcrit('false')}>
+                <Icone type="fleche-suivant" />
+            </div>
             <div className="contenu" ouvert={verifierOuvertureBurger()}>
                 <SiteLogo url={enteteWP.siteLogoUrl} />
                 <Navigation 
@@ -50,6 +58,7 @@ export default function EnTete({enteteWP}) {
                     saisie={saisie}
                     setSaisie={setSaisie}
                     refZoneSaisie={refZoneSaisie}
+                    setEcrit={setEcrit}
                 />
             </div>
             <ul className="resultats-recherche">

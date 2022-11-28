@@ -1,6 +1,6 @@
 import './ListeProjets.scss';
 
-import {useContext} from 'react';
+import {useContext, useRef} from 'react';
 import useOuvertures from '../../hooks/useOuvertures';
 import useStructure from '../../hooks/useStructure';
 import useOuvrirSelonId from '../../hooks/useOuvrirSelonId';
@@ -8,6 +8,8 @@ import ContexteDonneesSite from '../../ContexteDonneesSite';
 
 import Projet from './Projet';
 import Chargement from '../modules/Chargement';
+import Fond from '../modules/Fond';
+import DegradeSuivant from '../modules/DegradeSuivant';
 
 export default function ListeProjets({id}) {
     const {projets, environnement} = useContext(ContexteDonneesSite);
@@ -17,7 +19,9 @@ export default function ListeProjets({id}) {
         environnement: environnement
     });
 
-    const {titre} = useStructure(id);
+    const refListe = useRef();
+
+    const {titre, BACKGROUND} = useStructure(id);
 
     useOuvrirSelonId(surClic);
 
@@ -26,6 +30,7 @@ export default function ListeProjets({id}) {
         let index = 0;
 
         return [...projets, ...environnement].pseudoMelanger().map((projet => {
+            // Un projet
             if (projet.acf.hasOwnProperty('nom')) {
                 let composant = <Projet 
                     key={projet.id}
@@ -39,6 +44,7 @@ export default function ListeProjets({id}) {
                 return composant;
             }
 
+            // Une image d'environnement
             else {
                 return <li key={projet.id} className="photo-environnement">
                     <div className="miniature">
@@ -53,11 +59,17 @@ export default function ListeProjets({id}) {
 
     return(
         projets != null && environnement != null ?
-            <section className="ListeProjets" item-ouvert={verifierOuvertureParent()}>
+            <section 
+                className="ListeProjets" 
+                item-ouvert={verifierOuvertureParent()}
+                ref={refListe}
+            >
                 <ul className="liste" item-ouvert={verifierOuvertureParent()}>
                     {titre}
                     {rendreCases()}
                 </ul>
+                <Fond fond={{backgroundImage: BACKGROUND}} />
+                <DegradeSuivant refListe={refListe} />
             </section> : <Chargement />
     )
 }

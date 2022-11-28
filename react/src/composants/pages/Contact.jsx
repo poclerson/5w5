@@ -1,7 +1,6 @@
 import './Contact.scss';
 
 import Chargement from '../modules/Chargement';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import ContexteDonneesSite from '../../ContexteDonneesSite';
 import {useContext} from 'react';
@@ -13,8 +12,6 @@ export default function Contact({id}) {
         titre, 
         titreDescription, 
         description,
-        titreInscription,
-        wpBlockImageSizeMedium,
         wpBlockWebfactoryMap,
         wpBlockSocialLinks
     } = useStructure(id);
@@ -33,12 +30,6 @@ export default function Contact({id}) {
                         {wpBlockSocialLinks}
                     </div>
                 </article>
-
-
-                {/* <div className='inscription'>
-                     {titreInscription}
-                    <ArrowForwardIosIcon className='Icone'/>
-                </div> */}
             </article>
         </section>
          : <Chargement />

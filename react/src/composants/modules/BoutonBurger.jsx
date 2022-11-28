@@ -1,6 +1,5 @@
 import './BoutonBurger.scss';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+import Icone from './Icone';
 
 export default function BoutonBurger({gererClic, ouvert}) {
     /**
@@ -11,8 +10,8 @@ export default function BoutonBurger({gererClic, ouvert}) {
         <button className="BoutonBurger" onClick={gererClic}>
             {
                 ouvert == 'true' ?
-                    <CloseIcon className="Icone fermeture" /> :
-                    <MenuIcon className="Icone ouverture" /> 
+                    <Icone type={'fermer'} /> :
+                    <Icone type={'menu'} />
             }
         </button>
     )

@@ -13,11 +13,18 @@
         @each $taille-ecran, $proprietes in $tailles-ecran {
             @media screen and (min-width: $taille-ecran) {
                 #{$selecteur} {
-                    font-size: map-get($proprietes, taille);
-                    margin-block-start: map-get($proprietes, taille) / 4;
-                    margin-block-end: map-get($proprietes, taille) / 4;
-
-                    // Ajouter les propriétés ajoutées dans variables.scss ici
+                    @if ($selecteur == svg) {
+                        width: map-get($proprietes, taille);
+                        height: map-get($proprietes, taille);
+                    }
+    
+                    @else {
+                        font-size: map-get($proprietes, taille);
+                        margin-block-start: map-get($proprietes, taille) / 4;
+                        margin-block-end: map-get($proprietes, taille) / 4;
+    
+                        // Ajouter les propriétés ajoutées dans variables.scss ici
+                    }
                 }
             }
         }
@@ -58,8 +65,11 @@
         @include texte-general($theme, "sous-titre");
     }
 
-    .Icone {
-        color: map-deep-get($theme, "icone", "couleur");
+    svg {
+        &, path {
+            color: map-deep-get($theme, "icone", "couleur");
+            fill: map-deep-get($theme, "icone", "couleur");   
+        }
     }
 
     input {
@@ -189,16 +199,18 @@
 
 // Transition pour le texte qui met des bordures sur le côté sur hover
 @mixin hover-bordures-cotes {
-    transition: border 0.35s ease;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    padding: 0 11.2px;
-    cursor: pointer;
-
-    &:hover {
+    @include tablette {
         transition: border 0.35s ease;
-        border-left: 3px solid map-get($couleurs, clair);
-        border-right: 3px solid map-get($couleurs, clair);
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        padding: 0 11.2px;
+        cursor: pointer;
+    
+        &:hover {
+            transition: border 0.35s ease;
+            border-left: 3px solid map-get($couleurs, clair);
+            border-right: 3px solid map-get($couleurs, clair);
+        }
     }
 }
 
@@ -436,23 +448,11 @@
     }
 }
 
-@mixin frere-adjacent-recursif($selecteur: '*', $nombre-freres: 100) {
-    $frere-present: null;
-
-    & ~ #{$selecteur} {
-        $frere-present: &;
-    }
-
-    @for $frere from 1 through $nombre-freres {
-        #{$frere-present} {
-            @content;
-
-            @warn #{'slt'$frere-present};
-            #{$frere-present} ~ #{$selecteur} {
-                $frere-present: &;
-            }
-        }
-        // $frere-present: #{$frere-present} ~ #{$selecteur};
-        @warn #{'allo'$frere-present};
+// Prend un sélecteur et l'effectue en tant que lui-même et la sélection de son enfant
+// avec ce même sélecteur
+@mixin selection-enfant-et-soi($selecteur) {
+    &#{$selecteur},
+    & #{$selecteur} {
+        @content;
     }
 }

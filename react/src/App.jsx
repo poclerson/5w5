@@ -44,15 +44,12 @@ export default function App() {
         '/enseignants',
         '/projets',
         '/environnement',
-        '/pages'
+        '/pages',
+        '/icones'
     ]); 
         
     return (
         <div className="App">
-            <div className="thermometre">
-                <div className="boule"></div>
-                <div className="barre"></div>
-            </div>
             {hcms != null && donneesSite != null ?
                 <ContexteDonneesSite.Provider value={donneesSite}>
                     <EnTete enteteWP={hcms.data.header} />

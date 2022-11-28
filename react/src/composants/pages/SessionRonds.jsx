@@ -1,5 +1,6 @@
 import './SessionRonds.scss';
 import SessionRond from './SessionRond';
+import FlecheNav from '../modules/FlecheNav';
 
 import {useState, useEffect, useContext} from 'react';
 import ContexteDonneesSite from '../../ContexteDonneesSite';
@@ -16,7 +17,7 @@ export default function SessionRonds({surClic, quantite, sessions, rotation}) {
     const donneesCarousel = {
         petit: {
             rayonRond: 150,
-            rayonCarousel: 500,
+            rayonCarousel: 525,
             decalageAngle: 0
         },
 
@@ -76,6 +77,7 @@ export default function SessionRonds({surClic, quantite, sessions, rotation}) {
                     />
                 )}
             </ol>
+            <FlecheNav gestionClic={() => surClic()} texte={false} />
         </div>
     )
 }

@@ -38,23 +38,21 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
 
     return(
         <li className="Cours" id={id} index={index} ouvert={ouvert}>
-            {console.log(positionSelonCours[modele])}
             <div className="carte">
-                {console.log(modele)}
             <div className="modele">
                 {modele != undefined && modele != false && 
                     <VisionneurModele 
                         cheminModele={modele}
                         echelle={.4}
-                        position={positionSelonCours[modele].position}
-                        rotation={positionSelonCours[modele].rotation}
+                        position={positionSelonCours[modele] && positionSelonCours[modele].position}
+                        rotation={positionSelonCours[modele] && positionSelonCours[modele].rotation}
                     />
                 }
                 </div>
                 <h4 className="titre">{titre}</h4>
                 <p className="description">{description}</p>
             </div>
-            <div className="rond"></div>
+            {/* <div className="rond"></div> */}
         </li>
     )
 }

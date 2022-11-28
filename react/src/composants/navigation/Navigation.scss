@@ -7,9 +7,12 @@
 
     // Animation de l'ouverture de la recherhce
     transform-origin: left center;
-    transition: all cubic-bezier(.99,-0.01,.65,.73) .5s;
-    transform: scaleX(1);
+    @include transition-base;
+    transform: scale(1);
+    opacity: 1;
     width: 100%;
+    height: 100%;
+    max-height: 500px;
 
     .titre-page {
         display: block;
@@ -23,5 +26,7 @@
         flex: 1 0 50%;
         flex-direction: row;
         justify-content: space-around;
+        height: unset;
+        max-height: unset;
     }
 }

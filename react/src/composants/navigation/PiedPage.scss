@@ -12,6 +12,17 @@
         position: absolute;
         bottom: 100%;
         width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        svg {
+            @include pleine-taille;
+            path {
+                fill: map-get($couleurs, sombre)
+            }
+        }
     }
 
     .contenu {
