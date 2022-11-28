@@ -23,8 +23,8 @@ String.prototype.tronquerMots = function(nombreMotsAGarder, commencerFin = false
 }
 
 /**
- * Prend un string en kebab case et le transforme en camel case
- * @returns {string} String transformé en camel case
+ * Prend un string en kebab-case et le transforme en camelCase
+ * @returns {string} String transformé en camelCase
  */
 String.prototype.kebabVersCamel = function() {
     if (this == undefined) return;
@@ -79,10 +79,10 @@ HTMLCollection.prototype.obtenirPlusAGauche = function(decalage = 0) {
         // Comparer la position en x de l'élément présent et du précédent
         return precedent.getBoundingClientRect().x < present.getBoundingClientRect().x && 
 
-            // L'élément précédent doit aussi être plus grand que le décalage pour passer le test
-            precedent.getBoundingClientRect().x > decalage ? 
+        // L'élément précédent doit aussi être plus grand que le décalage pour passer le test
+        precedent.getBoundingClientRect().x > decalage ? 
 
-            // Choisir d'après la condition
-            precedent : present
+        // Choisir d'après la condition
+        precedent : present
     })
 }

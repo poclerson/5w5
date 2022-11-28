@@ -29,7 +29,5 @@ export default function PiedPage({enteteWP}) {
                 {wpBlockSocialLinks}
             </div>
         </footer>
-    )
-
-    
+    )   
 }
