@@ -13,11 +13,18 @@
         @each $taille-ecran, $proprietes in $tailles-ecran {
             @media screen and (min-width: $taille-ecran) {
                 #{$selecteur} {
-                    font-size: map-get($proprietes, taille);
-                    margin-block-start: map-get($proprietes, taille) / 4;
-                    margin-block-end: map-get($proprietes, taille) / 4;
-
-                    // Ajouter les propriétés ajoutées dans variables.scss ici
+                    @if ($selecteur == svg) {
+                        width: map-get($proprietes, taille);
+                        height: map-get($proprietes, taille);
+                    }
+    
+                    @else {
+                        font-size: map-get($proprietes, taille);
+                        margin-block-start: map-get($proprietes, taille) / 4;
+                        margin-block-end: map-get($proprietes, taille) / 4;
+    
+                        // Ajouter les propriétés ajoutées dans variables.scss ici
+                    }
                 }
             }
         }
@@ -58,8 +65,11 @@
         @include texte-general($theme, "sous-titre");
     }
 
-    .Icone {
-        color: map-deep-get($theme, "icone", "couleur");
+    svg {
+        &, path {
+            color: map-deep-get($theme, "icone", "couleur");
+            fill: map-deep-get($theme, "icone", "couleur");   
+        }
     }
 
     input {

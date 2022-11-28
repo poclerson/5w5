@@ -11,6 +11,7 @@ import BoutonBurger from '../modules/BoutonBurger';
 import SiteLogo from '../modules/SiteLogo';
 import Recherche from '../modules/Recherche';
 import ResultatRecherche from '../modules/ResultatRecherche';
+import Icone from '../modules/Icone';
 
 export default function EnTete({enteteWP}) {
     const {cours, enseignants, projets} = useContext(ContexteDonneesSite);
@@ -43,6 +44,7 @@ export default function EnTete({enteteWP}) {
                     pages={enteteWP.headerMenuItems} 
                     surClic={surClicBurger} 
                 />
+                <Icone type={'fleche-suivant'} />
                 <Recherche 
                     gestionResultats={gestionResultatsRecherche} 
                     verifierOuverture={verifierOuvertureRecherche}

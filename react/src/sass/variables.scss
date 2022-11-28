@@ -238,6 +238,24 @@ $tailles-textes: (
             taille: 15px,
             hauteur-ligne: 12px
         ),
+    ),
+
+    svg: (
+        0px: (
+            taille: 20px
+        ),
+        360px: (
+            taille: 20px
+        ),
+        640px: (
+            taille: 25px
+        ),
+        1024px: (
+            taille: 27.5px
+        ),
+        1440px: (
+            taille: 30px
+        )
     )
 );
 //Definition des couleurs dans le site web
