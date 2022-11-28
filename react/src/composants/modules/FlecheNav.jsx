@@ -1,6 +1,5 @@
 import './FlecheNav.scss';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import Icone from './Icone';
 
 // Appelle gestionClic lorsque cliqué
 export default function FlecheNav({
@@ -14,8 +13,8 @@ export default function FlecheNav({
             {texte && <p className="texte">{direction}</p>}
             {
                 direction == 'suivant' ? 
-                <ArrowForwardIosIcon className="Icone" /> :
-                <ArrowBackIosIcon className="Icone" />
+                <Icone type='fleche-suivant' /> :
+                <Icone type='fleche-precedent' />
             }
         </span>
     )
