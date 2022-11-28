@@ -4,10 +4,10 @@ import {useContext} from 'react';
 import ContexteDonneesSite from '../../ContexteDonneesSite';
 import parse from 'html-react-parser';
 
-export default function Icone({type, classes}) {
+export default function Icone({type, classes, surClic}) {
     const {icones} = useContext(ContexteDonneesSite);
     return (
-        <span className={'Icone ' + classes}>
+        <span className={classes ? 'Icone ' + classes : 'Icone'} onClick={surClic}>
             {icones  &&
                 parse(icones.filter(icone => icone.title == type)[0].acf.icone)
             }

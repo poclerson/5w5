@@ -24,19 +24,21 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
         animation: fondu-entrant ease-in-out .5s;
     }
 
-    // Items possiblement ouvrables (fermés)
-    @include selection-enfant-et-soi('[ouvert="false"]:not(#{$liste-items-liste-non-ouvrables})') {
-        cursor: pointer;
+    &[class^="list"] {
+        // Items possiblement ouvrables (fermés)
+        @include selection-enfant-et-soi('[ouvert="false"]:not(#{$liste-items-liste-non-ouvrables})') {
+            cursor: pointer;
 
-        &:hover {
-            transform: scale(1.1);
-            transition: transform .15s linear;
+            &:hover {
+                transform: scale(1.1);
+                transition: transform .15s linear;
+            }
         }
-    }
 
-    // Items possiblement ouvrables (ouverts)
-    @include selection-enfant-et-soi('[ouvert="true"]:not(#{$liste-items-liste-non-ouvrables})') {
-        animation: fondu-entrant ease-in-out .5s;
+        // Items possiblement ouvrables (ouverts)
+        @include selection-enfant-et-soi('[ouvert="true"]:not(#{$liste-items-liste-non-ouvrables})') {
+            animation: fondu-entrant ease-in-out .5s;
+        }
     }
 }
 
