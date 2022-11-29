@@ -26,6 +26,14 @@ export default function Rechercher({
         setSaisie(e.target.value);
     }
 
+    const gestionFocus = () => {
+        if (tabletteMax && verifierOuverture() == 'false') {
+            surClic();
+        }
+        console.log(document.activeElement)
+        setEcrit('true');
+    }
+
     // Ne peut pas utiliser useObtenir parce qu'il doit appeler gestionResultats
     useEffect(() => {
         async function obtenirArticles() {
@@ -52,7 +60,7 @@ export default function Rechercher({
                 ref={refZoneSaisie}
                 type="text"
                 onChange={gestionSaisie}
-                onFocus={() => {tabletteMax && verifierOuverture() == 'false' && surClic(); setEcrit('true')}}
+                onFocus={gestionFocus}
                 className="zone-saisie"
             />
 

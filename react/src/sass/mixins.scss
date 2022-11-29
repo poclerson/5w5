@@ -223,6 +223,42 @@
     transition: $propriete $courbe $duree;
 }
 
+@mixin hover-item(
+    $specifier-transform: false, 
+    $element-hovered: null,
+    $echelle: 1.05,
+    $duree: .05s
+) {
+    @include tablette {
+        @if ($element-hovered == null) {
+            @if $specifier-transform == true {
+                transition: transform linear $duree;
+            }
+            @else {
+                transition: all linear $duree;
+            }
+
+            &:hover {
+                transform: scale($echelle);
+            }
+        }
+        @else {
+            #{$element-hovered} {
+                @if $specifier-transform == true {
+                    transition: transform linear $duree;
+                }
+                @else {
+                    transition: all linear $duree;
+                }
+    
+                &:hover {
+                    transform: scale($echelle);
+                }
+            }
+        }
+    }
+}
+
 
 
 // ===== MIXINS RANDOMS =====

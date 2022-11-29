@@ -84,7 +84,7 @@
             }
         }
 
-        .retour {
+        & > .retour {
             // N'afficher que la flèche sur ordi + quand un enseignant est ouvert
             display: flex;
             transition: left ease-in-out .08s;

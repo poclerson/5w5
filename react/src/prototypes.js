@@ -19,7 +19,7 @@ Number.prototype.intervalle = function(min, max) {
 String.prototype.tronquerMots = function(nombreMotsAGarder, commencerFin = false) {
     if (commencerFin)
         return this.split(' ').slice(-nombreMotsAGarder).join(' ');
-    return this.split(' ').slice(0, nombreMotsAGarder).join(' ');
+    return this.split(' ').slice(0, nombreMotsAGarder).join(' ') + '...';
 }
 
 /**

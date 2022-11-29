@@ -84,7 +84,6 @@ $couleurs-domaines-modifiees: (
         .miniature {
             @include bulle;
             
-            
             .titre {
                 display: none;
                 position: absolute;
@@ -96,6 +95,7 @@ $couleurs-domaines-modifiees: (
                 object-fit: cover;
                 width: 100%;
             }
+            @include hover-item($element-hovered: '.photo', $echelle: 1.25)
         }
     
         // Cacher le contenu lorsqu'un enseignant est fermé
@@ -110,149 +110,8 @@ $couleurs-domaines-modifiees: (
         visibility: visible;
         height: 100%;
 
-        // Lorsque ouvert, on montre le contenu en cachant la miniature
         .contenu {
             display: flex;
-            flex-direction: column;
-            gap: 5%;
-            transform: scaleY(1);
-            @include transition-base;
-
-            .retour {
-                position: absolute;
-                left: -5%;
-            }
-
-            // Photo de l'enseignant (mobile et tablette)
-            .conteneur-photo {
-                height: 30%;
-                @include bulle;
-                padding: 15px;
-
-                margin-left: 5vw;
-                margin-right: 5vw;
-
-                .fond-photo {
-                    aspect-ratio: 1; // Garder carré
-                    background-color: map-get($couleurs, clair);
-                    border-radius: 50%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-end; // Mettre en-bas
-                    align-items: center;
-                    overflow-x: clip; // fonctionne sur Firefox seulement
-
-                    // Image
-                    .photo {
-                        width: 100%;
-                        z-index: 3;
-                        object-fit: cover;
-                    }
-                }
-
-                @include tablette {
-                    height: unset; // Laisser prendre de la place
-                }
-            }
-
-            .texte {
-                // Gérer avec la height pour .texte et .contenu, flex-basis marche pas
-                height: 70%;
-                box-sizing: border-box; // Calculer avec le padding
-                padding: 5%;
-                border-radius: 30px 30px 0 0;
-
-                display: flex;
-                flex-direction: column;
-
-                @include tablette {
-                    height: 90%;
-                }
-
-                .domaine {
-                    display: flex;
-                    border-width: 5px;
-                    border-style: solid;
-                    padding: 10px;
-                    border-radius: 30px;
-                    width: min-content;
-
-                    @include max-mobile {
-                        color: map-get($couleurs, clair);
-                        border-color: map-get($couleurs, clair);
-                    }
-                }
-
-                .conteneur-description {
-                    flex: 1 0 10%;
-                    padding: 7.5%;
-                    display: flex;
-                    justify-content: center;
-                    background-color: map-get($couleurs, clair);
-                    border-radius: 30px;
-                    overflow-y: scroll;
-
-                    .description {
-                        color: map-get($couleurs, sombre);
-                    }
-
-                    @include tablette {
-                        border-radius: 0;
-                        background-color: transparent;
-                        .description {color: map-get($couleurs, clair);}
-                        padding: 0;
-                    }
-
-                    @include ordinateur {
-                        flex: 1 0 30%;
-                    }
-                }
-
-                [class^="etiquette-"]{
-                    // Cacher toutes les étiquettes
-                    display: none;
-                    flex: 0 1 3%;
-                }
-
-                & > * {
-                    flex: 0 1 5%;
-                }
-
-                // .texte
-                @include tablette {
-                    // Tous les éléments qui ne sont pas des étiquettes
-                    *:not([class^="etiquette-"]) {margin-left: 2.5%;}
-
-                    // Mettre tout en blanc (pcq sur fond noir) sauf le domaine
-                    // qui doit avoir sa couleur personnalisée
-                    & > *:not(.domaine) {color: map-get($couleurs, clair)}
-
-                    [class^="etiquette-"]{
-                        display: block;
-                    }
-                }
-
-                @include ordinateur {
-                    flex: 1 0 100%;
-                    padding: 5%;
-                    height: 100%;
-                }
-            }
-
-            // .contenu
-            @include tablette {
-                flex-direction: row;
-                align-items: flex-start; // Positionner en-haut de la page
-            }
-
-            // Ajuster le texte de l'enseignant ouvert
-            @include ordinateur {
-                // Centrer par rapport à tablette
-                align-items: center;
-                justify-content: center;
-
-                padding: unset;
-            }
         }
 
         // enseignant ouvert
@@ -393,22 +252,137 @@ $couleurs-domaines-modifiees: (
                 .conteneur-domaine {display: block}
             }
         }
-
+        // Lorsque ouvert, on montre le contenu en cachant la miniature
         .contenu {
+            flex-direction: column;
             align-items: center;
+            gap: 5%;
+
+            .retour {
+                position: absolute;
+                left: 5%;
+            }
 
             .texte {
+                // Gérer avec la height pour .texte et .contenu, flex-basis marche pas
+                height: 70%;
+                box-sizing: border-box; // Calculer avec le padding
                 padding: 5%;
+                border-radius: 30px 30px 0 0;
                 gap: .5%;
 
+                display: flex;
+                flex-direction: column;
+
+                @include tablette {
+                    height: 90%;
+                    flex: 0 0 52.5%;
+                }
+
+                .domaine {
+                    display: flex;
+                    border-width: 5px;
+                    border-style: solid;
+                    padding: 10px;
+                    border-radius: 30px;
+                    width: min-content;
+
+                    @include max-mobile {
+                        color: map-get($couleurs, clair);
+                        border-color: map-get($couleurs, clair);
+                    }
+                }
+
+                .conteneur-description {
+                    flex: 1 0 10%;
+                    padding: 7.5%;
+                    display: flex;
+                    justify-content: center;
+                    background-color: map-get($couleurs, clair);
+                    border-radius: 30px;
+                    overflow-y: scroll;
+
+                    .description {
+                        color: map-get($couleurs, sombre);
+                    }
+
+                    @include tablette {
+                        border-radius: 0;
+                        background-color: transparent;
+                        .description {color: map-get($couleurs, clair);}
+                        padding: 0;
+                    }
+
+                    @include ordinateur {
+                        flex: 1 0 30%;
+                    }
+                }
+
+                [class^="etiquette-"]{
+                    // Cacher toutes les étiquettes
+                    display: none;
+                    flex: 0 1 3%;
+                }
+
+                & > * {
+                    flex: 0 1 5%;
+                }
+
+                // .texte
                 @include tablette {
                     border-radius: 0;
                     @include bordures-coins-diagonales(60px, map-get($couleurs, clair));
+
+                    // Tous les éléments qui ne sont pas des étiquettes
+                    *:not([class^="etiquette-"]) {margin-left: 2.5%;}
+
+                    // Mettre tout en blanc (pcq sur fond noir) sauf le domaine
+                    // qui doit avoir sa couleur personnalisée
+                    & > *:not(.domaine) {color: map-get($couleurs, clair)}
+
+                    [class^="etiquette-"]{
+                        display: block;
+                    }
+                }
+
+                @include ordinateur {
+                    flex: 1 0 100%;
+                    padding: 5%;
+                    height: 100%;
                 }
             }
 
             .conteneur-photo {
-                @include tablette {margin: unset;}
+                height: 30%;
+                @include bulle;
+                padding: 15px;
+
+                margin-left: 5vw;
+                margin-right: 5vw;
+
+                .fond-photo {
+                    aspect-ratio: 1; // Garder carré
+                    background-color: map-get($couleurs, clair);
+                    border-radius: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end; // Mettre en-bas
+                    align-items: center;
+                    overflow-x: clip; // fonctionne sur Firefox seulement
+
+                    // Image
+                    .photo {
+                        width: 100%;
+                        z-index: 3;
+                        object-fit: cover;
+                    }
+                }
+
+                @include tablette {
+                    flex: 0 0 40%;
+                    margin: unset;
+                    height: unset;
+                }
 
                 // Faire disparaitre la photo du contenu sur ordinateur 
                 // puisqu'on utilise la miniature
@@ -420,9 +394,19 @@ $couleurs-domaines-modifiees: (
                 }
             }
 
-            @include tablette {align-items: flex-start;}
+            // .contenu
+            @include tablette {
+                flex-direction: row;
+                align-items: flex-start; // Positionner en-haut de la page
+            }
 
+            // Ajuster le texte de l'enseignant ouvert
             @include ordinateur {
+                // Centrer par rapport à tablette
+                align-items: center;
+                justify-content: center;
+                padding: unset;
+
                 // Permet la transition de l'enseignant suivant vers le présent
                 // position: absolute;
                 transform: scale(1);
