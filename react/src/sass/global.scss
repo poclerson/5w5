@@ -28,11 +28,6 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
         // Items possiblement ouvrables (fermés)
         @include selection-enfant-et-soi('[ouvert="false"]:not(#{$liste-items-liste-non-ouvrables})') {
             cursor: pointer;
-
-            &:hover {
-                transform: scale(1.1);
-                transition: transform .15s linear;
-            }
         }
 
         // Items possiblement ouvrables (ouverts)
@@ -54,6 +49,18 @@ a {
 
 p {
     text-align: justify;
+    line-break: loose;
+    hyphens: auto;
+    text-justify: inter-character;
+
+    @include tablette {
+        word-spacing: 1px;
+        text-justify: auto;
+    }
+
+    @include ordinateur {
+        line-break: strict;
+    }
 }
 
 input {
