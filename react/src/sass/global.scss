@@ -49,6 +49,18 @@ a {
 
 p {
     text-align: justify;
+    line-break: loose;
+    hyphens: auto;
+    text-justify: inter-character;
+
+    @include tablette {
+        word-spacing: 1px;
+        text-justify: auto;
+    }
+
+    @include ordinateur {
+        line-break: strict;
+    }
 }
 
 input {
