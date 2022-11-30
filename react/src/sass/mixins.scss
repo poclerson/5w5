@@ -223,6 +223,8 @@
     transition: $propriete $courbe $duree;
 }
 
+// Styles de base de hover sur un item d'une liste
+// $element-hovered permet de specifier sur quel élément le hover doit se produire
 @mixin hover-item(
     $specifier-transform: false, 
     $element-hovered: null,

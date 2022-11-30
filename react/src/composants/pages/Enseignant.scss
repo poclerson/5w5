@@ -95,11 +95,13 @@ $couleurs-domaines-modifiees: (
                 object-fit: cover;
                 width: 100%;
             }
-            @include hover-item($element-hovered: '.photo', $echelle: 1.25)
+            @include hover-item($element-hovered: '.photo', $echelle: 1.175)
         }
     
         // Cacher le contenu lorsqu'un enseignant est fermé
-        .contenu {display: none;}
+        .contenu {
+            display: none;
+        }
     }
 
     // ===== OUVERT =====
@@ -109,6 +111,7 @@ $couleurs-domaines-modifiees: (
         // Permettre de rendre la liste invisible tout en gardant l'enseignant ouvert visible
         visibility: visible;
         height: 100%;
+        width: 70vw;
 
         .contenu {
             display: flex;
@@ -123,11 +126,11 @@ $couleurs-domaines-modifiees: (
             opacity: 1;
             @include couleurs-domaines($classes-couleur-domaine-ferme);
             flex: 0 0 80%;
-            width: 70vw;
             right: 25vw;
+            align-items: center;
+            transform: scale(1);
 
             @include ordinateur-large {
-                width: 50vw;
                 right: 45vw;
             }
 
@@ -144,20 +147,15 @@ $couleurs-domaines-modifiees: (
                 display: flex;
                 right: -10vw;
                 @include transition-base;
-                width: 60vw;
                 flex: 0 0 80%;
                 transform: scale(0.5);
                 opacity: 1;
+                width: 70vw;
 
                 .contenu {
                     display: flex;
-                    position: absolute;
-                    transform: scale(0);
+                    opacity: 0;
                     @include transition-base;
-                }
-
-                @include ordinateur-large {
-                    right: 10vw;
                 }
 
                 // Troisième enseignant
@@ -165,26 +163,41 @@ $couleurs-domaines-modifiees: (
                     @include transition-base;
                     opacity: 0;
 
-                    @include ordinateur-large {
-                        display: flex;
-                        right: -10vw;
-                        @include transition-base;
-                        width: 60vw;
-                        flex: 0 0 80%;
-                        transform: scale(0.5);
-                        opacity: 1;
-
-                        // Quatrième enseignant
-                        & + .Enseignant {
-                            display: flex;
-                            transform: scale(.5);
-                        }
+                    .contenu {
+                        display: none;
                     }
                 }
             }
         }
 
-        @include ordinateur-large {flex: 0 1 60%;}
+        @include ordinateur-large {
+            // Enseignant ouvert
+            flex: 0 1 60%;
+            width: 50vw;
+
+            // Suivant
+            & + .Enseignant {
+                width: 50vw;
+                right: 10vw;
+
+                // Troisième
+                & + .Enseignant {
+                    display: flex;
+                    right: -10vw;
+                    @include transition-base;
+                    width: 50vw;
+                    flex: 0 0 80%;
+                    transform: scale(.5);
+                    opacity: 1;
+
+                    // Quatrième
+                    & + .Enseignant {
+                        display: flex;
+                        transform: scale(.5);
+                    }
+                }
+            }
+        }
     }
 
     // Général, peu importe l'état. N'override pas les règles de priorité
@@ -216,7 +229,11 @@ $couleurs-domaines-modifiees: (
                 .titre {
                     max-width: 70%;
                     position: static;
-                    margin-left: 5%;
+                    margin-left: -10%;
+                    margin-top: 20%;
+                    transform: rotate(90deg);
+                    // font-size: 100px;
+                    // text-align: right;
                 }
 
                 .conteneur-domaine {
@@ -259,8 +276,13 @@ $couleurs-domaines-modifiees: (
             gap: 5%;
 
             .retour {
+                align-self: flex-start;
                 position: absolute;
                 left: 5%;
+
+                @include ordinateur {
+                    left: -10%;
+                }
             }
 
             .texte {
@@ -273,11 +295,6 @@ $couleurs-domaines-modifiees: (
 
                 display: flex;
                 flex-direction: column;
-
-                @include tablette {
-                    height: 90%;
-                    flex: 0 0 52.5%;
-                }
 
                 .domaine {
                     display: flex;
@@ -330,6 +347,8 @@ $couleurs-domaines-modifiees: (
 
                 // .texte
                 @include tablette {
+                    height: 90%;
+                    flex: 0 0 52.5%;
                     border-radius: 0;
                     @include bordures-coins-diagonales(60px, map-get($couleurs, clair));
 
@@ -406,6 +425,7 @@ $couleurs-domaines-modifiees: (
                 align-items: center;
                 justify-content: center;
                 padding: unset;
+                height: 100%;
 
                 // Permet la transition de l'enseignant suivant vers le présent
                 // position: absolute;
@@ -416,6 +436,7 @@ $couleurs-domaines-modifiees: (
 
         @include ordinateur-large {
             gap: 5%;
+            width: 50vw;
         }
     }
 
@@ -425,14 +446,16 @@ $couleurs-domaines-modifiees: (
             // Imiter les styles de l'enseignant ouvert pour
             // avoir une transition plus smooth
             display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
             @include transition-base;
-            width: 70vw;
             right: 120vw;
             opacity: 0;
             flex: 0 0 80%;
+            width: 70vw;
 
             .miniature {
-                flex: 0 0 40%;
+                display: flex;
             }
         }
     }
