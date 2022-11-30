@@ -4,12 +4,13 @@ import ContexteDonneesSite from '../../ContexteDonneesSite';
 import useOuvertures from '../../hooks/useOuvertures';
 import useStructure from '../../hooks/useStructure';
 import useOuvrirSelonId from '../../hooks/useOuvrirSelonId';
-import {useLocation} from 'react-router-dom';
-import {useContext, useLayoutEffect} from 'react';
+import {useContext, useRef} from 'react';
 
 import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
 import FlecheNav from '../modules/FlecheNav';
+import Fond from '../modules/Fond';
+import DegradeSuivant from '../modules/DegradeSuivant';
 
 export default function ListeEnseignants({id}) {
     const {enseignants} = useContext(ContexteDonneesSite);
@@ -18,14 +19,28 @@ export default function ListeEnseignants({id}) {
         surClic, 
         surClicSuivant, 
         verifierOuvertureParent, 
-        verifierOuverture,
-        indexOuvert,
-        ouvertureParent
+        verifierOuverture
     } = useOuvertures(enseignants)
 
-    const {titre} = useStructure(id);
+    const {titre, BACKGROUND} = useStructure(id);
 
-    useOuvrirSelonId(surClic)
+    useOuvrirSelonId(surClic);
+
+    const refListe = useRef();
+
+    const defilerVersEnseignant = () => {
+        const element = refListe.current;
+        const enseignant = Array.prototype.slice.call(
+            element.children).obtenirElementPlusAGauche();
+
+        // Revenir quand on est arrivés au bout
+        if (element.scrollLeft + window.innerWidth >= element.scrollWidth) {
+            element.scrollLeft = 0;
+            return;
+        }
+
+        element.scrollLeft = enseignant.offsetLeft + enseignant.offsetWidth; 
+    }
 
     return(
         enseignants != null ?
@@ -34,7 +49,7 @@ export default function ListeEnseignants({id}) {
                 item-ouvert={verifierOuvertureParent()} 
             >
                 {titre}
-                <ul className="liste" item-ouvert={verifierOuvertureParent()}>
+                <ul className="liste" item-ouvert={verifierOuvertureParent()} ref={refListe}>
                     {
                         enseignants.map((enseignant, index) => {
                             return <Enseignant 
@@ -51,6 +66,8 @@ export default function ListeEnseignants({id}) {
                     }
                 </ul>
                 <FlecheNav gestionClic={surClicSuivant} texte={true} classesAdditionnelles="suivant" />
+                <Fond fond={{backgroundImage: BACKGROUND}} />
+                <DegradeSuivant surClicFleche={defilerVersEnseignant} />
             </section>  
         : <Chargement />
     );

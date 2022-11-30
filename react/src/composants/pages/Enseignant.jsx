@@ -1,7 +1,11 @@
 import './Enseignant.scss';
 import FlecheNav from '../modules/FlecheNav';
 
+import useMediaQuery from '../../hooks/useMediaQuery';
+import medias from '../../medias';
+
 export default function Enseignant({nom, description, photo, domaine, surClic, index, verifierOuverture, id}) {
+    const ordinateur = useMediaQuery(medias.ordinateur);
     return(
         <li className={`Enseignant ${domaine}`} id={id} index={index} ouvert={verifierOuverture(index)}>
 
@@ -40,9 +44,7 @@ export default function Enseignant({nom, description, photo, domaine, surClic, i
                     <h3 className="domaine sous-titre">{domaine}</h3>
                     <h5 className="etiquette-description">biographie</h5>
                     <div className="conteneur-description">
-                        <p className="description">
-                            {description}
-                            </p>
+                        <p className="description">{description.tronquerMots(100)}</p>
                     </div>
                 </article>
             </div>

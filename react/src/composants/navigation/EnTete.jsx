@@ -1,9 +1,11 @@
 import './EnTete.scss';
 
 import ContexteDonneesSite from '../../ContexteDonneesSite';
-import {useContext, useState, useRef} from 'react';
+import {useContext, useState, useRef, useEffect} from 'react';
 import useOuverture from '../../hooks/useOuverture';
 import useStructure from '../../hooks/useStructure';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import medias from '../../medias';
 import * as wp from '../../wp-rest-api';
 
 import Navigation from './Navigation';
@@ -11,6 +13,7 @@ import BoutonBurger from '../modules/BoutonBurger';
 import SiteLogo from '../modules/SiteLogo';
 import Recherche from '../modules/Recherche';
 import ResultatRecherche from '../modules/ResultatRecherche';
+import Icone from '../modules/Icone';
 
 export default function EnTete({enteteWP}) {
     const {cours, enseignants, projets} = useContext(ContexteDonneesSite);
@@ -24,19 +27,38 @@ export default function EnTete({enteteWP}) {
     // Zone de recherche
     const [resultatsRecherche, setResultatsRecherche] = useState(null);
     const [saisie, setSaisie] = useState("");
+    const [ecrit, setEcrit] = useState('false');
     const refZoneSaisie = useRef();
 
     // Vagues de l'entête mobile
     const {IMGHEADER} = useStructure('entete', true);
 
+    const tablette = useMediaQuery(medias.tablette);
+
     const gestionResultatsRecherche = (resultats) => {
         setResultatsRecherche(resultats);
     }
 
+    useEffect(() => {
+        tablette && setEcrit('false');
+    }, [tablette])
+
     return (
         <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
-            <BoutonBurger gererClic={surClicBurger} ouvert={verifierOuvertureBurger()} />
-            <img className="vagues" src={IMGHEADER && IMGHEADER.replace('url(', '').replace(')', '')} />
+            <BoutonBurger gererClic={() => {
+                surClicBurger(); 
+                surClicRecherche(); 
+                setEcrit('false');
+                
+            }} 
+                ouvert={verifierOuvertureBurger()} />
+            <img 
+                className="vagues" 
+                src={IMGHEADER && IMGHEADER.replace('url(', '').replace(')', '')} 
+            />
+            <div ouvert={ecrit} className="fermeur-recherche" onClick={() => setEcrit('false')}>
+                <Icone type="fleche-suivant" />
+            </div>
             <div className="contenu" ouvert={verifierOuvertureBurger()}>
                 <SiteLogo url={enteteWP.siteLogoUrl} />
                 <Navigation 
@@ -50,6 +72,7 @@ export default function EnTete({enteteWP}) {
                     saisie={saisie}
                     setSaisie={setSaisie}
                     refZoneSaisie={refZoneSaisie}
+                    setEcrit={setEcrit}
                 />
             </div>
             <ul className="resultats-recherche">

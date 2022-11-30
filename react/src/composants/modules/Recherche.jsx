@@ -6,9 +6,10 @@
 import './Recherche.scss';
 import {useEffect} from 'react';
 import * as wp from '../../wp-rest-api';
-import SearchIcon from '@mui/icons-material/Search';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import medias from '../../medias';
+
+import Icone from './Icone';
 
 export default function Rechercher({
     gestionResultats, 
@@ -16,12 +17,21 @@ export default function Rechercher({
     surClic, 
     saisie, 
     setSaisie, 
-    refZoneSaisie
+    refZoneSaisie,
+    setEcrit
 }) { 
     const tabletteMax = useMediaQuery(medias.tablette, 'max');
     
     const gestionSaisie = e => {
         setSaisie(e.target.value);
+    }
+
+    const gestionFocus = () => {
+        if (tabletteMax && verifierOuverture() == 'false') {
+            surClic();
+        }
+        console.log(document.activeElement)
+        setEcrit('true');
     }
 
     // Ne peut pas utiliser useObtenir parce qu'il doit appeler gestionResultats
@@ -45,12 +55,12 @@ export default function Rechercher({
     // Appeler la fonction de recherche chaque fois qu'on écrit un caractère
     return(
         <div className="Recherche" ouvert={verifierOuverture()}>
-            <SearchIcon className="Icone icone-recherche" onClick={surClic} />
+            <Icone type="recherche" classes="icone-recherche" surClic={surClic} />
             <input 
                 ref={refZoneSaisie}
                 type="text"
                 onChange={gestionSaisie}
-                onFocus={() => {tabletteMax && verifierOuverture() == 'false' && surClic()}}
+                onFocus={gestionFocus}
                 className="zone-saisie"
             />
 

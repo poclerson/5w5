@@ -5,6 +5,7 @@ import ContexteDonneesSite from '../../ContexteDonneesSite';
 import useStructure from '../../hooks/useStructure';
 
 import Chargement from '../modules/Chargement';
+import Fond from '../modules/Fond';
 import ListeSessions from './ListeSessions';
 
 /**
@@ -31,14 +32,15 @@ export default function ListeCours({id}) {
     }, [cours])
 
     return(
-        cours != null && BACKGROUND ?
-        <section className="ListeCours" ref={listeCoursRef} style={{backgroundImage: BACKGROUND, backgroundSize: 'cover'}}>
-            {
-                sessions && degrades != null ? 
-                <ListeSessions sessions={sessions} cours={cours} degrades={degrades} pageRef={listeCoursRef} />
-                : <Chargement />
-            }
-        </section>
+        cours != null ?
+            <section className="ListeCours" ref={listeCoursRef}>
+                {
+                    sessions && degrades != null ? 
+                    <ListeSessions sessions={sessions} cours={cours} degrades={degrades} pageRef={listeCoursRef} />
+                    : <Chargement />
+                }
+                <Fond fond={{backgroundImage: BACKGROUND}} />
+            </section>
         : <Chargement />
     )
 }

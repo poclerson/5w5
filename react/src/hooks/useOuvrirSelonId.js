@@ -19,6 +19,7 @@ export default function useOuvrirSelonId(ouvrir, callbacks = []) {
                 // Appeler le callback pour une fonction d'ouverte personnalisée
                 if (callbacks.length > 0) {
                     callbacks.forEach(callback => callback(article))
+                    return;
                 } 
 
                 // Fonction d'ouverture générique (ouvre l'élément recherché)

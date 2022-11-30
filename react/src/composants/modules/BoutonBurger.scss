@@ -3,31 +3,16 @@
 
 // Bouton burger gérant l'ouverture et la fermeture d'une section
 .BoutonBurger {
-    padding-right: 2.5vw;
-    padding-bottom: 2.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.75%;
     position: fixed;
     background-color: map-deep-get($theme-menu-mobile, fond, couleur-secondaire);
-    border-bottom-right-radius: 40%;
+    border-bottom-right-radius: 30%;
     z-index: 100; // Doit TOUJOURS être par-dessus tout
-
-    // Icône des trois lignes
-    .Icone, .Fermeture {
-        font-size: 10vw;
-    }
 }
 
-.MuiSvgIcon-root{
-    font-size: 10%;
-    animation: x 1s linear 0s 1 reverse both;
-}
-
-
-.on {
-    visibility: visible;
-}
-.off {
-    visibility: hidden;
-}
 @keyframes x {
 	0% {
 		transform: rotate(0);

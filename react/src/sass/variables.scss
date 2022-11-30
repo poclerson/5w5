@@ -89,12 +89,12 @@ $tailles-textes: (
         ),
 
         1024px:(
-            taille: 40px,
+            taille: 35px,
             hauteur-ligne: 12px
         ),
 
         1440px:(
-            taille: 40px,
+            taille: 37.5px,
             hauteur-ligne: 12px
         ),
     ),
@@ -118,12 +118,12 @@ $tailles-textes: (
         ),
 
         1024px:(
-            taille: 35px,
+            taille: 30px,
             hauteur-ligne: 12px
         ),
 
         1440px:(
-            taille: 38px,
+            taille: 32.5px,
             hauteur-ligne: 12px
         ),
     ),
@@ -145,12 +145,12 @@ $tailles-textes: (
         ),
 
         1024px:(
-            taille: 28px,
+            taille: 25px,
             hauteur-ligne: 12px
         ),
 
         1440px:(
-            taille: 28px,
+            taille: 27.5px,
             hauteur-ligne: 12px
         ),
     ),
@@ -178,7 +178,7 @@ $tailles-textes: (
         ),
     
         1440px:(
-            taille: 25px,
+            taille: 22.5px,
             hauteur-ligne: 12px
         ),
     ),
@@ -196,7 +196,7 @@ $tailles-textes: (
         ),
 
         640px:(
-            taille: 18px,
+            taille: 17px,
             hauteur-ligne: 12px
         ),
 
@@ -238,12 +238,32 @@ $tailles-textes: (
             taille: 15px,
             hauteur-ligne: 12px
         ),
+    ),
+
+    svg: (
+        0px: (
+            taille: 20px
+        ),
+        360px: (
+            taille: 30px
+        ),
+        640px: (
+            taille: 25px
+        ),
+        1024px: (
+            taille: 27.5px
+        ),
+        1440px: (
+            taille: 30px
+        )
     )
 );
 //Definition des couleurs dans le site web
 $couleurs: (
     clair: #f3f3ea,
     clair-transparent: #f3f3ea3a,
+    moyen: #444,
+    moyen-transparent: rgba(68, 68, 68, 0.406),
     sombre: #0f0f0f,
     sombre-transparent: #0f0f0f6c,
     dark: #0f0f0f,
@@ -336,7 +356,7 @@ $theme-menu-mobile: (
     ),
     
     fond: (
-        couleur-primaire: map-get($couleurs, clair-transparent),
+        couleur-primaire: map-get($couleurs, moyen-transparent),
         couleur-secondaire: map-get($couleurs, sombre)
     )
 );
@@ -408,7 +428,7 @@ $theme-menu-tablette: (
     ),
     
     fond: (
-        couleur-primaire: map-get($couleurs, sombre)
+        couleur-primaire: map-get($couleurs, sombre-transparent)
     )
 );
 
@@ -429,7 +449,7 @@ $theme-liste-session: (
     texte: (),
 
     icone: (
-        couleur: map-get($couleurs, clair-transparent),
+        couleur: map-get($couleurs, clair),
     ),
 
     lien: (),
