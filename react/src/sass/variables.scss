@@ -428,7 +428,7 @@ $theme-menu-tablette: (
     ),
     
     fond: (
-        couleur-primaire: map-get($couleurs, sombre)
+        couleur-primaire: map-get($couleurs, sombre-transparent)
     )
 );
 

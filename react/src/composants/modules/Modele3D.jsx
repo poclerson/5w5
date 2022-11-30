@@ -14,6 +14,9 @@ const Modele3D = ({
     // useFrame(() => {
     //     ref.current.rotation.y += 0.02;
     // })
+    useEffect(() => {
+        ref.current.rotation.y += .02;
+    }, [estHover])
     return (
         <>
             <primitive

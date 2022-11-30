@@ -59,6 +59,7 @@ p {
     line-break: loose;
     hyphens: auto;
     text-justify: inter-character;
+    -ms-hyphenate-limit-chars: 8 3 4;
 
     @include tablette {
         word-spacing: 1px;
