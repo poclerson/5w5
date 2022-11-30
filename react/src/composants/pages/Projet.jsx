@@ -16,19 +16,18 @@ export default function Projet({
     id
 }) {
     return (
-        <li className="Projet" id={id} index={index} ouvert={verifierOuverture(index)}>
+        <li className="Projet evenement" id={id} index={index} ouvert={verifierOuverture(index)}>
             <div className="miniature" onClick={() => surClic(index)}>
-                <div className="information">
-                    <h2 className="titre">{nom}</h2>
-                    <h3 className="sous-titre">{createurs}</h3>
-                    <button className="details">Voir en détails</button>
-                </div>
-                <div className="image-presentation-conteneur">
+            <div className="image-presentation-conteneur">
                     <img 
                         className="image-presentation" 
                         src={image_presentation} 
                         alt={`Image du projet ${nom} par ${createurs}`} 
                     />
+                </div>
+                <div className="information">
+                    <h2 className="titre">{nom}</h2>
+                    <p className="details">{description.tronquerMots(30)}<br/><br/><u>Lire la suite</u></p>
                 </div>
             </div>
             <div className="contenu">

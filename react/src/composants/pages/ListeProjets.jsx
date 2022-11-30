@@ -7,6 +7,7 @@ import useOuvrirSelonId from '../../hooks/useOuvrirSelonId';
 import ContexteDonneesSite from '../../ContexteDonneesSite';
 
 import Projet from './Projet';
+import PhotoEnvironnement from './PhotoEnvironnement';
 import Chargement from '../modules/Chargement';
 import Fond from '../modules/Fond';
 import DegradeSuivant from '../modules/DegradeSuivant';
@@ -29,13 +30,13 @@ export default function ListeProjets({id}) {
     const rendreCases = () => {
         let index = 0;
 
-        return [...projets, ...environnement].pseudoMelanger().map((projet => {
+        return [...projets, ...environnement].pseudoMelanger().map((evenement => {
             // Un projet
-            if (projet.acf.hasOwnProperty('nom')) {
+            if (evenement.acf.hasOwnProperty('nom')) {
                 let composant = <Projet 
-                    key={projet.id}
-                    id={projet.id}
-                    {... projet.acf}
+                    key={evenement.id}
+                    id={evenement.id}
+                    {... evenement.acf}
                     index={index}
                     surClic={surClic}
                     verifierOuverture={verifierOuverture}
@@ -46,19 +47,16 @@ export default function ListeProjets({id}) {
 
             // Une image d'environnement
             else {
-                return <li key={projet.id} className="photo-environnement">
-                    <div className="miniature">
-                        <div className="image-presentation-conteneur">
-                            <img src={projet.acf.photo} alt="" className="image-presentation"/>
-                        </div>
-                    </div>
-                </li>
+                return <PhotoEnvironnement 
+                    key={evenement.id}
+                    {... evenement.acf}
+                />
             }
         }))
     }
 
     return(
-        projets != null && environnement != null ?
+        projets && environnement ?
             <section 
                 className="ListeProjets" 
                 item-ouvert={verifierOuvertureParent()}
