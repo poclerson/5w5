@@ -44,6 +44,7 @@ export default function App() {
         '/enseignants',
         '/projets',
         '/environnement',
+        '/videos',
         '/pages',
         '/icones'
     ]); 
