@@ -13,7 +13,7 @@
     }
 
     .titre {
-        @include tablette {grid-column: span 2};
+        @include tablette {grid-colaumn: span 2};
 
         // Obligé, sinon on doit briser la ligne du titre à un endroit bizarre avec line-break: anywhere
         @media screen and (max-width: 520px) {
@@ -51,7 +51,7 @@
             }
 
             // Styles communs
-            .Projet, .PhotoEnvironnement {
+            .Projet, .PhotoEnvironnement, .EvenementVideo {
                 position: relative;
                 display: flex;
                 border-radius: 20px;
