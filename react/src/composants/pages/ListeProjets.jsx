@@ -11,13 +11,15 @@ import PhotoEnvironnement from './PhotoEnvironnement';
 import Chargement from '../modules/Chargement';
 import Fond from '../modules/Fond';
 import DegradeSuivant from '../modules/DegradeSuivant';
+import EvenementVideo from './EvenementVideo';
 
 export default function ListeProjets({id}) {
-    const {projets, environnement} = useContext(ContexteDonneesSite);
+    const {projets, environnement, videos} = useContext(ContexteDonneesSite);
 
     const {surClic, verifierOuvertureParent, verifierOuverture} = useOuvertures({
         projets: projets,
-        environnement: environnement
+        environnement: environnement,
+        videos: videos
     });
 
     const refListe = useRef();
@@ -31,7 +33,7 @@ export default function ListeProjets({id}) {
         let index = 0;
 
         return [...projets, ...environnement].pseudoMelanger().map((evenement => {
-            // Un projet
+            // Projet
             if (evenement.acf.hasOwnProperty('nom')) {
                 let composant = <Projet 
                     key={evenement.id}
@@ -45,7 +47,15 @@ export default function ListeProjets({id}) {
                 return composant;
             }
 
-            // Une image d'environnement
+            // Vidéo
+            else if (evenement.acf.hasOwnProperty('lien')) {
+                return <EvenementVideo 
+                    key={evenement.id}
+                    {... evenement.acf}
+                />
+            }
+
+            // Image d'environnement
             else {
                 return <PhotoEnvironnement 
                     key={evenement.id}
@@ -56,12 +66,13 @@ export default function ListeProjets({id}) {
     }
 
     return(
-        projets && environnement ?
+        projets && environnement && videos ?
             <section 
                 className="ListeProjets" 
                 item-ouvert={verifierOuvertureParent()}
                 ref={refListe}
             >
+                {/* {console.log(videos)} */}
                 <ul className="liste" item-ouvert={verifierOuvertureParent()}>
                     {titre}
                     {rendreCases()}

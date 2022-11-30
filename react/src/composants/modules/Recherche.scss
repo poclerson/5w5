@@ -16,7 +16,6 @@
     }
 
     .icone-recherche {
-        transform: scaleX(-1); // Tourner l'icône
         cursor: pointer;
         @include hover-bordures-cotes;
     }
