@@ -17,7 +17,7 @@ $classes-couleur-domaine: (
     conteneur-photo: background-color,
     miniature: background-color,
     texte: background-color,
-    domaine: border-color
+    'contenu .domaine': background-color
 );
 
 // Tous les enseignants fermés
@@ -229,9 +229,10 @@ $couleurs-domaines-modifiees: (
                 .titre {
                     max-width: 70%;
                     position: static;
-                    margin-left: -10%;
-                    margin-top: 20%;
-                    transform: rotate(90deg);
+                    margin-left: 5%;
+                    // margin-left: -10%;
+                    // margin-top: 20%;
+                    // transform: rotate(90deg);
                     // font-size: 100px;
                     // text-align: right;
                 }
@@ -307,6 +308,10 @@ $couleurs-domaines-modifiees: (
                     @include max-mobile {
                         color: map-get($couleurs, clair);
                         border-color: map-get($couleurs, clair);
+                    }
+
+                    @include tablette {
+                        color: map-get($couleurs, sombre);
                     }
                 }
 
