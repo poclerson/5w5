@@ -424,6 +424,20 @@
     }
 }
 
+@mixin max-tablette {
+    @media screen and (max-width: map-get($largeurs-ecran, ordinateur)) {
+        @content;
+    }
+}
+
+@mixin seulement-tablette {
+    @include tablette {
+        @include max-tablette {
+            @content;
+        }
+    }
+}
+
 @mixin ordinateur {
     @media screen and (min-width: map-get($largeurs-ecran, ordinateur)) {
         @content;

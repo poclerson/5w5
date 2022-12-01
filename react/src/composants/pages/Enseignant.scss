@@ -385,6 +385,7 @@ $couleurs-domaines-modifiees: (
                 margin-right: 5vw;
 
                 .fond-photo {
+                    // height: 100%;
                     aspect-ratio: 1; // Garder carré
                     background-color: map-get($couleurs, clair);
                     border-radius: 50%;
@@ -392,19 +393,40 @@ $couleurs-domaines-modifiees: (
                     flex-direction: column;
                     justify-content: flex-end; // Mettre en-bas
                     align-items: center;
-                    overflow-x: clip; // fonctionne sur Firefox seulement
+                    overflow: hidden;
 
-                    // Image
-                    .photo {
-                        width: 100%;
-                        z-index: 3;
-                        object-fit: cover;
+                    .agrandisseur {
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-end;
+
+                        // Image
+                        .photo {
+                            width: 100%;
+                            object-fit: cover;
+
+                            @include seulement-tablette {width: 130%;}
+                        }
+                    }
+
+                    @include seulement-tablette {
+                        position: relative;
+                        overflow: unset;
+
+                        .agrandisseur {
+                            position: absolute;
+                            overflow: hidden;
+                            border-radius: 0 0 500px 500px;
+                            width: 100%;
+                            left: 0px;
+                        }
                     }
                 }
 
                 @include tablette {
-                    flex: 0 0 40%;
                     margin: unset;
+                    margin-top: 10%;
+                    flex: 0 0 30%;
                     height: unset;
                 }
 
