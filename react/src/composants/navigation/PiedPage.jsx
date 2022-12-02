@@ -8,7 +8,7 @@ import ContexteDonneesSite from '../../ContexteDonneesSite';
 import useStructure from '../../hooks/useStructure';
 
 export default function PiedPage({enteteWP}) {
-    const {pages} = useContext(ContexteDonneesSite);
+    const {degrades} = useContext(ContexteDonneesSite);
 
     const {
         nousJoindre,
@@ -20,6 +20,9 @@ export default function PiedPage({enteteWP}) {
     return(
         <footer className="PiedPage">
             <Icone type="vague" classes="vague" />
+            <div className="vague">
+                
+            </div>
             <div className="contenu">
                 <div className="logo">
                     <SiteLogo url={enteteWP.siteLogoUrl} />
