@@ -7,13 +7,13 @@ import './sass/fontes.scss';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-      <BrowserRouter basename='/'>
+      <HashRouter basename='/'>
         <App />
-      </BrowserRouter>
+      </HashRouter>
 );
 
 reportWebVitals();

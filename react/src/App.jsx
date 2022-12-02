@@ -16,6 +16,8 @@ import useObtenir from './hooks/useObtenir';
 import ContexteDonneesSite from './ContexteDonneesSite';
 import useObtenirMultiples from './hooks/useObtenirMultiples';
 
+import reactRouterToArray from 'react-router-to-array';
+
 export default function App() {
     /**
      * Array contenant tout ce qui est nécessaire pour render les routes et créer le menu de navigation
@@ -51,18 +53,19 @@ export default function App() {
         
     return (
         <div className="App">
-            {hcms != null && donneesSite != null ?
+            {hcms && donneesSite ?
                 <ContexteDonneesSite.Provider value={donneesSite}>
                     <EnTete enteteWP={hcms.data.header} />
                     <Routes>
                         {/* Aller à l'accueil par défaut */}
-                        <Route exact path={'/*'} element={<Navigate to={'/accueil'} />}/>
-                        {hcms.data.header.headerMenuItems.map(page => {
+                        {/* <Route exact path={'/*'} element={<Navigate to={'/accueil'} />}/> */}
+                        {hcms.data.header.headerMenuItems.map((page, index) => {
                             let Composant = identifierComposant(page.pageSlug);
+                            console.log(page.pageSlug)
                             return <Route 
                                 key={"page" + page.pageID}
                                 path={page.pageSlug}
-                                element={<Composant id={page.pageID} key={Math.random(0, 1000)} />}
+                                element={<Composant id={page.pageID} key={'page' + index} />}
                             />
                         })}
                     </Routes> 
