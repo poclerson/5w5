@@ -1,32 +1,29 @@
 import './Enseignant.scss';
 import FlecheNav from '../modules/FlecheNav';
-// import ImageDecoupee from '../modules/ImageDecoupee';
-
-import {useRef, useState, useEffect} from 'react';
-import useMediaQuery from '../../hooks/useMediaQuery';
-import medias from '../../medias';
 
 export default function Enseignant({nom, description, photo, domaine, surClic, index, verifierOuverture, id}) {
-    const tablette = useMediaQuery(medias.tablette);
-    const tabletteMax = useMediaQuery(medias.ordinateur, 'max');
-    const refFondPhoto = useRef(null);
+    const versVraisDomaines = domaine => {
+        const vraisDomaines = {
+            modelisation3d: 'Modélisation 3D',
+            jeu: 'Jeu',
+            web: 'Web',
+            design: 'Design',
+            video: 'Vidéo',
+            methodologie: 'Méthodologie'
+        }
 
-    useEffect(() => {
-        if (refFondPhoto.current)
-        setFondPhoto(refFondPhoto.current)
-    }, [refFondPhoto])
-
-    const [fondPhoto, setFondPhoto] = useState(null);
+        return vraisDomaines[domaine] ? vraisDomaines[domaine] : domaine;
+    }
 
     return(
-        <li onClick={() => console.log(refFondPhoto)} className={`Enseignant ${domaine}`} id={id} index={index} ouvert={verifierOuverture(index)}>
+        <li className={`Enseignant ${domaine}`} id={id} index={index} ouvert={verifierOuverture(index)}>
 
             {/* Prévisualisation (image du prof) */}
             <div className="miniature" onClick={() => surClic(index)}>
                 <h2 className="titre">{nom.toUpperCase()}</h2>
                 <img className="photo" src={typeof photo != 'boolean' ? photo : undefined} alt={"Photo de " + nom} />
                 <span className="conteneur-domaine">
-                    <h2 className="domaine">{domaine.toUpperCase()}</h2>
+                    <h2 className="domaine">{versVraisDomaines(domaine).toUpperCase()}</h2>
                 </span>
             </div>
 
@@ -41,18 +38,12 @@ export default function Enseignant({nom, description, photo, domaine, surClic, i
                     <div className={"conteneur-photo " + domaine}>
                         <h2 className="titre">{nom.toUpperCase()}</h2>
                         <div className="fond-photo">
-                            {/* {tablette && tabletteMax && refFondPhoto.current &&
-                                    <ImageDecoupee source={photo} limites={{
-                                        x: refFondPhoto.current.clientWidth,
-                                        y: -1
-                                    }} /> 
-                            } */}
                             <div className="agrandisseur">
-                                <img className="photo" ref={refFondPhoto} src={typeof photo != 'boolean' ? photo : undefined} alt={"Photo de " + nom} />
+                                <img className="photo" src={typeof photo != 'boolean' ? photo : undefined} alt={"Photo de " + nom} />
                             </div>
                         </div>
                         <span className="conteneur-domaine">
-                            <p className="domaine">{domaine.toUpperCase()}</p>
+                            <p className="domaine">{versVraisDomaines(domaine).toUpperCase()}</p>
                         </span>
                     </div>
                 {/* Boite de texte */}
@@ -60,10 +51,12 @@ export default function Enseignant({nom, description, photo, domaine, surClic, i
                     <h5 className="etiquette-titre">nom</h5>
                     <h2 className="titre">{nom}</h2>
                     <h5 className="etiquette-domaine">spécialité</h5>
-                    <h3 className="domaine sous-titre">{domaine}</h3>
+                    <h3 className="domaine sous-titre">{versVraisDomaines(domaine)}</h3>
                     <h5 className="etiquette-description">biographie</h5>
                     <div className="conteneur-description">
-                        <p className="description">{description.tronquerMots(100)}</p>
+                        <p className="description">
+                            {description}
+                        </p>
                     </div>
                 </article>
             </div>

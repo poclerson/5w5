@@ -115,6 +115,7 @@ $couleurs-domaines-modifiees: (
 
         .contenu {
             display: flex;
+            opacity: 1;
         }
 
         // enseignant ouvert
@@ -129,6 +130,7 @@ $couleurs-domaines-modifiees: (
             right: 25vw;
             align-items: center;
             transform: scale(1);
+            z-index: 2;
 
             @include ordinateur-large {
                 right: 45vw;
@@ -136,10 +138,6 @@ $couleurs-domaines-modifiees: (
 
             .miniature {
                 display: flex;
-            }
-
-            .contenu {
-                flex: 0 0 50%;
             }
 
             // Enseignant suivant
@@ -218,6 +216,7 @@ $couleurs-domaines-modifiees: (
     
             // Positionnement d'une carte
             @include ordinateur {
+                height: 100%;
                 flex: 0 0 40%;
                 @include carte;
                 aspect-ratio: 1 / 1.5;
@@ -230,11 +229,6 @@ $couleurs-domaines-modifiees: (
                     max-width: 70%;
                     position: static;
                     margin-left: 5%;
-                    // margin-left: -10%;
-                    // margin-top: 20%;
-                    // transform: rotate(90deg);
-                    // font-size: 100px;
-                    // text-align: right;
                 }
 
                 .conteneur-domaine {
@@ -248,6 +242,7 @@ $couleurs-domaines-modifiees: (
                     background-color: map-get($couleurs, sombre);
 
                     .domaine {
+                        white-space: nowrap;
                         position: relative;
                         top: 10%;
                         margin-block-start: 0;
@@ -272,9 +267,11 @@ $couleurs-domaines-modifiees: (
         }
         // Lorsque ouvert, on montre le contenu en cachant la miniature
         .contenu {
+            flex: 0 0 50%;
             flex-direction: column;
             align-items: center;
             gap: 5%;
+            @include transition-base;
 
             .retour {
                 align-self: flex-start;
@@ -449,6 +446,7 @@ $couleurs-domaines-modifiees: (
             // Ajuster le texte de l'enseignant ouvert
             @include ordinateur {
                 // Centrer par rapport à tablette
+                display: flex;
                 align-items: center;
                 justify-content: center;
                 padding: unset;
@@ -459,6 +457,10 @@ $couleurs-domaines-modifiees: (
                 transform: scale(1);
                 @include transition-base;
             }
+        }
+
+        @include ordinateur {
+            height: 100%;
         }
 
         @include ordinateur-large {
@@ -477,12 +479,15 @@ $couleurs-domaines-modifiees: (
             align-items: center;
             @include transition-base;
             right: 120vw;
-            opacity: 0;
             flex: 0 0 80%;
             width: 70vw;
 
             .miniature {
                 display: flex;
+            }
+
+            .contenu {
+                opacity: 0;
             }
         }
     }
