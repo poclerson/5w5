@@ -26,7 +26,7 @@
     .contenu {
         width: 100%;
         @include themer($theme-pied-page);
-        // background: rgb(254,217,0);
+
         background: linear-gradient(
             to right, 
             map-deep-get($couleurs, 'domaines', 'modelisation3d') 0%, 
@@ -34,7 +34,6 @@
             map-deep-get($couleurs, 'domaines', 'jeu') 100%
         );
         
-        // Ajouter les styles des éléments du footer ici
         display: flex;
         flex-direction: row;
         justify-content: space-around;

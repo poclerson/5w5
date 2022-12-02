@@ -1,6 +1,7 @@
 import './Contact.scss';
 
 import Chargement from '../modules/Chargement';
+import Fond from '../modules/Fond';
 
 import ContexteDonneesSite from '../../ContexteDonneesSite';
 import {useContext} from 'react';
@@ -13,16 +14,19 @@ export default function Contact({id}) {
         titreDescription, 
         description,
         wpBlockWebfactoryMap,
-        wpBlockSocialLinks
+        wpBlockSocialLinks,
+        BACKGROUND
     } = useStructure(id);
     return (
         degrades != null ?
-        <section className="Contact" style={{backgroundImage:`url(${degrades[2].acf.degrade})`}}>
+        <section className="Contact">
+            {console.log(BACKGROUND)}
+            <Fond fond={{backgroundImage: BACKGROUND}} />
             <article className='boite-principale'>
                 {titre}
                 <article className='contenu'>
                     <div className='images'>
-                        <div className='wpBlockWebfactoryMap'>{wpBlockWebfactoryMap}</div>
+                        {wpBlockWebfactoryMap}
                     </div>
                     <div className='informations'>
                         {titreDescription}

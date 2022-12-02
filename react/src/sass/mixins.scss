@@ -331,10 +331,6 @@
 @mixin bulle() {
     aspect-ratio: 1;
     border-radius: 50% 50% 10px 50%;
-
-    // img {
-    //     @include pleine-taille;
-    // }
 }
 
 @mixin carte() {
