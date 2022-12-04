@@ -13,7 +13,7 @@
     }
 
     .titre {
-        @include tablette {grid-colaumn: span 2};
+        @include tablette {grid-column: span 2};
 
         // Obligé, sinon on doit briser la ligne du titre à un endroit bizarre avec line-break: anywhere
         @media screen and (max-width: 520px) {
@@ -59,7 +59,7 @@
 
                 &:not([ouvert="true"]):hover {
                     @include proprietes-aleatoires(
-                        $valeurs: map-values(map-get($couleurs, domaines)),
+                        $valeurs: map-values(map-get($couleurs, domaines-transparents)),
                         $propriete: background-color,
                         $selecteur: ' .information'
                     );

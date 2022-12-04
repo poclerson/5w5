@@ -20,9 +20,6 @@ export default function PiedPage({enteteWP}) {
     return(
         <footer className="PiedPage">
             <Icone type="vague" classes="vague" />
-            <div className="vague">
-                
-            </div>
             <div className="contenu">
                 <div className="logo">
                     <SiteLogo url={enteteWP.siteLogoUrl} />

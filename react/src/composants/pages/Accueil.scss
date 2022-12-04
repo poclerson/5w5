@@ -18,6 +18,8 @@
         overflow-x: visible !important; // Override
 
         .marquee {
+            align-items: center;
+
             span {
                 font-size: 1000%;
                 @include proprietes-aleatoires(
@@ -25,11 +27,9 @@
                 );
                 @include proprietes-aleatoires(map-get($polices, styles), font-family, 15);
                 @include desactiver-margin-block;
-                @include tablette {font-size: 2000%;}
-                @include ordinateur {font-size: 4000%;}
+                @include tablette {font-size: 1500%;}
+                @include ordinateur {font-size: 2500%;}
             }
-
-            @include tablette {align-items: flex-end;}
         }
 
         @include tablette {

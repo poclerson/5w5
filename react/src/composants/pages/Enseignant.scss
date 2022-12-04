@@ -446,7 +446,6 @@ $couleurs-domaines-modifiees: (
             // Ajuster le texte de l'enseignant ouvert
             @include ordinateur {
                 // Centrer par rapport à tablette
-                display: flex;
                 align-items: center;
                 justify-content: center;
                 padding: unset;
@@ -487,6 +486,7 @@ $couleurs-domaines-modifiees: (
             }
 
             .contenu {
+                display: flex;
                 opacity: 0;
             }
         }

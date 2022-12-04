@@ -1,7 +1,19 @@
 import './Enseignant.scss';
+
 import FlecheNav from '../modules/FlecheNav';
 
-export default function Enseignant({nom, description, photo, domaine, surClic, index, verifierOuverture, id}) {
+import useOuverture from '../../hooks/useOuverture';
+
+export default function Enseignant({
+    nom,
+    description,
+    photo,
+    domaine,
+    surClic,
+    index,
+    verifierOuverture,
+    id
+}) {
     const versVraisDomaines = domaine => {
         const vraisDomaines = {
             modelisation3d: 'Modélisation 3D',

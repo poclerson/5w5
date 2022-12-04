@@ -87,3 +87,27 @@ button {
 ::selection {
     background-color: map-deep-get($couleurs, 'domaines', 'video');
 }
+
+.behance {
+    &, & * {
+        fill: map-get($couleurs, clair);
+    }
+}
+
+.linkedin {
+    &, & * {
+        fill: map-deep-get($couleurs, 'domaines', 'web');
+    }
+}
+
+.youtube {
+    &, & * {
+        fill: map-deep-get($couleurs, 'domaines', 'video');
+    }
+}
+
+.facebook {
+    &, & * {
+        fill: map-deep-get($couleurs, 'domaines', 'jeu');
+    }
+}
