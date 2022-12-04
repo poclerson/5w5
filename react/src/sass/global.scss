@@ -19,27 +19,32 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
     }
 
     // Listes d'items fermées
-    &[class^="list"][item-ouvert="false"] {
-        // Animer le passage de retour vers la page initiale
-        animation: fondu-entrant ease-in-out .5s;
-    }
-
     &[class^="list"] {
         // Items possiblement ouvrables (fermés)
         @include selection-enfant-et-soi('[ouvert="false"]:not(#{$liste-items-liste-non-ouvrables})') {
-            cursor: pointer;
-
-            &:hover {
-                transform: scale(1.1);
-                transition: transform .15s linear;
+            .miniature {
+                @include ordinateur {
+                    cursor: pointer;
+                }
             }
         }
 
-        // Items possiblement ouvrables (ouverts)
-        @include selection-enfant-et-soi('[ouvert="true"]:not(#{$liste-items-liste-non-ouvrables})') {
+        &[item-ouvert="false"] {
+            // Animer le passage de retour vers la page initiale
             animation: fondu-entrant ease-in-out .5s;
         }
+
+        &[item-ouvert="true"] {
+            // Cacher tous les dégradés vers l'item suivant quand il y a un item ouvert dans la liste
+            & ~ .DegradeSuivant {
+                display: none;
+            }
+        }
     }
+}
+
+.domaine {
+    white-space: nowrap;
 }
 
 // Styles de correction d'éléments particuliers
@@ -54,6 +59,19 @@ a {
 
 p {
     text-align: justify;
+    line-break: loose;
+    hyphens: auto;
+    text-justify: inter-character;
+    -ms-hyphenate-limit-chars: 8 3 4;
+
+    @include tablette {
+        word-spacing: 1px;
+        text-justify: auto;
+    }
+
+    @include ordinateur {
+        line-break: strict;
+    }
 }
 
 input {
@@ -68,4 +86,28 @@ button {
 // Couleurs globales
 ::selection {
     background-color: map-deep-get($couleurs, 'domaines', 'video');
+}
+
+.behance {
+    &, & * {
+        fill: map-get($couleurs, clair);
+    }
+}
+
+.linkedin {
+    &, & * {
+        fill: map-deep-get($couleurs, 'domaines', 'web');
+    }
+}
+
+.youtube {
+    &, & * {
+        fill: map-deep-get($couleurs, 'domaines', 'video');
+    }
+}
+
+.facebook {
+    &, & * {
+        fill: map-deep-get($couleurs, 'domaines', 'jeu');
+    }
 }

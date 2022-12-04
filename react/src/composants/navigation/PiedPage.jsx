@@ -8,7 +8,7 @@ import ContexteDonneesSite from '../../ContexteDonneesSite';
 import useStructure from '../../hooks/useStructure';
 
 export default function PiedPage({enteteWP}) {
-    const {pages} = useContext(ContexteDonneesSite);
+    const {degrades} = useContext(ContexteDonneesSite);
 
     const {
         nousJoindre,
@@ -29,7 +29,5 @@ export default function PiedPage({enteteWP}) {
                 {wpBlockSocialLinks}
             </div>
         </footer>
-    )
-
-    
+    )   
 }

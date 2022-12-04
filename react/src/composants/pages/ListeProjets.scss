@@ -50,36 +50,53 @@
                 grid-auto-columns: 15vw;
             }
 
-            .Projet, .photo-environnement {
-                @include proprietes-aleatoires(
-                    (
-                        map-deep-get($couleurs, 'domaines', 'jeu'),
-                        map-deep-get($couleurs, 'domaines', 'web'),
-                    ), 
-                    background
-                ); 
+            // Styles communs
+            .evenement {
                 position: relative;
                 display: flex;
                 border-radius: 20px;
                 overflow: hidden;
 
-                &.photo-environnement {
-                    // Transition pour animation hover photo-emvironnement
-                    transition: .7s ease;
-                    // Animation de hover photo-environnement
-                    &:hover{
-                        transform: scale(1.1);
-                    }
-                    // Largeur de 1
-                    grid-column: span 1;
+                &:not([ouvert="true"]):hover {
+                    @include proprietes-aleatoires(
+                        $valeurs: map-values(map-get($couleurs, domaines-transparents)),
+                        $propriete: background-color,
+                        $selecteur: ' .information'
+                    );
                     
-                    // Les photos d'environnement ne prennent qu'une seule rangée de hauteur
-                    grid-row: span 1;
+                    .miniature {
+                        .information {
+                            backdrop-filter: blur(15px);
+                            opacity: 1;
+                        }
+                    }
                 }
 
                 .miniature {
                     overflow: hidden;
                     @include pleine-taille;
+
+                    .information {
+                        @include pleine-taille;
+                        display: flex;
+                        flex-direction: column;
+                        top: 0;
+                        position: absolute;
+                        padding: 10%;
+                        box-sizing: border-box;
+                        justify-content: center;
+                        align-items: center;
+
+                        // Transition
+                        @include transition-base($duree: .25s, $courbe: ease-in-out);
+                        background-color: transparent;
+                        backdrop-filter: blur(0px);
+                        opacity: 0;
+
+                        @include tablette {
+                            padding: 5%;
+                        }
+                    }
 
                     .image-presentation-conteneur {
                         position: relative;
@@ -87,7 +104,6 @@
 
                         .image-presentation {
                             object-fit: cover;
-                            opacity: .5;
                             @include pleine-taille;
                         }
                     }

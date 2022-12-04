@@ -59,11 +59,7 @@ export default function useStructure(id, obtenirAvecSlug = false) {
 }
 
 const exceptions = {
-    'BACKGROUND': element => {
-        return element.props.style.backgroundImage
-    },
-    'IMGHEADER': element => {
-        return element.props.style.backgroundImage
-    },
+    'BACKGROUND': element => element.props.style.backgroundImage,
+    'IMGHEADER': element => element.props.style.backgroundImage,
 }
 

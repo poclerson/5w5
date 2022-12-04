@@ -33,18 +33,30 @@
     }
 
     &[ouvert="true"] {
-        // Permettre de prendre autant d'espace que désiré
-        height: unset;
+        // Permettre à .resultats-recherche de prendre tout l'espace
+        // Ne pas mettre à unset pour faire fonctionner la transition
+        height: 100%;
+
         @include tablette {
+            // Demander à .resultats-recherche de ne prendre que l'espace nécessaire
+            height: unset;
+
             .contenu {
                 gap: 0;
                 @include transition-base;
    
                 .Navigation {
-                    @include transition-base;
+                    // @include transition-base;
+                    transition-property: transform, width, flex, opacity, justify-content, gap;
+                    transition-duration: .5s;
+                    transition-timing-function: ease-in-out;
+                    transition-delay: 0s, 0s, 0s, 0s, .5s, .5s;
                     transform: scaleX(0);
                     width: 0;
                     flex: 0 0 0;
+                    opacity: 0;
+                    justify-content: flex-start;
+                    gap: 2.5%;
                 }
             }
         }
@@ -60,7 +72,6 @@
 
     // Sélectionner le fermeur de recherche quand .contenu est fermé
     & > * {
-
         @include max-mobile {
             // Cacher le "fermeur de recherche"
             &:has(+ .contenu[ouvert="false"]) {
@@ -89,21 +100,31 @@
 
     .fermeur-recherche {
         @include transition-base;
-        opacity: 1;
         position: absolute;
         top: 5vh;
         left: 50vw;
-        transform: rotate(-90deg) translateX(0vh);
+        transform: rotate(-90deg) translateX(10vh);
+        opacity: 0;
 
         // Transition vers le contenu qui est fermé
         // pour laisser plus de place pour les résultats de recherche 
         // à cause du clavier mobile
         &[ouvert="true"] {
-            & ~ .contenu .Navigation {
-                opacity: 0;
-                max-height: 0;
+            transform: rotate(-90deg) translateX(0vh);
+            opacity: 1;
+
+            @include max-mobile {
+                & ~ .contenu {
+                    flex-basis: 0;
+                    
+                    .Navigation {
+                        opacity: 0;
+                        max-height: 0;
+                    }
+                }
             }
         }
+
         @include tablette {display: none}
     }
 
@@ -125,17 +146,17 @@
 
         @include tablette {
             @include themer($theme-menu-tablette);
+            backdrop-filter: blur(2.5px);
             flex: unset;
             animation: menu 0.5s linear 0s 1 normal both;
             flex-direction: row;
             align-items: center;
-            width: 100%;
-            height: 80px;
+            @include pleine-taille;
             border-radius: 0;
             padding: 0;
             margin: 0;
 
-            border-bottom: 2px solid map-get($couleurs, clair);
+            border-bottom: 1px solid map-get($couleurs, clair);
 
             &[ouvert="false"]{display: flex;}
         }
@@ -167,7 +188,7 @@
         transform-origin: top center;
         transform: scaleY(1);
         @include transition-base($duree: .25s);
-        transition-delay: .1s;
+        transition-delay: .15s;
         
         // Placement
         width: 95vw;

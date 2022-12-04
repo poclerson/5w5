@@ -15,7 +15,7 @@ export default function Accueil({id}) {
     return(
         titres && BACKGROUND &&
             <section className="Accueil" style={{backgroundImage: BACKGROUND}}>
-                    <Marquee speed={tablette ? 300 : 20} gradient={false} pauseOnClick={true}>
+                    <Marquee speed={tablette ? 200 : 20} gradient={false} pauseOnClick={true}>
                         {titres.props.children}
                     </Marquee>
             </section>

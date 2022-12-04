@@ -1,9 +1,11 @@
 import './EnTete.scss';
 
 import ContexteDonneesSite from '../../ContexteDonneesSite';
-import {useContext, useState, useRef} from 'react';
+import {useContext, useState, useRef, useEffect} from 'react';
 import useOuverture from '../../hooks/useOuverture';
 import useStructure from '../../hooks/useStructure';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import medias from '../../medias';
 import * as wp from '../../wp-rest-api';
 
 import Navigation from './Navigation';
@@ -31,13 +33,25 @@ export default function EnTete({enteteWP}) {
     // Vagues de l'entête mobile
     const {IMGHEADER} = useStructure('entete', true);
 
+    const tablette = useMediaQuery(medias.tablette);
+
     const gestionResultatsRecherche = (resultats) => {
         setResultatsRecherche(resultats);
     }
 
+    useEffect(() => {
+        tablette && setEcrit('false');
+    }, [tablette])
+
     return (
         <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
-            <BoutonBurger gererClic={() => {surClicBurger(); surClicRecherche()}} ouvert={verifierOuvertureBurger()} />
+            <BoutonBurger gererClic={() => {
+                surClicBurger(); 
+                surClicRecherche(); 
+                setEcrit('false');
+                
+            }} 
+                ouvert={verifierOuvertureBurger()} />
             <img 
                 className="vagues" 
                 src={IMGHEADER && IMGHEADER.replace('url(', '').replace(')', '')} 
