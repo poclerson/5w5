@@ -22,8 +22,6 @@
                         font-size: map-get($proprietes, taille);
                         margin-block-start: map-get($proprietes, taille) / 4;
                         margin-block-end: map-get($proprietes, taille) / 4;
-    
-                        // Ajouter les propriétés ajoutées dans variables.scss ici
                     }
                 }
             }

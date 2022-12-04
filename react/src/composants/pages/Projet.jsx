@@ -34,9 +34,11 @@ export default function Projet({
                 <FlecheNav gestionClic={() => surClic(-1)} direction='precedent' />
                 <div className="texte-conteneur">
                     <div className="texte">
-                        <h2 className="titre">
-                            <a href={lien} className="lien-titre">{nom}</a>
-                        </h2>
+                        <u>
+                            <h2 className="titre">
+                                <a href={lien} className="lien-titre">{nom}</a>
+                            </h2>
+                        </u>
                         <h3 className="sous-titre">{createurs}</h3>
                         <p className="description">{description}</p>
                     </div>

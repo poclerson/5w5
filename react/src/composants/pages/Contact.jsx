@@ -1,6 +1,7 @@
 import './Contact.scss';
 
 import Chargement from '../modules/Chargement';
+import Icone from '../modules/Icone';
 import Fond from '../modules/Fond';
 
 import ContexteDonneesSite from '../../ContexteDonneesSite';
@@ -14,24 +15,29 @@ export default function Contact({id}) {
         titreDescription, 
         description,
         wpBlockWebfactoryMap,
-        wpBlockSocialLinks,
-        BACKGROUND
+        BACKGROUND,
+        behance,
+        linkedin,
+        youtube,
+        facebook
     } = useStructure(id);
     return (
         degrades != null ?
         <section className="Contact">
-            {console.log(BACKGROUND)}
             <Fond fond={{backgroundImage: BACKGROUND}} />
             <article className='boite-principale'>
                 {titre}
                 <article className='contenu'>
-                    <div className='images'>
-                        {wpBlockWebfactoryMap}
-                    </div>
+                    {wpBlockWebfactoryMap}
                     <div className='informations'>
                         {titreDescription}
                         {description}
-                        {wpBlockSocialLinks}
+                        <div className="social">
+                            {behance}
+                            {linkedin}
+                            {youtube}
+                            {facebook}
+                        </div>
                     </div>
                 </article>
             </article>

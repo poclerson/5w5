@@ -8,7 +8,7 @@ export default function Icone({type, classes, surClic, render}) {
     const {icones} = useContext(ContexteDonneesSite);
     return (
         <span className={classes ? 'Icone ' + classes : 'Icone'} onClick={surClic}>
-            {icones  &&
+            {icones &&
                 parse(icones.filter(icone => icone.title == type)[0].acf.icone)
             }
             {render}
