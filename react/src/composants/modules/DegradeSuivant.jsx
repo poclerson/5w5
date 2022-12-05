@@ -4,7 +4,6 @@ import FlecheNav from './FlecheNav';
 export default function DegradeSuivant({
     surClicFleche, refListe, ratioDefilement = 5
 }) {
-
     // Fonction de base faisant défiler
     const defiler = refListe => {
         const element = refListe.current;
@@ -20,10 +19,12 @@ export default function DegradeSuivant({
 
     return (
         <div className="DegradeSuivant">
-            <FlecheNav gestionClic={() => {
-                // Par défaut, appeler surClicFleche. Sinon, utiliser defiler
-                surClicFleche && surClicFleche() || refListe && defiler(refListe)
-            }} />
+            <div className="rond">
+                <FlecheNav gestionClic={() => {
+                    // Par défaut, appeler surClicFleche. Sinon, utiliser defiler
+                    surClicFleche && surClicFleche() || refListe && defiler(refListe)
+                }} />
+            </div>
         </div>
     )
 }

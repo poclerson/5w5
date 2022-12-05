@@ -23,9 +23,7 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
         // Items possiblement ouvrables (fermés)
         @include selection-enfant-et-soi('[ouvert="false"]:not(#{$liste-items-liste-non-ouvrables})') {
             .miniature {
-                @include ordinateur {
-                    cursor: pointer;
-                }
+                cursor: pointer;
             }
         }
 
@@ -58,20 +56,8 @@ a {
 }
 
 p {
-    text-align: justify;
-    line-break: loose;
-    hyphens: auto;
-    text-justify: inter-character;
-    -ms-hyphenate-limit-chars: 8 3 4;
-
-    @include tablette {
-        word-spacing: 1px;
-        text-justify: auto;
-    }
-
-    @include ordinateur {
-        line-break: strict;
-    }
+    text-align: left;
+    word-spacing: 3px;
 }
 
 input {
