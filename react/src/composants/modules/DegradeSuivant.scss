@@ -23,7 +23,17 @@
         display: flex;
     }
 
-    .FlecheNav {
-        color: map-get($couleurs, clair);
+    .rond {
+        @include rond(50px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: map-get($couleurs, clair);
+
+        .FlecheNav {
+            path {
+                fill: map-get($couleurs, sombre);
+            }
+        }
     }
 }
