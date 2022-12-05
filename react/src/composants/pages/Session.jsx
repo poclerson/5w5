@@ -26,22 +26,6 @@ export default function Session({
     const ordinateur = useMediaQuery(medias.ordinateur);
     const ordinateurLarge = useMediaQuery(medias.ordinateurLarge);
 
-    const [coursInfinis, setCoursInfinis] = useState(cours);
-
-    const [setEstArrive, setDonneesAjoutees] = useDefilementInfini(
-        refListeCoursSessionOuverte, 
-        () => {
-            setCoursInfinis([...coursInfinis, ...cours]);
-            // Activer le useEffect
-            setEstArrive(false);
-            setDonneesAjoutees(true);
-        },
-        () => { 
-            setEnfants(Array.from(refListeCoursSessionOuverte.current.children))
-            setDonneesAjoutees(false)
-        }
-    )
-
     const surClicFleche = () => {
         const prochainCours = enfants[indexPlusAGauche + 1];
         defilerVersCours(prochainCours)
@@ -74,10 +58,10 @@ export default function Session({
         >
             <ul 
                 className="liste-cours" 
-                ref={refListeCoursSessionOuverte != false ? refListeCoursSessionOuverte : refListeCours} 
+                ref={refListeCoursSessionOuverte ? refListeCoursSessionOuverte : refListeCours} 
                 onScroll={surDefilement}
             >
-                {coursInfinis.map((_cours, index) => 
+                {cours.map((_cours, index) => 
                     { return <Cours 
                         ouvert={index == indexPlusAGauche ? 'true' : 'false'}
                         key={_cours.id + "" + index}

@@ -5,6 +5,7 @@ import {useContext, useState, useRef, useEffect} from 'react';
 import useOuverture from '../../hooks/useOuverture';
 import useStructure from '../../hooks/useStructure';
 import useMediaQuery from '../../hooks/useMediaQuery';
+import useClicExterieur from '../../hooks/useClicExterieur';
 import medias from '../../medias';
 import * as wp from '../../wp-rest-api';
 
@@ -29,6 +30,7 @@ export default function EnTete({enteteWP}) {
     const [saisie, setSaisie] = useState("");
     const [ecrit, setEcrit] = useState('false');
     const refZoneSaisie = useRef();
+    const refResultatsRecherche = useClicExterieur(surClicRecherche);
 
     // Vagues de l'entête mobile
     const {IMGHEADER} = useStructure('entete', true);
@@ -49,7 +51,6 @@ export default function EnTete({enteteWP}) {
                 surClicBurger(); 
                 surClicRecherche(); 
                 setEcrit('false');
-                
             }} 
                 ouvert={verifierOuvertureBurger()} />
             <img 
@@ -75,7 +76,7 @@ export default function EnTete({enteteWP}) {
                     setEcrit={setEcrit}
                 />
             </div>
-            <ul className="resultats-recherche">
+            <ul className="resultats-recherche" ref={refResultatsRecherche}>
                 {resultatsRecherche != null &&
                     resultatsRecherche.length > 0 ?
                     resultatsRecherche.map(resultat => 

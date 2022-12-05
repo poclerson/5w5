@@ -9,12 +9,14 @@ export default function useOuverture(ouvertureInitiale = 'false') {
     const [ouverture, setOuverture] = useState(ouvertureInitiale);
 
     const surClic = () => {
-        setOuverture(ouverture === 'true' ? 'false' : 'true');
+        console.log(ouverture)
+        setOuverture(ouverture == 'true' ? 'false' : 'true');
+        console.log(ouverture)
     }
 
     const verifierOuverture = () => {
         return ouverture;
     }
 
-    return [surClic, verifierOuverture]
+    return [surClic, verifierOuverture, setOuverture]
 }

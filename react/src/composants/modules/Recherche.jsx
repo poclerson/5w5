@@ -55,7 +55,7 @@ export default function Rechercher({
     return(
         <div className="Recherche" ouvert={verifierOuverture()}>
             <label htmlFor="zone-saisie">
-                <Icone type="recherche" classes="icone-recherche" surClic={surClic} />
+                <Icone type="recherche" classes="icone-recherche" />
             </label>
             <input 
                 className="zone-saisie"

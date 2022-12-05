@@ -15,7 +15,7 @@
 
     @include tablette {
         width: 100%;
-        flex-direction: row;
+        justify-content: unset;
     }
 
     &[ouvert="false"] {
@@ -72,8 +72,6 @@
             }
         }
     }
-
-    @include tablette {justify-content: unset;}
 
     .BoutonBurger {
         @include tablette {display: none;}

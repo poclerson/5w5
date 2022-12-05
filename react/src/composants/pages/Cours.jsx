@@ -50,7 +50,7 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
                 }
                 </div>
                 <h4 className="titre">{titre}</h4>
-                <p className="description">{description.tronquerMots(49)}</p>
+                <p className="description">{description}</p>
             </div>
             {/* <div className="rond"></div> */}
         </li>

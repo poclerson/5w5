@@ -40,7 +40,13 @@ export default function ListeSessions({sessions, cours, pageRef}) {
 
     // Défile vers un cours en tenant en compte les titres de session
     const defilerVersCours = cours => {
+        const element = refListeCoursSessionOuverte.current;
         if (cours) {
+            if (element.scrollLeft + window.innerWidth >= element.scrollWidth) {
+                element.scrollLeft = 0;
+                return;
+            }
+
             refListeCoursSessionOuverte.current.scrollLeft = 
             cours.offsetLeft - refTitres.current.offsetWidth; 
         }
