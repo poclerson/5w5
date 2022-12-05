@@ -1,32 +1,54 @@
 @import './variables.scss';
 @import './fonctions.scss';
 
-// Normalization des variables
-ul, ol {
-    padding: 0;
-    list-style-type: none;
-}
+$liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
 
+// Styles généraux sur tous les éléments
 * {
     margin-block-start: 0;
     margin-block-end: 0;
+    scrollbar-color: map-deep-get($couleurs, 'domaines', 'web') map-get($couleurs, sombre);
+    scroll-behavior: smooth;
 
-    //scrollbar
-      /* Firefox */
-  * {
-    scrollbar-color: #0008ff #ff000000;
-  }
+    &::-webkit-scrollbar {
+        width: 1px;
+    }
 
-  /* Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
-    width: 1px;
-  }
+    &::-webkit-scrollbar-track {
+        background: map-get($couleurs, sombre);
+    }
 
-  *::-webkit-scrollbar-track {
-    background: #ffffff00;
-  }
+    // Listes d'items fermées
+    &[class^="list"] {
+        // Items possiblement ouvrables (fermés)
+        @include selection-enfant-et-soi('[ouvert="false"]:not(#{$liste-items-liste-non-ouvrables})') {
+            .miniature {
+                cursor: pointer;
+            }
+        }
 
+        &[item-ouvert="false"] {
+            // Animer le passage de retour vers la page initiale
+            animation: fondu-entrant ease-in-out .5s;
+        }
 
+        &[item-ouvert="true"] {
+            // Cacher tous les dégradés vers l'item suivant quand il y a un item ouvert dans la liste
+            & ~ .DegradeSuivant {
+                display: none;
+            }
+        }
+    }
+}
+
+.domaine {
+    white-space: nowrap;
+}
+
+// Styles de correction d'éléments particuliers
+ul, ol {
+    padding: 0;
+    list-style-type: none;
 }
 
 a {
@@ -34,7 +56,8 @@ a {
 }
 
 p {
-    text-align: justify;
+    text-align: left;
+    word-spacing: 3px;
 }
 
 input {
@@ -42,7 +65,35 @@ input {
     background-color: transparent;
 }
 
+button {
+    border: none;
+}
+
 // Couleurs globales
 ::selection {
     background-color: map-deep-get($couleurs, 'domaines', 'video');
+}
+
+.behance {
+    &, & * {
+        fill: map-get($couleurs, clair);
+    }
+}
+
+.linkedin {
+    &, & * {
+        fill: map-deep-get($couleurs, 'domaines', 'web');
+    }
+}
+
+.youtube {
+    &, & * {
+        fill: map-deep-get($couleurs, 'domaines', 'video');
+    }
+}
+
+.facebook {
+    &, & * {
+        fill: map-deep-get($couleurs, 'domaines', 'jeu');
+    }
 }

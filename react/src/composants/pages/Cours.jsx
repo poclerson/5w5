@@ -5,56 +5,54 @@ import VisionneurModele from '../modules/VisionneurModele';
 export default function Cours({titre, description, modele, id, index, ouvert}) {
     /* Positionnement des icônes 3D */
     const positionSelonCours = {
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/manetteLambert.glb': {
-            position: [0, 3, 1],
-            rotation: [0, 1, 2]
+        'https://timm175.sg-host.com/wp-content/uploads/2022/11/coursJEU.glb': {
+            position: [0, 0, 1.2],
+            rotation: [0, 4.7, 0]
+        },
+
+        'https://timm175.sg-host.com/wp-content/uploads/2022/11/recherche.glb': {
+            position: [0, 0, -4],
+            rotation: [0, -1.54, 0]
         },
         
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/methodologieRecherche.glb': {
-            position: [0, 3, 1],
-            rotation: [0, 1, 2]
-        },
-        
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/videoCamera.glb': {
-            position: [2, 1, 1],
-            rotation: [9, 2, 1]
+        'https://timm175.sg-host.com/wp-content/uploads/2022/11/video_.glb': {
+            position: [0, 0.2, -5],
+            rotation: [0, 4.7, 0]
         },
 
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/web1.glb': {
-            position: [-3, -0.2, 2],
-            rotation: [0, 4.75, -.05]
+        'https://timm175.sg-host.com/wp-content/uploads/2022/11/coursWEB.glb': {
+            position: [-1.2, -0.2, 0.8],
+            rotation: [-0.05, 4.75, -.05]
         },
 
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/3d-1.glb': {
-            position: [0, 3, 1],
-            rotation: [0, 1, 2]
+        'https://timm175.sg-host.com/wp-content/uploads/2022/11/cours3D-1.glb': {
+            position: [1.6, 0, 3.5],
+            rotation: [0, -0.3, 0]
         },
 
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/designCours.glb': {
-            position: [0, 3, 1],
-            rotation: [0, 1, 2]
+        'https://timm175.sg-host.com/wp-content/uploads/2022/11/coursDESIGN.glb': {
+            position: [-0.6, -0.2, -2],
+            rotation: [-0.05, 4.5, -0.0]
         }
     };
 
     return(
         <li className="Cours" id={id} index={index} ouvert={ouvert}>
-            {console.log(positionSelonCours[modele])}
             <div className="carte">
-                {console.log(modele)}
             <div className="modele">
                 {modele != undefined && modele != false && 
                     <VisionneurModele 
                         cheminModele={modele}
                         echelle={.4}
-                        position={positionSelonCours[modele].position}
-                        rotation={positionSelonCours[modele].rotation}
+                        position={positionSelonCours[modele] && positionSelonCours[modele].position}
+                        rotation={positionSelonCours[modele] && positionSelonCours[modele].rotation}
                     />
                 }
                 </div>
                 <h4 className="titre">{titre}</h4>
-                <p className="description">{description}</p>
+                <p className="description">{description.tronquerMots(49)}</p>
             </div>
-            <div className="rond"></div>
+            {/* <div className="rond"></div> */}
         </li>
     )
 }

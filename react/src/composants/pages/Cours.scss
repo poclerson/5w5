@@ -9,7 +9,6 @@
     scroll-snap-align: start;
     @include premier-dernier(margin, 25vw);
     position: relative;
-    backdrop-filter: blur(30px);
 
     &[ouvert="true"] {
         .carte, .rond{transform: scale(1.1)};
@@ -49,6 +48,7 @@
 
         @include premier-dernier(margin, 35vw, 10vw);
     }
+    backdrop-filter: blur(15px);
 
     // Une carte de cours
     .carte {
@@ -58,7 +58,6 @@
         height: 100%;
 
         @include carte;
-        backdrop-filter: blur(30px);
         @include themer($theme-cours);
         transition: transform ease-in-out .3s;
         padding: 15px;
@@ -87,8 +86,7 @@
         .description {
             @include cacher-barre-defilement;
             flex: 0 1 80%;
-            overflow-x: hidden;
-            overflow-y: scroll;
+            overflow: hidden;
         }
     }
 

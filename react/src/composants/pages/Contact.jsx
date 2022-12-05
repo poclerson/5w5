@@ -1,7 +1,8 @@
 import './Contact.scss';
 
 import Chargement from '../modules/Chargement';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Icone from '../modules/Icone';
+import Fond from '../modules/Fond';
 
 import ContexteDonneesSite from '../../ContexteDonneesSite';
 import {useContext} from 'react';
@@ -13,32 +14,32 @@ export default function Contact({id}) {
         titre, 
         titreDescription, 
         description,
-        titreInscription,
-        wpBlockImageSizeMedium,
         wpBlockWebfactoryMap,
-        wpBlockSocialLinks
+        BACKGROUND,
+        behance,
+        linkedin,
+        youtube,
+        facebook
     } = useStructure(id);
     return (
         degrades != null ?
-        <section className="Contact" style={{backgroundImage:`url(${degrades[2].acf.degrade})`}}>
+        <section className="Contact">
+            <Fond fond={{backgroundImage: BACKGROUND}} />
             <article className='boite-principale'>
                 {titre}
                 <article className='contenu'>
-                    <div className='images'>
-                        <div className='wpBlockWebfactoryMap'>{wpBlockWebfactoryMap}</div>
-                    </div>
+                    {wpBlockWebfactoryMap}
                     <div className='informations'>
                         {titreDescription}
                         {description}
-                        {wpBlockSocialLinks}
+                        <div className="social">
+                            {behance}
+                            {linkedin}
+                            {youtube}
+                            {facebook}
+                        </div>
                     </div>
                 </article>
-
-
-                <div className='inscription'>
-                     {titreInscription}
-                    <ArrowForwardIosIcon className='Icone'/>
-                </div>
             </article>
         </section>
          : <Chargement />

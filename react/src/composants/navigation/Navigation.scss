@@ -6,10 +6,10 @@
     flex-direction: column;
 
     // Animation de l'ouverture de la recherhce
-    transform-origin: left center;
-    transition: all cubic-bezier(.99,-0.01,.65,.73) .5s;
-    transform: scaleX(1);
-    width: 100%;
+    @include transition-base;
+    opacity: 1;
+    @include pleine-taille;
+    max-height: 500px; // Pour la transition
 
     .titre-page {
         display: block;
@@ -20,8 +20,11 @@
     }
 
     @include tablette {
-        flex: 1 0 50%;
+        flex: 0 1 80%;
         flex-direction: row;
         justify-content: space-around;
+        gap: 0;
+        height: unset;
+        max-height: unset;
     }
 }

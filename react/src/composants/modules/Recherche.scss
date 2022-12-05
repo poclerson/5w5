@@ -3,52 +3,47 @@
 
 // Barre de recherche présente dans EnTete
 .Recherche {
-    transition: flex-basis cubic-bezier(.99,-0.01,.65,.73) .5s;
     display: flex;
     align-items: center;
     gap: 2.5%;
 
     @include tablette {
+        @include transition-base;
+        flex-direction: row-reverse;
+        justify-content: flex-start;
         margin: 0 2.5%;
-        flex: 0 2 5%;
+        width: 10%;
+        flex: 0 1 100%;
+        position: fixed;
+        right: 0;
     }
 
     .icone-recherche {
-        transform: scaleX(-1); // Tourner l'icône
         cursor: pointer;
         @include hover-bordures-cotes;
     }
 
     .zone-saisie {
         border-bottom: 2px solid map-get($couleurs, clair);
+        @include transition-base;
 
         &:focus {
             outline: none;
+        }
+
+        @include tablette {
+            width: 0;
+            opacity: 0;
         }
     }
 
     &[ouvert="true"] {
         @include tablette {
-            flex: 0 0 100%;
-            @include transition-base(flex-basis);
+            width: 80%;
 
             .zone-saisie {
-                width: 60%;
+                width: 100%;
                 opacity: 1;
-                @include transition-base;
-            }
-        }
-    }
-
-    &[ouvert="false"] {
-        @include tablette {
-            flex: 0 1 5%;
-            @include transition-base(flex-basis);
-
-            .zone-saisie {
-                width: 0;
-                opacity: 0;
-                @include transition-base;
             }
         }
     }

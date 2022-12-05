@@ -5,6 +5,8 @@ export default function Chargement() {
     return(
         <div className="Chargement">
             <h6>Chargement</h6>
+            <div className="rond"></div>
         </div>
+
     )
 }

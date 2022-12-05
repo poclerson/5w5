@@ -12,21 +12,26 @@
 /*
     Gestion des couleurs spécifiques à un certain domaine
 */
+// Tous les enseignants ouverts
 $classes-couleur-domaine: (
     conteneur-photo: background-color,
     miniature: background-color,
-    texte: background-color
+    texte: background-color,
+    'contenu .domaine': background-color
 );
 
+// Tous les enseignants fermés
 $classes-couleur-domaine-ferme: (
     domaine: color
 );
 
+// Enseignant ouvert de modélisation 3D
+// (contraste entre blanc et jaune pas assez grand)
 $classes-couleur-domaine-contraste-texte: (
     etiquette-titre: color,
     titre: color,
     etiquette-domaine: color,
-    domaine: color,
+    domaine: (color, border-color),
     etiquette-description: color,
     description: color
 );
@@ -36,32 +41,48 @@ $couleurs-domaines-modifiees: (
 );
 
 .Enseignant {
+    // @@@@@@@@@@@@@@@@@@@@@@ TEMPORAIRE @@@@@@@@@@@@@@@@@@@
+    @include ordinateur {
+        &.modelisation3d .titre {
+            color: map-get($couleurs, sombre);
+        }
+    }
     @include themer($theme-enseignant);
-
-    @include couleurs-domaines($classes-couleur-domaine);
-    @include couleurs-domaines(
-        $classes-couleur-domaine-contraste-texte,
-        $couleurs-domaines-modifiees
-    );
 
     @include couleurs-domaines($classes-couleur-domaine-ferme);
 
+    @include couleurs-domaines($classes-couleur-domaine);
     
-
-    &:hover{
-        size: 10%;
-        transition: all 0.9s 0s ease;
+    @include max-mobile {
+        @include couleurs-domaines(
+            $classes-couleur-domaine-contraste-texte,
+            $couleurs-domaines-modifiees
+        );
     }
 
+    @include transition-base;
 
+    @include ordinateur {
+        // Séparer la miniature du contenu le plus possible
+        // pour la transition
+        justify-content: space-between;
+        position: absolute;
+        max-height: 60vh;
+    }
 
     // ===== FERMÉ =====
-
-
     &[ouvert="false"] {
+        display: none;
+
+        @include ordinateur {
+            display: flex;
+            // Positionner à droite de l'écran pour la transition
+            right: -40vw;
+            opacity: 0;
+        }
+
         .miniature {
             @include bulle;
-            
             
             .titre {
                 display: none;
@@ -74,230 +95,107 @@ $couleurs-domaines-modifiees: (
                 object-fit: cover;
                 width: 100%;
             }
+            @include hover-item($element-hovered: '.photo', $echelle: 1.175)
         }
     
         // Cacher le contenu lorsqu'un enseignant est fermé
-        .contenu {display: none;}
-
-       
+        .contenu {
+            display: none;
+        }
     }
 
-    
-
-
     // ===== OUVERT =====
-
-
     &[ouvert="true"] {
         display: flex;
         justify-content: center;
-        position: relative;
         // Permettre de rendre la liste invisible tout en gardant l'enseignant ouvert visible
         visibility: visible;
         height: 100%;
 
-        // Lorsque ouvert, on montre le contenu en cachant la miniature
         .contenu {
             display: flex;
-            flex-direction: column;
-            gap: 5%;
-
-            .retour {
-                position: absolute;
-                left: -5%;
-            }
-
-            // Photo de l'enseignant (mobile et tablette)
-            .conteneur-photo {
-                height: 30%;
-                flex: 0 0 30%;
-                @include bulle;
-                padding: 15px;
-
-                margin-left: 5vw;
-                margin-right: 5vw;
-
-                .fond-photo {
-                    aspect-ratio: 1;
-                    background-color: map-get($couleurs, clair);
-                    border-radius: 50%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-end;
-                    align-items: center;
-                    overflow-x: clip; // fonctionne sur Firefox seulement
-
-                    // Image
-                    .photo {
-                        width: 100%;
-                        z-index: 3;
-                        object-fit: cover;
-                    }
-                }
-
-                @include tablette {
-                    height: unset;
-                }
-
-                // & > *:not(.fond-photo) {display: none}
-
-                // Faire disparaitre la photo du contenu sur ordinateur puisqu'on utilise la miniature
-                @include ordinateur {display: none;}
-            }
-
-            // Section de texte avec l'image de l'enseignant
-            .texte {
-                flex: 0 0 61%;
-                box-sizing: border-box;
-                padding: 5%;
-                border-radius: 30px 30px 0 0;
-
-                display: flex;
-                flex-direction: column;
-
-                .domaine{
-                    display: flex;
-                    border: groove 10px blue;
-                    padding: 0 6px 0 9px ;
-                    border-radius: 30px;
-                    //background-color: rgb(45, 45, 45);
-                    width: min-content;
-                }
-
-
-                .conteneur-description {
-                    flex-grow: 1;
-                    padding: 7.5%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    background-color: map-get($couleurs, clair);
-                    border-radius: 30px;
-
-                    .description {
-                        color: map-get($couleurs, sombre);
-                        max-height: 30vh;
-                        overflow-y: auto;
-                    }
-
-                  
-                    @include tablette {
-                        background-color: transparent;
-                        .description {color: map-get($couleurs, clair);}
-                        padding: 0;
-                    }
-
-                    @include ordinateur {
-                        flex-grow: unset;
-                        height: 30%;
-                        flex: 1 0 80%;
-                    }
-                }
-
-                [class^="etiquette-"]{
-                    display: none;
-                }
-
-                @include tablette {
-                    // Tous les éléments qui ne sont pas des étiquettes
-                    *:not([class^="etiquette-"]) {margin-left: 2.5%;}
-
-                    // Annuler le style donné par @couleurs-domaines à partir de tablettes
-                    & > * {color: map-get($couleurs, clair)}
-
-                    height: unset;
-
-                    [class^="etiquette-"]{
-                        display: block;
-                    }
-                }
-
-                @include ordinateur {flex: 1 0 100%;}
-            }
-
-            @include tablette {
-                flex-direction: row;
-                align-items: flex-start; // Positionner en-haut de la page
-                padding-top: 2.5%; // Sinon la tête des profs dépasse
-
-                .texte {
-                    border-radius: 0;
-                    @include bordures-coins-diagonales(60px, map-get($couleurs, clair));
-                }
-            }
-
-            // Ajuster le texte de l'enseignant ouvert
-            @include ordinateur {
-                // Centrer par rapport à tablette
-                align-items: center;
-                justify-content: center;
-
-                flex: 1 0 60%;
-                height: 60vh;
-                padding: unset;
-            }
-
-            .texte {
-                @include pleine-taille;
-
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                box-sizing: border-box;
-                padding-left: 7.5vw;
-                padding-right: 7.5vw;
-                border-radius: 20px 20px 0 0;
-
-                .desc {
-                    background-color: map-get($couleurs, clair);
-                    height: 100%;
-                    color: black;
-                    border-radius: 20px 20px 0 0;
-                    padding: 5vw;
-                }
-            }
+            opacity: 1;
         }
 
+        // enseignant ouvert
         .miniature {
             display: none;
-
-            // Ajuste la miniature de l'enseignant ouvert (sur ordinateur, un enseignant ouvert affiche sa miniature et son contenu)
-            @include ordinateur {
-                display: flex;
-                flex: 0 1 40%;
-            }
-
-        
-        }
-
-        // & ~ .Enseignant[ouvert="false"] {
-        //     display: none !important;
-        // }
-
-        @mixin redimensionner-enseignants() {
-            flex: 1 20%;
-            transform: scale(0.5);
         }
 
         @include ordinateur {
+            width: 70vw;
+            opacity: 1;
             @include couleurs-domaines($classes-couleur-domaine-ferme);
-            flex: 0 1 80%;
+            flex: 0 0 80%;
+            right: 25vw;
+            align-items: center;
+            transform: scale(1);
+            z-index: 2;
 
-            // Sélectionner l'enseignant juste après l'enseignant ouvert
-            
+            @include ordinateur-large {
+                right: 45vw;
+            }
 
+            .miniature {
+                display: flex;
+
+
+            // Enseignant suivant
             & + .Enseignant {
-                @include redimensionner-enseignants;
+                display: flex;
+                right: -10vw;
+                @include transition-base;
+                flex: 0 0 80%;
+                transform: scale(0.5);
+                opacity: 1;
+                width: 70vw;
 
-                @include ordinateur-large {
-                    & + .Enseignant {
-                        @include redimensionner-enseignants;
+                .contenu {
+                    display: flex;
+                    opacity: 0;
+                    @include transition-base;
+                }
+
+                // Troisième enseignant
+                & + .Enseignant {
+                    @include transition-base;
+                    opacity: 0;
+
+                    .contenu {
+                        display: none;
                     }
                 }
             }
         }
 
-        @include ordinateur-large {flex: 0 1 60%;}
+        @include ordinateur-large {
+            // Enseignant ouvert
+            flex: 0 1 60%;
+            width: 50vw;
+
+            // Suivant
+            & + .Enseignant {
+                width: 50vw;
+                right: 10vw;
+
+                // Troisième
+                & + .Enseignant {
+                    display: flex;
+                    right: -10vw;
+                    @include transition-base;
+                    width: 50vw;
+                    flex: 0 0 80%;
+                    transform: scale(.5);
+                    opacity: 1;
+
+                    // Quatrième
+                    & + .Enseignant {
+                        display: flex;
+                        transform: scale(.5);
+                    }
+                }
+            }
+        }
     }
 
     // Général, peu importe l'état. N'override pas les règles de priorité
@@ -308,7 +206,6 @@ $couleurs-domaines-modifiees: (
     // Général, peu importe l'état. Override les règles de priorité
     &[ouvert="true"],
     &[ouvert="false"] {
-        transition: left ease-in-out .08s;
         flex-direction: row-reverse; // Afficher le contenu à gauche
         gap: 10%;
 
@@ -318,6 +215,8 @@ $couleurs-domaines-modifiees: (
     
             // Positionnement d'une carte
             @include ordinateur {
+                height: 100%;
+                flex: 0 0 40%;
                 @include carte;
                 aspect-ratio: 1 / 1.5;
                 padding: 0;
@@ -342,6 +241,7 @@ $couleurs-domaines-modifiees: (
                     background-color: map-get($couleurs, sombre);
 
                     .domaine {
+                        white-space: nowrap;
                         position: relative;
                         top: 10%;
                         margin-block-start: 0;
@@ -364,23 +264,232 @@ $couleurs-domaines-modifiees: (
                 .conteneur-domaine {display: block}
             }
         }
-
+        // Lorsque ouvert, on montre le contenu en cachant la miniature
         .contenu {
+            flex-direction: column;
             align-items: center;
-            @include tablette {align-items: flex-start;}
-            .conteneur-photo {
-                @include tablette {margin: unset;}
+            gap: 5%;
+            @include transition-base;
 
+            .retour {
+                align-self: flex-start;
+                position: absolute;
+                left: 5%;
+
+                @include ordinateur {
+                    left: -10%;
+                }
+            }
+
+            .texte {
+                // Gérer avec la height pour .texte et .contenu, flex-basis marche pas
+
+                height: 70%;
+                box-sizing: border-box; // Calculer avec le padding
+                padding: 5%;
+                border-radius: 30px 30px 0 0;
+
+                display: flex;
+                flex-direction: column;
+
+                .domaine {
+                    display: flex;
+                    border-width: 5px;
+                    border-style: solid;
+                    padding: 10px;
+                    border-radius: 30px;
+                    width: min-content;
+
+                    @include max-mobile {
+                        color: map-get($couleurs, clair);
+                        border-color: map-get($couleurs, clair);
+                    }
+
+                    @include tablette {
+                        color: map-get($couleurs, sombre);
+                        border: none;
+                    }
+                }
+
+                .conteneur-description {
+                    flex: 1 0 10%;
+                    padding: 7.5%;
+                    display: flex;
+                    justify-content: center;
+                    background-color: map-get($couleurs, clair);
+                    border-radius: 30px;
+                    overflow-y: scroll;
+
+                    .description {
+                        color: map-get($couleurs, sombre);
+                    }
+
+                    @include tablette {
+                        border-radius: 0;
+                        background-color: transparent;
+                        .description {color: map-get($couleurs, clair);}
+                        padding: 0;
+                    }
+
+                    @include ordinateur {
+                        flex: 1 0 30%;
+                    }
+                }
+
+                [class^="etiquette-"]{
+                    // Cacher toutes les étiquettes
+                    display: none;
+                    flex: 0 1 3%;
+                }
+
+                & > * {
+                    flex: 0 1 5%;
+                }
+
+                // .texte
+                @include tablette {
+                    height: 90%;
+                    flex: 0 0 62.5%;
+                    border-radius: 0;
+                    @include bordures-coins-diagonales(60px, map-get($couleurs, clair));
+
+                    // Tous les éléments qui ne sont pas des étiquettes
+                    *:not([class^="etiquette-"]) {margin-left: 2.5%;}
+
+                    // Mettre tout en blanc (pcq sur fond noir) sauf le domaine
+                    // qui doit avoir sa couleur personnalisée
+                    & > *:not(.domaine) {color: map-get($couleurs, clair)}
+
+                    [class^="etiquette-"]{
+                        display: block;
+                    }
+                }
+
+                @include ordinateur {
+                    flex: 1 0 100%;
+                    padding: 5%;
+                    height: 100%;
+                }
+            }
+
+            .conteneur-photo {
+                height: 30%;
+                @include bulle;
+                padding: 15px;
+
+                margin-left: 5vw;
+                margin-right: 5vw;
+
+                .fond-photo {
+                    // height: 100%;
+                    aspect-ratio: 1; // Garder carré
+                    background-color: map-get($couleurs, clair);
+                    border-radius: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end; // Mettre en-bas
+                    align-items: center;
+                    overflow: hidden;
+
+                    .agrandisseur {
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-end;
+
+                        // Image
+                        .photo {
+                            width: 100%;
+                            object-fit: cover;
+
+                            @include seulement-tablette {width: 130%;}
+                        }
+                    }
+
+                    @include seulement-tablette {
+                        position: relative;
+                        overflow: unset;
+
+                        .agrandisseur {
+                            position: absolute;
+                            overflow: hidden;
+                            border-radius: 0 0 500px 500px;
+                            width: 100%;
+                            left: 0px;
+                        }
+                    }
+                }
+
+                @include tablette {
+                    margin: unset;
+                    margin-top: 10%;
+                    flex: 0 0 30%;
+                    height: unset;
+                }
+
+                // Faire disparaitre la photo du contenu sur ordinateur 
+                // puisqu'on utilise la miniature
+                @include ordinateur {display: none;}
                 .conteneur-domaine,
                 .titre {
                     display: none;
                     @include ordinateur {display: block;}
                 }
             }
+
+            // .contenu
+            @include tablette {
+                flex-direction: row;
+                align-items: flex-start; // Positionner en-haut de la page
+            }
+
+            // Ajuster le texte de l'enseignant ouvert
+            @include ordinateur {
+                flex: 0 0 50%;
+
+                // Centrer par rapport à tablette
+                align-items: center;
+                justify-content: center;
+                padding: unset;
+                height: 100%;
+
+                // Permet la transition de l'enseignant suivant vers le présent
+                // position: absolute;
+                transform: scale(1);
+                @include transition-base;
+            }
+        }
+
+        @include ordinateur {
+            height: 100%;
         }
 
         @include ordinateur-large {
             gap: 5%;
+            width: 50vw;
+        }
+    }
+
+    @include ordinateur {
+        // Enseignant précédent
+        &:has(+ .Enseignant[ouvert="true"]) {
+            // Imiter les styles de l'enseignant ouvert pour
+            // avoir une transition plus smooth
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            @include transition-base;
+            right: 120vw;
+            flex: 0 0 80%;
+            width: 70vw;
+
+            .miniature {
+                display: flex;
+            }
+
+            .contenu {
+                display: flex;
+                opacity: 0;
+            }
         }
     }
 }

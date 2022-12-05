@@ -13,11 +13,24 @@
         @each $taille-ecran, $proprietes in $tailles-ecran {
             @media screen and (min-width: $taille-ecran) {
                 #{$selecteur} {
-                    font-size: map-get($proprietes, taille);
-                    margin-block-start: map-get($proprietes, taille) / 4;
-                    margin-block-end: map-get($proprietes, taille) / 4;
+                    @if ($selecteur == svg) {
+                        width: map-get($proprietes, taille);
+                        height: map-get($proprietes, taille);
+                    }
+    
+                    @else {
+                        font-size: map-get($proprietes, taille);
+                        margin-block-start: map-get($proprietes, taille) / 4;
+                        margin-block-end: map-get($proprietes, taille) / 4;
 
-                    // Ajouter les propriétés ajoutées dans variables.scss ici
+                        @if map-has-key($proprietes, hauteur-ligne) {
+                            line-height: map-get($proprietes, hauteur-ligne);
+                        }
+
+                        @if map-has-key($proprietes, espace-mots) {
+                            word-spacing: map-get($proprietes, espace-mots);
+                        }
+                    }
                 }
             }
         }
@@ -58,8 +71,11 @@
         @include texte-general($theme, "sous-titre");
     }
 
-    .Icone {
-        color: map-deep-get($theme, "icone", "couleur");
+    svg {
+        &, path {
+            color: map-deep-get($theme, "icone", "couleur");
+            fill: map-deep-get($theme, "icone", "couleur");   
+        }
     }
 
     input {
@@ -128,6 +144,7 @@
     // Itérer chaque classe enfant/propriété dans la map reçue
     @each $classe, $propriete in $classes-proprietes-map {
 
+        // Si on n'utilise pas les couleurs conventionnelles
         @if length($nouvelles-couleurs-selon-domaines) > 0 {
             $map-couleurs-domaines: $nouvelles-couleurs-selon-domaines;
         }
@@ -153,7 +170,18 @@
                     .#{$classe} {
 
                         // Application de la couleur à la propriété
-                        #{$propriete}: $couleur;
+                        
+                        // Si on passe plusieurs propriétés dans $propriete
+                        @if type-of($propriete) == 'list' {
+                            @each $_propriete in $propriete {
+                                // Elles doivent ABSOLUMENT avoir la priorité
+                                #{$_propriete}: $couleur !important;
+                            }
+                        }
+
+                        @else {
+                            #{$propriete}: $couleur;
+                        }
                     }
                 }
             }
@@ -162,10 +190,9 @@
 }
 
 // Attribue des couleurs aléatoires de domaine à une propriété donnée aux enfants
-@mixin proprietes-aleatoires($valeurs, $propriete, $nombre-enfants: 100) {
+@mixin proprietes-aleatoires($valeurs, $propriete, $nombre-enfants: 100, $selecteur: '') {
     @for $element from 1 through $nombre-enfants {
-        &:nth-of-type(#{$element}) {
-            @warn nth($valeurs, random(length($valeurs)));
+        &:nth-of-type(#{$element})#{$selecteur} {
             #{$propriete}: nth($valeurs, random(length($valeurs)));
         }
     }
@@ -178,22 +205,66 @@
 
 // Transition pour le texte qui met des bordures sur le côté sur hover
 @mixin hover-bordures-cotes {
-    transition: border 0.35s ease;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    padding: 0 11.2px;
-    cursor: pointer;
-
-    &:hover {
+    @include tablette {
         transition: border 0.35s ease;
-        border-left: 3px solid map-get($couleurs, clair);
-        border-right: 3px solid map-get($couleurs, clair);
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        padding: 0 11.2px;
+        cursor: pointer;
+    
+        &:hover {
+            transition: border 0.35s ease;
+            border-left: 3px solid map-get($couleurs, clair);
+            border-right: 3px solid map-get($couleurs, clair);
+        }
     }
 }
 
 // Raccourci pour une transition de base
-@mixin transition-base($propriete: all, $courbe: cubic-bezier(.99,-0.01,.65,.73), $duree: .5s) {
+@mixin transition-base(
+    $propriete: all, 
+    $courbe: cubic-bezier(.99,-0.01,.65,.73), 
+    $duree: .5s
+) {
     transition: $propriete $courbe $duree;
+}
+
+// Styles de base de hover sur un item d'une liste
+// $element-hovered permet de specifier sur quel élément le hover doit se produire
+@mixin hover-item(
+    $specifier-transform: false, 
+    $element-hovered: null,
+    $echelle: 1.05,
+    $duree: .05s
+) {
+    @include tablette {
+        @if ($element-hovered == null) {
+            @if $specifier-transform == true {
+                transition: transform linear $duree;
+            }
+            @else {
+                transition: all linear $duree;
+            }
+
+            &:hover {
+                transform: scale($echelle);
+            }
+        }
+        @else {
+            #{$element-hovered} {
+                @if $specifier-transform == true {
+                    transition: transform linear $duree;
+                }
+                @else {
+                    transition: all linear $duree;
+                }
+    
+                &:hover {
+                    transform: scale($echelle);
+                }
+            }
+        }
+    }
 }
 
 
@@ -204,13 +275,11 @@
 
 // Gère l'ouverture de différentes boites d'après des classes
 // Insérer dans la boite à ouvrir/fermer
-@mixin gerer-ouverture($valeur-quand-ouvert) {
-    &.ouvert,
+@mixin gerer-ouverture($valeur-quand-ouvert: flex) {
     &[ouvert="true"] {
         display: $valeur-quand-ouvert;
     }
 
-    &.ferme,
     &[ouvert="false"] {
         display: none;
     }
@@ -268,10 +337,6 @@
 @mixin bulle() {
     aspect-ratio: 1;
     border-radius: 50% 50% 10px 50%;
-
-    // img {
-    //     @include pleine-taille;
-    // }
 }
 
 @mixin carte() {
@@ -361,6 +426,20 @@
     }
 }
 
+@mixin max-tablette {
+    @media screen and (max-width: map-get($largeurs-ecran, ordinateur)) {
+        @content;
+    }
+}
+
+@mixin seulement-tablette {
+    @include tablette {
+        @include max-tablette {
+            @content;
+        }
+    }
+}
+
 @mixin ordinateur {
     @media screen and (min-width: map-get($largeurs-ecran, ordinateur)) {
         @content;
@@ -379,7 +458,7 @@
 
 
 @mixin selection-texte() {
-    h1, h2, h3, h4, h5, h6, p, a {
+    h1, h2, h3, h4, h5, h6, p, a, img, input {
         @content;
     }
 }
@@ -420,5 +499,14 @@
                 #{$propriete}-bottom: $valeur;
             }
         }
+    }
+}
+
+// Prend un sélecteur et l'effectue en tant que lui-même et la sélection de son enfant
+// avec ce même sélecteur
+@mixin selection-enfant-et-soi($selecteur) {
+    &#{$selecteur},
+    & #{$selecteur} {
+        @content;
     }
 }

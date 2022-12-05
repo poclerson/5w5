@@ -1,0 +1,12 @@
+@import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
+
+.PhotoEnvironnement {
+    @include hover-item;
+
+    // Largeur de 1
+    grid-column: span 1;
+
+    // Les photos d'environnement ne prennent qu'une seule rangée de hauteur
+    grid-row: span 1;
+}
