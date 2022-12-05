@@ -26,8 +26,8 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
         },
 
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/cours3D-1.glb': {
-            position: [2.5, -.3, 1.9],
-            rotation: [0, 4.3, 0]
+            position: [1.6, 0, 3.5],
+            rotation: [0, -0.3, 0]
         },
 
         'https://timm175.sg-host.com/wp-content/uploads/2022/11/coursDESIGN.glb': {
