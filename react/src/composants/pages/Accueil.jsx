@@ -5,6 +5,7 @@ import Marquee from 'react-fast-marquee';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import useStructure from '../../hooks/useStructure';
 import medias from '../../medias';
+import Chargement from '../modules/Chargement';
 
 export default function Accueil({id}) {
     const tablette = useMediaQuery(medias.tablette);
@@ -18,6 +19,7 @@ export default function Accueil({id}) {
                         {titres.props.children}
                     </Marquee>
             </section>
+        // <Chargement/>
             
     )
 }
