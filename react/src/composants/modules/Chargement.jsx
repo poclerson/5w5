@@ -7,5 +7,6 @@ export default function Chargement() {
             <h6>Chargement</h6>
             <div className="rond"></div>
         </div>
+
     )
 }
