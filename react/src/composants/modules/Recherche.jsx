@@ -30,7 +30,6 @@ export default function Rechercher({
         if (tabletteMax && verifierOuverture() == 'false') {
             surClic();
         }
-        console.log(document.activeElement)
         setEcrit('true');
     }
 
@@ -55,13 +54,16 @@ export default function Rechercher({
     // Appeler la fonction de recherche chaque fois qu'on écrit un caractère
     return(
         <div className="Recherche" ouvert={verifierOuverture()}>
-            <Icone type="recherche" classes="icone-recherche" surClic={surClic} />
+            <label htmlFor="zone-saisie">
+                <Icone type="recherche" classes="icone-recherche" surClic={surClic} />
+            </label>
             <input 
+                className="zone-saisie"
+                id="zone-saisie"
                 ref={refZoneSaisie}
                 type="text"
                 onChange={gestionSaisie}
                 onFocus={gestionFocus}
-                className="zone-saisie"
             />
 
         </div>

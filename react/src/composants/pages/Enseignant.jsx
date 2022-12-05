@@ -67,7 +67,7 @@ export default function Enseignant({
                     <h5 className="etiquette-description">biographie</h5>
                     <div className="conteneur-description">
                         <p className="description">
-                            {description}
+                            {description.tronquerMots(90)}
                         </p>
                     </div>
                 </article>

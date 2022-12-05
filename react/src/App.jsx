@@ -58,7 +58,7 @@ export default function App() {
                     <EnTete enteteWP={hcms.data.header} />
                     <Routes>
                         {/* Aller à l'accueil par défaut */}
-                        {/* <Route exact path={'/*'} element={<Navigate to={'/accueil'} />}/> */}
+                        <Route exact path={'/*'} element={<Navigate to={'/accueil'} />}/>
                         {hcms.data.header.headerMenuItems.map((page, index) => {
                             let Composant = identifierComposant(page.pageSlug);
                             console.log(page.pageSlug)

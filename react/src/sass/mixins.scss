@@ -22,6 +22,14 @@
                         font-size: map-get($proprietes, taille);
                         margin-block-start: map-get($proprietes, taille) / 4;
                         margin-block-end: map-get($proprietes, taille) / 4;
+
+                        @if map-has-key($proprietes, hauteur-ligne) {
+                            line-height: map-get($proprietes, hauteur-ligne);
+                        }
+
+                        @if map-has-key($proprietes, espace-mots) {
+                            word-spacing: map-get($proprietes, espace-mots);
+                        }
                     }
                 }
             }
@@ -450,7 +458,7 @@
 
 
 @mixin selection-texte() {
-    h1, h2, h3, h4, h5, h6, p, a {
+    h1, h2, h3, h4, h5, h6, p, a, img, input {
         @content;
     }
 }

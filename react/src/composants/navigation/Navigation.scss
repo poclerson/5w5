@@ -6,13 +6,7 @@
     flex-direction: column;
 
     // Animation de l'ouverture de la recherhce
-    transform-origin: left;
-    // @include transition-base;
-    transition-property: transform, width, flex, opacity, justify-content, gap;
-    transition-duration: .5s;
-    transition-timing-function: ease-in-out;
-    transition-delay: 0s, 0s, 0s, 0s, .5s, .5s;
-    transform: scale(1);
+    @include transition-base;
     opacity: 1;
     @include pleine-taille;
     max-height: 500px; // Pour la transition
@@ -26,7 +20,7 @@
     }
 
     @include tablette {
-        flex: 1 0 50%;
+        flex: 0 1 80%;
         flex-direction: row;
         justify-content: space-around;
         gap: 0;
