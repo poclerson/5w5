@@ -9,7 +9,6 @@
     scroll-snap-align: start;
     @include premier-dernier(margin, 25vw);
     position: relative;
-    // backdrop-filter: blur(30px);
 
     &[ouvert="true"] {
         .carte, .rond{transform: scale(1.1)};
@@ -87,8 +86,7 @@
         .description {
             @include cacher-barre-defilement;
             flex: 0 1 80%;
-            overflow-x: hidden;
-            overflow-y: scroll;
+            overflow: hidden;
         }
     }
 

@@ -3,18 +3,12 @@ import './PiedPage.scss';
 import SiteLogo from '../modules/SiteLogo';
 import Icone from '../modules/Icone';
 
-import {useContext} from 'react';
-import ContexteDonneesSite from '../../ContexteDonneesSite';
 import useStructure from '../../hooks/useStructure';
 
 export default function PiedPage({enteteWP}) {
-    const {pages} = useContext(ContexteDonneesSite);
-
     const {
         nousJoindre,
-        inscription,
-        wpBlockSocialLinks,
-
+        inscription
     } = useStructure('piedpage', true);
 
     return(
@@ -26,7 +20,6 @@ export default function PiedPage({enteteWP}) {
                 </div>
                 {nousJoindre}
                 <u>{inscription}</u>
-                {wpBlockSocialLinks}
             </div>
         </footer>
     )   

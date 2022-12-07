@@ -22,12 +22,9 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
     &[class^="list"] {
         // Items possiblement ouvrables (fermés)
         @include selection-enfant-et-soi('[ouvert="false"]:not(#{$liste-items-liste-non-ouvrables})') {
-            cursor: pointer;
-        }
-
-        // Items possiblement ouvrables (ouverts)
-        @include selection-enfant-et-soi('[ouvert="true"]:not(#{$liste-items-liste-non-ouvrables})') {
-            // animation: fondu-entrant ease-in-out .5s;
+            .miniature {
+                cursor: pointer;
+            }
         }
 
         &[item-ouvert="false"] {
@@ -44,6 +41,10 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
     }
 }
 
+.domaine {
+    white-space: nowrap;
+}
+
 // Styles de correction d'éléments particuliers
 ul, ol {
     padding: 0;
@@ -56,19 +57,8 @@ a {
 
 p {
     text-align: left;
-    line-break: loose;
-    hyphens: auto;
-    text-justify: inter-character;
-    -ms-hyphenate-limit-chars: 8 3 4;
+    word-spacing: 3px;
 
-    @include tablette {
-        word-spacing: 1px;
-        text-justify: auto;
-    }
-
-    @include ordinateur {
-        line-break: strict;
-    }
 }
 
 input {
@@ -83,4 +73,28 @@ button {
 // Couleurs globales
 ::selection {
     background-color: map-deep-get($couleurs, 'domaines', 'video');
+}
+
+.behance {
+    &, & * {
+        fill: map-get($couleurs, clair);
+    }
+}
+
+.linkedin {
+    &, & * {
+        fill: map-deep-get($couleurs, 'domaines', 'web');
+    }
+}
+
+.youtube {
+    &, & * {
+        fill: map-deep-get($couleurs, 'domaines', 'video');
+    }
+}
+
+.facebook {
+    &, & * {
+        fill: map-deep-get($couleurs, 'domaines', 'jeu');
+    }
 }

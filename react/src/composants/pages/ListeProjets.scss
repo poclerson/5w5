@@ -13,7 +13,7 @@
     }
 
     .titre {
-        @include tablette {grid-colaumn: span 2};
+        @include tablette {grid-column: span 2};
 
         // Obligé, sinon on doit briser la ligne du titre à un endroit bizarre avec line-break: anywhere
         @media screen and (max-width: 520px) {
@@ -51,16 +51,21 @@
             }
 
             // Styles communs
-            .Projet, .PhotoEnvironnement, .EvenementVideo {
+            .evenement {
                 position: relative;
                 display: flex;
                 border-radius: 20px;
                 overflow: hidden;
 
                 &:not([ouvert="true"]):hover {
+                    @include proprietes-aleatoires(
+                        $valeurs: map-values(map-get($couleurs, domaines-transparents)),
+                        $propriete: background-color,
+                        $selecteur: ' .information'
+                    );
+                    
                     .miniature {
                         .information {
-                            background-color: map-get($couleurs, sombre-transparent);
                             backdrop-filter: blur(15px);
                             opacity: 1;
                         }
@@ -99,7 +104,6 @@
 
                         .image-presentation {
                             object-fit: cover;
-                            opacity: .5;
                             @include pleine-taille;
                         }
                     }

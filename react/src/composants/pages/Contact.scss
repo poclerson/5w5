@@ -5,79 +5,43 @@
 .Contact {
     display: flex;
     flex-direction: column;
-    background-repeat: no-repeat;
-    background-position: 100% 50%;
-    background-size: cover;
     overflow-x: hidden;
     @include pleine-taille;
     box-sizing: border-box;
-    @include page(true);
-
-    @include ordinateur {
-        padding-bottom: 10vh;
-    }
+    @include page;
 
     .boite-principale{
-        @include padding-auto;
         display: flex;
         flex-direction: column;
         padding: 0 10%;
 
         .contenu{
+            gap: 5%;
             @include tablette{
                 display: flex;
             }
     
-            .images{
-                display: none;
-                flex: 1 0 50%;
-                gap: 5%;
-                width: 100%;
-    
-                & > *{
-                    background-color: beige;
-                    width: 180%;
-                    content: "";
-                    
-                    
-                    @include tablette{
-                        &:nth-child(2){
-                            grid-row: span 2;
-                        }
-                    }
-                }
-    
-                grid-template-rows: 1fr .2fr;
-                grid-template-columns: 1fr 1fr;
-    
-                
-                @include tablette{
-                    display: grid;
+            .wp-block-webfactory-map {
+                flex: 0 0 50%;
+
+                &, & * {
+                    max-height: 60vh;
+                    border-radius: 30px;
                 }
             }
     
-            /*'Description et le texte'*/
-            .informations{
-                flex: 2 1 50%;
-    
-                p {
-                    width: 100%;
-                    text-align: justify;
-                    @include tablette {line-break: anywhere;}
+            .informations {
+                flex: 0 0 50%;
+                display: flex;
+                flex-direction: column;
+                gap: 5%;
+
+                .social {
+                    display: flex;
+                    gap: 5%;
                 }
             }
             
-        }
-    }
-
-    /*'Inscription et son icône'*/
-    .inscription {
-        display: flex;
-        align-items: center;
-        align-self: flex-end;
-
-        .titre-inscription{
-            text-align: right;
         }
     }
 }

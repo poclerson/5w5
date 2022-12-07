@@ -32,8 +32,9 @@ export default function ListeProjets({id}) {
     const rendreCases = () => {
         let index = 0;
 
-        return [...projets, ...environnement].pseudoMelanger().map((evenement => {
+        return [...projets, ...environnement, ...videos].pseudoMelanger().map((evenement => {
             // Projet
+            console.log(evenement.acf)
             if (evenement.acf.hasOwnProperty('nom')) {
                 let composant = <Projet 
                     key={evenement.id}
@@ -72,7 +73,7 @@ export default function ListeProjets({id}) {
                 item-ouvert={verifierOuvertureParent()}
                 ref={refListe}
             >
-                {/* {console.log(videos)} */}
+                {console.log(videos)}
                 <ul className="liste" item-ouvert={verifierOuvertureParent()}>
                     {titre}
                     {rendreCases()}

@@ -1,36 +1,40 @@
 @import '../../sass/mixins.scss';
 @import '../../sass/variables.scss';
+@import '../../sass/fonctions.scss';
 
 .PiedPage {
     width: 100%;
     display: none;
-    background-color: transparent;
     flex-direction: column;
-    position: relative;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
 
     .vague {
-        position: absolute;
-        bottom: 100%;
         width: 100%;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        overflow: hidden;
 
         svg {
             @include pleine-taille;
-            // Ajout d'un contour blanc en-haut
-            filter: drop-shadow(0 -5px 0 map-get($couleurs, clair));
             transform: scale(1.05);
-            path {fill: map-get($couleurs, sombre)}
         }
     }
 
     .contenu {
         width: 100%;
         @include themer($theme-pied-page);
+
+        background: linear-gradient(
+            to right, 
+            map-deep-get($couleurs, 'domaines', 'modelisation3d') 0%, 
+            map-deep-get($couleurs, 'domaines', 'design') 50%, 
+            map-deep-get($couleurs, 'domaines', 'jeu') 100%
+        );
         
-        // Ajouter les styles des éléments du footer ici
         display: flex;
         flex-direction: row;
         justify-content: space-around;
@@ -49,8 +53,12 @@
             flex: 1 0 28%;
         }
 
-        .logo {
+        & > .logo {
             flex: 0 0 15%;
+
+            .logo {
+                width: 100%;
+            }
         }
     }
 

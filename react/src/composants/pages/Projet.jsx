@@ -18,7 +18,7 @@ export default function Projet({
     return (
         <li className="Projet evenement" id={id} index={index} ouvert={verifierOuverture(index)}>
             <div className="miniature" onClick={() => surClic(index)}>
-            <div className="image-presentation-conteneur">
+                <div className="image-presentation-conteneur">
                     <img 
                         className="image-presentation" 
                         src={image_presentation} 
@@ -34,9 +34,11 @@ export default function Projet({
                 <FlecheNav gestionClic={() => surClic(-1)} direction='precedent' />
                 <div className="texte-conteneur">
                     <div className="texte">
-                        <h2 className="titre">
-                            <a href={lien} className="lien-titre">{nom}</a>
-                        </h2>
+                        <u>
+                            <h2 className="titre">
+                                <a href={lien} className="lien-titre">{nom}</a>
+                            </h2>
+                        </u>
                         <h3 className="sous-titre">{createurs}</h3>
                         <p className="description">{description}</p>
                     </div>

@@ -17,7 +17,7 @@ $classes-couleur-domaine: (
     conteneur-photo: background-color,
     miniature: background-color,
     texte: background-color,
-    domaine: border-color
+    'contenu .domaine': background-color
 );
 
 // Tous les enseignants fermés
@@ -111,10 +111,10 @@ $couleurs-domaines-modifiees: (
         // Permettre de rendre la liste invisible tout en gardant l'enseignant ouvert visible
         visibility: visible;
         height: 100%;
-        width: 70vw;
 
         .contenu {
             display: flex;
+            opacity: 1;
         }
 
         // enseignant ouvert
@@ -123,12 +123,14 @@ $couleurs-domaines-modifiees: (
         }
 
         @include ordinateur {
+            width: 70vw;
             opacity: 1;
             @include couleurs-domaines($classes-couleur-domaine-ferme);
             flex: 0 0 80%;
             right: 25vw;
             align-items: center;
             transform: scale(1);
+            z-index: 2;
 
             @include ordinateur-large {
                 right: 45vw;
@@ -136,11 +138,7 @@ $couleurs-domaines-modifiees: (
 
             .miniature {
                 display: flex;
-            }
 
-            .contenu {
-                flex: 0 0 50%;
-            }
 
             // Enseignant suivant
             & + .Enseignant {
@@ -208,7 +206,6 @@ $couleurs-domaines-modifiees: (
     // Général, peu importe l'état. Override les règles de priorité
     &[ouvert="true"],
     &[ouvert="false"] {
-        // transition: left ease-in-out .08s;
         flex-direction: row-reverse; // Afficher le contenu à gauche
         gap: 10%;
 
@@ -218,6 +215,7 @@ $couleurs-domaines-modifiees: (
     
             // Positionnement d'une carte
             @include ordinateur {
+                height: 100%;
                 flex: 0 0 40%;
                 @include carte;
                 aspect-ratio: 1 / 1.5;
@@ -229,11 +227,7 @@ $couleurs-domaines-modifiees: (
                 .titre {
                     max-width: 70%;
                     position: static;
-                    margin-left: -10%;
-                    margin-top: 20%;
-                    transform: rotate(90deg);
-                    // font-size: 100px;
-                    // text-align: right;
+                    margin-left: 5%;
                 }
 
                 .conteneur-domaine {
@@ -247,6 +241,7 @@ $couleurs-domaines-modifiees: (
                     background-color: map-get($couleurs, sombre);
 
                     .domaine {
+                        white-space: nowrap;
                         position: relative;
                         top: 10%;
                         margin-block-start: 0;
@@ -274,6 +269,7 @@ $couleurs-domaines-modifiees: (
             flex-direction: column;
             align-items: center;
             gap: 5%;
+            @include transition-base;
 
             .retour {
                 align-self: flex-start;
@@ -287,11 +283,11 @@ $couleurs-domaines-modifiees: (
 
             .texte {
                 // Gérer avec la height pour .texte et .contenu, flex-basis marche pas
+
                 height: 70%;
                 box-sizing: border-box; // Calculer avec le padding
                 padding: 5%;
                 border-radius: 30px 30px 0 0;
-                gap: .5%;
 
                 display: flex;
                 flex-direction: column;
@@ -307,6 +303,11 @@ $couleurs-domaines-modifiees: (
                     @include max-mobile {
                         color: map-get($couleurs, clair);
                         border-color: map-get($couleurs, clair);
+                    }
+
+                    @include tablette {
+                        color: map-get($couleurs, sombre);
+                        border: none;
                     }
                 }
 
@@ -348,7 +349,7 @@ $couleurs-domaines-modifiees: (
                 // .texte
                 @include tablette {
                     height: 90%;
-                    flex: 0 0 52.5%;
+                    flex: 0 0 62.5%;
                     border-radius: 0;
                     @include bordures-coins-diagonales(60px, map-get($couleurs, clair));
 
@@ -380,6 +381,7 @@ $couleurs-domaines-modifiees: (
                 margin-right: 5vw;
 
                 .fond-photo {
+                    // height: 100%;
                     aspect-ratio: 1; // Garder carré
                     background-color: map-get($couleurs, clair);
                     border-radius: 50%;
@@ -387,19 +389,40 @@ $couleurs-domaines-modifiees: (
                     flex-direction: column;
                     justify-content: flex-end; // Mettre en-bas
                     align-items: center;
-                    overflow-x: clip; // fonctionne sur Firefox seulement
+                    overflow: hidden;
 
-                    // Image
-                    .photo {
-                        width: 100%;
-                        z-index: 3;
-                        object-fit: cover;
+                    .agrandisseur {
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-end;
+
+                        // Image
+                        .photo {
+                            width: 100%;
+                            object-fit: cover;
+
+                            @include seulement-tablette {width: 130%;}
+                        }
+                    }
+
+                    @include seulement-tablette {
+                        position: relative;
+                        overflow: unset;
+
+                        .agrandisseur {
+                            position: absolute;
+                            overflow: hidden;
+                            border-radius: 0 0 500px 500px;
+                            width: 100%;
+                            left: 0px;
+                        }
                     }
                 }
 
                 @include tablette {
-                    flex: 0 0 40%;
                     margin: unset;
+                    margin-top: 10%;
+                    flex: 0 0 30%;
                     height: unset;
                 }
 
@@ -421,6 +444,8 @@ $couleurs-domaines-modifiees: (
 
             // Ajuster le texte de l'enseignant ouvert
             @include ordinateur {
+                flex: 0 0 50%;
+
                 // Centrer par rapport à tablette
                 align-items: center;
                 justify-content: center;
@@ -432,6 +457,10 @@ $couleurs-domaines-modifiees: (
                 transform: scale(1);
                 @include transition-base;
             }
+        }
+
+        @include ordinateur {
+            height: 100%;
         }
 
         @include ordinateur-large {
@@ -450,12 +479,16 @@ $couleurs-domaines-modifiees: (
             align-items: center;
             @include transition-base;
             right: 120vw;
-            opacity: 0;
             flex: 0 0 80%;
             width: 70vw;
 
             .miniature {
                 display: flex;
+            }
+
+            .contenu {
+                display: flex;
+                opacity: 0;
             }
         }
     }

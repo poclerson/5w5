@@ -3,13 +3,7 @@
 
 .PhotoEnvironnement {
     @include hover-item;
-    @include proprietes-aleatoires(
-        (
-            map-deep-get($couleurs, 'domaines', 'jeu'),
-            map-deep-get($couleurs, 'domaines', 'web'),
-        ), 
-        background
-    ); 
+
     // Largeur de 1
     grid-column: span 1;
 
