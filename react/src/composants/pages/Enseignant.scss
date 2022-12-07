@@ -122,6 +122,10 @@ $couleurs-domaines-modifiees: (
             display: none;
         }
 
+        @include max-tablette {
+            animation: x;
+        }
+
         @include ordinateur {
             width: 70vw;
             opacity: 1;
@@ -138,7 +142,7 @@ $couleurs-domaines-modifiees: (
 
             .miniature {
                 display: flex;
-
+            }
 
             // Enseignant suivant
             & + .Enseignant {
