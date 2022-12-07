@@ -5,6 +5,7 @@ import {useContext, useState, useRef, useEffect} from 'react';
 import useOuverture from '../../hooks/useOuverture';
 import useStructure from '../../hooks/useStructure';
 import useMediaQuery from '../../hooks/useMediaQuery';
+import useClicExterieur from '../../hooks/useClicExterieur';
 import medias from '../../medias';
 import * as wp from '../../wp-rest-api';
 
@@ -22,13 +23,23 @@ export default function EnTete({enteteWP}) {
     const [surClicBurger, verifierOuvertureBurger] = useOuverture();
 
     // État d'ouverture de la recherche
-    const [surClicRecherche, verifierOuvertureRecherche] = useOuverture();
+    const [
+        surClicRecherche, 
+        verifierOuvertureRecherche
+    ] = useOuverture();
 
     // Zone de recherche
     const [resultatsRecherche, setResultatsRecherche] = useState(null);
     const [saisie, setSaisie] = useState("");
     const [ecrit, setEcrit] = useState('false');
     const refZoneSaisie = useRef();
+    const refIconeRecherche = useRef();
+    const refResultatsRecherche = useRef();
+    const fermerRecherche = useClicExterieur(
+        verifierOuvertureRecherche,
+        refResultatsRecherche,
+        [refIconeRecherche, refZoneSaisie]
+    );
 
     // Vagues de l'entête mobile
     const {IMGHEADER} = useStructure('entete', true);
@@ -44,12 +55,15 @@ export default function EnTete({enteteWP}) {
     }, [tablette])
 
     return (
-        <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
+        <header 
+            className="EnTete" 
+            ouvert={verifierOuvertureRecherche()} 
+            onClick={event => fermerRecherche(event, surClicRecherche)}
+        >
             <BoutonBurger gererClic={() => {
                 surClicBurger(); 
                 surClicRecherche(); 
                 setEcrit('false');
-                
             }} 
                 ouvert={verifierOuvertureBurger()} />
             <img 
@@ -72,10 +86,11 @@ export default function EnTete({enteteWP}) {
                     saisie={saisie}
                     setSaisie={setSaisie}
                     refZoneSaisie={refZoneSaisie}
+                    refIcone={refIconeRecherche}
                     setEcrit={setEcrit}
                 />
             </div>
-            <ul className="resultats-recherche">
+            <ul className="resultats-recherche" ref={refResultatsRecherche}>
                 {resultatsRecherche != null &&
                     resultatsRecherche.length > 0 ?
                     resultatsRecherche.map(resultat => 
@@ -83,15 +98,17 @@ export default function EnTete({enteteWP}) {
                             key={resultat.id} 
                             resultat={resultat} 
                             surClic={() => {surClicRecherche(); surClicBurger()}} 
-                            article={wp.obtenirTypeArticle(
-                                resultat.id,
-                                // Étaler les valeurs dans lesquelles chercher l'article
-                                [
-                                    ...Object.values(cours), 
-                                    ...Object.values(enseignants), 
-                                    ...Object.values(projets)
-                                ]
-                            )}
+                            article={
+                                wp.obtenirTypeArticle(
+                                    resultat.id,
+                                    // Étaler les valeurs dans lesquelles chercher l'article
+                                    [
+                                        ...Object.values(cours), 
+                                        ...Object.values(enseignants), 
+                                        ...Object.values(projets)
+                                    ]
+                                )
+                            }
                         />
                     ) 
                     

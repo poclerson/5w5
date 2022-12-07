@@ -232,6 +232,7 @@ $couleurs-domaines-modifiees: (
                     max-width: 70%;
                     position: static;
                     margin-left: 5%;
+                    margin-top: 10%;
                 }
 
                 .conteneur-domaine {
@@ -287,7 +288,6 @@ $couleurs-domaines-modifiees: (
 
             .texte {
                 // Gérer avec la height pour .texte et .contenu, flex-basis marche pas
-
                 height: 70%;
                 box-sizing: border-box; // Calculer avec le padding
                 padding: 5%;
