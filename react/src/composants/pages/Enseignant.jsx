@@ -2,8 +2,6 @@ import './Enseignant.scss';
 
 import FlecheNav from '../modules/FlecheNav';
 
-import useOuverture from '../../hooks/useOuverture';
-
 export default function Enseignant({
     nom,
     description,
@@ -29,7 +27,7 @@ export default function Enseignant({
 
     return(
         <li className={`Enseignant ${domaine}`} id={id} index={index} ouvert={verifierOuverture(index)}>
-
+            
             {/* Prévisualisation (image du prof) */}
             <div className="miniature" onClick={() => surClic(index)}>
                 <h2 className="titre">{nom.toUpperCase()}</h2>

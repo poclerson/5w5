@@ -3,10 +3,9 @@ import './Session.scss';
 import {useRef, useState, useEffect} from 'react';
 import medias from '../../medias';
 import useMediaQuery from '../../hooks/useMediaQuery';
-import useDefilementInfini from '../../hooks/useDefilementInfini';
 
 import Cours from './Cours';
-import DegradeSuivant from '../modules/DegradeSuivant';
+import DegradeCarousel from '../modules/DegradeCarousel';
 
 export default function Session({
     cours, 
@@ -71,7 +70,7 @@ export default function Session({
                     />}
                 )}
             </ul>
-            <DegradeSuivant surClicFleche={surClicFleche} />
+            <DegradeCarousel surClicFleche={surClicFleche} />
         </article>
     )
 }

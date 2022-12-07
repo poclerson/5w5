@@ -12,9 +12,9 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    width: 300px;
+    width: 200px;
 
-    @include tablette {width: 350px;}
+    @include tablette {width: 250px;}
 
     .titre {
         position: absolute;
