@@ -3,10 +3,9 @@ import './Session.scss';
 import {useRef, useState, useEffect} from 'react';
 import medias from '../../medias';
 import useMediaQuery from '../../hooks/useMediaQuery';
-import useDefilementInfini from '../../hooks/useDefilementInfini';
 
 import Cours from './Cours';
-import DegradeSuivant from '../modules/DegradeSuivant';
+import DegradeCarousel from '../modules/DegradeCarousel';
 
 export default function Session({
     cours, 
@@ -25,22 +24,6 @@ export default function Session({
     const tablette = useMediaQuery(medias.tablette);
     const ordinateur = useMediaQuery(medias.ordinateur);
     const ordinateurLarge = useMediaQuery(medias.ordinateurLarge);
-
-    const [coursInfinis, setCoursInfinis] = useState(cours);
-
-    const [setEstArrive, setDonneesAjoutees] = useDefilementInfini(
-        refListeCoursSessionOuverte, 
-        () => {
-            setCoursInfinis([...coursInfinis, ...cours]);
-            // Activer le useEffect
-            setEstArrive(false);
-            setDonneesAjoutees(true);
-        },
-        () => { 
-            setEnfants(Array.from(refListeCoursSessionOuverte.current.children))
-            setDonneesAjoutees(false)
-        }
-    )
 
     const surClicFleche = () => {
         const prochainCours = enfants[indexPlusAGauche + 1];
@@ -74,10 +57,10 @@ export default function Session({
         >
             <ul 
                 className="liste-cours" 
-                ref={refListeCoursSessionOuverte != false ? refListeCoursSessionOuverte : refListeCours} 
+                ref={refListeCoursSessionOuverte ? refListeCoursSessionOuverte : refListeCours} 
                 onScroll={surDefilement}
             >
-                {coursInfinis.map((_cours, index) => 
+                {cours.map((_cours, index) => 
                     { return <Cours 
                         ouvert={index == indexPlusAGauche ? 'true' : 'false'}
                         key={_cours.id + "" + index}
@@ -87,7 +70,7 @@ export default function Session({
                     />}
                 )}
             </ul>
-            <DegradeSuivant surClicFleche={surClicFleche} />
+            <DegradeCarousel surClicFleche={surClicFleche} />
         </article>
     )
 }

@@ -10,7 +10,7 @@ import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
 import FlecheNav from '../modules/FlecheNav';
 import Fond from '../modules/Fond';
-import DegradeSuivant from '../modules/DegradeSuivant';
+import DegradeCarousel from '../modules/DegradeCarousel';
 
 export default function ListeEnseignants({id}) {
     const {enseignants} = useContext(ContexteDonneesSite);
@@ -28,22 +28,8 @@ export default function ListeEnseignants({id}) {
 
     const refListe = useRef();
 
-    const defilerVersEnseignant = () => {
-        const element = refListe.current;
-        const enseignant = Array.prototype.slice.call(
-            element.children).obtenirElementPlusAGauche();
-
-        // Revenir quand on est arrivés au bout
-        if (element.scrollLeft + window.innerWidth >= element.scrollWidth) {
-            element.scrollLeft = 0;
-            return;
-        }
-
-        element.scrollLeft = enseignant.offsetLeft + enseignant.offsetWidth; 
-    }
-
     return(
-        enseignants != null ?
+        enseignants ?
             <section 
                 className="ListeEnseignants" 
                 item-ouvert={verifierOuvertureParent()} 
@@ -67,7 +53,8 @@ export default function ListeEnseignants({id}) {
                 </ul>
                 <FlecheNav gestionClic={surClicSuivant} texte={true} classesAdditionnelles="suivant" />
                 <Fond fond={{backgroundImage: BACKGROUND}} />
-                <DegradeSuivant surClicFleche={defilerVersEnseignant} />
+                <DegradeCarousel refListe={refListe} />
+                <DegradeCarousel refListe={refListe} direction="precedent" />
             </section>  
         : <Chargement />
     );

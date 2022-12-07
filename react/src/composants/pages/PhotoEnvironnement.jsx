@@ -1,6 +1,6 @@
 import './PhotoEnvironnement.scss';
 
-export default function PhotoEnvironnement({nom, description, photo}) {
+export default function PhotoEnvironnement({titre, description, photo}) {
     return (
         <li className="PhotoEnvironnement evenement">
             <div className="miniature">
@@ -8,13 +8,13 @@ export default function PhotoEnvironnement({nom, description, photo}) {
                     <img 
                         className="image-presentation" 
                         src={photo} 
-                        alt={`Image de projet ${nom}`} 
+                        alt={`Image de projet ${titre}`} 
                     />
                 </div>
                 <div className="information">
-                    <h2 className="titre">{nom || 'Projet'}</h2>
+                    <h2 className="titre">{titre || 'Projet'}</h2>
                     <p className="details">
-                        {description && description.tronquerMots(30) || 'Description'}
+                        {description || 'Description'}
                     </p>
                 </div>
             </div>
