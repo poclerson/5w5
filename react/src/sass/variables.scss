@@ -58,6 +58,10 @@ $tailles-textes: (
             taille: 65px
         ),
 
+        2000px:(
+            taille: 75px
+        ),
+
     ),
 
     // Titre d'un article
@@ -80,6 +84,10 @@ $tailles-textes: (
 
         1440px:(
             taille: 37.5px
+        ),
+
+        2000px:(
+            taille: 45px
         ),
     ),
 
@@ -104,6 +112,10 @@ $tailles-textes: (
         1440px:(
             taille: 32.5px
         ),
+
+        2000px:(
+            taille: 44px
+        ),
     ),
 
     // Titre d'un sous-article
@@ -126,6 +138,10 @@ $tailles-textes: (
 
         1440px:(
             taille: 27.5px
+        ),
+
+        2000px:(
+            taille: 32.5px
         ),
     ),
 
@@ -150,6 +166,10 @@ $tailles-textes: (
         1440px:(
             taille: 22.5px
         ),
+
+        2000px:(
+            taille: 26px
+        ),
     ),
 
     // Éléments de navigation de l'entête
@@ -173,7 +193,12 @@ $tailles-textes: (
         1440px:(
             taille: 28px
         ),
+
+        2000px:(
+            taille: 32.5px
+        ),
     ),
+    
 
     // Texte courant
     p: (
@@ -205,6 +230,12 @@ $tailles-textes: (
             taille: 15px,
             hauteur-ligne: 18px,
             espace-mots: 3.5px
+        ),
+
+        2000px:(
+            taille: 20px,
+            hauteur-ligne: 20px,
+            espace-mots: 3.8px
         ),
     ),
 
