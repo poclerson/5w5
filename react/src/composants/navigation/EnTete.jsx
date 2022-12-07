@@ -23,14 +23,23 @@ export default function EnTete({enteteWP}) {
     const [surClicBurger, verifierOuvertureBurger] = useOuverture();
 
     // État d'ouverture de la recherche
-    const [surClicRecherche, verifierOuvertureRecherche] = useOuverture();
+    const [
+        surClicRecherche, 
+        verifierOuvertureRecherche
+    ] = useOuverture();
 
     // Zone de recherche
     const [resultatsRecherche, setResultatsRecherche] = useState(null);
     const [saisie, setSaisie] = useState("");
     const [ecrit, setEcrit] = useState('false');
     const refZoneSaisie = useRef();
-    const refResultatsRecherche = useClicExterieur(surClicRecherche);
+    const refIconeRecherche = useRef();
+    const refResultatsRecherche = useRef();
+    const fermerRecherche = useClicExterieur(
+        verifierOuvertureRecherche,
+        refResultatsRecherche,
+        [refIconeRecherche, refZoneSaisie]
+    );
 
     // Vagues de l'entête mobile
     const {IMGHEADER} = useStructure('entete', true);
@@ -46,7 +55,11 @@ export default function EnTete({enteteWP}) {
     }, [tablette])
 
     return (
-        <header className="EnTete" ouvert={verifierOuvertureRecherche()}>
+        <header 
+            className="EnTete" 
+            ouvert={verifierOuvertureRecherche()} 
+            onClick={event => fermerRecherche(event, surClicRecherche)}
+        >
             <BoutonBurger gererClic={() => {
                 surClicBurger(); 
                 surClicRecherche(); 
@@ -73,6 +86,7 @@ export default function EnTete({enteteWP}) {
                     saisie={saisie}
                     setSaisie={setSaisie}
                     refZoneSaisie={refZoneSaisie}
+                    refIcone={refIconeRecherche}
                     setEcrit={setEcrit}
                 />
             </div>
@@ -84,15 +98,17 @@ export default function EnTete({enteteWP}) {
                             key={resultat.id} 
                             resultat={resultat} 
                             surClic={() => {surClicRecherche(); surClicBurger()}} 
-                            article={wp.obtenirTypeArticle(
-                                resultat.id,
-                                // Étaler les valeurs dans lesquelles chercher l'article
-                                [
-                                    ...Object.values(cours), 
-                                    ...Object.values(enseignants), 
-                                    ...Object.values(projets)
-                                ]
-                            )}
+                            article={
+                                wp.obtenirTypeArticle(
+                                    resultat.id,
+                                    // Étaler les valeurs dans lesquelles chercher l'article
+                                    [
+                                        ...Object.values(cours), 
+                                        ...Object.values(enseignants), 
+                                        ...Object.values(projets)
+                                    ]
+                                )
+                            }
                         />
                     ) 
                     

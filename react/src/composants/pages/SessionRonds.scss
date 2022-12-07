@@ -15,18 +15,18 @@
         height: unset;
     }
 
-    $decalage-mobile: 550px;
-    $decalage-tablette: 800px;
+    $decalage-mobile: 575px;
+    $decalage-tablette: 750px;
 
     .carousel {
         transform-style: preserve-3d;
-        transform-origin: 49% 49%; // Pour une raison obscure c'est + centré à 49%
         position: absolute; 
         transition: transform .5s;
         left: -$decalage-mobile;
-        top: 65vh;
+        top: 70vh;
 
         @include tablette {
+            top: 65vh;
             left: -$decalage-tablette;
         }
 
@@ -37,12 +37,8 @@
     }
 
     & > .FlecheNav {
-        left: $decalage-mobile / 2;
+        left: 275px;
         top: 80vh;
-
-        @include tablette {
-            left: $decalage-tablette;
-        }
 
         @include ordinateur {
             display: none;

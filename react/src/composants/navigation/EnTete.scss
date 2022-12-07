@@ -39,7 +39,7 @@
 
         @include tablette {
             // Demander à .resultats-recherche de ne prendre que l'espace nécessaire
-            height: unset;
+            // height: unset;
 
             .contenu {
                 gap: 0;
@@ -139,7 +139,7 @@
             width: 100%;
             height: 60px;
             backdrop-filter: blur(2.5px);
-            flex: 0 0 100%;
+            flex: unset;
             animation: menu 0.5s linear 0s 1 normal both;
             flex-direction: row;
             align-items: center;
@@ -185,7 +185,8 @@
         // Placement
         width: 95vw;
         max-height: 75vh;
-        flex: 1 1 12.5%;
+        // flex: 1 1 12.5%;
+        height: min-content;
 
         box-sizing: border-box;
 

@@ -35,7 +35,6 @@
         @include tablette {
             gap: 20vw;
             scroll-padding-left: 12.5vw;
-            padding: 0;
         }
 
         @include ordinateur {

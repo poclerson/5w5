@@ -18,6 +18,7 @@ export default function Rechercher({
     saisie, 
     setSaisie, 
     refZoneSaisie,
+    refIcone,
     setEcrit
 }) { 
     const tabletteMax = useMediaQuery(medias.tablette, 'max');
@@ -54,9 +55,9 @@ export default function Rechercher({
     // Appeler la fonction de recherche chaque fois qu'on écrit un caractère
     return(
         <div className="Recherche" ouvert={verifierOuverture()}>
-            <label htmlFor="zone-saisie">
+            <div htmlFor="zone-saisie" onClick={surClic} ref={refIcone}>
                 <Icone type="recherche" classes="icone-recherche" />
-            </label>
+            </div>
             <input 
                 className="zone-saisie"
                 id="zone-saisie"
