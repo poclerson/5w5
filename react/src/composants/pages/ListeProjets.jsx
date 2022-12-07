@@ -10,7 +10,7 @@ import Projet from './Projet';
 import PhotoEnvironnement from './PhotoEnvironnement';
 import Chargement from '../modules/Chargement';
 import Fond from '../modules/Fond';
-import DegradeSuivant from '../modules/DegradeSuivant';
+import DegradeCarousel from '../modules/DegradeCarousel';
 import EvenementVideo from './EvenementVideo';
 
 export default function ListeProjets({id}) {
@@ -79,7 +79,7 @@ export default function ListeProjets({id}) {
                     {rendreCases()}
                 </ul>
                 <Fond fond={{backgroundImage: BACKGROUND}} />
-                <DegradeSuivant refListe={refListe} />
+                <DegradeCarousel refListe={refListe} />
             </section> : <Chargement />
     )
 }
