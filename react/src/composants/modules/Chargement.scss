@@ -1,14 +1,15 @@
 // À venir, représentera l'écran de chargement des pages
 .Chargement {
   // h6 {
-  //   margin-top: 50%;
+  //   // margin-top: 50%;
   // }
+
 .rond{
   width: 12px;
   height: 12px;
   color: #FFF;
   border-radius: 50%;
-  animation: chargement 1s linear infinite alternate;
+  animation: chargement 1.2s linear infinite alternate;
 }
 
   display: flex;
@@ -22,20 +23,21 @@
 
 }
 
+
 @keyframes chargement {
   0% {
-    box-shadow: -35px -12px, 0px -12px, 12px 0;
+    box-shadow: -35px -12px, -12px 0px, 12px 0;
   }
 
-  33% {
-    box-shadow: -35px 0px, 0px -24px, 12px 0;
+  30% {
+    box-shadow: -35px 0px, -12px -12px, 12px 0;
   }
 
-  66% {
-    box-shadow: -35px 0px, 0px -12px, 12px -12px;
+  70% {
+    box-shadow: -35px 0px, -12px -12px, 12px -12px;
   }
 
   100% {
-    box-shadow: -35px 0, 0px -12px, 12px 0;
+    box-shadow: -35px 0, -12px 0px, 12px 0;
   }
 }
