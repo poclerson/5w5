@@ -25,17 +25,17 @@ export default function ListeCours({id}) {
     const listeCoursRef = useRef(null);
 
     useEffect(() => {
-        if (cours != null) {
+        if (cours) {
             // Un Set ne prend qu'une seule occurence de chaque itération dans un tableau
             setSessions([... new Set(cours.map(_cours => _cours.acf.session))].sort());
         }
     }, [cours])
 
     return(
-        cours != null ?
+        cours ?
             <section className="ListeCours" ref={listeCoursRef}>
                 {
-                    sessions && degrades != null ? 
+                    sessions && degrades ? 
                     <ListeSessions sessions={sessions} cours={cours} degrades={degrades} pageRef={listeCoursRef} />
                     : <Chargement />
                 }

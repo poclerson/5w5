@@ -61,7 +61,6 @@ export default function App() {
                         <Route exact path={'/*'} element={<Navigate to={'/accueil'} />}/>
                         {hcms.data.header.headerMenuItems.map((page, index) => {
                             let Composant = identifierComposant(page.pageSlug);
-                            console.log(page.pageSlug)
                             return <Route 
                                 key={"page" + page.pageID}
                                 path={page.pageSlug}
