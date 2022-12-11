@@ -1,11 +1,9 @@
 import './Projet.scss';
-
 import FlecheNav from '../modules/FlecheNav';
-
 export default function Projet({
     nom,
     createurs,
-    description,
+    cours,
     image_presentation,
     image_0,
     image_1,
@@ -19,18 +17,18 @@ export default function Projet({
         <li className="Projet evenement" id={id} index={index} ouvert={verifierOuverture(index)}>
             <div className="miniature" onClick={() => surClic(index)}>
                 <div className="image-presentation-conteneur">
-                    <img 
-                        className="image-presentation" 
+                    <img
+                        className="image-presentation"
                         src={image_presentation} 
                         alt={`Image du projet ${nom} par ${createurs}`} 
                     />
                 </div>
                 <div className="information">
                     <h2 className="titre">{nom}</h2>
-                    <p className="details">{description.tronquerMots(30)}<br/><br/><u>Lire la suite</u></p>
+                    <p className="details">{cours && cours.post_title}<br/><br/><u>Lire la suite</u></p>
                 </div>
             </div>
-            <div className="contenu">
+            {/* <div className="contenu">
                 <FlecheNav gestionClic={() => surClic(-1)} direction='precedent' />
                 <div className="texte-conteneur">
                     <div className="texte">
@@ -40,15 +38,19 @@ export default function Projet({
                             </h2>
                         </u>
                         <h3 className="sous-titre">{createurs}</h3>
-                        <p className="description">{description}</p>
+                        <p className="description">{cours && cours.post_title}</p>
                     </div>
                 </div>
-                <div className="images">
+                <div className="images" grid={image_0 && image_1 ? 'true' : 'false'}>
                     <img src={image_presentation} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
-                    <img src={image_0} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
-                    <img src={image_1} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
+                    {image_0 &&
+                        <img src={image_0} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
+                    }
+                    {image_1 && 
+                        <img src={image_1} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
+                    }
                 </div>
-            </div>
+            </div> */}
         </li>
     )
 }
