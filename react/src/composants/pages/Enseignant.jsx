@@ -2,6 +2,8 @@ import './Enseignant.scss';
 
 import FlecheNav from '../modules/FlecheNav';
 
+import * as wp from '../../wp-rest-api';
+
 export default function Enseignant({
     nom,
     description,
@@ -12,19 +14,6 @@ export default function Enseignant({
     verifierOuverture,
     id
 }) {
-    const versVraisDomaines = domaine => {
-        const vraisDomaines = {
-            modelisation3d: 'Modélisation 3D',
-            jeu: 'Jeu',
-            web: 'Web',
-            design: 'Design',
-            video: 'Vidéo',
-            methodologie: 'Méthodologie'
-        }
-
-        return vraisDomaines[domaine] ? vraisDomaines[domaine] : domaine;
-    }
-
     return(
         <li className={`Enseignant ${domaine}`} id={id} index={index} ouvert={verifierOuverture(index)}>
             
@@ -33,7 +22,7 @@ export default function Enseignant({
                 <h2 className="titre">{nom.toUpperCase()}</h2>
                 <img className="photo" src={typeof photo != 'boolean' ? photo : undefined} alt={"Photo de " + nom} />
                 <span className="conteneur-domaine">
-                    <h2 className="domaine">{versVraisDomaines(domaine).toUpperCase()}</h2>
+                    <h2 className="domaine">{wp.versVraisDomaines(domaine).toUpperCase()}</h2>
                 </span>
             </div>
 
@@ -53,7 +42,7 @@ export default function Enseignant({
                             </div>
                         </div>
                         <span className="conteneur-domaine">
-                            <p className="domaine">{versVraisDomaines(domaine).toUpperCase()}</p>
+                            <p className="domaine">{wp.versVraisDomaines(domaine).toUpperCase()}</p>
                         </span>
                     </div>
                 {/* Boite de texte */}
@@ -61,7 +50,7 @@ export default function Enseignant({
                     <h5 className="etiquette-titre">nom</h5>
                     <h2 className="titre">{nom}</h2>
                     <h5 className="etiquette-domaine">spécialité</h5>
-                    <h3 className="domaine sous-titre">{versVraisDomaines(domaine)}</h3>
+                    <h3 className="domaine sous-titre">{wp.versVraisDomaines(domaine)}</h3>
                     <h5 className="etiquette-description">biographie</h5>
                     <div className="conteneur-description">
                         <p className="description">

@@ -5,7 +5,7 @@ import FlecheNav from '../modules/FlecheNav';
 export default function Projet({
     nom,
     createurs,
-    description,
+    cours,
     image_presentation,
     image_0,
     image_1,
@@ -27,7 +27,7 @@ export default function Projet({
                 </div>
                 <div className="information">
                     <h2 className="titre">{nom}</h2>
-                    <p className="details">{description.tronquerMots(30)}<br/><br/><u>Lire la suite</u></p>
+                    <p className="details">{cours && cours.post_title}<br/><br/><u>Lire la suite</u></p>
                 </div>
             </div>
             <div className="contenu">
@@ -40,13 +40,17 @@ export default function Projet({
                             </h2>
                         </u>
                         <h3 className="sous-titre">{createurs}</h3>
-                        <p className="description">{description}</p>
+                        <p className="description">{cours && cours.post_title}</p>
                     </div>
                 </div>
-                <div className="images">
+                <div className="images" grid={image_0 && image_1 ? 'true' : 'false'}>
                     <img src={image_presentation} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
-                    <img src={image_0} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
-                    <img src={image_1} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
+                    {image_0 &&
+                        <img src={image_0} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
+                    }
+                    {image_1 && 
+                        <img src={image_1} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
+                    }
                 </div>
             </div>
         </li>
