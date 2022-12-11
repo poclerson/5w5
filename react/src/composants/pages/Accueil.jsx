@@ -11,6 +11,7 @@ export default function Accueil({id}) {
     const tablette = useMediaQuery(medias.tablette);
 
     const {titres, BACKGROUND} = useStructure(id);
+    
 
     return(
         titres && BACKGROUND &&
