@@ -1,7 +1,5 @@
 import './Projet.scss';
-
 import FlecheNav from '../modules/FlecheNav';
-
 export default function Projet({
     nom,
     createurs,
@@ -19,8 +17,8 @@ export default function Projet({
         <li className="Projet evenement" id={id} index={index} ouvert={verifierOuverture(index)}>
             <div className="miniature" onClick={() => surClic(index)}>
                 <div className="image-presentation-conteneur">
-                    <img 
-                        className="image-presentation" 
+                    <img
+                        className="image-presentation"
                         src={image_presentation} 
                         alt={`Image du projet ${nom} par ${createurs}`} 
                     />
@@ -30,7 +28,7 @@ export default function Projet({
                     <p className="details">{cours && cours.post_title}<br/><br/><u>Lire la suite</u></p>
                 </div>
             </div>
-            <div className="contenu">
+            {/* <div className="contenu">
                 <FlecheNav gestionClic={() => surClic(-1)} direction='precedent' />
                 <div className="texte-conteneur">
                     <div className="texte">
@@ -52,7 +50,7 @@ export default function Projet({
                         <img src={image_1} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
                     }
                 </div>
-            </div>
+            </div> */}
         </li>
     )
 }
