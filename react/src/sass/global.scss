@@ -34,7 +34,7 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
 
         &[item-ouvert="true"] {
             // Cacher tous les dégradés vers l'item suivant quand il y a un item ouvert dans la liste
-            & ~ .DegradeSuivant {
+            & ~ .DegradeCarousel {
                 display: none;
             }
         }

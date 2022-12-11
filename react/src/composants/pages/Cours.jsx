@@ -2,7 +2,9 @@ import './Cours.scss';
 
 import VisionneurModele from '../modules/VisionneurModele';
 
-export default function Cours({titre, description, modele, id, index, ouvert}) {
+import * as wp from '../../wp-rest-api';
+
+export default function Cours({titre, description, modele, domaine, id, index, ouvert}) {
     /* Positionnement des icônes 3D */
     const positionSelonCours = {
         'https://timm175.sg-host.com/wp-content/uploads/2022/12/coursJEU.glb': {
@@ -39,20 +41,20 @@ export default function Cours({titre, description, modele, id, index, ouvert}) {
     return(
         <li className="Cours" id={id} index={index} ouvert={ouvert}>
             <div className="carte">
-            <div className="modele">
-                {modele != undefined && modele != false && 
-                    <VisionneurModele 
-                        cheminModele={modele}
-                        echelle={.4}
-                        position={positionSelonCours[modele] && positionSelonCours[modele].position}
-                        rotation={positionSelonCours[modele] && positionSelonCours[modele].rotation}
-                    />
-                }
+                <div className="modele">
+                    {modele != undefined && !modele && 
+                        <VisionneurModele 
+                            cheminModele={modele}
+                            echelle={.4}
+                            position={positionSelonCours[modele] && positionSelonCours[modele].position}
+                            rotation={positionSelonCours[modele] && positionSelonCours[modele].rotation}
+                        />
+                    }
                 </div>
                 <h4 className="titre">{titre}</h4>
+                <h5 className="sous-titre domaine">{wp.versVraisDomaines(domaine)}</h5>
                 <p className="description">{description}</p>
             </div>
-            {/* <div className="rond"></div> */}
         </li>
     )
 }

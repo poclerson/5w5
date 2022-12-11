@@ -46,3 +46,22 @@ export function obtenirTypeArticle(id, articlesRecherches) {
 
     return article
 }
+
+
+/**
+ * Convertit en texte plus beau
+ * @param {string} domaine Domaine d'étude
+ * @returns {string} Domaine d'étude mais moins laid
+ */
+export const versVraisDomaines = domaine => {
+    const vraisDomaines = {
+        modelisation3d: 'Modélisation 3D',
+        jeu: 'Jeu',
+        web: 'Web',
+        design: 'Design',
+        video: 'Vidéo',
+        methodologie: 'Méthodologie'
+    }
+
+    return vraisDomaines[domaine] ? vraisDomaines[domaine] : domaine;
+}
