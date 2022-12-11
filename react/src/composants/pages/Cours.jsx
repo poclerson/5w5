@@ -7,33 +7,33 @@ import * as wp from '../../wp-rest-api';
 export default function Cours({titre, description, modele, domaine, id, index, ouvert}) {
     /* Positionnement des icônes 3D */
     const positionSelonCours = {
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/coursJEU.glb': {
+        'https://timm175.sg-host.com/wp-content/uploads/2022/12/coursJEU.glb': {
             position: [0, 0, 1.2],
             rotation: [0, 4.7, 0]
         },
 
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/recherche.glb': {
+        'https://timm175.sg-host.com/wp-content/uploads/2022/12/recherche.glb': {
             position: [0, 0, -4],
             rotation: [0, -1.54, 0]
         },
         
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/video_.glb': {
+        'https://timm175.sg-host.com/wp-content/uploads/2022/12/video_.glb': {
             position: [0, 0.2, -5],
             rotation: [0, 4.7, 0]
         },
 
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/coursWEB.glb': {
+        'https://timm175.sg-host.com/wp-content/uploads/2022/12/coursWEB.glb': {
             position: [-1.2, -0.2, 0.8],
             rotation: [-0.05, 4.75, -.05]
         },
 
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/cours3D-1.glb': {
+        'https://timm175.sg-host.com/wp-content/uploads/2022/12/cours3D-1.glb': {
             position: [1.6, 0, 3.5],
             rotation: [0, -0.3, 0]
         },
 
-        'https://timm175.sg-host.com/wp-content/uploads/2022/11/coursDESIGN.glb': {
-            position: [-0.6, -0.2, -2],
+        'https://timm175.sg-host.com/wp-content/uploads/2022/12/coursDESIGN.glb': {
+            position: [-1.8, -0.5, -2.5],
             rotation: [-0.05, 4.5, -0.0]
         }
     };
