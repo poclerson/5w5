@@ -14,8 +14,8 @@ export default function Projet({
         <li className="Projet evenement" id={id} index={index} ouvert={verifierOuverture(index)}>
             <div className="miniature" onClick={() => surClic(index)}>
                 <div className="image-presentation-conteneur">
-                    <img 
-                        className="image-presentation" 
+                    <img
+                        className="image-presentation"
                         src={image_presentation} 
                         alt={`Image du projet ${nom} par ${createurs}`} 
                     />
