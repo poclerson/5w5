@@ -1,7 +1,6 @@
 import './SessionRond.scss';
-import FlecheNav from '../modules/FlecheNav';
 
-export default function SessionRond({index, session, placement, surClic}) {
+export default function SessionRond({session, placement}) {
     return (
         <li className="SessionRond" style={placement}>
             <div className="destination"></div>

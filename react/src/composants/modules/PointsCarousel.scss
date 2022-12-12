@@ -1,0 +1,12 @@
+@import '../../sass/mixins.scss';
+@import '../../sass/variables.scss';
+
+.PointsCarousel {
+    display: flex;
+    gap: 1vw;
+
+    .rond {
+        @include rond(2vw);
+        background-color: map-get($couleurs, clair);
+    }
+}

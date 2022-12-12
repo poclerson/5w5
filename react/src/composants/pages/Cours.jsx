@@ -42,7 +42,7 @@ export default function Cours({titre, description, modele, domaine, id, index, o
         <li className="Cours" id={id} index={index} ouvert={ouvert}>
             <div className="carte">
                 <div className="modele">
-                    {modele != undefined && modele !=false && 
+                    {modele != undefined && modele != false && 
                         <VisionneurModele 
                             cheminModele={modele}
                             echelle={.4}

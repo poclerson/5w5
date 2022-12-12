@@ -5,7 +5,7 @@ import medias from '../../medias';
 import useMediaQuery from '../../hooks/useMediaQuery';
 
 import Cours from './Cours';
-import DegradeCarousel from '../modules/DegradeCarousel';
+import PointsCarousel from '../modules/PointsCarousel';
 
 export default function Session({
     cours, 
@@ -13,8 +13,7 @@ export default function Session({
     index, 
     verifierOuverture, 
     refTitres, 
-    refListeCoursSessionOuverte,
-    defilerVersCours
+    refListeCoursSessionOuverte
 }) {
     const refListeCours = useRef();
     const [indexPlusAGauche, setIndexPlusAGauche] = useState(0);
@@ -25,13 +24,9 @@ export default function Session({
     const ordinateur = useMediaQuery(medias.ordinateur);
     const ordinateurLarge = useMediaQuery(medias.ordinateurLarge);
 
-    const surClicFleche = () => {
-        const prochainCours = enfants[indexPlusAGauche + 1];
-        defilerVersCours(prochainCours)
-    }
-
     const surDefilement = () => {
-        setIndexPlusAGauche(enfants.indexOf(enfants.obtenirElementPlusAGauche(
+        setIndexPlusAGauche(enfants.indexOf(enfants.obtenirElementPlusA(
+            'gauche',
             ordinateurLarge ? 
                 refTitres.current.offsetWidth / 1.5 :
             ordinateur ? 
@@ -60,17 +55,18 @@ export default function Session({
                 ref={refListeCoursSessionOuverte ? refListeCoursSessionOuverte : refListeCours} 
                 onScroll={surDefilement}
             >
-                {cours.map((_cours, index) => 
-                    { return <Cours 
-                        ouvert={index == indexPlusAGauche ? 'true' : 'false'}
-                        key={_cours.id + "" + index}
-                        id={_cours.id}
-                        index={index}
-                        {..._cours.acf}
-                    />}
+                {cours.map((_cours, index) => { 
+                        return <Cours 
+                            ouvert={index == indexPlusAGauche ? 'true' : 'false'}
+                            key={_cours.id + "" + index}
+                            id={_cours.id}
+                            index={index}
+                            {..._cours.acf}
+                        />
+                    }
                 )}
             </ul>
-            <DegradeCarousel surClicFleche={surClicFleche} />
+            <PointsCarousel liste={cours} refListe={refListeCoursSessionOuverte} />
         </article>
     )
 }

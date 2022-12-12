@@ -47,8 +47,7 @@ export default function ListeEnseignants({id}) {
                                 surClic={surClic}
                                 verifierOuverture={verifierOuverture}
                             />
-                        }
-                        ) 
+                        })
                     }
                 </ul>
                 <FlecheNav gestionClic={surClicSuivant} texte={true} classesAdditionnelles="suivant" />

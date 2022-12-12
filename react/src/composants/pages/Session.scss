@@ -5,6 +5,7 @@
     width: 100%;
     height: max-content;
     @include gerer-ouverture(flex);
+    flex-direction: column;
     box-sizing: border-box;
 
     &[ouvert="true"] {
@@ -69,6 +70,10 @@
         .Icone {
             color: map-get($couleurs, clair);
         }
+    }
+
+    .PointsCarousel {
+        align-self: center;
     }
 
     @include seulement-tablette {

@@ -1,13 +1,10 @@
 import './Projet.scss';
-import FlecheNav from '../modules/FlecheNav';
+
 export default function Projet({
     nom,
     createurs,
     cours,
     image_presentation,
-    image_0,
-    image_1,
-    lien,
     index,
     surClic,
     verifierOuverture,
