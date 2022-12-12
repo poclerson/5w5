@@ -8,7 +8,11 @@ import useStructure from '../../hooks/useStructure';
 export default function PiedPage({enteteWP}) {
     const {
         nousJoindre,
-        inscription
+        inscription,
+        behance,
+        linkedin,
+        youtube,
+        facebook
     } = useStructure('piedpage', true);
 
     return(
@@ -20,6 +24,12 @@ export default function PiedPage({enteteWP}) {
                 </div>
                 {nousJoindre}
                 <u>{inscription}</u>
+                <div className="social">
+                            {behance}
+                            {linkedin}
+                            {youtube}
+                            {facebook}
+                </div>
             </div>
         </footer>
     )   
