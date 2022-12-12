@@ -327,6 +327,38 @@
     }
 }
 
+@mixin placement-circulaire($nombre-items, $taille-cercle, $taille-items) {
+    width: $taille-cercle;
+    height: $taille-cercle;
+    padding: 0;
+    border-radius: 50%; 
+    list-style: none;       
+    
+    > * {
+        display: block;
+        position: absolute;
+        top: 50%; 
+        left: 50%;
+        width:  $taille-items;
+        height: $taille-items;
+        margin: -($taille-items / 2);
+    
+        $angle: (360 / $nombre-items);
+        $rotation: 0;
+
+        @for $i from 1 through $nombre-items {
+            &:nth-of-type(#{$i}) {
+                transform: 
+                rotate($rotation * 1deg) 
+                translate($taille-cercle / 2) 
+                rotate($rotation * -1deg);
+            }
+
+            $rotation: $rotation + $angle;
+        }
+    }
+}
+
 
 
 // ===== MIXINS DE SECTIONS =====
