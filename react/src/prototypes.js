@@ -38,7 +38,7 @@ String.prototype.kebabVersCamel = function() {
  * @returns {string} Chaine de caractère où on a inséré une valeur
  */
 String.prototype.inserer = function(valeur, index) {
-    return this.substr(0, index) + valeur+ this.substr(index);
+    return this.substr(0, index) + valeur + this.substr(index);
 }
 
 /**
@@ -46,13 +46,30 @@ String.prototype.inserer = function(valeur, index) {
  * @param {int} decalage 
  * @returns {Element} Élément le plus à gauche
  */
-Array.prototype.obtenirElementPlusAGauche = function(decalage = 0) {
-    return this.reduce((precedent, present) => {
-        // Comparer la position en x de l'élément présent et du précédent
-        return precedent.getBoundingClientRect().x < present.getBoundingClientRect().x && 
+Array.prototype.obtenirElementPlusA = function(direction = 'gauche', decalage = 0) {
+    if (direction == 'gauche') {
+        return this.reduce((precedent, present, index) => {
+            const xPrecedent = precedent.getBoundingClientRect().x;
+            const xPresent = present.getBoundingClientRect().x;
+    
+            return xPrecedent < xPresent && 
 
+                // L'élément précédent doit aussi être plus grand que le décalage pour passer le test
+                xPrecedent > decalage ? 
+
+                // Choisir d'après la condition
+                precedent : present
+        })
+    }
+
+    return this.reverse().reduce((precedent, present) => {
+        const xPrecedent = precedent.getBoundingClientRect().x;
+        const xPresent = present.getBoundingClientRect().x;
+
+        return xPrecedent > xPresent && 
+    
             // L'élément précédent doit aussi être plus grand que le décalage pour passer le test
-            precedent.getBoundingClientRect().x > decalage ? 
+            xPrecedent < decalage + window.innerWidth ? 
 
             // Choisir d'après la condition
             precedent : present

@@ -3,42 +3,52 @@
 .SessionRonds {
     flex: 0;
 
-    position: absolute;
-    left: 0; 
-    top: 0;
-
-    transform: translateZ(1px);
-
-    // Sinon on ne peut pas scroll
-    @include ordinateur {
-        width: unset;
-        height: unset;
-    }
-
-    $decalage-mobile: 575px;
-    $decalage-tablette: 750px;
-
-    .carousel {
+    .liste {
+        position: absolute;
+        bottom: -410px;
+        left: -910px;
+        
         transform-style: preserve-3d;
-        position: absolute; 
         transition: transform .5s;
-        left: -$decalage-mobile;
-        top: 70vh;
-
+        @include placement-circulaire(6, 1000px, 250px);
+    
+        transform: translateZ(1px);
+    
         @include tablette {
-            top: 65vh;
-            left: -$decalage-tablette;
+            @include placement-circulaire(6, 1000px, 300px);
         }
-
+        // Sinon on ne peut pas scroll
         @include ordinateur {
-            left: -1550px;
-            top: -275px;
+            width: unset;
+            height: unset;
+            @include placement-circulaire(6, 1500px, 300px);
+            bottom: -400px;
+            left: -1400px;
+        }
+        .session-rond {
+            aspect-ratio: 1;
+            background-color: map-get($couleurs, clair);
+    
+            transition: transform .5s;
+            border-radius: 100%;
+    
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+    
+            .titre {
+                position: absolute;
+                right: 15%;
+                top: -10%;
+                font-size: 1500%;
+                @include desactiver-margin-block;
+            }
         }
     }
 
     & > .FlecheNav {
-        left: 275px;
-        top: 80vh;
+        right: 300px;
 
         @include ordinateur {
             display: none;

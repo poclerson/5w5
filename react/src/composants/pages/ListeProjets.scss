@@ -3,6 +3,8 @@
 @import '../../sass/fonctions.scss';
 
 .ListeProjets {
+    display: flex;
+    flex-direction: column;
     overflow-y: scroll;
     @include cacher-barre-defilement;
     @include page(true);
@@ -26,7 +28,7 @@
             display: grid;
             height: max-content;
             grid-template-columns: repeat(2, 1fr);
-            grid-auto-rows: 15%;
+            grid-auto-rows: 20vh;
             grid-auto-flow: row dense; // Permettre aux éléments de prendre de la place quand il y en a
             gap: 5vw;
             padding: 0 5%;

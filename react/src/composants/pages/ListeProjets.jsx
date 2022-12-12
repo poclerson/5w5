@@ -10,7 +10,7 @@ import Projet from './Projet';
 import PhotoEnvironnement from './PhotoEnvironnement';
 import Chargement from '../modules/Chargement';
 import Fond from '../modules/Fond';
-import DegradeCarousel from '../modules/DegradeCarousel';
+import NavCarousel from '../modules/NavCarousel';
 import EvenementVideo from './EvenementVideo';
 
 export default function ListeProjets({id}) {
@@ -34,7 +34,7 @@ export default function ListeProjets({id}) {
 
         return [...projets, ...environnement, ...videos].pseudoMelanger().map((evenement => {
             // Projet
-            console.log(evenement.acf)
+            {console.log(projets[0])}
             if (evenement.acf.hasOwnProperty('nom')) {
                 let composant = <Projet 
                     key={evenement.id}
@@ -71,15 +71,15 @@ export default function ListeProjets({id}) {
             <section 
                 className="ListeProjets" 
                 item-ouvert={verifierOuvertureParent()}
-                ref={refListe}
             >
-                {console.log(videos)}
-                <ul className="liste" item-ouvert={verifierOuvertureParent()}>
+                <ul className="liste" item-ouvert={verifierOuvertureParent()} ref={refListe}>
                     {titre}
                     {rendreCases()}
                 </ul>
                 <Fond fond={{backgroundImage: BACKGROUND}} />
-                <DegradeCarousel refListe={refListe} />
+                <nav className="fleches-carousel">
+                    <NavCarousel refListe={refListe} />
+                </nav>
             </section> : <Chargement />
     )
 }

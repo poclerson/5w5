@@ -26,8 +26,8 @@ $polices: (
 // Décalage du haut de la page
 $decalage-pages: (
     mobile: 100px,
-    tablette: 80px,
-    ordinateur: 120px
+    tablette: 60px,
+    ordinateur: 70px
 );
 
 /*
@@ -231,6 +231,7 @@ $tailles-textes: (
 $couleurs: (
     clair: #f3f3ea,
     clair-transparent: #f3f3ea3a,
+    clair-semi-transparent: #f3f3eac1,
     moyen: #444,
     moyen-transparent: rgba(68, 68, 68, 0.406),
     sombre: #0f0f0f,

@@ -11,7 +11,7 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
     scroll-behavior: smooth;
 
     &::-webkit-scrollbar {
-        width: 1px;
+        // display: none;
     }
 
     &::-webkit-scrollbar-track {
@@ -34,7 +34,7 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
 
         &[item-ouvert="true"] {
             // Cacher tous les dégradés vers l'item suivant quand il y a un item ouvert dans la liste
-            & ~ .DegradeSuivant {
+            & ~ .BoutonCarousel {
                 display: none;
             }
         }

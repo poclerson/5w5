@@ -20,15 +20,19 @@
         .marquee {
             align-items: center;
 
-            span {
-                font-size: 1000%;
-                @include proprietes-aleatoires(
-                    map-values(map-get($couleurs, domaines)), color, 15
-                );
-                @include proprietes-aleatoires(map-get($polices, styles), font-family, 15);
-                @include desactiver-margin-block;
-                @include tablette {font-size: 1500%;}
-                @include ordinateur {font-size: 2500%;}
+            .titres {
+                display: flex;
+                
+                li {
+                    font-size: 1000%;
+                    @include proprietes-aleatoires(
+                        map-values(map-get($couleurs, domaines)), color, 15
+                    );
+                    @include proprietes-aleatoires(map-get($polices, styles), font-family, 15);
+                    @include desactiver-margin-block;
+                    @include tablette {font-size: 1500%;}
+                    @include ordinateur {font-size: 2500%;}
+                }
             }
         }
 
@@ -40,7 +44,7 @@
 
     @include tablette {justify-content: flex-end;}
 
-    ::marker {
-        color: transparent
-    }
+    .boite-accueil{
+        background-color: map-get($map: $couleurs, $key:sombre-transparent );
+    } 
 }

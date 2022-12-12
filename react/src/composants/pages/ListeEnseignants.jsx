@@ -10,7 +10,7 @@ import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
 import FlecheNav from '../modules/FlecheNav';
 import Fond from '../modules/Fond';
-import DegradeCarousel from '../modules/DegradeCarousel';
+import NavCarousel from '../modules/NavCarousel';
 
 export default function ListeEnseignants({id}) {
     const {enseignants} = useContext(ContexteDonneesSite);
@@ -47,14 +47,12 @@ export default function ListeEnseignants({id}) {
                                 surClic={surClic}
                                 verifierOuverture={verifierOuverture}
                             />
-                        }
-                        ) 
+                        })
                     }
                 </ul>
                 <FlecheNav gestionClic={surClicSuivant} texte={true} classesAdditionnelles="suivant" />
                 <Fond fond={{backgroundImage: BACKGROUND}} />
-                <DegradeCarousel refListe={refListe} />
-                <DegradeCarousel refListe={refListe} direction="precedent" />
+                <NavCarousel refListe={refListe} />
             </section>  
         : <Chargement />
     );
