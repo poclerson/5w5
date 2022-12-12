@@ -3,6 +3,10 @@
 @import '../../sass/fonctions.scss';
 
 .Cours {
+    $couleurs-selon-domaines: (
+        soi: background-color 
+    );
+
     // Un cours prend presque tout l'écran sur mobile
     aspect-ratio: 1 / 1.25;
     flex: 0 0 60vw;
@@ -80,11 +84,20 @@
                 // Sinon le modele "tombe"???
                 width: 100% !important;
                 height: 100% !important;
+                position: relative;
+                left: -125px;
+                top:0;
             }
         }
 
         .titre {
-            flex: 1 0 20%;
+            margin-top: 17.5%;
+        }
+
+        .domaine {
+            @include couleurs-domaines($couleurs-selon-domaines);
+            @include etiquette(null, false);
+            font-weight: 900;
         }
 
         .description {
@@ -92,19 +105,5 @@
             flex: 0 1 80%;
             overflow: hidden;
         }
-    }
-
-    // Rond décoratif sous la carte
-    .rond {
-        $taille: 30%;
-        z-index: -3;
-
-        position: absolute;
-        left: - $taille / 2;
-        bottom: 20%;
-
-        @include rond($taille);
-
-        background-color: map-get($couleurs, clair);
     }
 }

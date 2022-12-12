@@ -42,7 +42,7 @@ export default function Cours({titre, description, modele, domaine, id, index, o
         <li className="Cours" id={id} index={index} ouvert={ouvert}>
             <div className="carte">
                 <div className="modele">
-                    {modele != undefined && modele !=false && 
+                    {modele != undefined && modele != false && 
                         <VisionneurModele 
                             cheminModele={modele}
                             echelle={.4}
@@ -52,7 +52,7 @@ export default function Cours({titre, description, modele, domaine, id, index, o
                     }
                 </div>
                 <h4 className="titre">{titre}</h4>
-                <h5 className="sous-titre domaine">{wp.versVraisDomaines(domaine)}</h5>
+                <h5 className={"sous-titre domaine " + domaine}>{wp.versVraisDomaines(domaine)}</h5>
                 <p className="description">{description}</p>
             </div>
         </li>

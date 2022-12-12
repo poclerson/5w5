@@ -71,15 +71,14 @@ export default function ListeProjets({id}) {
             <section 
                 className="ListeProjets" 
                 item-ouvert={verifierOuvertureParent()}
-                ref={refListe}
             >
-                {console.log(videos)}
-                <ul className="liste" item-ouvert={verifierOuvertureParent()}>
+                <ul className="liste" item-ouvert={verifierOuvertureParent()} ref={refListe}>
                     {titre}
                     {rendreCases()}
                 </ul>
                 <Fond fond={{backgroundImage: BACKGROUND}} />
-                <DegradeCarousel refListe={refListe} />
+                <DegradeCarousel refListe={refListe} cases={false} />
+                <DegradeCarousel refListe={refListe} direction="precedent" cases={false} />
             </section> : <Chargement />
     )
 }

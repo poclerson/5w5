@@ -8,17 +8,18 @@ export default function DegradeCarousel({
     refListe, 
     ratioDefilement = 5, 
     direction = 'suivant',
-    defilementCases = true
+    cases = true
 }) {
-    // Fonction de base faisant défiler
-    
-
     return (
         <div className="DegradeCarousel" direction={direction}>
             <div className="rond">
                 <FlecheNav gestionClic={() => {
-                    defilementCases && refListe && u.defilerSelonCases(refListe) ||  
-                    refListe && u.defiler(refListe, 5)
+                    refListe && (
+                        !cases && (
+                            u.defiler(refListe, direction, ratioDefilement) ||  
+                            u.defilerSelonCases(refListe, direction)
+                        )
+                    )
                 }} direction={direction} />
             </div>
         </div>

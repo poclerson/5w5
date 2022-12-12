@@ -122,6 +122,7 @@
 
         @include ordinateur {
             display: flex;
+            align-items: stretch;
             @include padding-auto;
         }
     }

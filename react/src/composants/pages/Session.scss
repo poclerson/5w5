@@ -3,8 +3,8 @@
 
 .Session {
     width: 100%;
-    height: max-content;
     @include gerer-ouverture(flex);
+    flex-direction: column;
     box-sizing: border-box;
 
     &[ouvert="true"] {
@@ -16,11 +16,10 @@
         flex: 1 0 100%;
         height: max-content;
         @include cacher-barre-defilement;
-        @include padding-auto;
+        padding-top: 10vh;
         box-sizing: border-box;
 
         display: flex;
-        align-items: center;
         scroll-snap-type: x mandatory;
         overflow-y: visible;
         overflow-x: scroll;
@@ -35,12 +34,14 @@
         @include tablette {
             gap: 20vw;
             scroll-padding-left: 12.5vw;
+            padding: 0;
         }
 
         @include ordinateur {
-            height: 80vh;
+            max-height: 80vh;
             gap: 10vw;
             scroll-padding-left: 35vw;
+            padding-top: 20vh;
         }
 
         @include ordinateur-large {
@@ -69,6 +70,10 @@
         .Icone {
             color: map-get($couleurs, clair);
         }
+    }
+
+    .PointsCarousel {
+        align-self: center;
     }
 
     @include seulement-tablette {
