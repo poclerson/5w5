@@ -122,10 +122,6 @@ $couleurs-domaines-modifiees: (
             display: none;
         }
 
-        @include max-tablette {
-            animation: x;
-        }
-
         @include ordinateur {
             width: 70vw;
             opacity: 1;
@@ -219,6 +215,7 @@ $couleurs-domaines-modifiees: (
     
             // Positionnement d'une carte
             @include ordinateur {
+                min-height: 450px;
                 height: 100%;
                 flex: 0 0 40%;
                 @include carte;
@@ -297,13 +294,7 @@ $couleurs-domaines-modifiees: (
                 flex-direction: column;
 
                 .domaine {
-                    display: flex;
-                    border-width: 5px;
-                    border-style: solid;
-                    padding: 10px;
-                    border-radius: 30px;
-                    width: min-content;
-
+                    @include etiquette;
                     @include max-mobile {
                         color: map-get($couleurs, clair);
                         border-color: map-get($couleurs, clair);
