@@ -16,6 +16,7 @@
         right: 0;
         bottom: 30vh;
         overflow-x: visible !important; // Override
+        // margin-top: 10%;
 
         .marquee {
             align-items: center;
@@ -46,5 +47,15 @@
 
     .boite-accueil{
         background-color: map-get($map: $couleurs, $key:sombre-transparent );
+        position: fixed;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+        right: 60%;
+        top: 25%;
+        padding: 1%;
+        z-index: 5;
+        border-radius: 10px 10px 10px 10px;
+        backdrop-filter: blur(15px);
     } 
 }
