@@ -33,7 +33,7 @@ export default function Cours({titre, description, modele, domaine, id, index, o
         },
 
         'https://timm175.sg-host.com/wp-content/uploads/2022/12/coursDESIGN.glb': {
-            position: [-1.8, -0.5, -2.5],
+            position: [-1.2, -0.5, -2.5],
             rotation: [-0.05, 4.5, -0.0]
         }
     };
