@@ -43,4 +43,8 @@
     }
 
     @include tablette {justify-content: flex-end;}
+
+    .boite-accueil{
+        background-color: map-get($map: $couleurs, $key:sombre-transparent );
+    } 
 }

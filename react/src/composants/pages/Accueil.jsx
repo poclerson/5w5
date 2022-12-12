@@ -10,7 +10,7 @@ import Chargement from '../modules/Chargement';
 export default function Accueil({id}) {
     const tablette = useMediaQuery(medias.tablette);
 
-    const {titres, BACKGROUND} = useStructure(id);
+    const {titres, BACKGROUND, boiteAccueil} = useStructure(id);
     
 
     return(
@@ -19,6 +19,7 @@ export default function Accueil({id}) {
                     <Marquee speed={tablette ? 200 : 20} gradient={false} pauseOnClick={true}>
                         {titres}
                     </Marquee>
+                    {boiteAccueil} 
             </section>
         // <Chargement/>
             
