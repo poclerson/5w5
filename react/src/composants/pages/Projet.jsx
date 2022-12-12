@@ -1,15 +1,10 @@
 import './Projet.scss';
 
-import FlecheNav from '../modules/FlecheNav';
-
 export default function Projet({
     nom,
     createurs,
     cours,
     image_presentation,
-    image_0,
-    image_1,
-    lien,
     index,
     surClic,
     verifierOuverture,
@@ -30,7 +25,7 @@ export default function Projet({
                     <p className="details">{cours && cours.post_title}<br/><br/><u>Lire la suite</u></p>
                 </div>
             </div>
-            <div className="contenu">
+            {/* <div className="contenu">
                 <FlecheNav gestionClic={() => surClic(-1)} direction='precedent' />
                 <div className="texte-conteneur">
                     <div className="texte">
@@ -52,7 +47,7 @@ export default function Projet({
                         <img src={image_1} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
                     }
                 </div>
-            </div>
+            </div> */}
         </li>
     )
 }
