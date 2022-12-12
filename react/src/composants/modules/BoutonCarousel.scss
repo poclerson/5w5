@@ -1,0 +1,32 @@
+@import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
+@import '../../sass/fonctions.scss';
+
+.BoutonCarousel {
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    // Pour les transitions
+    transform: translateX(0);
+    @include transition-base;
+
+    @include ordinateur {
+        display: flex;
+    }
+
+    .rond {
+        @include rond(50px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: map-get($couleurs, clair-transparent);
+        backdrop-filter: blur(15px);
+
+        .FlecheNav {
+            path {
+                fill: map-get($couleurs, clair-semi-transparent);
+            }
+        }
+    }
+}

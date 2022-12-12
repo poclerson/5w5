@@ -10,7 +10,7 @@ import Projet from './Projet';
 import PhotoEnvironnement from './PhotoEnvironnement';
 import Chargement from '../modules/Chargement';
 import Fond from '../modules/Fond';
-import DegradeCarousel from '../modules/DegradeCarousel';
+import NavCarousel from '../modules/NavCarousel';
 import EvenementVideo from './EvenementVideo';
 
 export default function ListeProjets({id}) {
@@ -77,8 +77,9 @@ export default function ListeProjets({id}) {
                     {rendreCases()}
                 </ul>
                 <Fond fond={{backgroundImage: BACKGROUND}} />
-                <DegradeCarousel refListe={refListe} cases={false} />
-                <DegradeCarousel refListe={refListe} direction="precedent" cases={false} />
+                <nav className="fleches-carousel">
+                    <NavCarousel refListe={refListe} />
+                </nav>
             </section> : <Chargement />
     )
 }
