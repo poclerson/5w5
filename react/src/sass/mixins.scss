@@ -315,15 +315,15 @@
 }
 
 @mixin padding-auto() {
-    padding-top: map-get($decalage-pages, mobile);
-    padding-bottom: map-get($decalage-pages, mobile);
+    padding-top: 5vh;
+    padding-bottom: 5vh;
     @include tablette {
-        padding-top: calc(map-get($decalage-pages, tablette) / 2);
-        padding-bottom: calc(map-get($decalage-pages, tablette) / 2);
+        padding-top: 5vh;
+        padding-bottom: 5vh;
     }
     @include ordinateur {
-        padding-top: calc(map-get($decalage-pages, ordinateur) / 2);
-        padding-bottom: calc(map-get($decalage-pages, ordinateur) / 2);
+        padding-top: 7.5vh;
+        padding-bottom: 7.5vh;
     }
 }
 

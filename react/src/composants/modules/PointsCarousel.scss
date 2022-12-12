@@ -6,7 +6,12 @@
     gap: 1vw;
 
     .rond {
-        @include rond(2vw);
-        background-color: map-get($couleurs, clair);
+        @include transition-base($duree: .25s);
+        @include rond(2.5vw);
+        background-color: map-get($couleurs, clair-transparent);
+
+        &[ouvert="true"] {
+            background-color: map-get($couleurs, clair);
+        }
     }
 }

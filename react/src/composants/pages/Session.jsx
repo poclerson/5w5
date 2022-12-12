@@ -66,7 +66,11 @@ export default function Session({
                     }
                 )}
             </ul>
-            <PointsCarousel liste={cours} refListe={refListeCoursSessionOuverte} />
+            <PointsCarousel 
+                liste={cours} 
+                refListe={refListeCoursSessionOuverte} 
+                indexOuvert={indexPlusAGauche} 
+            />
         </article>
     )
 }
