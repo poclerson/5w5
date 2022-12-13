@@ -91,13 +91,16 @@
         }
 
         .titre {
-            margin-top: 17.5%;
+            // margin-top: 17.5%;
+            // margin-bottom: -5%;
+            // margin: 17.5%, -5%, 0, 0;
         }
 
         .domaine {
             @include couleurs-domaines($couleurs-selon-domaines);
             @include etiquette(null, false);
-            font-weight: 900;
+            // font-weight: 900;
+            // padding-bottom: 0%
         }
 
         .description {
