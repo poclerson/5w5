@@ -99,7 +99,6 @@
         .domaine {
             @include etiquette(null, false);
             font-weight: 900;
-            background-color: red;
         }
 
         .description {
