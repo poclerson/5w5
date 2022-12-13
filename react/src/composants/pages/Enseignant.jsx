@@ -53,9 +53,9 @@ export default function Enseignant({
                     <h3 className="domaine sous-titre">{wp.versVraisDomaines(domaine)}</h3>
                     <h5 className="etiquette-description">biographie</h5>
                     <div className="conteneur-description">
-                        <p className="description">
+                        <div className="description">
                             {description}
-                        </p>
+                        </div>
                     </div>
                 </article>
             </div>
