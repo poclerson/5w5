@@ -134,6 +134,10 @@
 
         border-radius: 0 70px 70px 0;
 
+        .logo{
+            width: 50%;
+        }
+
         @include tablette {
             @include themer($theme-menu-tablette);
             width: 100%;
