@@ -1,5 +1,7 @@
+@import '../../sass/mixins.scss';
+
 .NavCarousel {
-    // position: absolute;
+    @include transition-base;
     width: 100%;
     left: 0;
     top: 80vh;
