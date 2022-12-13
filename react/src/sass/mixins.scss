@@ -500,6 +500,12 @@
     }
 }
 
+@mixin ultra-large {
+    @media screen and (min-width: map-get($largeurs-ecran, ultra-large)) {
+        @content;
+    }
+}
+
 
 // ===== MIXINS DE SÉLECTION =====
 
