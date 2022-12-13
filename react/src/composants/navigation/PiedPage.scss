@@ -61,6 +61,20 @@
                 width: 100%;
             }
         }
+
+        .social{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-end;
+            gap: 10%;
+
+            svg{
+                transform: scale(1);
+            }
+
+        }
+
     }
 
     @include ordinateur {
