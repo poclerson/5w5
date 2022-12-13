@@ -13,6 +13,10 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
     scrollbar-color: map-deep-get($couleurs, 'domaines', 'web') map-get($couleurs, sombre);
     scroll-behavior: smooth;
 
+    &::-webkit-scrollbar {
+        // display: none;
+    }
+
     &::-webkit-scrollbar-track {
         background: map-get($couleurs, sombre);
     }
@@ -33,7 +37,7 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
 
         &[item-ouvert="true"] {
             // Cacher tous les dégradés vers l'item suivant quand il y a un item ouvert dans la liste
-            & ~ .DegradeCarousel {
+            & ~ .BoutonCarousel {
                 display: none;
             }
         }
