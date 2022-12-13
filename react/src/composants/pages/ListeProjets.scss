@@ -30,119 +30,93 @@
             font-size: 10vw;
         }
     }
+    .liste {
+        display: grid;
+        height: max-content;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 20vh;
+        grid-auto-flow: row dense; // Permettre aux éléments de prendre de la place quand il y en a
+        gap: 5vw;
+        padding: 0 5%;
 
-    &[item-ouvert="false"] {
-        .liste {
-            display: grid;
-            height: max-content;
-            grid-template-columns: repeat(2, 1fr);
-            grid-auto-rows: 20vh;
-            grid-auto-flow: row dense; // Permettre aux éléments de prendre de la place quand il y en a
-            gap: 5vw;
-            padding: 0 5%;
+        @include tablette {
+            grid-auto-columns: 30vw;
+            grid-template-rows: repeat(2, 1fr);
+            grid-auto-flow: column dense;
 
-            @include tablette {
-                grid-auto-columns: 30vw;
-                grid-template-rows: repeat(2, 1fr);
-                grid-auto-flow: column dense;
+            grid-auto-rows: unset;
+            grid-template-columns: unset;
 
-                grid-auto-rows: unset;
-                grid-template-columns: unset;
+            // Empêcher de toucher le haut
+            @include padding-auto;
 
-                // Empêcher de toucher le haut
-                @include padding-auto;
+            // Prend trop de place sinon
+            height: 60vh;
+        }
 
-                // Prend trop de place sinon
-                height: 60vh;
+        @include ordinateur {
+            grid-auto-columns: 15vw;
+        }
+
+        // Styles communs
+        .evenement {
+            position: relative;
+            display: flex;
+            border-radius: 20px;
+            overflow: hidden;
+
+            &:not([ouvert="true"]):hover {
+                @include proprietes-aleatoires(
+                    $valeurs: map-values(map-get($couleurs, domaines-transparents)),
+                    $propriete: background-color,
+                    $selecteur: ' .information'
+                );
+                
+                .miniature {
+                    .information {
+                        backdrop-filter: blur(15px);
+                        opacity: 1;
+                    }
+                }
             }
 
-            @include ordinateur {
-                grid-auto-columns: 15vw;
-            }
-
-            // Styles communs
-            .evenement {
-                position: relative;
-                display: flex;
-                border-radius: 20px;
+            .miniature {
                 overflow: hidden;
+                @include pleine-taille;
 
-                &:not([ouvert="true"]):hover {
-                    @include proprietes-aleatoires(
-                        $valeurs: map-values(map-get($couleurs, domaines-transparents)),
-                        $propriete: background-color,
-                        $selecteur: ' .information'
-                    );
-                    
-                    .miniature {
-                        .information {
-                            backdrop-filter: blur(15px);
-                            opacity: 1;
-                        }
+                .information {
+                    @include pleine-taille;
+                    display: flex;
+                    flex-direction: column;
+                    top: 0;
+                    position: absolute;
+                    padding: 10%;
+                    box-sizing: border-box;
+                    justify-content: center;
+                    align-items: center;
+
+                    // Transition
+                    @include transition-base($duree: .25s, $courbe: ease-in-out);
+                    background-color: transparent;
+                    backdrop-filter: blur(0px);
+                    opacity: 0;
+
+                    @include tablette {
+                        padding: 5%;
                     }
                 }
 
-                .miniature {
-                    overflow: hidden;
+                .image-presentation-conteneur {
+                    position: relative;
                     @include pleine-taille;
 
-                    .information {
+                    .image-presentation {
+                        object-fit: cover;
                         @include pleine-taille;
-                        display: flex;
-                        flex-direction: column;
-                        top: 0;
-                        position: absolute;
-                        padding: 10%;
-                        box-sizing: border-box;
-                        justify-content: center;
-                        align-items: center;
-
-                        // Transition
-                        @include transition-base($duree: .25s, $courbe: ease-in-out);
-                        background-color: transparent;
-                        backdrop-filter: blur(0px);
-                        opacity: 0;
-
-                        @include tablette {
-                            padding: 5%;
-                        }
-                    }
-
-                    .image-presentation-conteneur {
-                        position: relative;
-                        @include pleine-taille;
-
-                        .image-presentation {
-                            object-fit: cover;
-                            @include pleine-taille;
-                        }
                     }
                 }
             }
         }
-    }
-
-    &[item-ouvert="true"] {
-        .liste {
-            display: block;
-
-            @include tablette {
-                margin-top: 0;
-            }
-
-            @include ordinateur {
-                padding: 0 5%;
-                height: unset;
-            }
-
-            // Cacher les éléments fermés
-            & > *:not([ouvert="true"]) {display: none;}
-        }
-            
-    }
-
-    .liste {
-
     }
 
     @include ordinateur {

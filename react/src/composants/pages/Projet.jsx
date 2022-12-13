@@ -1,5 +1,10 @@
 import './Projet.scss';
 
+import FlecheNav from '../modules/FlecheNav';
+
+import useClicExterieur from '../../hooks/useClicExterieur';
+import {useRef} from 'react';
+
 export default function Projet({
     nom,
     createurs,
@@ -10,8 +15,17 @@ export default function Projet({
     verifierOuverture,
     id
 }) {
+    const refImage = useRef();
+    const refTexte = useRef();
+
+    const fermerProjet = useClicExterieur(
+        () => verifierOuverture(index),
+        () => surClic(-1),
+        refImage,
+        [refTexte]
+    )
     return (
-        <li className="Projet evenement" id={id} index={index} ouvert={verifierOuverture(index)}>
+        <li className="Projet evenement" id={id} index={index} ouvert={verifierOuverture(index)} onClick={fermerProjet}>
             <div className="miniature" onClick={() => surClic(index)}>
                 <div className="image-presentation-conteneur">
                     <img
@@ -25,29 +39,18 @@ export default function Projet({
                     <p className="details">{cours && cours.post_title}<br/><br/><u>Lire la suite</u></p>
                 </div>
             </div>
-            {/* <div className="contenu">
+            <div className="contenu">
                 <FlecheNav gestionClic={() => surClic(-1)} direction='precedent' />
-                <div className="texte-conteneur">
-                    <div className="texte">
-                        <u>
-                            <h2 className="titre">
-                                <a href={lien} className="lien-titre">{nom}</a>
-                            </h2>
-                        </u>
-                        <h3 className="sous-titre">{createurs}</h3>
-                        <p className="description">{cours && cours.post_title}</p>
-                    </div>
+                <img 
+                    className="image-presentation"
+                    ref={refImage}
+                    src={image_presentation} 
+                    alt={`Image du projet ${nom} par ${createurs}`} 
+                />
+                <div className="texte" ref={refTexte}>
+                    <h6 className="createurs">Projet par {createurs}</h6>
                 </div>
-                <div className="images" grid={image_0 && image_1 ? 'true' : 'false'}>
-                    <img src={image_presentation} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
-                    {image_0 &&
-                        <img src={image_0} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
-                    }
-                    {image_1 && 
-                        <img src={image_1} alt={`Image du projet ${nom} par ${createurs}`} className="image"/>
-                    }
-                </div>
-            </div> */}
+            </div>
         </li>
     )
 }
