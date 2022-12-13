@@ -15,7 +15,7 @@ export default function Accueil({id}) {
     
 
     return(
-        titres && BACKGROUND &&
+        titres && BACKGROUND ?
             <section className="Accueil">
                     <Marquee speed={tablette ? 200 : 20} gradient={false} pauseOnClick={true}>
                         {titres}
@@ -23,7 +23,7 @@ export default function Accueil({id}) {
                     {boiteAccueil}
                     <Fond fond={{backgroundImage: BACKGROUND}} />
             </section>
-        // <Chargement/>
+        : <Chargement/>
             
     )
 }
