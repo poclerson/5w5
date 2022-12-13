@@ -34,7 +34,6 @@ export default function ListeProjets({id}) {
 
         return [...projets, ...environnement, ...videos].pseudoMelanger().map((evenement => {
             // Projet
-            {console.log(projets[0])}
             if (evenement.acf.hasOwnProperty('nom')) {
                 let composant = <Projet 
                     key={evenement.id}

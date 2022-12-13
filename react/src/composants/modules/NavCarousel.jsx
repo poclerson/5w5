@@ -11,7 +11,6 @@ export default function NavCarousel({
 }) {
     return (
         <nav className={"NavCarousel " + classesAdditionnelles}>
-            {console.log(versSuivant)}
             <BoutonCarousel 
                 refListe={refListe} 
                 direction="precedent" 
