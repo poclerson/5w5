@@ -17,8 +17,15 @@
         bottom: 30vh;
         overflow-x: visible !important; // Override
 
+        // @include tablette{
+        //     bottom: 50vh;
+        // }
+
         .marquee {
-            align-items: center;
+            align-items: flex-end;
+            @include ordinateur{
+                align-items: center;
+            }
 
             .titres {
                 display: flex;
@@ -30,7 +37,7 @@
                     );
                     @include proprietes-aleatoires(map-get($polices, styles), font-family, 15);
                     @include desactiver-margin-block;
-                    @include tablette {font-size: 1500%;}
+                    @include tablette {font-size: 2500%;}
                     @include ordinateur {font-size: 2500%;}
                 }
             }
@@ -46,5 +53,43 @@
 
     .boite-accueil{
         background-color: map-get($map: $couleurs, $key:sombre-transparent );
+        position: absolute;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+        right: 25%;
+        top: 22%;
+        padding: 1%;
+        padding-top: 15%;
+        padding-bottom: 15%;
+        padding-left: 5%;
+        z-index: 5;
+        border-radius: 10px 10px 10px 10px;
+        backdrop-filter: blur(15px);
+
+        @include tablette{
+            background-color: map-get($map: $couleurs, $key:sombre-transparent );
+            position: absolute;
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: 1fr;
+            right: 15%;
+            top: 22%;
+            padding: 1%;
+            padding-left: 5%;
+            padding-right: 3%;
+            backdrop-filter: blur(15px);
+        }
+
+        @include ordinateur {
+            background-color: map-get($map: $couleurs, $key:sombre-transparent );
+            position: absolute;
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: 1fr;
+            right: 59%;
+            top: 22%;
+            padding: 1%;
+        }
     } 
 }
