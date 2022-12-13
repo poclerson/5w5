@@ -5,20 +5,13 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
 
 // Styles généraux sur tous les éléments
 * {
-    &::-webkit-scrollbar {
-        display:none;
-    }
     margin-block-start: 0;
     margin-block-end: 0;
     scrollbar-color: map-deep-get($couleurs, 'domaines', 'web') map-get($couleurs, sombre);
     scroll-behavior: smooth;
 
     &::-webkit-scrollbar {
-        // display: none;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: map-get($couleurs, sombre);
+        display: none;
     }
 
     // Listes d'items fermées

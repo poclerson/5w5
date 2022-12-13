@@ -51,15 +51,25 @@ export default function ListeEnseignants({id}) {
                     }
                 </ul>
                 <Fond fond={{backgroundImage: BACKGROUND}} />
+                {/* Quand un enseignant est ouvert, 
+                on utilise les fonctions de useOuvertures */}
                 <NavCarousel 
                     refListe={refListe} 
-                    versPrecedent={surClicPrecedent} 
-                    versSuivant={surClicSuivant} 
-                    classesAdditionnelles="ouvert"
-                />
-                <NavCarousel
-                    refListe={refListe}
-                    classesAdditionnelles="ferme"
+                    versPrecedent={
+                        verifierOuvertureParent() == 'true' ?
+                        surClicPrecedent :
+                        undefined
+                    }
+                    versSuivant={
+                        verifierOuvertureParent() == 'true' ?
+                        surClicSuivant :
+                        undefined
+                    } 
+                    classesAdditionnelles={
+                        verifierOuvertureParent() == 'true' ?
+                        'ouvert' :
+                        'ferme'
+                    }
                 />
             </section>  
         : <Chargement />
