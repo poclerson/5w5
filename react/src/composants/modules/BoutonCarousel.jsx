@@ -1,17 +1,17 @@
-import './DegradeCarousel.scss';
+import './BoutonCarousel.scss';
 
 import FlecheNav from './FlecheNav';
 
 import * as u from '../../utilitaires';
 
-export default function DegradeCarousel({
+export default function BoutonCarousel({
     refListe, 
     ratioDefilement = 5, 
     direction = 'suivant',
     cases = true
 }) {
     return (
-        <div className="DegradeCarousel" direction={direction}>
+        <div className="BoutonCarousel" direction={direction}>
             <div className="rond">
                 <FlecheNav gestionClic={() => {
                     refListe && (
