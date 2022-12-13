@@ -2,11 +2,27 @@ import './NavCarousel.scss';
 
 import BoutonCarousel from './BoutonCarousel';
 
-export default function NavCarousel({refListe}) {
+export default function NavCarousel({
+    refListe,
+    versPrecedent,
+    versSuivant,
+    cases = true,
+    classesAdditionnelles = ""
+}) {
     return (
-        <nav className="NavCarousel">
-            <BoutonCarousel refListe={refListe} direction="precedent" cases={false} />
-            <BoutonCarousel refListe={refListe} cases={false} />
+        <nav className={"NavCarousel " + classesAdditionnelles}>
+            {console.log(versSuivant)}
+            <BoutonCarousel 
+                refListe={refListe} 
+                direction="precedent" 
+                cases={cases} 
+                callback={versPrecedent} 
+            />
+            <BoutonCarousel 
+                refListe={refListe} 
+                cases={cases} 
+                callback={versSuivant} 
+            />
         </nav>
     )
 }

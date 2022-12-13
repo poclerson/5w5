@@ -46,6 +46,14 @@
                 }
             }
         }
+
+        .NavCarousel.ouvert {
+            display: none;
+        }
+
+        .NavCarousel.ferme {
+            display: flex;
+        }
     }
 
     &[item-ouvert="true"] {
@@ -92,14 +100,12 @@
 
         }
 
-        .suivant {
-            @include ordinateur {display: flex}
-            transition: left ease-in-out .08s;
-            animation: fondu-vers-prochain 2s linear 0s 1 normal forwards;
+        .NavCarousel.ouvert {
+            display: flex;
         }
 
-        .DegradeSuivant {
-            transform: translateX(10vw);
+        .NavCarousel.ferme {
+            display: none;
         }
     }
 
@@ -125,12 +131,5 @@
             align-items: stretch;
             @include padding-auto;
         }
-    }
-
-    .suivant {
-        right: 2.5%;
-        top: 700px;
-        position: absolute;
-        display: none;
     }
 }
