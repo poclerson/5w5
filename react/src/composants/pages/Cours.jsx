@@ -8,7 +8,7 @@ export default function Cours({titre, description, modele, domaine, id, index, o
     /* Positionnement des icônes 3D */
     const positionSelonCours = {
         'https://timm175.sg-host.com/wp-content/uploads/2022/12/coursJEU.glb': {
-            position: [0, 0, 1.2],
+            position: [0, 0.1, 1.2],
             rotation: [0, 4.7, 0]
         },
 
@@ -18,12 +18,12 @@ export default function Cours({titre, description, modele, domaine, id, index, o
         },
         
         'https://timm175.sg-host.com/wp-content/uploads/2022/12/video_.glb': {
-            position: [0, 0.2, -5],
+            position: [0, 0.5, -5],
             rotation: [0, 4.7, 0]
         },
 
         'https://timm175.sg-host.com/wp-content/uploads/2022/12/coursWEB.glb': {
-            position: [-1.2, 0, 0.8],
+            position: [-1.2, 0.1, 0.8],
             rotation: [-0.05, 4.75, -.05]
         },
 
