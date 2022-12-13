@@ -8,7 +8,6 @@ import {useContext, useRef} from 'react';
 
 import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
-import FlecheNav from '../modules/FlecheNav';
 import Fond from '../modules/Fond';
 import NavCarousel from '../modules/NavCarousel';
 
@@ -18,6 +17,7 @@ export default function ListeEnseignants({id}) {
     const {
         surClic, 
         surClicSuivant, 
+        surClicPrecedent,
         verifierOuvertureParent, 
         verifierOuverture
     } = useOuvertures(enseignants)
@@ -50,9 +50,17 @@ export default function ListeEnseignants({id}) {
                         })
                     }
                 </ul>
-                <FlecheNav gestionClic={surClicSuivant} texte={true} classesAdditionnelles="suivant" />
                 <Fond fond={{backgroundImage: BACKGROUND}} />
-                <NavCarousel refListe={refListe} />
+                <NavCarousel 
+                    refListe={refListe} 
+                    versPrecedent={surClicPrecedent} 
+                    versSuivant={surClicSuivant} 
+                    classesAdditionnelles="ouvert"
+                />
+                <NavCarousel
+                    refListe={refListe}
+                    classesAdditionnelles="ferme"
+                />
             </section>  
         : <Chargement />
     );

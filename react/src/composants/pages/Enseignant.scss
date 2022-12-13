@@ -132,7 +132,7 @@ $couleurs-domaines-modifiees: (
             transform: scale(1);
             z-index: 2;
 
-            @include ordinateur-large {
+            @include ultra-large {
                 right: 45vw;
             }
 
@@ -168,7 +168,7 @@ $couleurs-domaines-modifiees: (
             }
         }
 
-        @include ordinateur-large {
+        @include ultra-large {
             // Enseignant ouvert
             flex: 0 1 60%;
             width: 50vw;
@@ -458,7 +458,7 @@ $couleurs-domaines-modifiees: (
             height: 100%;
         }
 
-        @include ordinateur-large {
+        @include ultra-large {
             gap: 5%;
             width: 50vw;
         }
