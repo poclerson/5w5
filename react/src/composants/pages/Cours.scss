@@ -4,8 +4,10 @@
 
 .Cours {
     $couleurs-selon-domaines: (
-        soi: background-color 
+        domaine: background-color 
     );
+    
+    @include couleurs-domaines($couleurs-selon-domaines);
 
     // Un cours prend presque tout l'écran sur mobile
     aspect-ratio: 1 / 1.25;
@@ -91,11 +93,10 @@
         }
 
         .titre {
-            margin-top: 17.5%;
+            margin: 15% 0% 0% 0%;
         }
 
         .domaine {
-            @include couleurs-domaines($couleurs-selon-domaines);
             @include etiquette(null, false);
             font-weight: 900;
         }

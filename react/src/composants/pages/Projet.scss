@@ -26,92 +26,39 @@
 
         .contenu {
             display: flex;
-            flex-direction: column;
-            gap: 5%;
-            height: 100%;
+        }
+    }
+
+    .contenu {
+        transition: unset;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+        top: 0;
+        left: 0;
+        padding: 10vh 10vw;
+        z-index: 2;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5%;
+        background-color: map-get($couleurs, sombre-transparent);
+        backdrop-filter: blur(15px);
+
+        .image-presentation {
+            border-radius: 30px;
+            object-fit: cover;
 
             @include ordinateur {
-                flex-direction: row;
+                max-height: 70%;
             }
+        }
 
-            .FlecheNav {
-                align-self: flex-start;
-                position: static;
-
-                padding-left: 10%;
-                @include ordinateur {padding: unset;}
-            }
-
-            .texte-conteneur {
-                padding-left: 10%;
-                padding-right: 10%;
-
-                display: flex;
-                flex: 1 0 25%;
-
-                @include tablette {flex: 0 1 60%}
-
-                @include ordinateur {
-                    padding: unset;
-                    flex: 0 1 40%;
-                }
-            }
-
-            .images {
-                display: flex;
-                gap: 5%;
-                flex: 0 1 60%;
-                margin-bottom: 10%;
-                overflow-x: scroll;
-                scroll-snap-type: x mandatory;
-                scroll-padding-left: 10%;
-                @include cacher-barre-defilement;
-
-                @include tablette {
-                    flex: 1 0 60%
-                }
-
-                @include ordinateur {
-                    flex: 1 0 55%;
-
-                    display: flex;
-                    height: 60vh;
-                    flex-direction: column;
-                    border-radius: 20px;
-
-                    &[grid="true"] {
-                        display: grid;
-                        grid-template-rows: repeat(2, 30vh);
-                        grid-template-columns: 1fr 1fr;
-                        gap: 5%;
-
-                        height: unset;
-                        border-radius: 0;
-                    }
-                }
-
-                img {
-                    width: 80%;
-                    scroll-snap-align: start;
-
-                    @include premier-dernier(margin, 5%);
-
-                    object-fit: cover;
-                    border-radius: 20px;
-
-                    @include tablette {
-                        flex: 1 0 80vw;
-                    }
-
-                    @include ordinateur {
-                        height: 80%;
-
-                        // Laisser de l'espace pour le texte
-                        &:first-child {margin: 0;}
-                        &:nth-child(2) {grid-row: span 2}
-                    }
-                }
-            }
+        .FlecheNav {
+            flex: 0 0 0;
+            position: relative;
+            left: -5%;
+            top: 10%;
         }
     }
 }

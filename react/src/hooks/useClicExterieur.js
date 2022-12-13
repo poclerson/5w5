@@ -1,13 +1,14 @@
 /**
  * Appelle une fonction 
  * @param {Function} condition Vérifie si on peut enregistrer un clic extérieur
+ * @param {Function} callback Fonction à exécuter lors d'un clic extérieur
  * @param {Object} refOuvert Référence vers l'élément ouvert duquel on doit cliquer à l'extérieur
  * @param {Array} refsExceptions Références vers toutes les exceptions qui ne devraient pas
  * compter comme étant un clic extérieur
- * @returns {Function} 
+ * @returns {Function} Fonction permettant d'exécuter certaines fonctions lors d'un clic extérieur
  */
-export default function useClicExterieur(condition, refOuvert, refsExceptions) {
-    return (event, callback) => {
+export default function useClicExterieur(condition, callback, refOuvert, refsExceptions) {
+    return (event) => {
             if (
                 // Vérifier que les refs existent
                 refOuvert.current && 
