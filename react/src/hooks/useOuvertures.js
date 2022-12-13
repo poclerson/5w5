@@ -44,11 +44,28 @@ export default function useOuverture(donnees, ouvertureInitiale = -1) {
         setIndexOuvert(parseInt(indexOuvert) + 1);
     }
 
+    const surClicPrecedent = (e, callback) => {
+        if (donnees != null) {
+            if (Array.isArray(donnees)) {
+
+                // Si on est arrivés à la fin
+                if (parseInt(indexOuvert) + 1 == donnees.length) {
+                    setIndexOuvert(0);
+                    return;
+                }
+            }
+        }
+
+        if (callback != undefined) callback();
+        setIndexOuvert(parseInt(indexOuvert) - 1);
+    }
+
     return {
         verifierOuvertureParent: verifierOuvertureParent,
         surClic: surClic,
         verifierOuverture: verifierOuverture,
         surClicSuivant: surClicSuivant,
+        surClicPrecedent: surClicPrecedent,
         indexOuvert: indexOuvert
     }
 }

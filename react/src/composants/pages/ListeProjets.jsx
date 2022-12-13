@@ -77,9 +77,7 @@ export default function ListeProjets({id}) {
                     {rendreCases()}
                 </ul>
                 <Fond fond={{backgroundImage: BACKGROUND}} />
-                <nav className="fleches-carousel">
-                    <NavCarousel refListe={refListe} />
-                </nav>
+                <NavCarousel refListe={refListe} cases={false} />
             </section> : <Chargement />
     )
 }
