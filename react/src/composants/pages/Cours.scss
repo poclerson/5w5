@@ -50,10 +50,10 @@
 
     @include ordinateur {
         aspect-ratio: 1 / 1.5;
-        max-height: 45vh;
+        max-height: 40vh;
         height: unset;
         // Afficher trois cours ou plus sur grands écrans
-        flex-basis: 20vw;
+        flex-basis: 15vw;
         margin: 0;
 
         @include premier-dernier(margin, 35vw, 10vw);
@@ -70,7 +70,7 @@
         @include carte;
         @include themer($theme-cours);
         transition: transform ease-in-out .3s;
-        padding: 15px;
+        padding: 10px;
 
         .modele {
             position: absolute;
@@ -93,7 +93,7 @@
         }
 
         .titre {
-            margin: 15% 0% 0% 0%;
+            margin: 15% 5% 0% 0%;
         }
 
         .domaine {
@@ -103,8 +103,9 @@
 
         .description {
             @include cacher-barre-defilement;
-            flex: 0 1 80%;
+            flex: 0 1 60%;
             overflow: hidden;
+            padding: 10%;
         }
     }
 }

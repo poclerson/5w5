@@ -59,7 +59,7 @@
         grid-template-columns: 1fr;
         right: 25%;
         top: 22%;
-        padding: 1%;
+        padding: 5%;
         padding-top: 15%;
         padding-bottom: 15%;
         padding-left: 5%;
@@ -87,9 +87,13 @@
             display: grid;
             grid-template-rows: 1fr;
             grid-template-columns: 1fr;
-            right: 59%;
-            top: 22%;
-            padding: 1%;
+            right: 60%;
+            top: 10%;
+            margin-left: 5%;
+            padding-right: 5%;
+            padding: 5%;
+            padding-top: 3%;
+            padding-bottom: 3%;
         }
     } 
 }
