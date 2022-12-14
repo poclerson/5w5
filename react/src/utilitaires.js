@@ -31,11 +31,11 @@ export function defiler(refListe, direction = 'precedent' || 'suivant', ratioDef
     }
 
     if (direction == 'suivant') {
-        // element.scrollLeft = element.scrollWidth / ratioDefilement;
-        element.scrollLeft = 1000
+        element.scrollLeft += element.scrollWidth / ratioDefilement;
     }
 
     if (direction == 'precedent') {
+        console.log("prec")
         element.scrollLeft -= element.scrollWidth / ratioDefilement;
     }
 }

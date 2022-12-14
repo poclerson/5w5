@@ -46,14 +46,6 @@
                 }
             }
         }
-
-        .NavCarousel.ouvert {
-            display: none;
-        }
-
-        .NavCarousel.ferme {
-            display: flex;
-        }
     }
 
     &[item-ouvert="true"] {
@@ -99,14 +91,6 @@
             animation: fondu-vers-prochain 2s linear 0s 1 normal forwards;
 
         }
-
-        .NavCarousel.ouvert {
-            display: flex;
-        }
-
-        .NavCarousel.ferme {
-            display: none;
-        }
     }
 
     .liste {
@@ -131,5 +115,12 @@
             align-items: stretch;
             @include padding-auto;
         }
+    }
+
+    // S'assurer qu'il garde la même hauteur même quand les enseignants sont ouverts
+    // et en absolute sur ordinateur
+    .NavCarousel {
+        position: absolute;
+        top: 84.5vh;
     }
 }

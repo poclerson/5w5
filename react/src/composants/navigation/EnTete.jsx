@@ -37,6 +37,7 @@ export default function EnTete({enteteWP}) {
     const refResultatsRecherche = useRef();
     const fermerRecherche = useClicExterieur(
         verifierOuvertureRecherche,
+        surClicRecherche,
         refResultatsRecherche,
         [refIconeRecherche, refZoneSaisie]
     );
@@ -58,7 +59,7 @@ export default function EnTete({enteteWP}) {
         <header 
             className="EnTete" 
             ouvert={verifierOuvertureRecherche()} 
-            onClick={event => fermerRecherche(event, surClicRecherche)}
+            onClick={event => fermerRecherche(event)}
         >
             <BoutonBurger gererClic={() => {
                 surClicBurger(); 
