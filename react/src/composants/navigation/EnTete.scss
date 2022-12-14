@@ -155,8 +155,6 @@
             padding: 0;
             margin: 0;
 
-            border-bottom: 1px solid map-get($couleurs, clair);
-
             &[ouvert="false"]{display: flex;}
         }
 
@@ -179,6 +177,16 @@
                 }
             }
         }
+    }
+
+    .degrade {
+        display: none;
+        width: 100%;
+        height: 2px;
+        position: absolute;
+        bottom: 0;
+        background: $degrade;
+        @include tablette{display: block;}
     }
 
     .resultats-recherche {

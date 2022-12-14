@@ -41,12 +41,6 @@ $couleurs-domaines-modifiees: (
 );
 
 .Enseignant {
-    // @@@@@@@@@@@@@@@@@@@@@@ TEMPORAIRE @@@@@@@@@@@@@@@@@@@
-    @include ordinateur {
-        &.modelisation3d .titre {
-            color: map-get($couleurs, sombre);
-        }
-    }
     @include themer($theme-enseignant);
 
     @include couleurs-domaines($classes-couleur-domaine-ferme);
@@ -158,6 +152,8 @@ $couleurs-domaines-modifiees: (
 
                 // Troisième enseignant
                 & + .Enseignant {
+                    display: flex;
+                    width: 70vw;
                     @include transition-base;
                     opacity: 0;
 

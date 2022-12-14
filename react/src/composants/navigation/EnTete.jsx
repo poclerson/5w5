@@ -93,6 +93,7 @@ export default function EnTete({enteteWP}) {
                     refIcone={refIconeRecherche}
                     setEcrit={setEcrit}
                 />
+                <div className="degrade"></div>
             </div>
             <ul className="resultats-recherche" ref={refResultatsRecherche}>
                 {resultatsRecherche != null &&

@@ -54,6 +54,15 @@
         @include premier-dernier(margin, 35vw, 10vw);
     }
 
+    @include ordinateur-large {
+        flex-basis: 15vw;
+    }
+
+    @include ultra-large {
+        flex-basis: 12.5vw;
+        @include premier-dernier(margin, 25vw, 10vw);
+    }
+
     // Une carte de cours
     .carte {
         display: flex;
