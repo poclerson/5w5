@@ -11,9 +11,9 @@
     bottom: 0;
     font-size: 15px;
 
-    .vague {
+    .Icone.vague {
         width: 110%;
-        height: unset;
+        height: min-content;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -21,10 +21,11 @@
         overflow: hidden;
 
         svg {
-            @include pleine-taille;
+            width: 100%;
+            height: min-content;
 
             path {
-                stroke-width: 10px;
+                stroke-width: 5px;
                 fill: map-get($couleurs, sombre);
             }
         }

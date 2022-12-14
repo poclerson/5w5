@@ -30,6 +30,7 @@
     }
 
     .contenu {
+        align-items: center;
         transition: unset;
         position: fixed;
         width: 100vw;
@@ -46,8 +47,9 @@
         backdrop-filter: blur(15px);
 
         .image-presentation {
-            border-radius: 30px;
-            object-fit: cover;
+            width: min-content;
+            object-fit: contain;
+            max-width: 100%;
 
             @include ordinateur {
                 max-height: 70%;
@@ -55,10 +57,14 @@
         }
 
         .FlecheNav {
+            align-self: flex-start;
             flex: 0 0 0;
             position: relative;
-            left: -5%;
-            top: 10%;
+
+            @include tablette {
+                left: -5%;
+                top: 10%;
+            }
         }
     }
 }

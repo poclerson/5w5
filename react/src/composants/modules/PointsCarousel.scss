@@ -4,6 +4,7 @@
 .PointsCarousel {
     display: flex;
     gap: 1vw;
+    z-index: 2;
 
     .rond {
         @include transition-base($duree: .25s);
