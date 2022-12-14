@@ -11,7 +11,7 @@ export default function PointsCarousel({liste, refListe, indexOuvert}) {
         <nav className="PointsCarousel">
             {liste.map((item, index) => 
                 <Link 
-                    className="rond" 
+                    className="rond Icone" 
                     ouvert={index == indexOuvert ? 'true' : 'false'}
                     key={"pointscarouselrond" + item.id}
                     to={endroit.pathname + "#" + item.id} 

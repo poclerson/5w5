@@ -115,6 +115,10 @@
             align-items: stretch;
             @include padding-auto;
         }
+
+        @include ultra-large {
+            gap: 5%;
+        }
     }
 
     // S'assurer qu'il garde la même hauteur même quand les enseignants sont ouverts

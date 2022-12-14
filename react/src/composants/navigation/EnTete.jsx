@@ -58,12 +58,15 @@ export default function EnTete({enteteWP}) {
     return (
         <header 
             className="EnTete" 
-            ouvert={verifierOuvertureRecherche()} 
+            ouvert={
+                tablette ?
+                verifierOuvertureRecherche() :
+                verifierOuvertureBurger()
+            } 
             onClick={event => fermerRecherche(event)}
         >
             <BoutonBurger gererClic={() => {
                 surClicBurger(); 
-                surClicRecherche(); 
                 setEcrit('false');
             }} 
                 ouvert={verifierOuvertureBurger()} />
@@ -90,6 +93,7 @@ export default function EnTete({enteteWP}) {
                     refIcone={refIconeRecherche}
                     setEcrit={setEcrit}
                 />
+                <div className="degrade"></div>
             </div>
             <ul className="resultats-recherche" ref={refResultatsRecherche}>
                 {resultatsRecherche != null &&

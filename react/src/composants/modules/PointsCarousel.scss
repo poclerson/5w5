@@ -7,7 +7,8 @@
 
     .rond {
         @include transition-base($duree: .25s);
-        @include rond(1vw);
+        border-radius: 50%;
+        transform: scale(.5);
         background-color: map-get($couleurs, clair-transparent);
 
         &[ouvert="true"] {

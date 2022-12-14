@@ -5,6 +5,7 @@
     width: 100%;
     @include gerer-ouverture(flex);
     flex-direction: column;
+    gap: 5%;
     box-sizing: border-box;
 
     &[ouvert="true"] {
@@ -16,12 +17,13 @@
         flex: 1 0 100%;
         height: max-content;
         @include cacher-barre-defilement;
-        padding-top: 10vh;
+        padding: 2.5vh 0;
         box-sizing: border-box;
 
         display: flex;
+        align-items: center;
         scroll-snap-type: x mandatory;
-        overflow-y: visible;
+        overflow-y: hidden;
         overflow-x: scroll;
         scroll-behavior: smooth;
         gap: 40vw;
@@ -38,10 +40,11 @@
         }
 
         @include ordinateur {
+            min-height: 80vh;
             max-height: 80vh;
             gap: 10vw;
             scroll-padding-left: 35vw;
-            padding-top: 20vh;
+            // padding-top: 20vh;
         }
 
         @include ordinateur-large {

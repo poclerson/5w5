@@ -1,3 +1,5 @@
+@import './fonctions.scss';
+
 // Largeurs d'écran auxquelles seront effectuées les requêtes médias
 $largeurs-ecran: (
     base: 0px,
@@ -257,6 +259,13 @@ $couleurs: (
     gris1: #a7a6a6,
     gris2: #747474,
     gris3: #414141,
+);
+
+$degrade: linear-gradient(
+    to right, 
+    map-deep-get($couleurs, 'domaines', 'modelisation3d') 0%, 
+    map-deep-get($couleurs, 'domaines', 'design') 50%, 
+    map-deep-get($couleurs, 'domaines', 'jeu') 100%
 );
 
 // Thème de base. Si rien n'est appliqué, le thème de base sera présent
@@ -548,7 +557,7 @@ $theme-pied-page: (
     ),
 
     fond: (
-        couleur-primaire: transparent
+        couleur-primaire: map-get($couleurs, sombre)
     ),
 );
 

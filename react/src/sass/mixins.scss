@@ -6,12 +6,14 @@
     @each $selecteur, $tailles-ecran in $selecteurs {
         @each $taille-ecran, $proprietes in $tailles-ecran {
             @media screen and (min-width: $taille-ecran) {
-                #{$selecteur} {
-                    @if ($selecteur == svg) {
+                @if ($selecteur == svg) {
+                    #{$selecteur}, .Icone {
                         width: map-get($proprietes, taille);
                         height: map-get($proprietes, taille);
                     }
-                    @else {
+                }
+                @else {
+                    #{$selecteur} {
                         font-size: map-get($proprietes, taille);
                         margin-block-start: map-get($proprietes, taille) / 4;
                         margin-block-end: map-get($proprietes, taille) / 4;
@@ -27,6 +29,7 @@
         }
     }
 }
+
 // Remlpit automatiquement les informations génériques pour tout type de texte
 // Fonctionne avec themer()
 @mixin texte-general($theme, $element) {

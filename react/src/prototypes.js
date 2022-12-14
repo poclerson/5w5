@@ -41,6 +41,10 @@ String.prototype.inserer = function(valeur, index) {
     return this.substr(0, index) + valeur + this.substr(index);
 }
 
+String.prototype.rendreBr = function() {
+    return this.replaceAll('<br />', '<br/>');
+}
+
 /**
  * Retourne l'élément le plus à gauche par rapport à la fenêtre à partir d'un tableau
  * @param {int} decalage 

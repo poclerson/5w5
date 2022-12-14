@@ -6,7 +6,7 @@
     $couleurs-selon-domaines: (
         domaine: background-color 
     );
-    
+
     @include couleurs-domaines($couleurs-selon-domaines);
 
     // Un cours prend presque tout l'écran sur mobile
@@ -19,13 +19,8 @@
     position: relative;
 
     &[ouvert="true"] {
-        .carte, .rond{transform: scale(1.1)};
-        transition: transform ease-in-out .1s;
-
-        .rond {
-            transition: left ease-in-out .08s;
-            left: calc(-15% * 1.82);
-        }
+        .carte {transform: scale(1.1)};
+        @include transition-base($duree: .25s);
 
         @include tablette {
             .carte {transform: scale(1.25);}
@@ -58,7 +53,15 @@
 
         @include premier-dernier(margin, 35vw, 10vw);
     }
-    backdrop-filter: blur(15px);
+
+    @include ordinateur-large {
+        flex-basis: 15vw;
+    }
+
+    @include ultra-large {
+        flex-basis: 12.5vw;
+        @include premier-dernier(margin, 25vw, 10vw);
+    }
 
     // Une carte de cours
     .carte {
@@ -69,6 +72,7 @@
 
         @include carte;
         @include themer($theme-cours);
+        backdrop-filter: blur(5px);
         transition: transform ease-in-out .3s;
         padding: 15px;
 
@@ -77,6 +81,8 @@
             top: -125px;
             right: -250px;
             z-index: 11;
+            transform: translateZ(1px);
+            transform-style: preserve-3d;
     
             &, &:hover {
                 transition: transform ease-in-out .5s;
