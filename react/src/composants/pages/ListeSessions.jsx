@@ -90,7 +90,6 @@ export default function ListeSessions({sessions, cours, pageRef}) {
     return (
         <div className="ListeSessions">
             <div className="sessions-titres-conteneur" ref={refTitres}>
-                <div className="degrade"></div>
                 <ol className="sessions-titres">
                     {sessions.map((session, index) => 
                         <li 

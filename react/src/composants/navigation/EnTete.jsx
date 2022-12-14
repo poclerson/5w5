@@ -58,12 +58,15 @@ export default function EnTete({enteteWP}) {
     return (
         <header 
             className="EnTete" 
-            ouvert={verifierOuvertureRecherche()} 
+            ouvert={
+                tablette ?
+                verifierOuvertureRecherche() :
+                verifierOuvertureBurger()
+            } 
             onClick={event => fermerRecherche(event)}
         >
             <BoutonBurger gererClic={() => {
                 surClicBurger(); 
-                surClicRecherche(); 
                 setEcrit('false');
             }} 
                 ouvert={verifierOuvertureBurger()} />

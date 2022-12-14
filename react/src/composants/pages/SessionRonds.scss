@@ -5,14 +5,12 @@
 
     .liste {
         position: absolute;
+        z-index: 2;
         bottom: -410px;
         left: -910px;
         
-        transform-style: preserve-3d;
         transition: transform .5s;
         @include placement-circulaire(6, 1000px, 250px);
-    
-        transform: translateZ(1px);
     
         @include tablette {
             @include placement-circulaire(6, 1000px, 300px);
@@ -22,33 +20,53 @@
             width: unset;
             height: unset;
             @include placement-circulaire(6, 1500px, 300px);
-            bottom: -400px;
+            bottom: -250px;
             left: -1400px;
         }
-        .session-rond {
+
+        .session-rond-conteneur {
             aspect-ratio: 1;
             background-color: map-get($couleurs, clair);
     
             transition: transform .5s;
             border-radius: 100%;
+            overflow: hidden;
     
             display: flex;
             justify-content: center;
             align-items: center;
             position: absolute;
-    
-            .titre {
+
+            .session-rond {
                 position: absolute;
-                right: 15%;
-                top: -10%;
-                font-size: 1500%;
-                @include desactiver-margin-block;
+                top: 0;
+                right: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                @include pleine-taille;
+                transition: transform ease-in-out .1s .15s;
+
+                .titre {
+                    position: absolute;
+                    font-size: 1500%;
+                    @include desactiver-margin-block;
+                }
+
+                .degrade {
+                    @include pleine-taille;
+                }
             }
         }
     }
 
     & > .FlecheNav {
-        right: 300px;
+        bottom: 50px;
+        left: 250px;
+
+        @include tablette {
+            left: 275px;
+        }
 
         @include ordinateur {
             display: none;
