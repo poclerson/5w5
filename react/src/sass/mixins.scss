@@ -407,6 +407,19 @@
         @content;
     }
 }
+
+@mixin max-hauteur-petite {
+    @media screen and (max-height: map-get($hauteurs-ecran, petit)) {
+        @content;
+    }
+}
+
+@mixin hauteur-moyenne {
+    @media screen and (min-height: map-get($hauteurs-ecran, moyen)) {
+        @content;
+    }
+}
+
 // ===== MIXINS DE SÉLECTION =====
 @mixin selection-texte() {
     h1, h2, h3, h4, h5, h6, p, a, img, input {

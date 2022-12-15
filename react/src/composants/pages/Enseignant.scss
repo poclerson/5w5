@@ -194,15 +194,11 @@ $couleurs-domaines-modifiees: (
         }
     }
 
-    // Général, peu importe l'état. N'override pas les règles de priorité
-    & {
-        flex: 1 0 20%;
-    }
-
     // Général, peu importe l'état. Override les règles de priorité
     &[ouvert="true"],
     &[ouvert="false"] {
         flex-direction: row-reverse; // Afficher le contenu à gauche
+        align-items: stretch;
         gap: 10%;
 
         .miniature {
@@ -211,9 +207,7 @@ $couleurs-domaines-modifiees: (
     
             // Positionnement d'une carte
             @include ordinateur {
-                min-height: 450px;
-                height: 100%;
-                flex: 0 0 40%;
+                height: 40vh;
                 @include carte;
                 aspect-ratio: 1 / 1.5;
                 padding: 0;
