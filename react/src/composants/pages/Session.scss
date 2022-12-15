@@ -44,11 +44,29 @@
             max-height: 80vh;
             gap: 10vw;
             scroll-padding-left: 35vw;
-            // padding-top: 20vh;
         }
 
         @include ordinateur-large {
             gap: 7.5vw;
+        }
+
+        // Simule un bloc de cours pour permettre de défiler plus loin
+        // et de mettre à "ouvert" le dernier cours
+        // toujours 2 de moins en nombre que le nombre de cours original
+        .faux-cours {
+            scroll-snap-align: start;
+            display: none;
+
+            @include ordinateur {
+                display: block;
+                flex: 0 0 20vw;
+            }
+            @include ordinateur-large {
+                flex-basis: 15vw;
+            }
+            @include ultra-large {
+                flex-basis: 12.5vw;
+            }
         }
     }
 

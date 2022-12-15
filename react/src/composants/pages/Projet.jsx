@@ -46,6 +46,7 @@ export default function Projet({
                     ref={refImage}
                     src={image_presentation} 
                     alt={`Image du projet ${nom} par ${createurs}`} 
+                    loading="lazy"
                 />
                 <div className="texte" ref={refTexte}>
                     <h6 className="createurs">Projet par {createurs}</h6>
