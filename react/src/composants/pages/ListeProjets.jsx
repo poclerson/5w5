@@ -9,7 +9,6 @@ import ContexteDonneesSite from '../../ContexteDonneesSite';
 import Projet from './Projet';
 import PhotoEnvironnement from './PhotoEnvironnement';
 import Chargement from '../modules/Chargement';
-import Fond from '../modules/Fond';
 import NavCarousel from '../modules/NavCarousel';
 import EvenementVideo from './EvenementVideo';
 
@@ -75,7 +74,6 @@ export default function ListeProjets({id}) {
                     {titre}
                     {rendreCases()}
                 </ul>
-                <Fond fond={{backgroundImage: BACKGROUND}} />
                 <NavCarousel refListe={refListe} cases={false} />
             </section> : <Chargement />
     )

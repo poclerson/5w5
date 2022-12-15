@@ -1,8 +1,6 @@
 import './Contact.scss';
 
 import Chargement from '../modules/Chargement';
-import Icone from '../modules/Icone';
-import Fond from '../modules/Fond';
 
 import ContexteDonneesSite from '../../ContexteDonneesSite';
 import {useContext} from 'react';
@@ -15,7 +13,6 @@ export default function Contact({id}) {
         titreDescription, 
         description,
         wpBlockWebfactoryMap,
-        BACKGROUND,
         behance,
         linkedin,
         youtube,
@@ -24,7 +21,6 @@ export default function Contact({id}) {
     return (
         degrades != null ?
         <section className="Contact">
-            <Fond fond={{backgroundImage: BACKGROUND}} />
             <article className='boite-principale'>
                 {titre}
                 <article className='contenu'>

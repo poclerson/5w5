@@ -8,7 +8,6 @@ import {useContext, useRef} from 'react';
 
 import Enseignant from './Enseignant';
 import Chargement from '../modules/Chargement';
-import Fond from '../modules/Fond';
 import NavCarousel from '../modules/NavCarousel';
 
 export default function ListeEnseignants({id}) {
@@ -22,7 +21,7 @@ export default function ListeEnseignants({id}) {
         verifierOuverture
     } = useOuvertures(enseignants)
 
-    const {titre, BACKGROUND} = useStructure(id);
+    const {titre} = useStructure(id);
 
     useOuvrirSelonId(surClic);
 
@@ -50,7 +49,6 @@ export default function ListeEnseignants({id}) {
                         })
                     }
                 </ul>
-                <Fond fond={{backgroundImage: BACKGROUND}} />
                 {/* Quand un enseignant est ouvert, 
                 on utilise les fonctions de useOuvertures */}
                 <NavCarousel 

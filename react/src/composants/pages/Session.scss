@@ -40,8 +40,8 @@
         }
 
         @include ordinateur {
-            min-height: 80vh;
-            max-height: 80vh;
+            min-height: 75vh;
+            max-height: 75vh;
             gap: 10vw;
             scroll-padding-left: 35vw;
             padding-top: 5vh;
@@ -59,22 +59,12 @@
             display: none;
 
             @include ordinateur {
-                display: block;
-                &:last-of-type {
-                    display: none;
-                }
+                flex: 0 0 20vw;
             }
             @include ordinateur-large {
-                &:last-of-type {
-                    display: block;
-                }
-                &:nth-of-type(-n + 2) {
-                    display: none;
-                }
-                flex: 0 0 20vw;
                 flex-basis: 15vw;
             }
-            @include ultra-large {
+            @include ordinateur-tres-large {
                 flex-basis: 12.5vw;
             }
         }

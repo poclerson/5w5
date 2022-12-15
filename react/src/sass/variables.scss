@@ -7,6 +7,7 @@ $largeurs-ecran: (
     tablette: 640px,
     ordinateur: 1024px,
     ordinateur-large: 1440px,
+    ordinateur-tres-large: 1600px,
     ultra-large: 1920px
 );
 
@@ -175,11 +176,11 @@ $tailles-textes: (
         ),
 
         1024px:(
-            taille: 25px
+            taille: 19px
         ),
 
         1440px:(
-            taille: 28px
+            taille: 21px
         ),
     ),
 

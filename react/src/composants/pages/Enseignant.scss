@@ -69,7 +69,16 @@ $couleurs-domaines-modifiees: (
         // pour la transition
         justify-content: space-between;
         position: absolute;
-        max-height: 60vh;
+    }
+
+    &.modelisation3d {
+        @include ordinateur {
+            .miniature {
+                .titre {
+                    color: map-get($couleurs, sombre);
+                }
+            }
+        }
     }
 
     // ===== FERMÉ =====
@@ -78,8 +87,9 @@ $couleurs-domaines-modifiees: (
 
         @include ordinateur {
             display: flex;
+            height: 60vh;
             // Positionner à droite de l'écran pour la transition
-            right: -40vw;
+            right: -70vw;
             opacity: 0;
         }
 
@@ -125,14 +135,10 @@ $couleurs-domaines-modifiees: (
         }
 
         @include ordinateur {
-            width: 70vw;
             opacity: 1;
-            @include couleurs-domaines($classes-couleur-domaine-ferme);
-            flex: 0 0 80%;
-            right: 25vw;
-            align-items: center;
-            transform: scale(1);
-            z-index: 2;
+            // @include couleurs-domaines($classes-couleur-domaine-ferme);
+            right: 20vw;
+            // align-items: center;
 
             @include ultra-large {
                 right: 45vw;
@@ -145,12 +151,12 @@ $couleurs-domaines-modifiees: (
             // Enseignant suivant
             & + .Enseignant {
                 display: flex;
-                right: -10vw;
+                right: -15vw;
                 @include transition-base;
-                flex: 0 0 80%;
                 transform: scale(0.5);
                 opacity: 1;
-                width: 70vw;
+                width: 75vw;
+                height: 60vh;
 
                 .contenu {
                     display: flex;
@@ -161,7 +167,8 @@ $couleurs-domaines-modifiees: (
                 // Troisième enseignant
                 & + .Enseignant {
                     display: flex;
-                    width: 70vw;
+                    width: 75vw;
+                    height: 60vh;
                     @include transition-base;
                     opacity: 0;
 
@@ -172,9 +179,8 @@ $couleurs-domaines-modifiees: (
             }
         }
 
-        @include ultra-large {
+        @include ordinateur-large {
             // Enseignant ouvert
-            flex: 0 1 60%;
             width: 50vw;
 
             // Suivant
@@ -192,6 +198,11 @@ $couleurs-domaines-modifiees: (
                     transform: scale(.5);
                     opacity: 1;
 
+                    .contenu {
+                        display: flex;
+                        opacity: 0;
+                    }
+
                     // Quatrième
                     & + .Enseignant {
                         display: flex;
@@ -206,8 +217,7 @@ $couleurs-domaines-modifiees: (
     &[ouvert="true"],
     &[ouvert="false"] {
         flex-direction: row-reverse; // Afficher le contenu à gauche
-        align-items: stretch;
-        gap: 10%;
+        gap: 10vw;
 
         .miniature {
             overflow: hidden;
@@ -215,9 +225,9 @@ $couleurs-domaines-modifiees: (
     
             // Positionnement d'une carte
             @include ordinateur {
-                height: 40vh;
                 @include carte;
                 aspect-ratio: 1 / 1.5;
+                width: 40%;
                 padding: 0;
 
                 position: relative;
@@ -443,7 +453,7 @@ $couleurs-domaines-modifiees: (
 
             // Ajuster le texte de l'enseignant ouvert
             @include ordinateur {
-                flex: 0 0 50%;
+                width: 50%;
 
                 // Centrer par rapport à tablette
                 align-items: center;
@@ -458,10 +468,6 @@ $couleurs-domaines-modifiees: (
             }
         }
 
-        @include ordinateur {
-            height: 100%;
-        }
-
         @include ultra-large {
             gap: 5%;
             width: 50vw;
@@ -469,17 +475,23 @@ $couleurs-domaines-modifiees: (
     }
 
     @include ordinateur {
-        // Enseignant précédent
-        &:has(+ .Enseignant[ouvert="true"]) {
-            // Imiter les styles de l'enseignant ouvert pour
-            // avoir une transition plus smooth
+        // Enseignant précédent et enseignant présent
+        // DOIVENT ABSOLUMENT avoir les mêmes styles pour un gonne transition
+        &:has(+ .Enseignant[ouvert="true"]),
+        &[ouvert="true"] {
             display: flex;
             flex-direction: row-reverse;
-            align-items: center;
             @include transition-base;
-            right: 120vw;
-            flex: 0 0 80%;
-            width: 70vw;
+            width: 75vw;
+            height: 60vh;
+            gap: 10%;
+            transform: scale(1);
+            z-index: 2;
+
+            @include ordinateur-large {
+                width: 50vw;
+                right: 40vw;
+            }
 
             .miniature {
                 display: flex;
@@ -487,7 +499,22 @@ $couleurs-domaines-modifiees: (
 
             .contenu {
                 display: flex;
+            }
+        }
+
+        &:has(+ .Enseignant[ouvert="true"]) {
+            right: 120vw;
+
+            .contenu {
                 opacity: 0;
+            }
+        }
+
+        // Le dernier enfant quand le premier enfant est ouvert
+        // Sinon, le dernier enfant ne considère pas la transition vers son enfant précédent
+        &[ouvert="true"]:first-child ~ &:last-child {
+            .contenu {
+                display: flex;
             }
         }
     }
