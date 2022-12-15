@@ -59,9 +59,18 @@
 
             @include ordinateur {
                 display: block;
-                flex: 0 0 20vw;
+                &:last-of-type {
+                    display: none;
+                }
             }
             @include ordinateur-large {
+                &:last-of-type {
+                    display: block;
+                }
+                &:nth-of-type(-n + 2) {
+                    display: none;
+                }
+                flex: 0 0 20vw;
                 flex-basis: 15vw;
             }
             @include ultra-large {

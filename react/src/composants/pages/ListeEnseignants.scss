@@ -103,7 +103,7 @@
 
         // Deux colonnes
         grid-template-columns: repeat(2, 1fr);
-        gap: $taille-gouttieres;
+        gap: 7.5vh;
 
         @include tablette {
             // Trois colonnes
@@ -117,7 +117,7 @@
         }
 
         @include ultra-large {
-            gap: 5%;
+            gap: 5vh;
         }
     }
 

@@ -20,9 +20,6 @@ export default function Session({
 
     const [enfants, setEnfants] = useState([]);
 
-    const tablette = useMediaQuery(medias.tablette);
-    const ordinateur = useMediaQuery(medias.ordinateur);
-
     const surDefilement = () => {
         setIndexPlusAGauche(enfants.indexOf(enfants.obtenirElementPlusA(
             'gauche',
@@ -60,7 +57,7 @@ export default function Session({
                 )}
                 {/* Pour permettre de défiler plus loin */}
                 {cours.map((_cours, index) => 
-                    index < cours.length - 2 && <div className="faux-cours"></div>
+                    index < cours.length - 1 && <div className="faux-cours"></div>
                 )}
             </ul>
             <PointsCarousel 
