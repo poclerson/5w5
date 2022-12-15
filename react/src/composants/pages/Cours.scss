@@ -52,15 +52,27 @@
         margin: 0;
 
         @include premier-dernier(margin, 35vw, 10vw);
+
+        &:last-of-type + .faux-cours {
+            display: block;
+        }
     }
 
     @include ordinateur-large {
         flex-basis: 15vw;
+
+        &:last-of-type + .faux-cours + .faux-cours {
+            display: block;
+        }
     }
 
-    @include ultra-large {
+    @include ordinateur-tres-large {
         flex-basis: 12.5vw;
         @include premier-dernier(margin, 25vw, 10vw);
+
+        &:last-of-type + .faux-cours + .faux-cours + .faux-cours {
+            display: block;
+        }
     }
 
     // Une carte de cours

@@ -417,6 +417,13 @@
         @content;
     }
 }
+
+@mixin ordinateur-tres-large {
+    @media screen and (min-width: map-get($largeurs-ecran, ordinateur-tres-large)) {
+        @content;
+    }
+}
+
 @mixin ultra-large {
     @media screen and (min-width: map-get($largeurs-ecran, ultra-large)) {
         @content;
