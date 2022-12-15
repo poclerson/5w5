@@ -45,7 +45,7 @@
 
     @include ordinateur {
         aspect-ratio: 1 / 1.5;
-        max-height: 45vh;
+        max-height: 35vh;
         height: unset;
         // Afficher trois cours ou plus sur grands écrans
         flex-basis: 20vw;

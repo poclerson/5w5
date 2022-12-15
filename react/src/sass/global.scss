@@ -45,15 +45,6 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
     white-space: nowrap;
 }
 
-// Exceptions pour modelisation3d qui doit afficher le texte en noir pour lisibilité
-.modelisation3d {
-    &, 
-    & .domaine, 
-    &:not(.Cours) .titre {
-        color: map-get($couleurs, sombre) !important;
-    }
-}
-
 // Styles de correction d'éléments particuliers
 ul, ol {
     padding: 0;

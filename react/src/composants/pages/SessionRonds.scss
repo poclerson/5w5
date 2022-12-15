@@ -18,7 +18,7 @@
         @include ordinateur {
             width: unset;
             height: unset;
-            @include placement-circulaire(6, 1500px, 300px);
+            @include placement-circulaire(6, 1500px, 40vh);
             bottom: -250px;
             left: -1400px;
         }
@@ -50,11 +50,18 @@
                     position: absolute;
                     font-size: 1500%;
                     @include desactiver-margin-block;
+                    color: map-get($couleurs, clair);
                 }
 
                 .degrade {
-                    @include pleine-taille;
+                    position: relative;
+                    width: 200%;
+                    height: 200%;
                 }
+            }
+
+            @include ordinateur {
+                max-height: 300px;
             }
         }
     }

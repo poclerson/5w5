@@ -36,12 +36,14 @@
                 display: flex;
                 @include ordinateur {
                     // Rétablir les styles par défaut lorsque la liste est fermée
+                    height: 40vh;
                     position: static;
                     right: 0;
                     opacity: 1;
 
                     .miniature {
                         flex: unset;
+                        width: 100%;
                     }
                 }
             }

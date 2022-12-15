@@ -10,13 +10,12 @@ import ListeCours from './composants/pages/ListeCours';
 import Contact from './composants/pages/Contact';
 import ListeProjets from './composants/pages/ListeProjets';
 import Page from './composants/pages/Page';
+import Fond from './composants/modules/Fond';
 
 import {Route, Routes, Navigate} from 'react-router-dom';
 import useObtenir from './hooks/useObtenir';
 import ContexteDonneesSite from './ContexteDonneesSite';
 import useObtenirMultiples from './hooks/useObtenirMultiples';
-
-import reactRouterToArray from 'react-router-to-array';
 
 export default function App() {
     /**
@@ -48,7 +47,8 @@ export default function App() {
         '/environnement',
         '/videos',
         '/pages',
-        '/icones'
+        '/icones',
+        '/images'
     ]); 
         
     return (
@@ -56,6 +56,7 @@ export default function App() {
             {hcms && donneesSite ?
                 <ContexteDonneesSite.Provider value={donneesSite}>
                     <EnTete enteteWP={hcms.data.header} />
+                    <Fond />
                     <Routes>
                         {/* Aller à l'accueil par défaut */}
                         <Route exact path={'/*'} element={<Navigate to={'/accueil'} />}/>
