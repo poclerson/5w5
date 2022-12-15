@@ -11,8 +11,9 @@
     bottom: 0;
     font-size: 15px;
 
-    .vague {
-        width: 100%;
+    .Icone.vague {
+        width: 110%;
+        height: min-content;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -20,61 +21,82 @@
         overflow: hidden;
 
         svg {
-            @include pleine-taille;
-            transform: scale(1.05);
+            width: 100%;
+            height: min-content;
+
+            path {
+                stroke-width: 5px;
+                fill: map-get($couleurs, sombre);
+            }
         }
+    }
+
+    .cacheur {
+        width: 100%;
+        height: 1px;
+        transform-origin: center bottom;
+        transform: scaleY(20);
+        background-color: map-get($couleurs, sombre);
     }
 
     .contenu {
         width: 100%;
         @include themer($theme-pied-page);
-
-        background: linear-gradient(
-            to right, 
-            map-deep-get($couleurs, 'domaines', 'modelisation3d') 0%, 
-            map-deep-get($couleurs, 'domaines', 'design') 50%, 
-            map-deep-get($couleurs, 'domaines', 'jeu') 100%
-        );
-        
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 0 10%;
-        padding-bottom: 2%;
-        gap: 5%;
-        box-sizing: border-box;
-
-        & > * {
-            display: flex;
-            flex-direction: column;
-        }
-
-        // Toutes les sections de texte
-        & > *:not(.logo) {
-            flex: 1 0 28%;
-        }
-
-        & > .logo {
-            flex: 0 0 10%;
-
-            .logo {
-                width: 100%;
-            }
-        }
-
-        .social{
+        flex-direction: column;
+        
+        .rangee {
             display: flex;
             flex-direction: row;
-            justify-content: flex-end;
-            align-items: flex-end;
-            gap: 10%;
+            justify-content: space-around;
+            padding: 0 10%;
+            padding-bottom: 2%;
+            gap: 5%;
+            box-sizing: border-box;
 
-            svg{
-                transform: scale(1);
+            &.trademark {
+                align-self: center;
             }
 
+            & > * {
+                display: flex;
+                flex-direction: column;
+            }
+    
+            // Toutes les sections de texte
+            & > * {
+                flex: 1 0 20%;
+            }
+    
+            & > .logo {
+                align-self: center;
+                .logo {
+                    width: 100%;
+                    max-width: 10vw;
+                }
+            }
+    
+            .inscription-conteneur {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: min-content;
+                gap: 5%;
+            }
+    
+            .social{
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: flex-end;
+                gap: 10%;
+    
+                svg{
+                    transform: scale(1);
+                }
+    
+            }
         }
-
     }
 
     @include ordinateur {

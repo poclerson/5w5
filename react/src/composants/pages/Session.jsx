@@ -22,23 +22,17 @@ export default function Session({
 
     const tablette = useMediaQuery(medias.tablette);
     const ordinateur = useMediaQuery(medias.ordinateur);
-    const ordinateurLarge = useMediaQuery(medias.ordinateurLarge);
 
     const surDefilement = () => {
         setIndexPlusAGauche(enfants.indexOf(enfants.obtenirElementPlusA(
             'gauche',
-            ordinateurLarge ? 
-                refTitres.current.offsetWidth / 1.5 :
-            ordinateur ? 
-                refTitres.current.offsetWidth / 2 : 
-            tablette ? 
-                -50 : 
-                -25
+            refTitres.current.offsetWidth,
+            'faux-cours'
         )));
     }
 
     useEffect(() => {
-        if (refListeCoursSessionOuverte != false)
+        if (refListeCoursSessionOuverte)
         setEnfants(Array.from(refListeCoursSessionOuverte.current.children))
     }, [refListeCoursSessionOuverte])
 
@@ -55,15 +49,18 @@ export default function Session({
                 ref={refListeCoursSessionOuverte ? refListeCoursSessionOuverte : refListeCours} 
                 onScroll={surDefilement}
             >
-                {cours.map((_cours, index) => { 
-                        return <Cours 
-                            ouvert={index == indexPlusAGauche ? 'true' : 'false'}
-                            key={_cours.id + "" + index}
-                            id={_cours.id}
-                            index={index}
-                            {..._cours.acf}
-                        />
-                    }
+                {cours.map((_cours, index) => 
+                    <Cours 
+                        ouvert={index == indexPlusAGauche ? 'true' : 'false'}
+                        key={_cours.id + "" + index}
+                        id={_cours.id}
+                        index={index}
+                        {..._cours.acf}
+                    />
+                )}
+                {/* Pour permettre de défiler plus loin */}
+                {cours.map((_cours, index) => 
+                    index < cours.length - 2 && <div className="faux-cours"></div>
                 )}
             </ul>
             <PointsCarousel 

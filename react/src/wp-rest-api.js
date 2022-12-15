@@ -34,6 +34,7 @@ export function obtenirTypeArticle(id, articlesRecherches) {
                 // Exception pour les projets
                 type: article.permalink.replace('projets', 'galerie-etudiante')
                     // Retirer tout de l'URL afin de n'obtenir que le type d'article
+                    // Fuck regex
                     .replace('https://timm175.sg-host.com/', '')
                     .replace('?', '')
                     .split('=')[0]

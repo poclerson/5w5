@@ -5,6 +5,7 @@
     width: 100%;
     @include gerer-ouverture(flex);
     flex-direction: column;
+    gap: 5%;
     box-sizing: border-box;
 
     &[ouvert="true"] {
@@ -16,12 +17,13 @@
         flex: 1 0 100%;
         height: max-content;
         @include cacher-barre-defilement;
-        padding-top: 10vh;
+        padding: 2.5vh 0;
         box-sizing: border-box;
 
         display: flex;
+        align-items: center;
         scroll-snap-type: x mandatory;
-        overflow-y: visible;
+        overflow-y: hidden;
         overflow-x: scroll;
         scroll-behavior: smooth;
         gap: 40vw;
@@ -38,14 +40,33 @@
         }
 
         @include ordinateur {
+            min-height: 80vh;
             max-height: 80vh;
             gap: 10vw;
             scroll-padding-left: 35vw;
-            padding-top: 20vh;
         }
 
         @include ordinateur-large {
             gap: 7.5vw;
+        }
+
+        // Simule un bloc de cours pour permettre de défiler plus loin
+        // et de mettre à "ouvert" le dernier cours
+        // toujours 2 de moins en nombre que le nombre de cours original
+        .faux-cours {
+            scroll-snap-align: start;
+            display: none;
+
+            @include ordinateur {
+                display: block;
+                flex: 0 0 20vw;
+            }
+            @include ordinateur-large {
+                flex-basis: 15vw;
+            }
+            @include ultra-large {
+                flex-basis: 12.5vw;
+            }
         }
     }
 

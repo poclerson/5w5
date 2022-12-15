@@ -3,7 +3,7 @@ import './ListeSessions.scss';
 import Session from './Session';
 import SessionRonds from './SessionRonds';
 
-import {useState, useRef} from 'react';
+import {useState, useRef, Suspense} from 'react';
 import useOuvertures from '../../hooks/useOuvertures';
 import medias from '../../medias';
 import useMediaQuery from '../../hooks/useMediaQuery';
@@ -88,9 +88,9 @@ export default function ListeSessions({sessions, cours, pageRef}) {
     )
 
     return (
+        <Suspense>
         <div className="ListeSessions">
             <div className="sessions-titres-conteneur" ref={refTitres}>
-                <div className="degrade"></div>
                 <ol className="sessions-titres">
                     {sessions.map((session, index) => 
                         <li 
@@ -137,5 +137,6 @@ export default function ListeSessions({sessions, cours, pageRef}) {
                 rotation={rotation}
             />
         </div>
+        </Suspense>
     )
 }

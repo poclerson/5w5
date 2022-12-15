@@ -2,6 +2,8 @@ import './Cours.scss';
 
 import VisionneurModele from '../modules/VisionneurModele';
 
+import parse from 'html-react-parser';
+
 import * as wp from '../../wp-rest-api';
 
 export default function Cours({titre, description, modele, domaine, id, index, ouvert}) {
@@ -39,10 +41,10 @@ export default function Cours({titre, description, modele, domaine, id, index, o
     };
 
     return(
-        <li className="Cours" id={id} index={index} ouvert={ouvert}>
+        <li className={`Cours${domaine ? " " + domaine : ""}`} id={id} index={index} ouvert={ouvert}>
             <div className="carte">
                 <div className="modele">
-                    {modele != undefined && modele !=false && 
+                    {modele && 
                         <VisionneurModele 
                             cheminModele={modele}
                             echelle={.4}
@@ -53,7 +55,7 @@ export default function Cours({titre, description, modele, domaine, id, index, o
                 </div>
                 <h4 className="titre">{titre}</h4>
                 <h5 className="sous-titre domaine">{wp.versVraisDomaines(domaine)}</h5>
-                <p className="description">{description}</p>
+                <p className="description">{parse(description)}</p>
             </div>
         </li>
     )

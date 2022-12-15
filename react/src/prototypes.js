@@ -43,12 +43,21 @@ String.prototype.inserer = function(valeur, index) {
 
 /**
  * Retourne l'élément le plus à gauche par rapport à la fenêtre à partir d'un tableau
+ * @param {string} direction Détermine si on doit obtenir l'élément le plus à gauche ou à droite
  * @param {int} decalage 
+ * @param {string} exceptions Classes d'exception à ne pas prendre en compte
  * @returns {Element} Élément le plus à gauche
  */
-Array.prototype.obtenirElementPlusA = function(direction = 'gauche', decalage = 0) {
+Array.prototype.obtenirElementPlusA = function(
+    direction = 'gauche' || 'droite', 
+    decalage = 0,
+    exceptions
+) {
+    // Empêcher les exceptions de faire partie du calcul
+    const listeFiltree = this.filter(element => !element.classList.contains(exceptions));
+
     if (direction == 'gauche') {
-        return this.reduce((precedent, present, index) => {
+        return listeFiltree.reduce((precedent, present) => {
             const xPrecedent = precedent.getBoundingClientRect().x;
             const xPresent = present.getBoundingClientRect().x;
     
@@ -62,7 +71,7 @@ Array.prototype.obtenirElementPlusA = function(direction = 'gauche', decalage = 
         })
     }
 
-    return this.reverse().reduce((precedent, present) => {
+    return listeFiltree.reverse().reduce((precedent, present) => {
         const xPrecedent = precedent.getBoundingClientRect().x;
         const xPresent = present.getBoundingClientRect().x;
 
