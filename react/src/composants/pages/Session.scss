@@ -44,6 +44,7 @@
             max-height: 80vh;
             gap: 10vw;
             scroll-padding-left: 35vw;
+            padding-top: 5vh;
         }
 
         @include ordinateur-large {
@@ -107,6 +108,7 @@
     }
 
     @include seulement-tablette {
-        @include padding-auto;
+        // @include padding-auto;
+        padding-top: 5vh;
     }
 }

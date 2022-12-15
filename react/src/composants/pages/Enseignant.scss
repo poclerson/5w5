@@ -40,6 +40,14 @@ $couleurs-domaines-modifiees: (
     modelisation3d: map-get($couleurs, sombre)
 );
 
+.Icone{
+    @include seulement-tablette{
+        margin-bottom: 80vh;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+}
+
 .Enseignant {
     @include themer($theme-enseignant);
 
@@ -385,8 +393,6 @@ $couleurs-domaines-modifiees: (
                         .photo {
                             width: 100%;
                             object-fit: cover;
-
-                            @include seulement-tablette {width: 130%;}
                         }
                     }
 
@@ -425,6 +431,14 @@ $couleurs-domaines-modifiees: (
             @include tablette {
                 flex-direction: row;
                 align-items: flex-start; // Positionner en-haut de la page
+            }
+
+            @include seulement-tablette{
+                flex-wrap: nowrap;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 8vh;
             }
 
             // Ajuster le texte de l'enseignant ouvert
