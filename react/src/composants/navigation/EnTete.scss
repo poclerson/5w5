@@ -35,15 +35,10 @@
 
     &[ouvert="true"] {
         z-index: 10;
-        // Permettre à .resultats-recherche de prendre tout l'espace
-        // Ne pas mettre à unset pour faire fonctionner la transition
         height: 100%;
         @include transition-base(height);
 
         @include tablette {
-            // Demander à .resultats-recherche de ne prendre que l'espace nécessaire
-            // height: unset;
-
             .contenu {
                 gap: 0;
                 @include transition-base;

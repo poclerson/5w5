@@ -4,6 +4,8 @@ import FlecheNav from '../modules/FlecheNav';
 
 import * as wp from '../../wp-rest-api';
 
+import parse from 'html-react-parser';
+
 export default function Enseignant({
     nom,
     description,
@@ -20,7 +22,7 @@ export default function Enseignant({
             {/* Prévisualisation (image du prof) */}
             <div className="miniature" onClick={() => surClic(index)}>
                 <h2 className="titre">{nom.toUpperCase()}</h2>
-                <img className="photo" src={typeof photo != 'boolean' ? photo : undefined} alt={"Photo de " + nom} />
+                <img className="photo" src={typeof photo != 'boolean' ? photo : undefined} alt={"Photo de " + nom} loading="lazy" />
                 <span className="conteneur-domaine">
                     <h2 className="domaine">{wp.versVraisDomaines(domaine).toUpperCase()}</h2>
                 </span>
@@ -54,7 +56,7 @@ export default function Enseignant({
                     <h5 className="etiquette-description">biographie</h5>
                     <div className="conteneur-description">
                         <p className="description">
-                            {description}
+                            {parse(description)}
                         </p>
                     </div>
                 </article>

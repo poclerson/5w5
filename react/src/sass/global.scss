@@ -26,6 +26,10 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
         &[item-ouvert="false"] {
             // Animer le passage de retour vers la page initiale
             animation: fondu-entrant ease-in-out .5s;
+
+            *[ouvert="true"] {
+                animation: fondu-entrant ease-in-out .5s;
+            }
         }
 
         &[item-ouvert="true"] {
@@ -43,7 +47,9 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
 
 // Exceptions pour modelisation3d qui doit afficher le texte en noir pour lisibilité
 .modelisation3d {
-    &, & .domaine, &:not(.Cours) .titre {
+    &, 
+    & .domaine, 
+    &:not(.Cours) .titre {
         color: map-get($couleurs, sombre) !important;
     }
 }
@@ -76,28 +82,4 @@ button {
 // Couleurs globales
 ::selection {
     background-color: map-deep-get($couleurs, 'domaines', 'video');
-}
-
-.behance {
-    &, & * {
-        fill: map-get($couleurs, clair);
-    }
-}
-
-.linkedin {
-    &, & * {
-        fill: map-deep-get($couleurs, 'domaines', 'web');
-    }
-}
-
-.youtube {
-    &, & * {
-        fill: map-deep-get($couleurs, 'domaines', 'video');
-    }
-}
-
-.facebook {
-    &, & * {
-        fill: map-deep-get($couleurs, 'domaines', 'jeu');
-    }
 }

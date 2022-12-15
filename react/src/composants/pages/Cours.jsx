@@ -41,7 +41,7 @@ export default function Cours({titre, description, modele, domaine, id, index, o
     };
 
     return(
-        <li className={"Cours " + domaine} id={id} index={index} ouvert={ouvert}>
+        <li className={`Cours${domaine ? " " + domaine : ""}`} id={id} index={index} ouvert={ouvert}>
             <div className="carte">
                 <div className="modele">
                     {modele && 
