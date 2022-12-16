@@ -68,11 +68,16 @@
     }
 
     & > .FlecheNav {
-        bottom: 50px;
+        bottom: 70px;
         left: 250px;
 
         @include tablette {
             left: 275px;
+        }
+
+        @include seulement-tablette {
+            left: 280px;
+            top: 1500px;
         }
 
         @include ordinateur {
