@@ -23,7 +23,6 @@ export default function Contact({id}) {
         <section className="Contact">
             {titre}
             <article className='boite-principale'>
-                <div className='contenu'>
                     <div className="video-conteneur">
                         <video src={videos[0].acf.lien} className="video" autoPlay muted></video>
                     </div>
@@ -37,10 +36,7 @@ export default function Contact({id}) {
                             {facebook}
                         </div>
                     </div>
-                </div>
-                <div className="carte">
                     {wpBlockWebfactoryMap}
-                </div>
             </article>
         </section>
          : <Chargement />

@@ -36,7 +36,7 @@ export default function Projet({
                 </div>
                 <div className="information">
                     <h2 className="titre">{nom}</h2>
-                    <p className="details">{cours && cours.post_title}<br/><br/><u>Lire la suite</u></p>
+                    <p className="details">{cours && cours.post_title}<br/><br/>+</p>
                 </div>
             </div>
             <div className="contenu">
