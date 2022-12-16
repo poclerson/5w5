@@ -21,7 +21,7 @@
         gap: 2.5%;
 
         @include ordinateur {
-            gap: 0;
+            gap: 4%;
         }
 
         > * > *,
@@ -29,52 +29,46 @@
             border-radius: 30px;
         }
 
-        .contenu{
-            display: flex;
-            flex-direction: column;
-            gap: 5vh;
-            flex: 0 1 40%;
-
-            @include tablette{
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
             @include ordinateur {
-                flex-direction: row;
-                align-items: center;
+                display: grid;
+                grid-template-rows: 45vh 40vh;
+                grid-template-columns: 1fr 1fr;
             }
 
             .video-conteneur {
-                flex: 1 1 30%;
-                min-width: 50%;
-                max-width: 100%;
-                height: 100%;
-                overflow: hidden;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                video {
-                    @include ordinateur {
-                        width: 200%;
-                    }
+                @include ordinateur{
+                    grid-row: span 1;
+                    grid-column: span 1;
+                    width: 100%;
                 }
 
-                @include ordinateur {
-                    width: 50%;
+                video{
+                    width: 100%;
+                }
+            }
+
+            .wp-block-webfactory-map{
+                @include ordinateur{
+                    grid-row: span 1;
+                    grid-column: span 1;
+                    *{
+                        height: 100%;
+                    }
                 }
             }
     
             .informations {
-                flex: 1 0 30%;
+                // flex: 1 0 30%;
                 display: flex;
                 flex-direction: column;
                 gap: 5%;
                 padding: 5%;
                 backdrop-filter: blur(15px);
                 background-color: map-deep-get($couleurs, "domaines-transparents", "jeu" );
+                border-radius: 10px;
+
+                grid-row: span 2;
+                grid-column: span 1;
 
                 .social {
                     display: flex;
@@ -85,7 +79,6 @@
                     padding: 2.5%;
                 }
             }
-        }
 
         .carte {
             flex: 1 1 40%;
