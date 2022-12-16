@@ -5,7 +5,6 @@ import ContexteDonneesSite from '../../ContexteDonneesSite';
 import useStructure from '../../hooks/useStructure';
 
 import Chargement from '../modules/Chargement';
-import Fond from '../modules/Fond';
 import ListeSessions from './ListeSessions';
 
 /**
@@ -14,12 +13,10 @@ import ListeSessions from './ListeSessions';
  * 
  * On a besoin de deux composants pour permettre au deuxième de ne pas avoir de restrictions de chargement
  */
-export default function ListeCours({id}) {
+export default function ListeCours() {
     const {cours, degrades} = useContext(ContexteDonneesSite)
 
     const [sessions, setSessions] = useState(null);
-
-    const {BACKGROUND} = useStructure(id);
 
     // Permettre aux composants plus bas de gérer l'affiche de ListeCours
     const listeCoursRef = useRef(null);
@@ -39,7 +36,6 @@ export default function ListeCours({id}) {
                     <ListeSessions sessions={sessions} cours={cours} degrades={degrades} pageRef={listeCoursRef} />
                     : <Chargement />
                 }
-                <Fond fond={{backgroundImage: BACKGROUND}} />
             </section>
         : <Chargement />
     )

@@ -1,6 +1,24 @@
 @import './fonctions.scss';
 @import './variables.scss';
+
+
 // ===== MIXINS DE TEXTE =====
+
+
+@mixin texte-dynamique-general($proprietes, $selecteur, $diviseur: 1) {
+    #{$selecteur} {
+        font-size: map-get($proprietes, taille) / $diviseur;
+        margin-block-start: map-get($proprietes, taille) / 4 / $diviseur;
+        margin-block-end: map-get($proprietes, taille) / 4 / $diviseur;
+        @if map-has-key($proprietes, hauteur-ligne) {
+            line-height: map-get($proprietes, hauteur-ligne) / $diviseur;
+        }
+        @if map-has-key($proprietes, espace-mots) {
+            word-spacing: map-get($proprietes, espace-mots) / $diviseur;
+        }
+    }
+}
+
 // Transforme une map de textes et génère des media queries
 @mixin texte-dynamique($selecteurs) {
     @each $selecteur, $tailles-ecran in $selecteurs {
@@ -13,17 +31,14 @@
                     }
                 }
                 @else {
-                    #{$selecteur} {
-                        font-size: map-get($proprietes, taille);
-                        margin-block-start: map-get($proprietes, taille) / 4;
-                        margin-block-end: map-get($proprietes, taille) / 4;
-                        @if map-has-key($proprietes, hauteur-ligne) {
-                            line-height: map-get($proprietes, hauteur-ligne);
-                        }
-                        @if map-has-key($proprietes, espace-mots) {
-                            word-spacing: map-get($proprietes, espace-mots);
-                        }
-                    }
+                    @include texte-dynamique-general($proprietes, $selecteur);
+                }
+            }
+
+            // Diminuer un peu la taille des polices si la hauteur diminue trop
+            @include ordinateur {
+                @include max-hauteur-petite {
+                    @include texte-dynamique-general($proprietes, $selecteur, 1.25);
                 }
             }
         }
@@ -346,7 +361,7 @@
     }
     @include ordinateur {
         height: unset;
-        min-height: 130vh;
+        min-height: 150vh;
         padding: map-get($decalage-pages, ordinateur) 0;
         & > .titre {
             padding-left: 10%;
@@ -397,16 +412,63 @@
         @content;
     }
 }
+
+@mixin max-ordinateur {
+    @media screen and (max-width: map-get($largeurs-ecran, ordinateur)) {
+        @content;
+    }
+}
+
+@mixin seulement-ordinateur {
+    @include ordinateur {
+        @include max-ordinateur {
+            @content;
+        }
+    }
+}
+
 @mixin ordinateur-large {
     @media screen and (min-width: map-get($largeurs-ecran, ordinateur-large)) {
         @content;
     }
 }
+
+@mixin ordinateur-tres-large {
+    @media screen and (min-width: map-get($largeurs-ecran, ordinateur-tres-large)) {
+        @content;
+    }
+}
+
 @mixin ultra-large {
     @media screen and (min-width: map-get($largeurs-ecran, ultra-large)) {
         @content;
     }
 }
+
+@mixin hauteur-petite {
+    @include ordinateur {
+        @media screen and (min-height: map-get($hauteurs-ecran, petit)) {
+            @content;
+        }
+    }
+}
+
+@mixin max-hauteur-petite {
+    @include ordinateur {
+        @media screen and (max-height: map-get($hauteurs-ecran, petit)) {
+            @content;
+        }
+    }
+}
+
+@mixin hauteur-moyenne {
+    @include ordinateur {
+        @media screen and (min-height: map-get($hauteurs-ecran, moyen)) {
+            @content;
+        }
+    }
+}
+
 // ===== MIXINS DE SÉLECTION =====
 @mixin selection-texte() {
     h1, h2, h3, h4, h5, h6, p, a, img, input {

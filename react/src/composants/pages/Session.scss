@@ -14,7 +14,7 @@
 
     .liste-cours {
         // Prendre toute la place
-        flex: 1 0 100%;
+        flex: 1 0 120%;
         height: max-content;
         @include cacher-barre-defilement;
         padding: 2.5vh 0;
@@ -38,10 +38,14 @@
             scroll-padding-left: 12.5vw;
             padding: 0;
         }
+        
+        @include seulement-tablette {
+            @include padding-auto;
+        }
 
         @include ordinateur {
-            min-height: 80vh;
-            max-height: 80vh;
+            min-height: 75vh;
+            max-height: 75vh;
             gap: 10vw;
             scroll-padding-left: 35vw;
             padding-top: 5vh;
@@ -59,13 +63,12 @@
             display: none;
 
             @include ordinateur {
-                display: block;
                 flex: 0 0 20vw;
             }
             @include ordinateur-large {
                 flex-basis: 15vw;
             }
-            @include ultra-large {
+            @include ordinateur-tres-large {
                 flex-basis: 12.5vw;
             }
         }
@@ -96,10 +99,5 @@
 
     .PointsCarousel {
         align-self: center;
-    }
-
-    @include seulement-tablette {
-        // @include padding-auto;
-        padding-top: 5vh;
     }
 }

@@ -7,7 +7,13 @@ $largeurs-ecran: (
     tablette: 640px,
     ordinateur: 1024px,
     ordinateur-large: 1440px,
+    ordinateur-tres-large: 1600px,
     ultra-large: 1920px
+);
+
+$hauteurs-ecran: (
+    petit: 720px,
+    moyen: 1080px
 );
 
 // Polices d'écriture 
@@ -166,15 +172,19 @@ $tailles-textes: (
         ),
 
         640px:(
-            taille: 17px
+            taille: 17.5px
+        ),
+
+        720px: (
+            taille: 20px
         ),
 
         1024px:(
-            taille: 25px
+            taille: 21px
         ),
 
         1440px:(
-            taille: 28px
+            taille: 21px
         ),
     ),
 
