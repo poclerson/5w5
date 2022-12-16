@@ -56,6 +56,11 @@
         &:last-of-type + .faux-cours {
             display: block;
         }
+
+        &:last-of-type + .faux-cours + .faux-cours {
+            display: block;
+            flex-basis: 5vw;
+        }
     }
 
     @include ordinateur-large {
@@ -63,6 +68,7 @@
 
         &:last-of-type + .faux-cours + .faux-cours {
             display: block;
+            flex-basis: 15vw;
         }
     }
 
@@ -123,6 +129,12 @@
             @include cacher-barre-defilement;
             flex: 0 1 80%;
             overflow: hidden;
+        }
+    }
+
+    &.modelisation3d {
+        .domaine {
+            color: map-get($couleurs, sombre);
         }
     }
 }

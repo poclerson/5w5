@@ -14,7 +14,7 @@
 
     .liste-cours {
         // Prendre toute la place
-        flex: 1 0 100%;
+        flex: 1 0 120%;
         height: max-content;
         @include cacher-barre-defilement;
         padding: 2.5vh 0;
@@ -37,6 +37,10 @@
             gap: 20vw;
             scroll-padding-left: 12.5vw;
             padding: 0;
+        }
+        
+        @include seulement-tablette {
+            @include padding-auto;
         }
 
         @include ordinateur {
@@ -94,9 +98,5 @@
 
     .PointsCarousel {
         align-self: center;
-    }
-
-    @include seulement-tablette {
-        @include padding-auto;
     }
 }
