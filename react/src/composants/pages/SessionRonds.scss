@@ -18,9 +18,13 @@
         @include ordinateur {
             width: unset;
             height: unset;
-            @include placement-circulaire(6, 1500px, 40vh);
-            bottom: -250px;
+            @include placement-circulaire(6, 1500px, 250px);
             left: -1400px;
+            bottom: 0;
+
+            @include hauteur-petite {
+                @include placement-circulaire(6, 1500px, 300px);
+            }
         }
 
         .session-rond-conteneur {
@@ -42,7 +46,8 @@
                 right: 0;
                 display: flex;
                 flex-direction: column;
-                align-items: flex-end;
+                align-items: center;
+                justify-content: center;
                 @include pleine-taille;
                 transition: transform ease-in-out .1s .15s;
 
@@ -58,10 +63,6 @@
                     width: 200%;
                     height: 200%;
                 }
-            }
-
-            @include ordinateur {
-                max-height: 300px;
             }
         }
     }

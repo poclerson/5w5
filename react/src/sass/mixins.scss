@@ -412,6 +412,21 @@
         @content;
     }
 }
+
+@mixin max-ordinateur {
+    @media screen and (max-width: map-get($largeurs-ecran, ordinateur)) {
+        @content;
+    }
+}
+
+@mixin seulement-ordinateur {
+    @include ordinateur {
+        @include max-ordinateur {
+            @content;
+        }
+    }
+}
+
 @mixin ordinateur-large {
     @media screen and (min-width: map-get($largeurs-ecran, ordinateur-large)) {
         @content;
@@ -430,15 +445,27 @@
     }
 }
 
+@mixin hauteur-petite {
+    @include ordinateur {
+        @media screen and (min-height: map-get($hauteurs-ecran, petit)) {
+            @content;
+        }
+    }
+}
+
 @mixin max-hauteur-petite {
-    @media screen and (max-height: map-get($hauteurs-ecran, petit)) {
-        @content;
+    @include ordinateur {
+        @media screen and (max-height: map-get($hauteurs-ecran, petit)) {
+            @content;
+        }
     }
 }
 
 @mixin hauteur-moyenne {
-    @media screen and (min-height: map-get($hauteurs-ecran, moyen)) {
-        @content;
+    @include ordinateur {
+        @media screen and (min-height: map-get($hauteurs-ecran, moyen)) {
+            @content;
+        }
     }
 }
 

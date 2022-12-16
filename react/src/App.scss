@@ -11,6 +11,16 @@
     @include ordinateur {
         height: unset;
         min-height: 175vh;
+
+        &:has(.Contact) {
+            min-height: 2000px;
+        }
+    }
+
+    @include hauteur-petite {
+        &:has(.Contact) {
+            min-height: 2400px;
+        }
     }
 
     & > * {
