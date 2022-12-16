@@ -36,12 +36,14 @@
                 display: flex;
                 @include ordinateur {
                     // Rétablir les styles par défaut lorsque la liste est fermée
+                    height: 40vh;
                     position: static;
                     right: 0;
                     opacity: 1;
 
                     .miniature {
                         flex: unset;
+                        width: 100%;
                     }
                 }
             }
@@ -103,7 +105,7 @@
 
         // Deux colonnes
         grid-template-columns: repeat(2, 1fr);
-        gap: $taille-gouttieres;
+        gap: 7.5vh;
 
         @include tablette {
             // Trois colonnes
@@ -117,7 +119,7 @@
         }
 
         @include ultra-large {
-            gap: 5%;
+            gap: 5vh;
         }
     }
 

@@ -1,21 +1,18 @@
 import './Contact.scss';
 
 import Chargement from '../modules/Chargement';
-import Icone from '../modules/Icone';
-import Fond from '../modules/Fond';
 
 import ContexteDonneesSite from '../../ContexteDonneesSite';
 import {useContext} from 'react';
 import useStructure from '../../hooks/useStructure';
 
 export default function Contact({id}) {
-    const {degrades} = useContext(ContexteDonneesSite);
+    const {degrades, videos} = useContext(ContexteDonneesSite);
     const {
         titre, 
         titreDescription, 
         description,
         wpBlockWebfactoryMap,
-        BACKGROUND,
         behance,
         linkedin,
         youtube,
@@ -24,11 +21,12 @@ export default function Contact({id}) {
     return (
         degrades != null ?
         <section className="Contact">
-            <Fond fond={{backgroundImage: BACKGROUND}} />
+            {titre}
             <article className='boite-principale'>
-                {titre}
-                <article className='contenu'>
-                    {wpBlockWebfactoryMap}
+                <div className='contenu'>
+                    <div className="video-conteneur">
+                        <video src={videos[0].acf.lien} className="video" autoPlay muted></video>
+                    </div>
                     <div className='informations'>
                         {titreDescription}
                         {description}
@@ -39,7 +37,10 @@ export default function Contact({id}) {
                             {facebook}
                         </div>
                     </div>
-                </article>
+                </div>
+                <div className="carte">
+                    {wpBlockWebfactoryMap}
+                </div>
             </article>
         </section>
          : <Chargement />
