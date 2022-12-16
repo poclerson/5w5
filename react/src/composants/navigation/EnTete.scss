@@ -145,8 +145,12 @@
             &[ouvert="false"]{display: flex;}
         }
 
-        @include ordinateur {
+        @include tablette {
             height: 100%;
+            max-height: 80px;
+        }
+
+        @include ordinateur {
             max-height: 80px;
         }
 
