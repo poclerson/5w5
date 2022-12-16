@@ -23,7 +23,7 @@ export default function ListeProjets({id}) {
 
     const refListe = useRef();
 
-    const {titre, BACKGROUND} = useStructure(id);
+    const {titre} = useStructure(id);
 
     useOuvrirSelonId(surClic);
 
@@ -31,7 +31,7 @@ export default function ListeProjets({id}) {
     const rendreCases = () => {
         let index = 0;
 
-        return [...projets, ...environnement, ...videos].pseudoMelanger().map((evenement => {
+        return [...projets, ...environnement].pseudoMelanger().map((evenement => {
             // Projet
             if (evenement.acf.hasOwnProperty('nom')) {
                 let composant = <Projet 
@@ -46,13 +46,13 @@ export default function ListeProjets({id}) {
                 return composant;
             }
 
-            // Vidéo
-            else if (evenement.acf.hasOwnProperty('lien')) {
-                return <EvenementVideo 
-                    key={evenement.id}
-                    {... evenement.acf}
-                />
-            }
+            // // Vidéo
+            // else if (evenement.acf.hasOwnProperty('lien')) {
+            //     return <EvenementVideo 
+            //         key={evenement.id}
+            //         {... evenement.acf}
+            //     />
+            // }
 
             // Image d'environnement
             else {
@@ -65,7 +65,7 @@ export default function ListeProjets({id}) {
     }
 
     return(
-        projets && environnement && videos ?
+        projets && environnement ?
             <section 
                 className="ListeProjets" 
                 item-ouvert={verifierOuvertureParent()}
