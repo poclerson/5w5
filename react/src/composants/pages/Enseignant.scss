@@ -133,6 +133,11 @@ $couleurs-domaines-modifiees: (
             display: none;
         }
 
+        @include seulement-tablette {
+            justify-content: flex-start;
+            overflow-y: scroll;
+        }
+
         @include ordinateur {
             opacity: 1;
             // @include couleurs-domaines($classes-couleur-domaine-ferme);
@@ -445,9 +450,7 @@ $couleurs-domaines-modifiees: (
             @include seulement-tablette{
                 flex-wrap: nowrap;
                 flex-direction: column;
-                justify-content: center;
                 align-items: center;
-                margin-bottom: 8vh;
             }
 
             // Ajuster le texte de l'enseignant ouvert
