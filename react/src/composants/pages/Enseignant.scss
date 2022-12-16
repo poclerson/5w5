@@ -40,15 +40,14 @@ $couleurs-domaines-modifiees: (
     modelisation3d: map-get($couleurs, sombre)
 );
 
-.Icone{
-    @include seulement-tablette{
-        margin-bottom: 80vh;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-}
-
 .Enseignant {
+    .Icone{
+        @include seulement-tablette{
+            margin-bottom: 80vh;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+    }
     @include themer($theme-enseignant);
 
     @include couleurs-domaines($classes-couleur-domaine-ferme);
