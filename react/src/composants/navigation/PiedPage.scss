@@ -11,6 +11,10 @@
     bottom: 0;
     font-size: 15px;
 
+    @include tablette{
+        display: none;
+    }
+
     .Icone.vague {
         width: 110%;
         height: min-content;
