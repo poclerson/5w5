@@ -86,7 +86,16 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        height: 125%;
+        height: 100%;
+
+        @include seulement-tablette{
+            height: 115%;
+        }
+
+        @include ordinateur{
+            height: 125%;
+        }
+        
 
         @include carte;
         @include themer($theme-cours);
