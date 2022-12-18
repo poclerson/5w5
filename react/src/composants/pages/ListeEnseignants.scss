@@ -2,7 +2,6 @@
 @import '../../sass/variables.scss';
 
 .ListeEnseignants {
-    @include page(true, true);
     flex-direction: column;
     $taille-gouttieres: 10%;
     position: relative;
@@ -11,7 +10,7 @@
     overflow-x: hidden;
 
     & > .titre {padding-left: $taille-gouttieres;}
-
+    @include page;
     @include ordinateur {
         @include page(false);
     }

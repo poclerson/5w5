@@ -126,6 +126,10 @@ $couleurs-domaines-modifiees: (
         .contenu {
             display: flex;
             opacity: 1;
+
+            @include seulement-tablette {
+                
+            }
         }
 
         // enseignant ouvert
@@ -133,9 +137,10 @@ $couleurs-domaines-modifiees: (
             display: none;
         }
 
-        @include seulement-tablette {
+        @include max-tablette {
             justify-content: flex-start;
             overflow-y: scroll;
+            height: 100%;
         }
 
         @include ordinateur {
@@ -325,7 +330,6 @@ $couleurs-domaines-modifiees: (
                     justify-content: center;
                     background-color: map-get($couleurs, clair);
                     border-radius: 30px;
-                    overflow-y: scroll;
 
                     .description {
                         color: map-get($couleurs, sombre);
