@@ -130,6 +130,7 @@ $couleurs-domaines-modifiees: (
             justify-content: flex-start;
             overflow-y: scroll;
             height: 100%;
+            animation: fondu-entrant ease-in-out .25s;
         }
 
         @include max-mobile {

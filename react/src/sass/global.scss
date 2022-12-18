@@ -26,10 +26,10 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
 
         &[item-ouvert="false"] {
             // Animer le passage de retour vers la page initiale
-            animation: fondu-entrant ease-in-out .5s;
+            animation: fondu-entrant ease-in-out .25s;
 
             *[ouvert="true"] {
-                animation: fondu-entrant ease-in-out .5s;
+                animation: fondu-entrant ease-in-out .25s;
             }
         }
 

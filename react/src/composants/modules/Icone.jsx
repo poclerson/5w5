@@ -10,7 +10,7 @@ export default function Icone({type, classes, surClic, render, children}) {
         <span className={classes ? 'Icone ' + classes : 'Icone'} onClick={surClic}>
             {icones &&
                 parse(
-                    icones.filter(icone => icone.title == type)[0].acf &&
+                    icones.filter(icone => icone.title == type)[0] &&
                     icones.filter(icone => icone.title == type)[0].acf.icone
                 )
             }
