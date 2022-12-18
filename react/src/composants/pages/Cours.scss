@@ -88,6 +88,15 @@
         position: relative;
         height: 100%;
 
+        @include seulement-tablette{
+            height: 115%;
+        }
+
+        @include ordinateur{
+            height: 125%;
+        }
+        
+
         @include carte;
         @include themer($theme-cours);
         backdrop-filter: blur(5px);
@@ -118,6 +127,14 @@
 
         .titre {
             margin: 12% 0% 0% 0%;
+
+            @include seulement-tablette{
+                margin-top: 25%;
+            }
+
+            @include ordinateur{
+                margin-top: 12%;
+            }
         }
 
         .domaine {
