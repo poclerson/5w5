@@ -126,11 +126,21 @@ $couleurs-domaines-modifiees: (
         .contenu {
             display: flex;
             opacity: 1;
+
+            @include seulement-tablette {
+                
+            }
         }
 
         // enseignant ouvert
         .miniature {
             display: none;
+        }
+
+        @include max-tablette {
+            justify-content: flex-start;
+            overflow-y: scroll;
+            height: 100%;
         }
 
         @include ordinateur {
@@ -320,7 +330,6 @@ $couleurs-domaines-modifiees: (
                     justify-content: center;
                     background-color: map-get($couleurs, clair);
                     border-radius: 30px;
-                    overflow-y: scroll;
 
                     .description {
                         color: map-get($couleurs, sombre);
@@ -445,9 +454,7 @@ $couleurs-domaines-modifiees: (
             @include seulement-tablette{
                 flex-wrap: nowrap;
                 flex-direction: column;
-                justify-content: center;
                 align-items: center;
-                margin-bottom: 8vh;
             }
 
             // Ajuster le texte de l'enseignant ouvert
