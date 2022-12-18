@@ -41,13 +41,6 @@ $couleurs-domaines-modifiees: (
 );
 
 .Enseignant {
-    .Icone{
-        @include seulement-tablette{
-            margin-bottom: 80vh;
-            justify-content: flex-start;
-            align-items: flex-start;
-        }
-    }
     @include themer($theme-enseignant);
 
     @include couleurs-domaines($classes-couleur-domaine-ferme);
@@ -126,10 +119,6 @@ $couleurs-domaines-modifiees: (
         .contenu {
             display: flex;
             opacity: 1;
-
-            @include seulement-tablette {
-                
-            }
         }
 
         // enseignant ouvert
@@ -141,6 +130,11 @@ $couleurs-domaines-modifiees: (
             justify-content: flex-start;
             overflow-y: scroll;
             height: 100%;
+        }
+
+        @include max-mobile {
+            padding-top: 5vh;
+            height: unset;
         }
 
         @include ordinateur {
@@ -293,6 +287,7 @@ $couleurs-domaines-modifiees: (
             .retour {
                 align-self: flex-start;
                 position: absolute;
+                top: 10%;
                 left: 5%;
 
                 @include ordinateur {
@@ -302,7 +297,7 @@ $couleurs-domaines-modifiees: (
 
             .texte {
                 // Gérer avec la height pour .texte et .contenu, flex-basis marche pas
-                height: 70%;
+                height: 110%;
                 box-sizing: border-box; // Calculer avec le padding
                 padding: 5%;
                 border-radius: 30px 30px 0 0;
@@ -359,8 +354,8 @@ $couleurs-domaines-modifiees: (
 
                 // .texte
                 @include tablette {
-                    height: 90%;
-                    flex: 0 0 62.5%;
+                    // height: 90%;
+                    flex: 0 1 50%;
                     border-radius: 0;
                     @include bordures-coins-diagonales(60px, map-get($couleurs, clair));
 

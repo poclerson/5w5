@@ -10,10 +10,7 @@
     overflow-x: hidden;
 
     & > .titre {padding-left: $taille-gouttieres;}
-    @include page;
-    @include ordinateur {
-        @include page(false);
-    }
+    @include page(false);
 
     &[item-ouvert="false"] {
         .titre {display: block;}

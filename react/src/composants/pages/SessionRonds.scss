@@ -8,7 +8,6 @@
     bottom: -425px;
 
     .liste {
-        
         transition: transform .5s;
         @include placement-circulaire(6, 1000px, 250px);
     
@@ -75,16 +74,12 @@
     }
 
     & > .FlecheNav {
-        bottom: 70px;
-        left: 250px;
+        top: 500px;
+        right: -200px;
 
         @include tablette {
-            left: 275px;
-        }
-
-        @include seulement-tablette {
-            left: 280px;
-            top: 1500px;
+            top: 650px;
+            right: -250px;
         }
 
         @include ordinateur {

@@ -4,7 +4,7 @@ import {useContext} from 'react';
 import ContexteDonneesSite from '../../ContexteDonneesSite';
 import parse from 'html-react-parser';
 
-export default function Icone({type, classes, surClic, render}) {
+export default function Icone({type, classes, surClic, render, children}) {
     const {icones} = useContext(ContexteDonneesSite);
     return (
         <span className={classes ? 'Icone ' + classes : 'Icone'} onClick={surClic}>
@@ -15,6 +15,7 @@ export default function Icone({type, classes, surClic, render}) {
                 )
             }
             {render}
+            {children}
         </span>
     )
 }
