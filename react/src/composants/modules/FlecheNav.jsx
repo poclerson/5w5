@@ -4,18 +4,19 @@ import Icone from './Icone';
 // Appelle gestionClic lorsque cliqué
 export default function FlecheNav({
     gestionClic, 
-    texte = false, 
     direction = 'suivant', 
-    classesAdditionnelles = ''
+    classesAdditionnelles = '',
+    rond = true
 }) {
     return (
         <span className={`FlecheNav ${classesAdditionnelles}`} onClick={e => gestionClic(e)}>
-            {texte && <p className="texte">{direction}</p>}
-            {
-                direction == 'suivant' ? 
-                <Icone type='fleche-suivant' /> :
-                <Icone type='fleche-precedent' />
-            }
+            <div className="rond">
+                {
+                    direction == 'suivant' ? 
+                    <Icone type='fleche-suivant' /> :
+                    <Icone type='fleche-precedent' />
+                }
+            </div>
         </span>
     )
 }

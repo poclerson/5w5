@@ -1,6 +1,7 @@
 import './Projet.scss';
 
 import FlecheNav from '../modules/FlecheNav';
+import Icone from '../modules/Icone';
 
 import useClicExterieur from '../../hooks/useClicExterieur';
 import {useRef} from 'react';
@@ -36,7 +37,10 @@ export default function Projet({
                 </div>
                 <div className="information">
                     <h2 className="titre">{nom}</h2>
-                    <p className="details">{cours && cours.post_title}<br/><br/>+</p>
+                    <p className="details">
+                        {cours && cours.post_title}
+                    </p>
+                    <Icone type="ajouter" />
                 </div>
             </div>
             <div className="contenu">
