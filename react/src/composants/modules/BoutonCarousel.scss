@@ -13,20 +13,6 @@
 
     @include ordinateur {
         display: flex;
-    }
-
-    .rond {
-        @include rond(50px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: map-get($couleurs, clair-transparent);
-        backdrop-filter: blur(15px);
-
-        .FlecheNav {
-            path {
-                fill: map-get($couleurs, clair-semi-transparent);
-            }
-        }
+        gap: 100px;
     }
 }

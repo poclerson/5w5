@@ -5,6 +5,7 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
 
 // Styles généraux sur tous les éléments
 * {
+    // cursor: url("/cursor.cur");
     margin-block-start: 0;
     margin-block-end: 0;
     scrollbar-color: map-deep-get($couleurs, 'domaines', 'web') map-get($couleurs, sombre);
@@ -25,10 +26,10 @@ $liste-items-liste-non-ouvrables: '.Cours, .EnTete, .Navigation, .Recherche';
 
         &[item-ouvert="false"] {
             // Animer le passage de retour vers la page initiale
-            animation: fondu-entrant ease-in-out .5s;
+            animation: fondu-entrant ease-in-out .25s;
 
             *[ouvert="true"] {
-                animation: fondu-entrant ease-in-out .5s;
+                animation: fondu-entrant ease-in-out .25s;
             }
         }
 

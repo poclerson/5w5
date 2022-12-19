@@ -52,7 +52,7 @@ export default function App() {
     ]); 
         
     return (
-        <div className="App">
+        <div className="App" style={{cursor: "url(/cursor.cur), auto"}}>
             {hcms && donneesSite ?
                 <ContexteDonneesSite.Provider value={donneesSite}>
                     <EnTete enteteWP={hcms.data.header} />

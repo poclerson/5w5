@@ -193,9 +193,10 @@
 @mixin transition-base(
     $propriete: all, 
     $courbe: cubic-bezier(.99,-0.01,.65,.73), 
-    $duree: .5s
+    $duree: .5s,
+    $delais: 0s
 ) {
-    transition: $propriete $courbe $duree;
+    transition: $propriete $courbe $duree $delais;
 }
 // Styles de base de hover sur un item d'une liste
 // $element-hovered permet de specifier sur quel élément le hover doit se produire

@@ -24,7 +24,14 @@ export default function Contact({id}) {
             {titre}
             <article className='boite-principale'>
                     <div className="video-conteneur">
-                        <video src={videos[0].acf.lien} className="video" autoPlay muted></video>
+                        <video 
+                            src={videos[0].acf.lien} 
+                            className="video" 
+                            autoPlay
+                            muted
+                            webkit-playsinline 
+                            playsinline
+                        ></video>
                     </div>
                     <div className='informations'>
                         {titreDescription}
