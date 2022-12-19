@@ -4,21 +4,25 @@
     // flex: 0;
     // display: flex;
     position: absolute;
-    left: -900px;
+    left: -925px;
     bottom: -425px;
 
     .liste {
         transition: transform .5s;
-        @include placement-circulaire(6, 1000px, 250px);
+        @include placement-circulaire(6, 1000px, 200px);
     
         @include tablette {
-            @include placement-circulaire(6, 1250px, 300px);
+            @include placement-circulaire(6, 1250px, 250px);
         }
         // Sinon on ne peut pas scroll
         @include ordinateur {
             width: unset;
             height: unset;
-            @include placement-circulaire(6, 1500px, 350px);
+            @include placement-circulaire(6, 1500px, 275px);
+        }
+
+        @include ultra-large {
+            @include placement-circulaire(6, 1500px, 300px);
         }
 
         .session-rond-conteneur {
@@ -48,9 +52,13 @@
 
                 .titre {
                     position: absolute;
-                    font-size: 1500%;
+                    font-size: 1250%;
                     @include desactiver-margin-block;
                     color: map-get($couleurs, clair);
+
+                    @include tablette {
+                        font-size: 1500%;
+                    }
                 }
 
                 .degrade {
@@ -64,12 +72,12 @@
 
     @include tablette {
         left: -1150px;
-        bottom: -500px;
+        bottom: -525px;
     }
 
     @include ordinateur {
-        left: -1350px;
-        top: 0%;
+        left: -1400px;
+        top: -250px;
         // bottom: unset;
     }
 

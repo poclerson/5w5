@@ -58,8 +58,15 @@ export default function Cours({titre, description, modele, domaine, id, index, o
                         <VisionneurModele 
                             cheminModele={modele}
                             echelle={.4}
-                            position={positionSelonCours[modele] && positionSelonCours[modele].position}
-                            rotation={positionSelonCours[modele] && positionSelonCours[modele].rotation}
+                            position={
+                                positionSelonCours[modele] && 
+                                positionSelonCours[modele].position
+                            }
+                            rotation={
+                                positionSelonCours[modele] && 
+                                positionSelonCours[modele].rotation
+                            }
+                            tourne={ouvert == 'true'}
                         />
                     }
                 </div>

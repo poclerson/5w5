@@ -159,7 +159,7 @@ $couleurs-domaines-modifiees: (
                 @include transition-base;
                 transform: scale(0.5);
                 opacity: 1;
-                width: 75vw;
+                width: 70vw;
                 height: 60vh;
 
                 .contenu {
@@ -171,7 +171,7 @@ $couleurs-domaines-modifiees: (
                 // Troisième enseignant
                 & + .Enseignant {
                     display: flex;
-                    width: 75vw;
+                    width: 70vw;
                     height: 60vh;
                     @include transition-base;
                     opacity: 0;
@@ -232,6 +232,7 @@ $couleurs-domaines-modifiees: (
                 @include carte;
                 aspect-ratio: 1 / 1.5;
                 width: 40%;
+                max-height: 50vh;
                 padding: 0;
 
                 position: relative;
@@ -268,7 +269,9 @@ $couleurs-domaines-modifiees: (
                 .photo {
                     object-fit: cover;
                     width: 100%;
-                    height: 70%;
+                    @include max-tablette {
+                        height: 70%;
+                    }
                     position: absolute;
                     bottom: 0;
                     z-index: 2;
@@ -292,7 +295,7 @@ $couleurs-domaines-modifiees: (
                 left: 5%;
 
                 @include ordinateur {
-                    left: -10%;
+                    left: -17.5%;
                 }
             }
 
@@ -331,6 +334,11 @@ $couleurs-domaines-modifiees: (
                         color: map-get($couleurs, sombre);
                     }
 
+                    @include max-hauteur-petite {
+                        max-height: 15vh;
+                        overflow-y: scroll;
+                    }
+
                     @include tablette {
                         border-radius: 0;
                         background-color: transparent;
@@ -340,6 +348,7 @@ $couleurs-domaines-modifiees: (
 
                     @include ordinateur {
                         flex: 1 0 30%;
+                        overflow-y: scroll;
                     }
                 }
 
@@ -484,7 +493,7 @@ $couleurs-domaines-modifiees: (
             display: flex;
             flex-direction: row-reverse;
             @include transition-base;
-            width: 75vw;
+            width: 70vw;
             height: 60vh;
             gap: 10%;
             transform: scale(1);

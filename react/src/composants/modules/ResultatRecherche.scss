@@ -1,10 +1,12 @@
 @import '../../sass/mixins.scss';
 
 .ResultatRecherche {
-    width: min-content;
+    // width: min-content;
 
     .titre {
-        white-space: nowrap;
+        // white-space: nowrap;
+        line-break: loose;
+        width: 100%;
         @include hover-bordures-cotes;
     }
 }
