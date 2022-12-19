@@ -1,30 +1,24 @@
 @import '../../sass/mixins.scss';
 
 .SessionRonds {
-    flex: 0;
+    // flex: 0;
+    // display: flex;
+    position: absolute;
+    left: -900px;
+    bottom: -425px;
 
     .liste {
-        position: absolute;
-        bottom: -410px;
-        left: -910px;
-        
         transition: transform .5s;
         @include placement-circulaire(6, 1000px, 250px);
     
         @include tablette {
-            @include placement-circulaire(6, 1000px, 300px);
+            @include placement-circulaire(6, 1250px, 300px);
         }
         // Sinon on ne peut pas scroll
         @include ordinateur {
             width: unset;
             height: unset;
-            @include placement-circulaire(6, 1500px, 250px);
-            left: -1400px;
-            bottom: 0;
-
-            @include hauteur-petite {
-                @include placement-circulaire(6, 1500px, 300px);
-            }
+            @include placement-circulaire(6, 1500px, 350px);
         }
 
         .session-rond-conteneur {
@@ -68,17 +62,24 @@
         }
     }
 
+    @include tablette {
+        left: -1150px;
+        bottom: -500px;
+    }
+
+    @include ordinateur {
+        left: -1350px;
+        top: 0%;
+        // bottom: unset;
+    }
+
     & > .FlecheNav {
-        bottom: 70px;
-        left: 250px;
+        top: 500px;
+        right: -200px;
 
         @include tablette {
-            left: 275px;
-        }
-
-        @include seulement-tablette {
-            left: 280px;
-            top: 1500px;
+            top: 650px;
+            right: -250px;
         }
 
         @include ordinateur {
