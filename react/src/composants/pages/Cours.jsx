@@ -24,10 +24,20 @@ export default function Cours({titre, description, modele, domaine, id, index, o
             rotation: [0, 4.7, 0]
         },
 
-        'https://timm175.sg-host.com/wp-content/uploads/2022/12/coursWEB.glb': {
+        // 'https://timm175.sg-host.com/wp-content/uploads/2022/12/coursWEB.glb': {
+        //     position: [-1.4, 0.1, 0.8],
+        //     rotation: [-0.05, 4.75, -.05]
+        // },
+
+        'https://timm175.sg-host.com/wp-content/uploads/2022/12/WEB.glb': {
             position: [-1.4, 0.1, 0.8],
             rotation: [-0.05, 4.75, -.05]
         },
+
+        // 'https://timm175.sg-host.com/wp-content/uploads/2022/12/cours3D-1.glb': {
+        //     position: [1.75, 0.2, 3.5],
+        //     rotation: [0, -0.3, 0]
+        // },
 
         'https://timm175.sg-host.com/wp-content/uploads/2022/12/CUBE3D.glb': {
             position: [1.75, 0.2, 3.5],
