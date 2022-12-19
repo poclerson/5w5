@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import Modele3D from "./Modele3D";
 
-const VisionneurModele = ({ cheminModele, echelle, position, rotation }) => {
+const VisionneurModele = ({ cheminModele, echelle, position, rotation, tourne = false }) => {
     return (
         <Canvas style={{width: '100%', height: '100%', overflow: 'visible'}}>
             <ambientLight intensity={0} />
@@ -13,6 +13,7 @@ const VisionneurModele = ({ cheminModele, echelle, position, rotation }) => {
                     echelle={echelle} 
                     position={position} 
                     rotation={rotation}
+                    tourne={tourne}
                 />
             </Suspense>
         </Canvas>

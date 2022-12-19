@@ -25,7 +25,7 @@ export default function ResultatRecherche({resultat, surClic, article}) {
                 }}
                 onClick={gestionClic}
             >
-                <h6 className="titre">{resultat.title}</h6>
+                <h6 className="titre">{resultat.title.replace('&rsquo;', `'`)}</h6>
             </Link>
         </li>
             

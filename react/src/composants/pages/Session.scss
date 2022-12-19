@@ -27,7 +27,7 @@
         overflow-x: scroll;
         scroll-behavior: smooth;
         gap: 40vw;
-        scroll-padding-left: 20vw;
+        scroll-padding-left: 15vw;
 
         @include petit-mobile {
             scroll-padding-left: 17.5vw;
@@ -39,16 +39,16 @@
             padding: 0;
         }
         
-        @include seulement-tablette {
-            @include padding-auto;
-        }
+        // @include seulement-tablette {
+        //     @include padding-auto;
+        // }
 
         @include ordinateur {
             min-height: 75vh;
             max-height: 75vh;
             gap: 10vw;
             scroll-padding-left: 35vw;
-            padding-top: 5vh;
+            padding-top: 10vh;
         }
 
         @include ordinateur-large {
@@ -99,6 +99,8 @@
 
     .PointsCarousel {
         align-self: center;
-        margin-top: -5vh;
+        @include max-tablette {
+            margin-top: -10vh;
+        }
     }
 }

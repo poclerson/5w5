@@ -37,7 +37,7 @@
 
             // Diminuer un peu la taille des polices si la hauteur diminue trop
             @include ordinateur {
-                @include max-hauteur-petite {
+                @media screen and (max-height: 600px) {
                     @include texte-dynamique-general($proprietes, $selecteur, 1.25);
                 }
             }
